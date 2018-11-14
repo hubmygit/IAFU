@@ -15,7 +15,17 @@ namespace IAFollowUp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            if (!AppVer.IsLatestVersion()) //check version
+                return;
+
+            Login frmLogin = new Login();
+            frmLogin.ShowDialog();
+
+            if (frmLogin.LoggedIn)
+            {
+                Application.Run(new Form1());
+            }
         }
     }
 }
