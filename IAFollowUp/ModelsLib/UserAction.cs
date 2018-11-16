@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace IAFollowUp.ModelsLib
+namespace IAFollowUp
 {
     public enum Action
     {

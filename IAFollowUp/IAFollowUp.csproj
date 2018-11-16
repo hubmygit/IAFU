@@ -57,6 +57,12 @@
     <Compile Include="CreateRole.Designer.cs">
       <DependentUpon>CreateRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateUser.Designer.cs">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,7 @@
     <Compile Include="ModelsLib\AppVer.cs" />
     <Compile Include="ModelsLib\ComboboxItem.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
+    <Compile Include="ModelsLib\LibFunctions.cs" />
     <Compile Include="ModelsLib\PasswordHistory.cs" />
     <Compile Include="ModelsLib\Role.cs" />
     <Compile Include="ModelsLib\SqlDBInfo.cs" />
@@ -86,6 +93,12 @@
     <Compile Include="ModelsLib\UserAction.cs" />
     <Compile Include="ModelsLib\UserAuthorization.cs" />
     <Compile Include="ModelsLib\UserInfo.cs" />
+    <Compile Include="NewPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPassword.Designer.cs">
+      <DependentUpon>NewPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewRole.cs">
@@ -94,17 +107,29 @@
     <Compile Include="ViewRole.Designer.cs">
       <DependentUpon>ViewRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewUser.Designer.cs">
+      <DependentUpon>ViewUser.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateRole.resx">
       <DependentUpon>CreateRole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateUser.resx">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPassword.resx">
+      <DependentUpon>NewPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,6 +143,9 @@
     </Compile>
     <EmbeddedResource Include="ViewRole.resx">
       <DependentUpon>ViewRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewUser.resx">
+      <DependentUpon>ViewUser.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
