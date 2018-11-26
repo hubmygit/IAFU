@@ -51,6 +51,7 @@ namespace IAFollowUp
 
         }
 
+        /*
         public static bool isEqual(Role x, Role y)
         {
             if (x.Id == y.Id && x.Name == y.Name && x.IsAuditor == y.IsAuditor && x.IsAuditee == y.IsAuditee && x.IsAdmin == y.IsAdmin && x.PasswordPeriod == y.PasswordPeriod)
@@ -58,6 +59,7 @@ namespace IAFollowUp
             else
                 return false;
         }
+        */
 
         public static List<ComboboxItem> GetRolesComboboxItemsList(List<Role> Roles)
         {

@@ -82,7 +82,11 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelsLib\AppVer.cs" />
+    <Compile Include="ModelsLib\Audit.cs" />
+    <Compile Include="ModelsLib\AuditRating.cs" />
+    <Compile Include="ModelsLib\AuditTypes.cs" />
     <Compile Include="ModelsLib\ComboboxItem.cs" />
+    <Compile Include="ModelsLib\Companies.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
     <Compile Include="ModelsLib\LibFunctions.cs" />
     <Compile Include="ModelsLib\PasswordHistory.cs" />
@@ -93,6 +97,8 @@
     <Compile Include="ModelsLib\UserAction.cs" />
     <Compile Include="ModelsLib\UserAuthorization.cs" />
     <Compile Include="ModelsLib\UserInfo.cs" />
+    <Compile Include="ModelsLib\UserRole.cs" />
+    <Compile Include="ModelsLib\Users.cs" />
     <Compile Include="NewPassword.cs">
       <SubType>Form</SubType>
     </Compile>

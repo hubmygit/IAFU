@@ -57,14 +57,28 @@ namespace IAFollowUp
 
         private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //CreateUser frmCreateUser = new CreateUser();
-            //frmCreateUser.ShowDialog();
+            CreateUser frmCreateUser = new CreateUser();
+            frmCreateUser.ShowDialog();
         }
 
         private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ViewUser frmViewUser = new ViewUser();
-            //frmViewUser.ShowDialog();
+            ViewUser frmViewUser = new ViewUser();
+            frmViewUser.ShowDialog();
+        }
+
+        private void auditViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //View Audits...
+        }
+
+        private void insertNewAuditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserAction.IsLegal(Action.Audit_Create))
+            {
+                //InsertNewAudit frmInsertNewAudit = new InsertNewAudit();
+                //frmInsertNewAudit.ShowDialog();
+            }
         }
     }
 }

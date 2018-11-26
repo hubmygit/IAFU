@@ -39,9 +39,6 @@
             this.auditeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewRevisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewFIRevisionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.viewRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,12 +99,14 @@
             this.auditViewToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.auditViewToolStripMenuItem.Tag = "";
             this.auditViewToolStripMenuItem.Text = "Audit View";
+            this.auditViewToolStripMenuItem.Click += new System.EventHandler(this.auditViewToolStripMenuItem_Click);
             // 
             // insertNewAuditToolStripMenuItem
             // 
             this.insertNewAuditToolStripMenuItem.Name = "insertNewAuditToolStripMenuItem";
             this.insertNewAuditToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.insertNewAuditToolStripMenuItem.Text = "Insert New Audit";
+            this.insertNewAuditToolStripMenuItem.Click += new System.EventHandler(this.insertNewAuditToolStripMenuItem_Click);
             // 
             // findingsAndImprovementsToolStripMenuItem
             // 
@@ -135,9 +134,6 @@
             // administratorToolStripMenuItem
             // 
             this.administratorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewRevisionsToolStripMenuItem,
-            this.viewFIRevisionsToolStripMenuItem,
-            this.toolStripSeparator1,
             this.viewRolesToolStripMenuItem,
             this.createRoleToolStripMenuItem,
             this.viewUsersToolStripMenuItem,
@@ -148,48 +144,31 @@
             this.administratorToolStripMenuItem.Text = "Administrator";
             this.administratorToolStripMenuItem.Visible = false;
             // 
-            // viewRevisionsToolStripMenuItem
-            // 
-            this.viewRevisionsToolStripMenuItem.Name = "viewRevisionsToolStripMenuItem";
-            this.viewRevisionsToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.viewRevisionsToolStripMenuItem.Text = "View Audits / Revisions";
-            // 
-            // viewFIRevisionsToolStripMenuItem
-            // 
-            this.viewFIRevisionsToolStripMenuItem.Name = "viewFIRevisionsToolStripMenuItem";
-            this.viewFIRevisionsToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.viewFIRevisionsToolStripMenuItem.Text = "View Findings and Improvements / Revisions";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(307, 6);
-            // 
             // viewRolesToolStripMenuItem
             // 
             this.viewRolesToolStripMenuItem.Name = "viewRolesToolStripMenuItem";
-            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewRolesToolStripMenuItem.Text = "View / Edit Roles";
             this.viewRolesToolStripMenuItem.Click += new System.EventHandler(this.viewRolesToolStripMenuItem_Click);
             // 
             // createRoleToolStripMenuItem
             // 
             this.createRoleToolStripMenuItem.Name = "createRoleToolStripMenuItem";
-            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createRoleToolStripMenuItem.Text = "Create New Role";
             this.createRoleToolStripMenuItem.Click += new System.EventHandler(this.createRoleToolStripMenuItem_Click);
             // 
             // viewUsersToolStripMenuItem
             // 
             this.viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
-            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewUsersToolStripMenuItem.Text = "View / Edit Users";
             this.viewUsersToolStripMenuItem.Click += new System.EventHandler(this.viewUsersToolStripMenuItem_Click);
             // 
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createUserToolStripMenuItem.Text = "Create New User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.createUserToolStripMenuItem_Click);
             // 
@@ -245,9 +224,6 @@
         private System.Windows.Forms.ToolStripMenuItem auditeesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem administratorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewRevisionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewFIRevisionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem viewRolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createRoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewUsersToolStripMenuItem;
