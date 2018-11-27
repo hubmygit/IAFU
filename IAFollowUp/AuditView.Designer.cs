@@ -89,6 +89,7 @@
             this.MIdelete.Name = "MIdelete";
             this.MIdelete.Size = new System.Drawing.Size(207, 22);
             this.MIdelete.Text = "Delete";
+            this.MIdelete.Click += new System.EventHandler(this.MIdelete_Click);
             // 
             // tsSep1
             // 
@@ -100,6 +101,7 @@
             this.MIattachments.Name = "MIattachments";
             this.MIattachments.Size = new System.Drawing.Size(207, 22);
             this.MIattachments.Text = "Attachments";
+            this.MIattachments.Click += new System.EventHandler(this.MIattachments_Click);
             // 
             // tsSep2
             // 

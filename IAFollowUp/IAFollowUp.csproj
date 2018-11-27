@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditAttachments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuditAttachments.Designer.cs">
+      <DependentUpon>AuditAttachments.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuditInsert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,9 @@
     <Compile Include="ViewUser.Designer.cs">
       <DependentUpon>ViewUser.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AuditAttachments.resx">
+      <DependentUpon>AuditAttachments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuditInsert.resx">
       <DependentUpon>AuditInsert.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +208,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Save_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddAttachment_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteAttachment_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenAttachment_16x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

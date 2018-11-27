@@ -153,5 +153,57 @@ namespace IAFollowUp
                 }
             }
         }
+
+        private void MIdelete_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
+
+                if (thisAudit.IsDeleted)
+                {
+                    MessageBox.Show("The audit has already been deleted!");
+                    return;
+                }
+
+                if (!UserAction.IsLegal(Action.Audit_Delete, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                {
+                    return;
+                }
+
+                //check references. ToDo...............................................................................
+
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to permanently delete this record?", "Audit Deletion", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (Audit.Delete(Id))
+                    {
+                        MessageBox.Show("The Deletion was successful!");
+
+                        //refresh
+                        auditBList = SelectAudit(); //BindingList
+                        gridControl1.DataSource = auditBList; //DataSource
+                    }
+                    else
+                    {
+                        MessageBox.Show("The Deletion was not successful!");
+                    }
+                }
+
+
+            }
+        }
+
+        private void MIattachments_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+
+                AuditAttachments attachedFiles = new AuditAttachments(Id);
+            }
+        }
     }
 }
