@@ -76,8 +76,8 @@ namespace IAFollowUp
         {
             if (UserAction.IsLegal(Action.Audit_Create))
             {
-                //InsertNewAudit frmInsertNewAudit = new InsertNewAudit();
-                //frmInsertNewAudit.ShowDialog();
+                AuditInsert frmInsertNewAudit = new AuditInsert();
+                frmInsertNewAudit.ShowDialog();
             }
         }
     }

@@ -28,7 +28,7 @@ namespace IAFollowUp
         //public string Status { get; set; }
 
 
-        public static void Ins_ChLog(ChangeLog givenLog)
+        private static void Ins_ChLog(ChangeLog givenLog)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[ChangeLog] " +
@@ -62,5 +62,140 @@ namespace IAFollowUp
             }
             sqlConn.Close();
         }
+
+        public static void Insert(Audit oldRec, Audit newRec, string section)
+        {
+            ChangeLog chLog = new ChangeLog();
+            chLog.Section = section;
+            chLog.Tbl_Id = oldRec.Id;
+            //tml.TM_Status_Id = null;
+            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.Dt = DateTime.Now;
+            chLog.ExecStatement = "UPDATE";
+            if (newRec.IsDeleted == true)
+            {
+                chLog.ExecStatement = "DELETE";
+            }
+            chLog.TableName = "Audit";
+
+            List<ChLogFields> FieldsToCheck = new List<ChLogFields>();
+
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Year", FieldNameToShow = "Year" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Company", FieldNameToShow = "Company" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "AuditType", FieldNameToShow = "Audit Type" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Title", FieldNameToShow = "Title" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "ReportDt", FieldNameToShow = "Report Date" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Auditor1", FieldNameToShow = "Auditor 1" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Auditor2", FieldNameToShow = "Auditor 2" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Supervisor", FieldNameToShow = "Supervisor" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "AuditNumber", FieldNameToShow = "Audit Number" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IASentNumber", FieldNameToShow = "IA Sent Number" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "AuditRating", FieldNameToShow = "Audit Rating" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
+
+            //FieldsToCheck.Add(new TmLogFields() { FieldName = "ClassIds", FieldNameToShow = "Κλάσεις", FieldType = "List<int>" });
+
+            foreach (ChLogFields chlf in FieldsToCheck)
+            {
+                object objOld = oldRec.GetType().GetProperty(chlf.FieldName).GetValue(oldRec, null);
+                object objNew = newRec.GetType().GetProperty(chlf.FieldName).GetValue(newRec, null);
+                string strOld = "";
+                string strNew = "";
+
+                //if (chlf.FieldType == "List<int>")
+                //{
+                //    if (objOld != null)
+                //    {
+                //        strOld = String.Join(",", ((List<int>)objOld).ToArray());
+                //    }
+                //    if (objNew != null)
+                //    {
+                //        strNew = String.Join(",", ((List<int>)objNew).ToArray());
+                //    }
+
+                //    if (strOld != strNew)
+                //    {
+                //        chLog.FieldName = chlf.FieldName;
+                //        chLog.OldValue = strOld;
+                //        chLog.NewValue = strNew;
+                //        chLog.FieldNameToShow = chlf.FieldNameToShow;
+
+                //        Ins_TMLog(chLog);
+                //    }
+                //}
+                //else
+                //{
+
+                if (objOld != null)
+                {
+                    if (objOld.GetType() == typeof(Companies))
+                    {
+                        strOld = ((Companies)objOld).Name.ToString();
+                    }
+                    else if (objOld.GetType() == typeof(AuditTypes))
+                    {
+                        strOld = ((AuditTypes)objOld).Name.ToString();
+                    }
+                    else if (objOld.GetType() == typeof(Users))
+                    {
+                        strOld = ((Users)objOld).FullName.ToString();
+                    }
+                    else if (objOld.GetType() == typeof(AuditRating))
+                    {
+                        strOld = ((AuditRating)objOld).Name.ToString();
+                    }
+                    else
+                    {
+                        strOld = objOld.ToString();
+                    }                    
+                }
+
+                if (objNew != null)
+                {
+                    if (objNew.GetType() == typeof(Companies))
+                    {
+                        strNew = ((Companies)objNew).Name.ToString();
+                    }
+                    else if (objNew.GetType() == typeof(AuditTypes))
+                    {
+                        strNew = ((AuditTypes)objNew).Name.ToString();
+                    }
+                    else if (objNew.GetType() == typeof(Users))
+                    {
+                        strNew = ((Users)objNew).FullName.ToString();
+                    }
+                    else if (objNew.GetType() == typeof(AuditRating))
+                    {
+                        strNew = ((AuditRating)objNew).Name.ToString();
+                    }
+                    else
+                    {
+                        strNew = objNew.ToString();
+                    }
+                }
+
+
+                if (strOld != strNew)
+                {
+                    chLog.FieldName = chlf.FieldName;
+                    chLog.OldValue = strOld;
+                    chLog.NewValue = strNew;
+                    chLog.FieldNameToShow = chlf.FieldNameToShow;
+
+                    Ins_ChLog(chLog);
+                }
+                //}
+
+            }
+        }
+
+    }
+
+    public class ChLogFields
+    {
+        public string FieldName { get; set; }
+        public string FieldNameToShow { get; set; }
+        public string FieldType { get; set; }
+        //public int MandatoryGroup { get; set; }
     }
 }

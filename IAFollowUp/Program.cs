@@ -24,7 +24,7 @@ namespace IAFollowUp
 
             if (frmLogin.LoggedIn)
             {
-                Application.Run(new Form1());
+                Application.Run(new MainMenu(frmLogin.user, frmLogin.role));
             }
         }
     }

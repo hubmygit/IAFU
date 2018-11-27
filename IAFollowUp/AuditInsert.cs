@@ -187,30 +187,13 @@ namespace IAFollowUp
             }
             else //update
             {
-                bool successful = true;
-
                 if (Audit.Update(newAuditRecord))
                 {                   
+                    ChangeLog.Insert(oldAuditRecord, newAuditRecord, "Audit");
+                    
+                    MessageBox.Show("Audit updated successfully!");
                     success = true;
-
-
-
-                    /*
-                    if (InsertIntoTable_Att(newAuditRecord.Id, oldAuditRecord.RevNo, UserInfo.userDetails.Id) == false)
-                    {
-                        successful = false;
-                    }
-
-                    if (successful)
-                    {
-                        MessageBox.Show("Audit updated successfully!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Audit updated. Error while inserting attachments.");
-                    }
                     Close();
-                    */
                 }
                 else
                 {
