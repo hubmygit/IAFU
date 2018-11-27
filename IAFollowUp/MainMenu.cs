@@ -69,7 +69,12 @@ namespace IAFollowUp
 
         private void auditViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //View Audits...
+            if (UserAction.IsLegal(Action.Audit_View))
+            {
+                AuditView frmAuditView = new AuditView();
+                //frmAuditView.auditList = frmAuditView.auditList.Where(i => i.IsDeleted == false).ToList();
+                frmAuditView.ShowDialog();
+            }
         }
 
         private void insertNewAuditToolStripMenuItem_Click(object sender, EventArgs e)
