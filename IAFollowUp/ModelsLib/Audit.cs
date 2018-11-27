@@ -148,7 +148,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@ReportDt", audit.ReportDt.Date);
                 cmd.Parameters.AddWithValue("@Auditor1ID", audit.Auditor1.Id);
 
-                if (audit.Auditor2 == null)
+                if (audit.Auditor2.Id <= 0)
                 {
                     cmd.Parameters.AddWithValue("@Auditor2ID", DBNull.Value);
                 }
@@ -157,7 +157,7 @@ namespace IAFollowUp
                     cmd.Parameters.AddWithValue("@Auditor2ID", audit.Auditor2.Id);
                 }
 
-                if (audit.Supervisor == null)
+                if (audit.Supervisor.Id <= 0)
                 {
                     cmd.Parameters.AddWithValue("@SupervisorID", DBNull.Value);
                 }
@@ -166,7 +166,7 @@ namespace IAFollowUp
                     cmd.Parameters.AddWithValue("@SupervisorID", audit.Supervisor.Id);
                 }
 
-                if (audit.AuditRating == null)
+                if (audit.AuditRating.Id <= 0)
                 {
                     cmd.Parameters.AddWithValue("@AuditRatingId", DBNull.Value);
                 }

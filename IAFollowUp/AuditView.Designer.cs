@@ -75,13 +75,14 @@
             this.MIshowFindings,
             this.MIfinalizeAudit});
             this.cmsOnGrid.Name = "cmsOnGrid";
-            this.cmsOnGrid.Size = new System.Drawing.Size(208, 126);
+            this.cmsOnGrid.Size = new System.Drawing.Size(208, 148);
             // 
             // MIupdate
             // 
             this.MIupdate.Name = "MIupdate";
             this.MIupdate.Size = new System.Drawing.Size(207, 22);
             this.MIupdate.Text = "Edit";
+            this.MIupdate.Click += new System.EventHandler(this.MIupdate_Click);
             // 
             // MIdelete
             // 

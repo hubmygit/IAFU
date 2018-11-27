@@ -123,5 +123,35 @@ namespace IAFollowUp
             return ret;
         }
 
+        private void MIupdate_Click(object sender, EventArgs e)
+        {
+            // Update
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0) 
+            {
+                int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
+
+                if (thisAudit.IsDeleted)
+                {
+                    MessageBox.Show("The audit has been deleted!");
+                    return;
+                }
+
+                if (!UserAction.IsLegal(Action.Audit_Edit, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                {
+                    return;
+                }
+
+                AuditInsert frmUpdateAudit = new AuditInsert(thisAudit);
+                frmUpdateAudit.ShowDialog();
+
+                if (frmUpdateAudit.success)
+                {
+                    //refresh
+                    auditBList = SelectAudit(); //BindingList
+                    gridControl1.DataSource = auditBList; //DataSource
+                }
+            }
+        }
     }
 }

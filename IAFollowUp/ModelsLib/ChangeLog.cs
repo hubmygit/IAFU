@@ -58,7 +58,6 @@ namespace IAFollowUp
             catch (Exception ex)
             {
                 MessageBox.Show("The following error occurred: " + ex.Message);
-
             }
             sqlConn.Close();
         }
@@ -138,9 +137,20 @@ namespace IAFollowUp
                     }
                     else if (objOld.GetType() == typeof(Users))
                     {
-                        strOld = ((Users)objOld).FullName.ToString();
+                        if (chlf.FieldName == "Auditor1")
+                        {
+                            strOld = ((Users)objOld).FullName.ToString();
+                        }
+                        else if (chlf.FieldName == "Auditor2" && ((Users)objOld).Id > 0)
+                        {
+                            strOld = ((Users)objOld).FullName.ToString();
+                        }
+                        else if (chlf.FieldName == "Supervisor" && ((Users)objOld).Id > 0)
+                        {
+                            strOld = ((Users)objOld).FullName.ToString();
+                        }
                     }
-                    else if (objOld.GetType() == typeof(AuditRating))
+                    else if (objOld.GetType() == typeof(AuditRating) && ((AuditRating)objOld).Id > 0)
                     {
                         strOld = ((AuditRating)objOld).Name.ToString();
                     }
@@ -162,9 +172,20 @@ namespace IAFollowUp
                     }
                     else if (objNew.GetType() == typeof(Users))
                     {
-                        strNew = ((Users)objNew).FullName.ToString();
+                        if (chlf.FieldName == "Auditor1")
+                        {
+                            strNew = ((Users)objNew).FullName.ToString();
+                        }
+                        else if (chlf.FieldName == "Auditor2" && ((Users)objNew).Id > 0)
+                        {
+                            strNew = ((Users)objNew).FullName.ToString();
+                        }
+                        else if (chlf.FieldName == "Supervisor" && ((Users)objNew).Id > 0)
+                        {
+                            strNew = ((Users)objNew).FullName.ToString();
+                        }
                     }
-                    else if (objNew.GetType() == typeof(AuditRating))
+                    else if (objNew.GetType() == typeof(AuditRating) && ((AuditRating)objNew).Id > 0)
                     {
                         strNew = ((AuditRating)objNew).Name.ToString();
                     }
