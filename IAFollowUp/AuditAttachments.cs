@@ -13,19 +13,17 @@ namespace IAFollowUp
 {
     public partial class AuditAttachments : Form
     {
-        public AuditAttachments()
+        public AuditAttachments() //insert
         {
             InitializeComponent();
         }
 
-        public AuditAttachments(int givenId)
+        public AuditAttachments(int givenId) //update
         {
             InitializeComponent();
 
-            string[] fileNames = { };
-
             AuditId = givenId;
-            fileNames = getSavedAttachments(AuditId);
+            string[] fileNames = getSavedAttachments(AuditId);
            
             foreach (string thisFileName in fileNames)
             {
@@ -138,9 +136,7 @@ namespace IAFollowUp
 
                     SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
 
-                    string SelectSt = "";
-                    
-                        SelectSt = "SELECT [FileContents] FROM [dbo].[Audit_Attachments] WHERE AuditId = @AuditId AND Name = @Filename";
+                    string SelectSt = "SELECT [FileContents] FROM [dbo].[Audit_Attachments] WHERE AuditId = @AuditId AND Name = @Filename";
 
                     SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
                     try
@@ -330,6 +326,38 @@ namespace IAFollowUp
             return ret;
         }
 
+        private bool Delete_SampleFiles(int given_AuditId)
+        {
+            bool ret = false;
+
+            if (given_AuditId > 0)
+            {
+                SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+                string InsSt = "DELETE FROM [dbo].[Audit_Attachments] WHERE AuditId = @Id ";
+                try
+                {
+                    sqlConn.Open();
+                    SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+                    cmd.Parameters.AddWithValue("@Id", given_AuditId);
+                    cmd.CommandType = CommandType.Text;
+                    //int rowsAffected = cmd.ExecuteNonQuery();
+
+                    cmd.ExecuteNonQuery();
+
+                    //if (rowsAffected > 0)
+                    //{
+                    ret = true;
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("The following error occurred: " + ex.Message);
+                }
+            }
+
+            return ret;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (AttCnt == 0 && lvAttachedFiles.Items.Count == 0)
@@ -339,15 +367,15 @@ namespace IAFollowUp
             }
             
             int Id = AuditId;
-            
-            if (UpdateAuditOnAttSave(Id) == false)
-            {
-                MessageBox.Show("Error: No files attached!");
-                return;
-            }
 
-            if (lvAttachedFiles.Items.Count > 0)
-            {
+            //if (UpdateAuditOnAttSave(Id) == false)
+            //{
+            //    MessageBox.Show("Error: No files attached!");
+            //    return;
+            //}
+            
+            //if (lvAttachedFiles.Items.Count > 0)
+            //{
                 List<ListViewItem> newLvItems = new List<ListViewItem>();
 
                 foreach (ListViewItem lvi in lvAttachedFiles.Items)
@@ -364,6 +392,9 @@ namespace IAFollowUp
                     }
                 }
 
+                //delete sample files
+                Delete_SampleFiles(Id); //delete from db
+
                 //update old records
                 //insert attachments into db - IsCurrent = 1
                 foreach (ListViewItem lvi in newLvItems)
@@ -376,7 +407,7 @@ namespace IAFollowUp
                     }
                 }
 
-            }
+            //}
             //else
             //{
             //update old records

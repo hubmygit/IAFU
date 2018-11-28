@@ -142,14 +142,29 @@ namespace IAFollowUp
                     return;
                 }
 
+                if (thisAudit.IsCompleted == true)
+                {
+                    MessageBox.Show("The audit has been finalized!"); //check if published too...
+                    return;
+                }
+                
                 AuditInsert frmUpdateAudit = new AuditInsert(thisAudit);
                 frmUpdateAudit.ShowDialog();
 
                 if (frmUpdateAudit.success)
                 {
+                    //int gridTopRowIndex = gridView1.TopRowIndex; //a
+
+                    //int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle); //b
+
                     //refresh
                     auditBList = SelectAudit(); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
+
+                    //gridView1.TopRowIndex = gridTopRowIndex; //a
+
+                    //int rowHandle = gridView1.GetRowHandle(index); //b
+                    //gridView1.FocusedRowHandle = rowHandle; //b
                 }
             }
         }
@@ -169,6 +184,12 @@ namespace IAFollowUp
 
                 if (!UserAction.IsLegal(Action.Audit_Delete, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
                 {
+                    return;
+                }
+
+                if (thisAudit.IsCompleted == true)
+                {
+                    MessageBox.Show("The audit has been finalized!"); //check if published too...
                     return;
                 }
 
@@ -205,12 +226,75 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
 
+                AuditAttachments attachedFiles = new AuditAttachments(Id);
+
+                if (thisAudit.IsCompleted == true || thisAudit.IsDeleted == true)
+                {
+                    attachedFiles.btnAddFiles.Enabled = false;
+                    attachedFiles.btnRemoveAll.Enabled = false;
+                    attachedFiles.btnRemoveFile.Enabled = false;
+                    attachedFiles.btnSave.Enabled = false;
+                }
+
                 if (!UserAction.IsLegal(Action.Audit_Attach, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                {
+                    attachedFiles.btnAddFiles.Enabled = false;
+                    attachedFiles.btnRemoveAll.Enabled = false;
+                    attachedFiles.btnRemoveFile.Enabled = false;
+                    attachedFiles.btnSave.Enabled = false;
+                }
+
+                attachedFiles.ShowDialog();
+
+                if (attachedFiles.success)
+                {
+                    //refresh
+                    auditBList = SelectAudit(); //BindingList
+                    gridControl1.DataSource = auditBList; //DataSource
+                }
+
+            }
+        }
+
+        private void MIfinalizeAudit_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
+                
+                if (thisAudit.IsDeleted == true)
+                {
+                    MessageBox.Show("The audit has been deleted!");
+                    return;
+                }
+
+                if (thisAudit.IsCompleted == true)
+                {
+                    MessageBox.Show("The audit has already been completed!");
+                    return;
+                }
+
+                if (!UserAction.IsLegal(Action.Audit_Finalize, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
                 {
                     return;
                 }
 
-                AuditAttachments attachedFiles = new AuditAttachments(Id);
+                if (Audit.UpdateCompleted(thisAudit.Id))
+                {
+                    ChangeLog.Insert(new Audit() { Id = thisAudit.Id, IsCompleted = false }, new Audit() { Id = thisAudit.Id, IsCompleted = true }, "Audit");
+
+                    MessageBox.Show("The Update was successful!");
+
+                    //refresh
+                    auditBList = SelectAudit(); //BindingList
+                    gridControl1.DataSource = auditBList; //DataSource
+                }
+                else
+                {
+                    MessageBox.Show("The Update was not successful!");
+                }
+
             }
         }
     }

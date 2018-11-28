@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuditView));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.cmsOnGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MIupdate = new System.Windows.Forms.ToolStripMenuItem();
             this.MIdelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,9 +39,10 @@
             this.tsSep2 = new System.Windows.Forms.ToolStripSeparator();
             this.MIshowFindings = new System.Windows.Forms.ToolStripMenuItem();
             this.MIfinalizeAudit = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -59,11 +59,6 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            // 
             // cmsOnGrid
             // 
             this.cmsOnGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -75,7 +70,7 @@
             this.MIshowFindings,
             this.MIfinalizeAudit});
             this.cmsOnGrid.Name = "cmsOnGrid";
-            this.cmsOnGrid.Size = new System.Drawing.Size(208, 148);
+            this.cmsOnGrid.Size = new System.Drawing.Size(208, 126);
             // 
             // MIupdate
             // 
@@ -119,6 +114,12 @@
             this.MIfinalizeAudit.Name = "MIfinalizeAudit";
             this.MIfinalizeAudit.Size = new System.Drawing.Size(207, 22);
             this.MIfinalizeAudit.Text = "Finalize Audit";
+            this.MIfinalizeAudit.Click += new System.EventHandler(this.MIfinalizeAudit_Click);
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
             // 
             // AuditView
             // 
@@ -132,8 +133,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AuditView";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.cmsOnGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
