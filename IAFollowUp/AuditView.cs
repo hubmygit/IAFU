@@ -158,8 +158,8 @@ namespace IAFollowUp
         {
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
-                int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
-                Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
+                int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
 
                 if (thisAudit.IsDeleted)
                 {
@@ -178,8 +178,10 @@ namespace IAFollowUp
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    if (Audit.Delete(Id))
+                    if (Audit.Delete(AuditId))
                     {
+                        ChangeLog.Insert(new Audit() { Id = AuditId, IsDeleted = false }, new Audit() { Id = AuditId, IsDeleted = true }, "Audit");
+
                         MessageBox.Show("The Deletion was successful!");
 
                         //refresh
@@ -201,6 +203,12 @@ namespace IAFollowUp
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
                 int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
+
+                if (!UserAction.IsLegal(Action.Audit_Attach, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                {
+                    return;
+                }
 
                 AuditAttachments attachedFiles = new AuditAttachments(Id);
             }
