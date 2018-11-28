@@ -62,6 +62,24 @@ namespace IAFollowUp
             sqlConn.Close();
         }
 
+        public static void Insert_Attachments() //attachments
+        {
+            ChangeLog chLog = new ChangeLog();
+            chLog.Section = "Attachments";
+            chLog.Tbl_Id = 0;
+            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.Dt = DateTime.Now;
+            chLog.ExecStatement = "UPDATE";
+            chLog.TableName = "Audit_Attachments";
+
+            chLog.FieldName = "All";
+            chLog.OldValue = "Audit_Attachments_Log";
+            chLog.NewValue = "Audit_Attachments";
+            chLog.FieldNameToShow = "Attachments";
+
+            Ins_ChLog(chLog);
+        }
+
         public static void Insert(Audit oldRec, Audit newRec, string section)
         {
             ChangeLog chLog = new ChangeLog();

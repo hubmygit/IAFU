@@ -290,6 +290,37 @@ namespace IAFollowUp
             return ret;
         }
 
+        private bool InertIntoTable_AttachedFiles_Log(int givenAuditId) //INSERT [dbo].[Audit_Attachments_Log]
+        {
+            bool ret = false;
+            
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[Audit_Attachments_Log] (Name, FileContents, AuditId, UsersId, InsDate)  " +
+                 "SELECT Name, FileContents, AuditId, UsersId, InsDate FROM [dbo].[Audit_Attachments] WHERE AuditId = @Id ";
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+                cmd.Parameters.AddWithValue("@Id", givenAuditId);
+                
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+
+            return ret;
+        }
+
         private bool UpdateAuditOnAttSave(int id)
         {
             bool ret = false;
@@ -365,7 +396,7 @@ namespace IAFollowUp
                 Close();
                 return;
             }
-            
+
             int Id = AuditId;
 
             //if (UpdateAuditOnAttSave(Id) == false)
@@ -373,39 +404,44 @@ namespace IAFollowUp
             //    MessageBox.Show("Error: No files attached!");
             //    return;
             //}
-            
+
             //if (lvAttachedFiles.Items.Count > 0)
             //{
-                List<ListViewItem> newLvItems = new List<ListViewItem>();
+            List<ListViewItem> newLvItems = new List<ListViewItem>();
 
-                foreach (ListViewItem lvi in lvAttachedFiles.Items)
+            foreach (ListViewItem lvi in lvAttachedFiles.Items)
+            {
+                if (lvi.SubItems.Count == 1) //only filename into lv -> from db
                 {
-                    if (lvi.SubItems.Count == 1) //only filename into lv -> from db
-                    {
-                        LvFileInfo lvfi = saveAttachmentLocally(Id, lvi.SubItems[0].Text);
+                    LvFileInfo lvfi = saveAttachmentLocally(Id, lvi.SubItems[0].Text);
 
-                        newLvItems.Add(new ListViewItem(new string[] { lvfi.FileName, lvfi.FilePath }));
-                    }
-                    else //path and filename into lv -> from local dir : ok
-                    {
-                        newLvItems.Add(lvi);
-                    }
+                    newLvItems.Add(new ListViewItem(new string[] { lvfi.FileName, lvfi.FilePath }));
                 }
-
-                //delete sample files
-                Delete_SampleFiles(Id); //delete from db
-
-                //update old records
-                //insert attachments into db - IsCurrent = 1
-                foreach (ListViewItem lvi in newLvItems)
+                else //path and filename into lv -> from local dir : ok
                 {
-                    byte[] attFileBytes = File.ReadAllBytes(lvi.SubItems[1].Text);
-
-                    if (!InertIntoTable_AttachedFiles(Id, lvi.SubItems[0].Text, attFileBytes))
-                    {
-                        MessageBox.Show("File save failed: " + lvi.SubItems[0].Text);
-                    }
+                    newLvItems.Add(lvi);
                 }
+            }
+
+            //insert files into Log
+            InertIntoTable_AttachedFiles_Log(Id);
+
+            //delete sample files
+            Delete_SampleFiles(Id); //delete from db
+                        
+            //update old records
+            //insert attachments into db - IsCurrent = 1
+            foreach (ListViewItem lvi in newLvItems)
+            {
+                byte[] attFileBytes = File.ReadAllBytes(lvi.SubItems[1].Text);
+
+                if (!InertIntoTable_AttachedFiles(Id, lvi.SubItems[0].Text, attFileBytes))
+                {
+                    MessageBox.Show("File save failed: " + lvi.SubItems[0].Text);
+                }
+            }
+
+            ChangeLog.Insert_Attachments();
 
             //}
             //else
