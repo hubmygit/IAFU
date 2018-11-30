@@ -108,6 +108,7 @@
             this.MIshowFindings.Name = "MIshowFindings";
             this.MIshowFindings.Size = new System.Drawing.Size(207, 22);
             this.MIshowFindings.Text = "Findings / Improvements";
+            this.MIshowFindings.Click += new System.EventHandler(this.MIshowFindings_Click);
             // 
             // MIfinalizeAudit
             // 
@@ -131,7 +132,7 @@
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "AuditView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AuditView";
+            this.Text = "Audits View";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             this.cmsOnGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
