@@ -13,12 +13,12 @@ namespace IAFollowUp
 {
     public partial class AuditAttachments : Form
     {
-        public AuditAttachments() //insert
+        public AuditAttachments() 
         {
             InitializeComponent();
         }
 
-        public AuditAttachments(int givenId) //update
+        public AuditAttachments(int givenId) 
         {
             InitializeComponent();
 
@@ -153,7 +153,10 @@ namespace IAFollowUp
                             string fname = lvAttachedFiles.SelectedItems[0].SubItems[0].Text;
                             ext = fname.Substring(fname.LastIndexOf("."));
                             lvPath = tempFile + ext;
-                            File.WriteAllBytes(tempFile + ext, (byte[])reader["FileContents"]);
+                            //decrypt files
+                            byte[] fileCont = (byte[])reader["FileContents"];
+                            byte[] decrFileCont = CryptoFuncs.DecryptBytesFromBytes_Aes(fileCont);
+                            File.WriteAllBytes(tempFile + ext, decrFileCont);
                         }
                         reader.Close();
                     }
@@ -222,7 +225,10 @@ namespace IAFollowUp
                     string tempFile = Path.Combine(tempPath, realFileName);
                     try
                     {
-                        File.WriteAllBytes(tempFile, (byte[])reader["FileContents"]);
+                        //decrypt files
+                        byte[] fileCont = (byte[])reader["FileContents"];
+                        byte[] decrFileCont = CryptoFuncs.DecryptBytesFromBytes_Aes(fileCont);
+                        File.WriteAllBytes(tempFile, decrFileCont);
                     }
                     catch (Exception ex)
                     {
@@ -231,7 +237,10 @@ namespace IAFollowUp
                         try
                         {
                             tempFile = Path.Combine(tempPath, Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + "~" + realFileName);
-                            File.WriteAllBytes(tempFile, (byte[])reader["FileContents"]);
+                            //decrypt files
+                            byte[] fileCont = (byte[])reader["FileContents"];
+                            byte[] decrFileCont = CryptoFuncs.DecryptBytesFromBytes_Aes(fileCont);
+                            File.WriteAllBytes(tempFile, decrFileCont);
 
                             MessageBox.Show("Caution! File will be saved as: " + tempFile);
                         }
@@ -272,7 +281,10 @@ namespace IAFollowUp
                     cmd.Parameters.AddWithValue("@Id", Id);
                     cmd.Parameters.AddWithValue("@UsersId", UserInfo.userDetails.Id);
                     cmd.Parameters.AddWithValue("@Filename", fileName);
-                    cmd.Parameters.Add("@FileCont", SqlDbType.VarBinary).Value = fileBytes;
+                    //encrypt files
+                    byte[] encrFileCont = CryptoFuncs.EncryptBytesToBytes_Aes(fileBytes);
+                    cmd.Parameters.Add("@FileCont", SqlDbType.VarBinary).Value = encrFileCont;
+
                     cmd.CommandType = CommandType.Text;
                     int rowsAffected = cmd.ExecuteNonQuery();
 

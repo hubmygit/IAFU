@@ -7,7 +7,8 @@ using System.Security.Cryptography;
 
 namespace IAFollowUp
 {
-    public class myCryptographyFunctions
+    //public class myCryptographyFunctions
+    public class CryptoFuncs
     {
         public static byte[] EncryptStringToBytes_Aes(string plainText)
         {
@@ -125,6 +126,10 @@ namespace IAFollowUp
 
         public static byte[] EncryptBytesToBytes_Aes(byte[] fileContents)
         {
+            string str = BitConverter.ToString(fileContents).Replace("-", string.Empty);
+            return EncryptStringToBytes_Aes(str);
+
+            /*
             byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
             byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIV");
 
@@ -152,16 +157,20 @@ namespace IAFollowUp
                 {
                     using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
                     {
+                        //---------->
                         //using (System.IO.StreamWriter swEncrypt = new System.IO.StreamWriter(csEncrypt))
                         //{
                         //    //Write all data to the stream.
                         //    swEncrypt.Write(fileContents);
                         //}
+                        //<----------
 
+                        //---------->
                         csEncrypt.Write(fileContents, 0, fileContents.Length);
                         csEncrypt.FlushFinalBlock();
 
                         encrypted = msEncrypt.ToArray();
+                        //<----------
                     }
                 }
             }
@@ -169,11 +178,18 @@ namespace IAFollowUp
 
             // Return the encrypted bytes from the memory stream.
             return encrypted;
-
+            */
         }
 
         public static byte[] DecryptBytesFromBytes_Aes(byte[] cipherText)
         {
+            string str = BitConverter.ToString(cipherText).Replace("-", string.Empty);
+            byte[] encrypted = StringToByteArray(str);
+            str = DecryptStringFromBytes_Aes(encrypted);
+
+            return StringToByteArray(str);
+
+            /*
             byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
             byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIV");
 
@@ -205,25 +221,96 @@ namespace IAFollowUp
                 {
                     using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                     {
+                        //---------->
                         ////using (System.IO.StreamReader srDecrypt = new System.IO.StreamReader(csDecrypt))
                         ////{
                         ////    // Read the decrypted bytes from the decrypting stream
                         ////    // and place them in a string.
                         ////    //fileContents = srDecrypt.ReadToEnd();                                                        
                         ////}
+                        //<----------
 
+                        //---------->
                         csDecrypt.Read(cipherText, 0, cipherText.Length);
                         csDecrypt.Flush();
 
                         fileContents = msDecrypt.ToArray();
+                        //<----------
                     }
                 }
 
             }
 
             return fileContents;
-
+            */
         }
+
+        /*
+        //------------------- * new byte[] functions * -------------------
+        public static byte[] encryptStream(byte[] fileContents)
+        {
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIVmyIVmyIV");
+
+            // Check arguments.
+            if (fileContents == null || fileContents.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+            byte[] encrypted;
+
+            using (System.IO.MemoryStream mstream = new System.IO.MemoryStream())
+            {
+                using (AesCryptoServiceProvider aesProvider = new AesCryptoServiceProvider())
+                {
+                    using (CryptoStream cryptoStream = new CryptoStream(mstream,
+                        aesProvider.CreateEncryptor(Key, IV), CryptoStreamMode.Write))
+                    {
+                        cryptoStream.Write(fileContents, 0, fileContents.Length);
+                    }
+                    encrypted = mstream.ToArray(); 
+                }
+            }
+            return encrypted;
+        }
+
+        public static byte[] mydec(byte[] fileContents)
+        {
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIVmyIVmyIV");
+            // Check arguments.
+            if (fileContents == null || fileContents.Length <= 0)
+                throw new ArgumentNullException("cipherText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+
+            byte[] plain;
+            using (System.IO.MemoryStream mStream = new System.IO.MemoryStream(fileContents)) //add encrypted
+            {
+                using (AesCryptoServiceProvider aesProvider = new AesCryptoServiceProvider())
+                {
+                    using (CryptoStream cryptoStream = new CryptoStream(mStream,
+                        aesProvider.CreateDecryptor(Key, IV), CryptoStreamMode.Read))
+                    {
+                        using (System.IO.StreamReader stream = new System.IO.StreamReader(cryptoStream))
+                        {
+                            string sf = stream.ReadToEnd();
+
+                            Encoding aaa = stream.CurrentEncoding;
+                            
+                            plain = System.Text.Encoding.Default.GetBytes(sf);
+
+                        }
+                    }
+                }
+            }
+            return plain;
+        }
+        */
 
     }
 }

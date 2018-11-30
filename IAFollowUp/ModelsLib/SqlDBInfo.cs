@@ -17,8 +17,8 @@ namespace IAFollowUp
             string strPassPhrase = System.Configuration.ConfigurationManager.AppSettings["passPhrase"];
 
             //decrypt it 
-            connectionString = myCryptographyFunctions.DecryptStringFromHex_Aes(strConnStr);
-            passPhrase = myCryptographyFunctions.DecryptStringFromHex_Aes(strPassPhrase);
+            connectionString = CryptoFuncs.DecryptStringFromHex_Aes(strConnStr);
+            passPhrase = CryptoFuncs.DecryptStringFromHex_Aes(strPassPhrase);
         }
 
         public static string connectionString { get; set; }
