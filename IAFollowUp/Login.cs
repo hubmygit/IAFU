@@ -54,6 +54,8 @@ namespace IAFollowUp
                 user = UserInfo.userDetails;
                 role = UserInfo.roleDetails;
 
+                UserInfo.Insert_AppLogIn();
+
                 Close();
 
             }

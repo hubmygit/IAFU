@@ -16,6 +16,7 @@ namespace IAFollowUp
             roleDetails = new Role();
 
             WindowsUser = "unknown";
+            PcName = "";
             EmailAddress = "";
             userDetails.FullName = "";
             IsAuthorized = false;
@@ -28,6 +29,7 @@ namespace IAFollowUp
             try
             {
                 WindowsUser = Environment.UserName; //get windows/domain logged in username
+                PcName = System.Net.Dns.GetHostEntry("").HostName;
 
                 //System.DirectoryServices.AccountManagement.UserPrincipal.Current.IsAccountLockedOut();
 
@@ -54,6 +56,7 @@ namespace IAFollowUp
         //public static string FullName { get; set; }
         public static string EmailAddress { get; set; } //only for init
         public static string WindowsUser { get; set; } //only for init
+        public static string PcName { get; set; } //only for init
         public static bool IsAuthorized { get; set; }
         public static User userDetails { get; set; }
         public static Role roleDetails { get; set; }
@@ -257,6 +260,34 @@ namespace IAFollowUp
             }
 
             return ret;
+        }
+
+        public static void Insert_AppLogIn()
+        {
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[AppLogIn] (AppUserId, WinUser, PcName, InsDate) VALUES " + 
+                           "(@appUserId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @winUser)), " + 
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @pcName)), getdate()) ";
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@appUserId", userDetails.Id);
+                cmd.Parameters.AddWithValue("@winUser", UserInfo.WindowsUser);
+                cmd.Parameters.AddWithValue("@pcName", UserInfo.PcName);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+            sqlConn.Close();
         }
 
     }
