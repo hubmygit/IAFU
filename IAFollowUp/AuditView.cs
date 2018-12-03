@@ -28,15 +28,15 @@ namespace IAFollowUp
             BindingList<Audit> ret = new BindingList<Audit>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Year], [CompanyId], [AuditTypeId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [Title])) as Title, " +
-                              "[ReportDt], " +
-                              "[Auditor1Id], [Auditor2Id], [SupervisorId], " +
-                              "[IsCompleted], [AuditNumber], [IASentNumber], " +
+            string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "A.[ReportDt], " +
+                              "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
+                              "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
                               //"(SELECT count(*) FROM [dbo].[Audit_Attachments] T WHERE a.id = T.AuditID and A.RevNo = T.RevNo) as AttCnt, " +
-                              "[AuditRatingId], isnull([IsDeleted], 'FALSE') as IsDeleted " +
+                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted " +
                               "FROM [dbo].[Audit] A " +
-                              "ORDER BY Id "; //ToDo
+                              "ORDER BY A.Id "; //ToDo
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -109,7 +109,9 @@ namespace IAFollowUp
 
                         //AuditRatingId = AuditRating_Id,
                         AuditRating = AuditRating_rating,
-                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString())
+                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
+                        FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()))
+
                     });
                 }
                 reader.Close();

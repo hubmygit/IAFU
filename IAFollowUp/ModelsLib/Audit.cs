@@ -34,20 +34,22 @@ namespace IAFollowUp
 
         public bool IsDeleted { get; set; }
 
-        /*
-        public static bool isEqual(Audit x, Audit y)
-        {
-            if (x.Id == y.Id && x.Year == y.Year && x.CompanyId == y.CompanyId && Companies.isEqual(x.Company, y.Company) && x.AuditTypeId == y.AuditTypeId && AuditTypes.isEqual(x.AuditType, y.AuditType) &&
-                x.Title == y.Title && x.ReportDt == y.ReportDt && x.Auditor1ID == y.Auditor1ID && Users.isEqual(x.Auditor1, y.Auditor1) && x.Auditor2ID == y.Auditor2ID && Users.isEqual(x.Auditor2, y.Auditor2) &&
-                x.SupervisorID == y.SupervisorID && Users.isEqual(x.Supervisor, y.Supervisor) && x.IsCompleted == y.IsCompleted && x.AuditNumber == y.AuditNumber && x.IASentNumber == y.IASentNumber && x.RevNo == y.RevNo &&
-                x.AuditRatingId == y.AuditRatingId && AuditRating.isEqual(x.AuditRating, y.AuditRating))
-                return true;
-            else
-                return false;
-        }
-        */
+        public List<FIHeader> FIHeaders { get; set; }
 
-        public static bool Insert(Audit audit) //INSERT [dbo].[Audit]
+    /*
+    public static bool isEqual(Audit x, Audit y)
+    {
+        if (x.Id == y.Id && x.Year == y.Year && x.CompanyId == y.CompanyId && Companies.isEqual(x.Company, y.Company) && x.AuditTypeId == y.AuditTypeId && AuditTypes.isEqual(x.AuditType, y.AuditType) &&
+            x.Title == y.Title && x.ReportDt == y.ReportDt && x.Auditor1ID == y.Auditor1ID && Users.isEqual(x.Auditor1, y.Auditor1) && x.Auditor2ID == y.Auditor2ID && Users.isEqual(x.Auditor2, y.Auditor2) &&
+            x.SupervisorID == y.SupervisorID && Users.isEqual(x.Supervisor, y.Supervisor) && x.IsCompleted == y.IsCompleted && x.AuditNumber == y.AuditNumber && x.IASentNumber == y.IASentNumber && x.RevNo == y.RevNo &&
+            x.AuditRatingId == y.AuditRatingId && AuditRating.isEqual(x.AuditRating, y.AuditRating))
+            return true;
+        else
+            return false;
+    }
+    */
+
+    public static bool Insert(Audit audit) //INSERT [dbo].[Audit]
         {
             bool ret = false;
 
@@ -270,6 +272,60 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static List<FIHeader> getFIHeaders(int AuditId)
+        {
+            List<FIHeader> ret = new List<FIHeader>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " + 
+                              "H.[FICategoryId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "FROM [dbo].[FIHeader] H " +
+                              "WHERE H.[AuditId] = @AuditId " +
+                              "ORDER BY H.Id "; //ToDo
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@AuditId", AuditId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    FICategory fiCat;
+                    
+                    if (reader["FICategoryId"] == System.DBNull.Value)
+                    {
+                        fiCat = new FICategory();
+                    }
+                    else
+                    {
+                        fiCat = new FICategory(Convert.ToInt32(reader["FICategoryId"].ToString()));
+                    }
+                    
+                    ret.Add(new FIHeader()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        
+                        Title = reader["Title"].ToString(),
+                        
+                        FICategory = fiCat,
+                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString())
+                    });
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
 
     }
 }
