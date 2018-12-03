@@ -309,9 +309,18 @@ namespace IAFollowUp
 
                 //if (UserAction.IsLegal(Action.Header_View)) //header OR detail view?????
                 //{
-                FIView frmFIView = new FIView(thisAudit);
-                frmFIView.ShowDialog();
+                    FIView frmFIView = new FIView(thisAudit);
+                    frmFIView.ShowDialog();
                 //}
+            }
+        }
+
+        private void btnCreateNewAudit_Click(object sender, EventArgs e)
+        {
+            if (UserAction.IsLegal(Action.Audit_Create))
+            {
+                AuditInsert frmInsertNewAudit = new AuditInsert();
+                frmInsertNewAudit.ShowDialog();
             }
         }
     }

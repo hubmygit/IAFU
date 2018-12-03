@@ -36,20 +36,20 @@ namespace IAFollowUp
 
         public List<FIHeader> FIHeaders { get; set; }
 
-    /*
-    public static bool isEqual(Audit x, Audit y)
-    {
-        if (x.Id == y.Id && x.Year == y.Year && x.CompanyId == y.CompanyId && Companies.isEqual(x.Company, y.Company) && x.AuditTypeId == y.AuditTypeId && AuditTypes.isEqual(x.AuditType, y.AuditType) &&
-            x.Title == y.Title && x.ReportDt == y.ReportDt && x.Auditor1ID == y.Auditor1ID && Users.isEqual(x.Auditor1, y.Auditor1) && x.Auditor2ID == y.Auditor2ID && Users.isEqual(x.Auditor2, y.Auditor2) &&
-            x.SupervisorID == y.SupervisorID && Users.isEqual(x.Supervisor, y.Supervisor) && x.IsCompleted == y.IsCompleted && x.AuditNumber == y.AuditNumber && x.IASentNumber == y.IASentNumber && x.RevNo == y.RevNo &&
-            x.AuditRatingId == y.AuditRatingId && AuditRating.isEqual(x.AuditRating, y.AuditRating))
-            return true;
-        else
-            return false;
-    }
-    */
+        /*
+        public static bool isEqual(Audit x, Audit y)
+        {
+            if (x.Id == y.Id && x.Year == y.Year && x.CompanyId == y.CompanyId && Companies.isEqual(x.Company, y.Company) && x.AuditTypeId == y.AuditTypeId && AuditTypes.isEqual(x.AuditType, y.AuditType) &&
+                x.Title == y.Title && x.ReportDt == y.ReportDt && x.Auditor1ID == y.Auditor1ID && Users.isEqual(x.Auditor1, y.Auditor1) && x.Auditor2ID == y.Auditor2ID && Users.isEqual(x.Auditor2, y.Auditor2) &&
+                x.SupervisorID == y.SupervisorID && Users.isEqual(x.Supervisor, y.Supervisor) && x.IsCompleted == y.IsCompleted && x.AuditNumber == y.AuditNumber && x.IASentNumber == y.IASentNumber && x.RevNo == y.RevNo &&
+                x.AuditRatingId == y.AuditRatingId && AuditRating.isEqual(x.AuditRating, y.AuditRating))
+                return true;
+            else
+                return false;
+        }
+        */
 
-    public static bool Insert(Audit audit) //INSERT [dbo].[Audit]
+        public static bool Insert(Audit audit) //INSERT [dbo].[Audit]
         {
             bool ret = false;
 
@@ -309,7 +309,7 @@ namespace IAFollowUp
                     ret.Add(new FIHeader()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
-                        
+                        AuditId = AuditId,
                         Title = reader["Title"].ToString(),
                         
                         FICategory = fiCat,

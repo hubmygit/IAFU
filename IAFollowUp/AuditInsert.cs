@@ -19,7 +19,7 @@ namespace IAFollowUp
             isInsert = true;
         }
 
-        public AuditInsert(Audit audit) //update
+        public AuditInsert(Audit audit) //Update
         {
             InitializeComponent();
 

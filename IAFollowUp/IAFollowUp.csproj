@@ -103,6 +103,12 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FIHeaderInsert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FIHeaderInsert.Designer.cs">
+      <DependentUpon>FIHeaderInsert.cs</DependentUpon>
+    </Compile>
     <Compile Include="FIView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FIHeaderInsert.resx">
+      <DependentUpon>FIHeaderInsert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FIView.resx">
       <DependentUpon>FIView.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +259,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Create_32x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

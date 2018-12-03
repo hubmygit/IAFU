@@ -40,6 +40,7 @@
             this.MIshowFindings = new System.Windows.Forms.ToolStripMenuItem();
             this.MIfinalizeAudit = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnCreateNewAudit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -122,11 +123,25 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
+            // btnCreateNewAudit
+            // 
+            this.btnCreateNewAudit.Image = global::IAFollowUp.Properties.Resources.Create_32x;
+            this.btnCreateNewAudit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateNewAudit.Location = new System.Drawing.Point(12, 24);
+            this.btnCreateNewAudit.Name = "btnCreateNewAudit";
+            this.btnCreateNewAudit.Size = new System.Drawing.Size(120, 45);
+            this.btnCreateNewAudit.TabIndex = 37;
+            this.btnCreateNewAudit.Text = "New Audit";
+            this.btnCreateNewAudit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCreateNewAudit.UseVisualStyleBackColor = true;
+            this.btnCreateNewAudit.Click += new System.EventHandler(this.btnCreateNewAudit_Click);
+            // 
             // AuditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 562);
+            this.Controls.Add(this.btnCreateNewAudit);
             this.Controls.Add(this.gridControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 600);
@@ -152,5 +167,6 @@
         private System.Windows.Forms.ToolStripSeparator tsSep2;
         private System.Windows.Forms.ToolStripMenuItem MIshowFindings;
         private System.Windows.Forms.ToolStripMenuItem MIfinalizeAudit;
+        private System.Windows.Forms.Button btnCreateNewAudit;
     }
 }

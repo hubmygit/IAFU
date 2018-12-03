@@ -79,6 +79,70 @@ namespace IAFollowUp
 
             Ins_ChLog(chLog);
         }
+        public static void Insert(FIHeader oldRec, FIHeader newRec, string section)
+        {
+            ChangeLog chLog = new ChangeLog();
+            chLog.Section = section;
+            chLog.Tbl_Id = oldRec.Id;
+            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.Dt = DateTime.Now;
+            chLog.ExecStatement = "UPDATE";
+            if (newRec.IsDeleted == true)
+            {
+                chLog.ExecStatement = "DELETE";
+            }
+            chLog.TableName = "FIHeader";
+
+            List<ChLogFields> FieldsToCheck = new List<ChLogFields>();
+
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Title", FieldNameToShow = "Title" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "FICategory", FieldNameToShow = "FICategory" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsPublished", FieldNameToShow = "Publication Flag" });
+
+            foreach (ChLogFields chlf in FieldsToCheck)
+            {
+                object objOld = oldRec.GetType().GetProperty(chlf.FieldName).GetValue(oldRec, null);
+                object objNew = newRec.GetType().GetProperty(chlf.FieldName).GetValue(newRec, null);
+                string strOld = "";
+                string strNew = "";
+
+                if (objOld != null)
+                {
+                    if (objOld.GetType() == typeof(FICategory))
+                    {
+                        strOld = ((FICategory)objOld).Name.ToString();
+                    }                                        
+                    else
+                    {
+                        strOld = objOld.ToString();
+                    }
+                }
+
+                if (objNew != null)
+                {
+                    if (objNew.GetType() == typeof(FICategory))
+                    {
+                        strNew = ((FICategory)objNew).Name.ToString();
+                    }                    
+                    else
+                    {
+                        strNew = objNew.ToString();
+                    }
+                }
+
+                if (strOld != strNew)
+                {
+                    chLog.FieldName = chlf.FieldName;
+                    chLog.OldValue = strOld;
+                    chLog.NewValue = strNew;
+                    chLog.FieldNameToShow = chlf.FieldNameToShow;
+
+                    Ins_ChLog(chLog);
+                }
+
+            }
+        }
 
         public static void Insert(Audit oldRec, Audit newRec, string section)
         {
@@ -109,7 +173,7 @@ namespace IAFollowUp
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IASentNumber", FieldNameToShow = "IA Sent Number" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "AuditRating", FieldNameToShow = "Audit Rating" }); //obj
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
-            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsCompleted", FieldNameToShow = "Completed Flag" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsCompleted", FieldNameToShow = "Completion Flag" });
 
             //FieldsToCheck.Add(new TmLogFields() { FieldName = "ClassIds", FieldNameToShow = "Κλάσεις", FieldType = "List<int>" });
 

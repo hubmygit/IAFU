@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace IAFollowUp
 {
@@ -35,5 +38,119 @@ namespace IAFollowUp
                 return false;
         }
         */
+
+        public static bool Insert(FIHeader fiHeader) //INSERT [dbo].[FIHeader]
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[FIHeader] ([AuditId], [Title], [FICategoryId], [InsUserId], [InsDt]) VALUES " +
+                           "(@AuditId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), " +
+                           "@FICategoryId, @InsUserId, getDate()) ";
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@AuditId", fiHeader.AuditId);
+                cmd.Parameters.AddWithValue("@Title", fiHeader.Title);
+                cmd.Parameters.AddWithValue("@FICategoryId", fiHeader.FICategory.Id);
+                cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        public static bool Update(FIHeader header)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIHeader] SET [Title] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), [FICategoryId] = @FICategoryId, [UpdUserId] = @UpdUserId, " +
+                "[UpdDt] = getDate() " +
+                "WHERE id=@id";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@id", header.Id);
+                cmd.Parameters.AddWithValue("@FICategoryId", header.FICategory.Id);
+                cmd.Parameters.AddWithValue("@Title", header.Title);
+                cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        public static bool Delete(int id)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIHeader] SET [IsDeleted] = 1, " +
+                "[UpdUserID] = @UpdUserID, [UpdDt] = getDate(), [DelUserID] = @UpdUserID, [DelDt] = getDate() " +
+                "WHERE id = @id";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.Parameters.AddWithValue("@UpdUserID", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
     }
 }

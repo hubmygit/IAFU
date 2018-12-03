@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuditInsert));
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnEraseRating = new System.Windows.Forms.Button();
             this.cbRating = new System.Windows.Forms.ComboBox();
             this.lblRating = new System.Windows.Forms.Label();
@@ -55,25 +54,12 @@
             this.lblCompany = new System.Windows.Forms.Label();
             this.dtpYear = new System.Windows.Forms.DateTimePicker();
             this.lblYear = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnSave.Image = global::IAFollowUp.Properties.Resources.Save_32x;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(340, 398);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(120, 40);
-            this.btnSave.TabIndex = 23;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEraseRating
             // 
+            this.btnEraseRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEraseRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnEraseRating.Location = new System.Drawing.Point(712, 351);
             this.btnEraseRating.Name = "btnEraseRating";
@@ -85,6 +71,7 @@
             // 
             // cbRating
             // 
+            this.cbRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbRating.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbRating.FormattingEnabled = true;
@@ -95,6 +82,7 @@
             // 
             // lblRating
             // 
+            this.lblRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRating.AutoSize = true;
             this.lblRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblRating.Location = new System.Drawing.Point(435, 353);
@@ -105,6 +93,7 @@
             // 
             // btnEraseSupervisor
             // 
+            this.btnEraseSupervisor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEraseSupervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnEraseSupervisor.Location = new System.Drawing.Point(712, 294);
             this.btnEraseSupervisor.Name = "btnEraseSupervisor";
@@ -116,6 +105,7 @@
             // 
             // btnEraseAuditor2
             // 
+            this.btnEraseAuditor2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEraseAuditor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnEraseAuditor2.Location = new System.Drawing.Point(712, 237);
             this.btnEraseAuditor2.Name = "btnEraseAuditor2";
@@ -127,6 +117,7 @@
             // 
             // cbSupervisor
             // 
+            this.cbSupervisor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSupervisor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSupervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbSupervisor.FormattingEnabled = true;
@@ -137,6 +128,7 @@
             // 
             // lblSupervisor
             // 
+            this.lblSupervisor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSupervisor.AutoSize = true;
             this.lblSupervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblSupervisor.Location = new System.Drawing.Point(435, 296);
@@ -147,6 +139,7 @@
             // 
             // cbAuditor2
             // 
+            this.cbAuditor2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbAuditor2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAuditor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbAuditor2.FormattingEnabled = true;
@@ -157,6 +150,7 @@
             // 
             // lblAuditor2
             // 
+            this.lblAuditor2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAuditor2.AutoSize = true;
             this.lblAuditor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblAuditor2.Location = new System.Drawing.Point(435, 239);
@@ -167,6 +161,7 @@
             // 
             // cbAuditor1
             // 
+            this.cbAuditor1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbAuditor1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAuditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbAuditor1.FormattingEnabled = true;
@@ -177,6 +172,7 @@
             // 
             // lblAuditor1
             // 
+            this.lblAuditor1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAuditor1.AutoSize = true;
             this.lblAuditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblAuditor1.Location = new System.Drawing.Point(435, 182);
@@ -187,6 +183,7 @@
             // 
             // dtpReportDate
             // 
+            this.dtpReportDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dtpReportDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dtpReportDate.CustomFormat = "dd.MM.yyyy";
             this.dtpReportDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -198,6 +195,7 @@
             // 
             // lblReportDate
             // 
+            this.lblReportDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblReportDate.AutoSize = true;
             this.lblReportDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblReportDate.Location = new System.Drawing.Point(435, 129);
@@ -208,6 +206,9 @@
             // 
             // txtTitle
             // 
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtTitle.Location = new System.Drawing.Point(137, 21);
             this.txtTitle.MaxLength = 500;
@@ -229,8 +230,10 @@
             // 
             // txtIASentNumber
             // 
+            this.txtIASentNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtIASentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtIASentNumber.Location = new System.Drawing.Point(137, 350);
+            this.txtIASentNumber.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtIASentNumber.MaxLength = 3;
             this.txtIASentNumber.Name = "txtIASentNumber";
             this.txtIASentNumber.Size = new System.Drawing.Size(184, 22);
@@ -238,6 +241,7 @@
             // 
             // lblIASentNumber
             // 
+            this.lblIASentNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblIASentNumber.AutoSize = true;
             this.lblIASentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblIASentNumber.Location = new System.Drawing.Point(30, 353);
@@ -248,16 +252,19 @@
             // 
             // cbAuditTypes
             // 
+            this.cbAuditTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbAuditTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAuditTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbAuditTypes.FormattingEnabled = true;
             this.cbAuditTypes.Location = new System.Drawing.Point(137, 293);
+            this.cbAuditTypes.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.cbAuditTypes.Name = "cbAuditTypes";
             this.cbAuditTypes.Size = new System.Drawing.Size(184, 24);
             this.cbAuditTypes.TabIndex = 33;
             // 
             // lblAuditType
             // 
+            this.lblAuditType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAuditType.AutoSize = true;
             this.lblAuditType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblAuditType.Location = new System.Drawing.Point(30, 296);
@@ -268,8 +275,10 @@
             // 
             // txtAuditNumber
             // 
+            this.txtAuditNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtAuditNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtAuditNumber.Location = new System.Drawing.Point(137, 236);
+            this.txtAuditNumber.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtAuditNumber.MaxLength = 3;
             this.txtAuditNumber.Name = "txtAuditNumber";
             this.txtAuditNumber.Size = new System.Drawing.Size(184, 22);
@@ -277,6 +286,7 @@
             // 
             // lblAuditNumber
             // 
+            this.lblAuditNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAuditNumber.AutoSize = true;
             this.lblAuditNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblAuditNumber.Location = new System.Drawing.Point(30, 239);
@@ -287,16 +297,19 @@
             // 
             // cbCompanies
             // 
+            this.cbCompanies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbCompanies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cbCompanies.FormattingEnabled = true;
             this.cbCompanies.Location = new System.Drawing.Point(137, 179);
+            this.cbCompanies.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.cbCompanies.Name = "cbCompanies";
             this.cbCompanies.Size = new System.Drawing.Size(184, 24);
             this.cbCompanies.TabIndex = 30;
             // 
             // lblCompany
             // 
+            this.lblCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCompany.AutoSize = true;
             this.lblCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblCompany.Location = new System.Drawing.Point(30, 182);
@@ -307,10 +320,12 @@
             // 
             // dtpYear
             // 
+            this.dtpYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dtpYear.CustomFormat = "yyyy";
             this.dtpYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dtpYear.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpYear.Location = new System.Drawing.Point(137, 124);
+            this.dtpYear.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.dtpYear.Name = "dtpYear";
             this.dtpYear.ShowUpDown = true;
             this.dtpYear.Size = new System.Drawing.Size(184, 22);
@@ -318,6 +333,7 @@
             // 
             // lblYear
             // 
+            this.lblYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblYear.Location = new System.Drawing.Point(30, 130);
@@ -325,6 +341,21 @@
             this.lblYear.Size = new System.Drawing.Size(37, 16);
             this.lblYear.TabIndex = 26;
             this.lblYear.Text = "Year";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnSave.Image = global::IAFollowUp.Properties.Resources.Save_32x;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(340, 398);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(120, 40);
+            this.btnSave.TabIndex = 23;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // AuditInsert
             // 
@@ -358,9 +389,11 @@
             this.Controls.Add(this.lblYear);
             this.Controls.Add(this.btnSave);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1500, 600);
+            this.MinimumSize = new System.Drawing.Size(816, 488);
             this.Name = "AuditInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "New Audit";
+            this.Text = "Audit";
             this.ResumeLayout(false);
             this.PerformLayout();
 
