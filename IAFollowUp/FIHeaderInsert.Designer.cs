@@ -43,6 +43,7 @@
             // 
             // lblHeader
             // 
+            this.lblHeader.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblHeader.Location = new System.Drawing.Point(383, 149);
@@ -73,6 +74,8 @@
             // 
             // txtHeaderTitle
             // 
+            this.txtHeaderTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtHeaderTitle.Location = new System.Drawing.Point(91, 176);
             this.txtHeaderTitle.MaxLength = 500;
@@ -109,6 +112,8 @@
             // 
             // txtCompany
             // 
+            this.txtCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtCompany.Location = new System.Drawing.Point(84, 6);
             this.txtCompany.MaxLength = 3;
@@ -119,6 +124,8 @@
             // 
             // txtAuditTitle
             // 
+            this.txtAuditTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtAuditTitle.Location = new System.Drawing.Point(84, 34);
             this.txtAuditTitle.MaxLength = 500;
@@ -165,6 +172,8 @@
             this.Controls.Add(this.txtHeaderTitle);
             this.Controls.Add(this.lblHeaderTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1500, 500);
+            this.MinimumSize = new System.Drawing.Size(860, 500);
             this.Name = "FIHeaderInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Findings and Improvements Header";
