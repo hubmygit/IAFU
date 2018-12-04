@@ -321,7 +321,15 @@ namespace IAFollowUp
             {
                 AuditInsert frmInsertNewAudit = new AuditInsert();
                 frmInsertNewAudit.ShowDialog();
+
+
+
+                //gridControl1.RefreshDataSource
+
             }
+
+            
+
         }
     }
 }

@@ -22,7 +22,11 @@ namespace IAFollowUp
 
             thisAudit = givenAudit;
 
-            gridControl1.DataSource = new BindingList<Audit>() { givenAudit };
+            txtCompany.Text = thisAudit.Company.Name;
+            txtYear.Text = thisAudit.Year.ToString();
+            txtAuditTitle.Text = thisAudit.Title;
+
+            gridControlHeaders.DataSource = new BindingList<FIHeader>(thisAudit.FIHeaders);
         }
 
         Audit thisAudit = new Audit();
@@ -38,31 +42,31 @@ namespace IAFollowUp
             frmFIHeaderIns.ShowDialog();
         }
 
-        private void btnUpdateHeader_Click(object sender, EventArgs e)
+        private void MIeditHeader_Click(object sender, EventArgs e)
         {
             //User Actions...
 
 
             // Update
-            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
                 FIHeader firstHeader = thisAudit.FIHeaders[0];
 
                 FIHeaderInsert fiHeaderUpdate = new FIHeaderInsert(thisAudit, firstHeader);
                 fiHeaderUpdate.ShowDialog();
-                
+
                 //refresh
                 //...
             }
         }
 
-        private void btnDeleteHeader_Click(object sender, EventArgs e)
+        private void MIdeleteHeader_Click(object sender, EventArgs e)
         {
             //User Actions...
 
 
             //Delete
-            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
                 FIHeader firstHeader = thisAudit.FIHeaders[0];
 
@@ -86,5 +90,6 @@ namespace IAFollowUp
                 }
             }
         }
+
     }
 }
