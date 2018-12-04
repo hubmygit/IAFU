@@ -142,6 +142,7 @@
     <Compile Include="ModelsLib\Companies.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
     <Compile Include="ModelsLib\FICategory.cs" />
+    <Compile Include="ModelsLib\FIDetail.cs" />
     <Compile Include="ModelsLib\FIHeader.cs" />
     <Compile Include="ModelsLib\LibFunctions.cs" />
     <Compile Include="ModelsLib\PasswordHistory.cs" />
