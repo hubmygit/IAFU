@@ -384,7 +384,8 @@ namespace IAFollowUp
                               "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
                               "D.ActionDt, " +
                               "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
-                              "D.ActionCode, isnull(D.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " + 
+                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted " +
                               "FROM [dbo].[FIDetail] D " +
                               "WHERE D.[FIHeaderId] = @HeaderId " +
                               "ORDER BY D.Id "; //ToDo
@@ -420,6 +421,8 @@ namespace IAFollowUp
                         ActionDt = DetailActionDt,
                         ActionReq = reader["ActionReq"].ToString(),
                         ActionCode = reader["ActionCode"].ToString(),
+                        IsClosed = Convert.ToBoolean(reader["IsClosed"].ToString()),
+                        IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
                         Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
                     });

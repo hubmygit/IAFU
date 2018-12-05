@@ -28,13 +28,16 @@ namespace IAFollowUp
 
         //public int AttCnt { get; set; }
 
+        public bool IsClosed { get; set; }
+        public bool IsFinalized { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public FIDetail()
         {
             Owners = new List<Users>();
         }
-        
+
         /*
         public static bool isEqual(FIDetail x, FIDetail y)
         {

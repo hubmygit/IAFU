@@ -103,7 +103,12 @@ namespace IAFollowUp
 
         private void btnCreateNewDetail_Click(object sender, EventArgs e)
         {
+            //User Actions...
 
+            FIDetailInsert frmFIDetailIns = new FIDetailInsert(); //change constructors
+            frmFIDetailIns.ShowDialog();
+
+            //Refresh...
         }
     }
 }

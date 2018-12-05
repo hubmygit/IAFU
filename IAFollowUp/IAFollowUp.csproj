@@ -103,6 +103,12 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FIDetailInsert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FIDetailInsert.Designer.cs">
+      <DependentUpon>FIDetailInsert.cs</DependentUpon>
+    </Compile>
     <Compile Include="FIHeaderInsert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FIDetailInsert.resx">
+      <DependentUpon>FIDetailInsert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FIHeaderInsert.resx">
       <DependentUpon>FIHeaderInsert.cs</DependentUpon>
