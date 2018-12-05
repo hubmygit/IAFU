@@ -10,20 +10,24 @@ namespace IAFollowUp
     public class FIDetail
     {
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } //*
         public int FIHeaderId { get; set; }
-        public DateTime ActionDt { get; set; }
-        public string ActionReq { get; set; }
-        public string ActionCode { get; set; }
-        public List<Users> Owners { get; set; }
-        public int OwnersCnt { get; set; }
-        public int InsUserId { get; set; }
-        public Users InsUser { get; set; }
-        public DateTime InsDt { get; set; }
-        public int UpdUserId { get; set; }
-        public Users UpdUser { get; set; }
-        public DateTime UpdDt { get; set; }
-        public int AttCnt { get; set; }
+        public DateTime? ActionDt { get; set; } //
+        public string ActionReq { get; set; } //
+        public string ActionCode { get; set; } //the only mandatory field!!!
+        public List<Users> Owners { get; set; } //
+
+        //public int OwnersCnt { get; set; }
+
+        //public int InsUserId { get; set; }
+        //public Users InsUser { get; set; }
+        //public DateTime InsDt { get; set; }
+        //public int UpdUserId { get; set; }
+        //public Users UpdUser { get; set; }
+        //public DateTime UpdDt { get; set; }
+
+        //public int AttCnt { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public FIDetail()
@@ -42,7 +46,7 @@ namespace IAFollowUp
         }
         */
 
-        public List<Users> getOwners(int detail_Id)
+        public static List<Users> getOwners(int detail_Id)
         {
             List<Users> ret = new List<Users>();
 

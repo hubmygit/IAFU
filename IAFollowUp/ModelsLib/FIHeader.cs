@@ -22,8 +22,9 @@ namespace IAFollowUp
         //public Users UpdUser { get; set; }
         //public DateTime UpdDt { get; set; }
         public bool IsDeleted { get; set; }
-
         public bool IsPublished { get; set; } //?????????
+
+        public List<FIDetail> FIDetails { get; set; }
 
         public FIHeader()
         {

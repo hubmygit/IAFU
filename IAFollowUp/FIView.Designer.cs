@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FIView));
             this.btnCreateNewHeader = new System.Windows.Forms.Button();
             this.btnCreateNewDetail = new System.Windows.Forms.Button();
-            this.btnUpdateDetail = new System.Windows.Forms.Button();
-            this.btnDeleteDetail = new System.Windows.Forms.Button();
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.txtAuditTitle = new System.Windows.Forms.TextBox();
             this.lblAuditTitle = new System.Windows.Forms.Label();
@@ -41,6 +39,9 @@
             this.txtYear = new System.Windows.Forms.TextBox();
             this.lblYear = new System.Windows.Forms.Label();
             this.gridControlHeaders = new DevExpress.XtraGrid.GridControl();
+            this.cmsHeader = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MIeditHeader = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIdeleteHeader = new System.Windows.Forms.ToolStripMenuItem();
             this.fIHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewHeaders = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,11 +51,13 @@
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsPublished = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblHeaders = new System.Windows.Forms.Label();
-            this.cmsHeader = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MIeditHeader = new System.Windows.Forms.ToolStripMenuItem();
-            this.MIdeleteHeader = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDetails = new System.Windows.Forms.Label();
             this.gridControlDetails = new DevExpress.XtraGrid.GridControl();
+            this.cmsDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MIeditDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIdeleteDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
             this.gridViewDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -62,18 +65,13 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cmsDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MIeditDetail = new System.Windows.Forms.ToolStripMenuItem();
-            this.MIdeleteDetail = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).BeginInit();
+            this.cmsHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).BeginInit();
-            this.cmsHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCreateNewHeader
@@ -100,30 +98,7 @@
             this.btnCreateNewDetail.Text = "New Detail";
             this.btnCreateNewDetail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateNewDetail.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdateDetail
-            // 
-            this.btnUpdateDetail.Image = global::IAFollowUp.Properties.Resources.Create_32x;
-            this.btnUpdateDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateDetail.Location = new System.Drawing.Point(738, 354);
-            this.btnUpdateDetail.Name = "btnUpdateDetail";
-            this.btnUpdateDetail.Size = new System.Drawing.Size(120, 30);
-            this.btnUpdateDetail.TabIndex = 39;
-            this.btnUpdateDetail.Text = "Upd Detail";
-            this.btnUpdateDetail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdateDetail.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteDetail
-            // 
-            this.btnDeleteDetail.Image = global::IAFollowUp.Properties.Resources.Create_32x;
-            this.btnDeleteDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteDetail.Location = new System.Drawing.Point(864, 354);
-            this.btnDeleteDetail.Name = "btnDeleteDetail";
-            this.btnDeleteDetail.Size = new System.Drawing.Size(120, 30);
-            this.btnDeleteDetail.TabIndex = 41;
-            this.btnDeleteDetail.Text = "Del Detail";
-            this.btnDeleteDetail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDeleteDetail.UseVisualStyleBackColor = true;
+            this.btnCreateNewDetail.Click += new System.EventHandler(this.btnCreateNewDetail_Click);
             // 
             // txtCompany
             // 
@@ -146,7 +121,7 @@
             this.txtAuditTitle.Name = "txtAuditTitle";
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtAuditTitle.Size = new System.Drawing.Size(850, 50);
+            this.txtAuditTitle.Size = new System.Drawing.Size(888, 50);
             this.txtAuditTitle.TabIndex = 66;
             // 
             // lblAuditTitle
@@ -172,7 +147,7 @@
             // txtYear
             // 
             this.txtYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtYear.Location = new System.Drawing.Point(734, 6);
+            this.txtYear.Location = new System.Drawing.Point(772, 6);
             this.txtYear.MaxLength = 3;
             this.txtYear.Name = "txtYear";
             this.txtYear.ReadOnly = true;
@@ -183,7 +158,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblYear.Location = new System.Drawing.Point(691, 9);
+            this.lblYear.Location = new System.Drawing.Point(729, 9);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(37, 16);
             this.lblYear.TabIndex = 70;
@@ -193,6 +168,7 @@
             // 
             this.gridControlHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControlHeaders.ContextMenuStrip = this.cmsHeader;
             this.gridControlHeaders.DataSource = this.fIHeaderBindingSource;
             this.gridControlHeaders.Location = new System.Drawing.Point(0, 135);
             this.gridControlHeaders.MainView = this.gridViewHeaders;
@@ -201,6 +177,28 @@
             this.gridControlHeaders.TabIndex = 72;
             this.gridControlHeaders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewHeaders});
+            // 
+            // cmsHeader
+            // 
+            this.cmsHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MIeditHeader,
+            this.MIdeleteHeader});
+            this.cmsHeader.Name = "cmsHeader";
+            this.cmsHeader.Size = new System.Drawing.Size(108, 48);
+            // 
+            // MIeditHeader
+            // 
+            this.MIeditHeader.Name = "MIeditHeader";
+            this.MIeditHeader.Size = new System.Drawing.Size(107, 22);
+            this.MIeditHeader.Text = "Edit";
+            this.MIeditHeader.Click += new System.EventHandler(this.MIeditHeader_Click);
+            // 
+            // MIdeleteHeader
+            // 
+            this.MIdeleteHeader.Name = "MIdeleteHeader";
+            this.MIdeleteHeader.Size = new System.Drawing.Size(107, 22);
+            this.MIdeleteHeader.Text = "Delete";
+            this.MIdeleteHeader.Click += new System.EventHandler(this.MIdeleteHeader_Click);
             // 
             // fIHeaderBindingSource
             // 
@@ -238,7 +236,7 @@
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
             this.colTitle.VisibleIndex = 0;
-            this.colTitle.Width = 200;
+            this.colTitle.Width = 220;
             // 
             // colFICategory
             // 
@@ -271,28 +269,6 @@
             this.lblHeaders.TabIndex = 73;
             this.lblHeaders.Text = "Headers";
             // 
-            // cmsHeader
-            // 
-            this.cmsHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MIeditHeader,
-            this.MIdeleteHeader});
-            this.cmsHeader.Name = "cmsHeader";
-            this.cmsHeader.Size = new System.Drawing.Size(108, 48);
-            // 
-            // MIeditHeader
-            // 
-            this.MIeditHeader.Name = "MIeditHeader";
-            this.MIeditHeader.Size = new System.Drawing.Size(107, 22);
-            this.MIeditHeader.Text = "Edit";
-            this.MIeditHeader.Click += new System.EventHandler(this.MIeditHeader_Click);
-            // 
-            // MIdeleteHeader
-            // 
-            this.MIdeleteHeader.Name = "MIdeleteHeader";
-            this.MIdeleteHeader.Size = new System.Drawing.Size(107, 22);
-            this.MIdeleteHeader.Text = "Delete";
-            this.MIdeleteHeader.Click += new System.EventHandler(this.MIdeleteHeader_Click);
-            // 
             // lblDetails
             // 
             this.lblDetails.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -309,6 +285,7 @@
             this.gridControlDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControlDetails.ContextMenuStrip = this.cmsDetail;
             this.gridControlDetails.DataSource = this.fIHeaderBindingSource;
             this.gridControlDetails.Location = new System.Drawing.Point(0, 387);
             this.gridControlDetails.MainView = this.gridViewDetails;
@@ -317,60 +294,6 @@
             this.gridControlDetails.TabIndex = 75;
             this.gridControlDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDetails});
-            // 
-            // gridViewDetails
-            // 
-            this.gridViewDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6});
-            this.gridViewDetails.GridControl = this.gridControlDetails;
-            this.gridViewDetails.Name = "gridViewDetails";
-            this.gridViewDetails.OptionsBehavior.Editable = false;
-            this.gridViewDetails.OptionsBehavior.ReadOnly = true;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.FieldName = "Id";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.FieldName = "AuditId";
-            this.gridColumn2.Name = "gridColumn2";
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Title";
-            this.gridColumn3.FieldName = "Title";
-            this.gridColumn3.MinWidth = 200;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 200;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Category";
-            this.gridColumn4.FieldName = "FICategory.Name";
-            this.gridColumn4.MinWidth = 200;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 1;
-            this.gridColumn4.Width = 200;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.FieldName = "IsDeleted";
-            this.gridColumn5.Name = "gridColumn5";
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.FieldName = "IsPublished";
-            this.gridColumn6.Name = "gridColumn6";
             // 
             // cmsDetail
             // 
@@ -405,6 +328,60 @@
             this.MIattachments.Size = new System.Drawing.Size(142, 22);
             this.MIattachments.Text = "Attachments";
             // 
+            // gridViewDetails
+            // 
+            this.gridViewDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6});
+            this.gridViewDetails.GridControl = this.gridControlDetails;
+            this.gridViewDetails.Name = "gridViewDetails";
+            this.gridViewDetails.OptionsBehavior.Editable = false;
+            this.gridViewDetails.OptionsBehavior.ReadOnly = true;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "Id";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.FieldName = "AuditId";
+            this.gridColumn2.Name = "gridColumn2";
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Title";
+            this.gridColumn3.FieldName = "Title";
+            this.gridColumn3.MinWidth = 200;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 220;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Category";
+            this.gridColumn4.FieldName = "FICategory.Name";
+            this.gridColumn4.MinWidth = 200;
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 200;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.FieldName = "IsDeleted";
+            this.gridColumn5.Name = "gridColumn5";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.FieldName = "IsPublished";
+            this.gridColumn6.Name = "gridColumn6";
+            // 
             // FIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,8 +397,6 @@
             this.Controls.Add(this.txtAuditTitle);
             this.Controls.Add(this.lblAuditTitle);
             this.Controls.Add(this.lblCompany);
-            this.Controls.Add(this.btnDeleteDetail);
-            this.Controls.Add(this.btnUpdateDetail);
             this.Controls.Add(this.btnCreateNewDetail);
             this.Controls.Add(this.btnCreateNewHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -430,12 +405,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Findings and Improvements View";
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).EndInit();
+            this.cmsHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).EndInit();
-            this.cmsHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).EndInit();
             this.cmsDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,8 +419,6 @@
         #endregion
         private System.Windows.Forms.Button btnCreateNewHeader;
         private System.Windows.Forms.Button btnCreateNewDetail;
-        private System.Windows.Forms.Button btnUpdateDetail;
-        private System.Windows.Forms.Button btnDeleteDetail;
         private System.Windows.Forms.TextBox txtCompany;
         private System.Windows.Forms.TextBox txtAuditTitle;
         private System.Windows.Forms.Label lblAuditTitle;

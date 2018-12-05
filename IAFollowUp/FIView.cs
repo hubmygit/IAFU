@@ -40,6 +40,12 @@ namespace IAFollowUp
 
             FIHeaderInsert frmFIHeaderIns = new FIHeaderInsert(thisAudit);
             frmFIHeaderIns.ShowDialog();
+
+
+            
+            //refresh
+            //auditBList = SelectAudit(); //BindingList
+            //gridControl1.DataSource = auditBList; //DataSource
         }
 
         private void MIeditHeader_Click(object sender, EventArgs e)
@@ -50,7 +56,9 @@ namespace IAFollowUp
             // Update
             if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
-                FIHeader firstHeader = thisAudit.FIHeaders[0];
+                //FIHeader firstHeader = thisAudit.FIHeaders[0];
+                int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
+                FIHeader firstHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
                 FIHeaderInsert fiHeaderUpdate = new FIHeaderInsert(thisAudit, firstHeader);
                 fiHeaderUpdate.ShowDialog();
@@ -68,7 +76,9 @@ namespace IAFollowUp
             //Delete
             if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
-                FIHeader firstHeader = thisAudit.FIHeaders[0];
+                //FIHeader firstHeader = thisAudit.FIHeaders[0];
+                int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
+                FIHeader firstHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to permanently delete this record?", "F/I Header Deletion", MessageBoxButtons.YesNo);
 
@@ -91,5 +101,9 @@ namespace IAFollowUp
             }
         }
 
+        private void btnCreateNewDetail_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -16,115 +16,14 @@ namespace IAFollowUp
         {
             InitializeComponent();
 
-            auditBList = SelectAudit();
+            auditBList = Audit.Select();
 
             gridControl1.DataSource = auditBList;
         }
 
         public BindingList<Audit> auditBList = new BindingList<Audit>();
 
-        public BindingList<Audit> SelectAudit()
-        {
-            BindingList<Audit> ret = new BindingList<Audit>();
-
-            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
-                              "A.[ReportDt], " +
-                              "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
-                              "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
-                              //"(SELECT count(*) FROM [dbo].[Audit_Attachments] T WHERE a.id = T.AuditID and A.RevNo = T.RevNo) as AttCnt, " +
-                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted " +
-                              "FROM [dbo].[Audit] A " +
-                              "ORDER BY A.Id "; //ToDo
-
-            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
-            try
-            {
-                sqlConn.Open();
-                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    //int? Auditor2_Id, Supervisor_Id;
-                    //int? AuditRating_Id;
-
-                    AuditRating AuditRating_rating;
-                    Users Auditor2_User, Supervisor_User;
-
-                    if (reader["Auditor2Id"] == System.DBNull.Value)
-                    {
-                        //Auditor2_Id = null;
-                        Auditor2_User = new Users();
-                    }
-                    else
-                    {
-                        //Auditor2_Id = Convert.ToInt32(reader["Auditor2Id"].ToString());
-                        Auditor2_User = new Users(Convert.ToInt32(reader["Auditor2Id"].ToString()));
-                    }
-                    if (reader["SupervisorId"] == System.DBNull.Value)
-                    {
-                        //Supervisor_Id = null;
-                        Supervisor_User = new Users();
-                    }
-                    else
-                    {
-                        //Supervisor_Id = Convert.ToInt32(reader["SupervisorId"].ToString());
-                        Supervisor_User = new Users(Convert.ToInt32(reader["SupervisorId"].ToString()));
-                    }
-                    if (reader["AuditRatingId"] == System.DBNull.Value)
-                    {
-                        //AuditRating_Id = null;
-                        AuditRating_rating = new AuditRating();
-                    }
-                    else
-                    {
-                        //AuditRating_Id = Convert.ToInt32(reader["AuditRatingId"].ToString());
-                        AuditRating_rating = new AuditRating(Convert.ToInt32(reader["AuditRatingId"].ToString()));
-                    }
-                    ret.Add(new Audit()
-                    {
-                        Id = Convert.ToInt32(reader["Id"].ToString()),
-                        Year = Convert.ToInt32(reader["Year"].ToString()),
-                        //CompanyId = Convert.ToInt32(reader["CompanyId"].ToString()),
-                        Company = new Companies(Convert.ToInt32(reader["CompanyId"].ToString())),
-                        //AuditTypeId = Convert.ToInt32(reader["AuditTypeId"].ToString()),
-                        AuditType = new AuditTypes(Convert.ToInt32(reader["AuditTypeId"].ToString())),
-                        Title = reader["Title"].ToString(),
-                        ReportDt = Convert.ToDateTime(reader["ReportDt"].ToString()),
-                        //Auditor1ID = Convert.ToInt32(reader["Auditor1Id"].ToString()),
-                        Auditor1 = new Users(Convert.ToInt32(reader["Auditor1Id"].ToString())),
-
-                        //Auditor2ID = Auditor2_Id, //Convert.ToInt32(reader["Auditor2Id"].ToString()),
-                        Auditor2 = Auditor2_User, //new Users(Convert.ToInt32(reader["Auditor2Id"].ToString())),
-
-                        //SupervisorID = Supervisor_Id, //Convert.ToInt32(reader["SupervisorId"].ToString()),
-                        Supervisor = Supervisor_User, //new Users(Convert.ToInt32(reader["SupervisorId"].ToString())),
-
-                        IsCompleted = Convert.ToBoolean(reader["IsCompleted"].ToString()),
-                        AuditNumber = reader["AuditNumber"].ToString(),
-                        IASentNumber = reader["IASentNumber"].ToString(),
-                        //RevNo = Convert.ToInt32(reader["RevNo"].ToString()),
-                        //AttCnt = Convert.ToInt32(reader["AttCnt"].ToString()),
-
-                        //AuditRatingId = AuditRating_Id,
-                        AuditRating = AuditRating_rating,
-                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
-                        FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()))
-
-                    });
-                }
-                reader.Close();
-                sqlConn.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The following error occurred: " + ex.Message);
-            }
-
-            return ret;
-        }
-
+        
         private void MIupdate_Click(object sender, EventArgs e)
         {
             // Update
@@ -160,7 +59,7 @@ namespace IAFollowUp
                     //int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle); //b
 
                     //refresh
-                    auditBList = SelectAudit(); //BindingList
+                    auditBList = Audit.Select(); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
 
                     //gridView1.TopRowIndex = gridTopRowIndex; //a
@@ -208,7 +107,7 @@ namespace IAFollowUp
                         MessageBox.Show("The Deletion was successful!");
 
                         //refresh
-                        auditBList = SelectAudit(); //BindingList
+                        auditBList = Audit.Select(); //BindingList
                         gridControl1.DataSource = auditBList; //DataSource
                     }
                     else
@@ -251,7 +150,7 @@ namespace IAFollowUp
                 if (attachedFiles.success)
                 {
                     //refresh
-                    auditBList = SelectAudit(); //BindingList
+                    auditBList = Audit.Select(); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
                 }
 
@@ -289,7 +188,7 @@ namespace IAFollowUp
                     MessageBox.Show("The Update was successful!");
 
                     //refresh
-                    auditBList = SelectAudit(); //BindingList
+                    auditBList = Audit.Select(); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
                 }
                 else
