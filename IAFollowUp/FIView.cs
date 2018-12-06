@@ -147,5 +147,40 @@ namespace IAFollowUp
                 //...
             }
         }
+
+        private void MIdeleteDetail_Click(object sender, EventArgs e)
+        {
+            //User Actions...
+
+
+            //Delete
+            if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0)
+            {
+                int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+                int detailId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["Id"]).ToString());
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+                FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
+
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to permanently delete this record?", "F/I Detail Deletion", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (FIDetail.Delete(selDetail.Id))
+                    {
+                        ChangeLog.Insert(new FIDetail() { Id = selDetail.Id, IsDeleted = false }, new FIDetail() { Id = selDetail.Id, IsDeleted = true }, "FIDetail");
+
+                        MessageBox.Show("The Deletion was successful!");
+
+                        //refresh
+                        //...
+                    }
+                    else
+                    {
+                        MessageBox.Show("The Deletion was not successful!");
+                    }
+                }
+            }
+
+        }
     }
 }

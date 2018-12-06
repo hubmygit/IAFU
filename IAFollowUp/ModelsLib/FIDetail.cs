@@ -281,5 +281,41 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static bool Delete(int id)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIDetail] SET [IsDeleted] = 1, " +
+                "[UpdUserID] = @UpdUserID, [UpdDt] = getDate(), [DelUserID] = @UpdUserID, [DelDt] = getDate() " +
+                "WHERE id = @id";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.Parameters.AddWithValue("@UpdUserID", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
     }
 }

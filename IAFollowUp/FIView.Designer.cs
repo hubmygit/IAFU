@@ -313,30 +313,31 @@
             this.toolStripSeparator1,
             this.MIattachments});
             this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(143, 76);
+            this.cmsDetail.Size = new System.Drawing.Size(181, 98);
             // 
             // MIeditDetail
             // 
             this.MIeditDetail.Name = "MIeditDetail";
-            this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIeditDetail.Size = new System.Drawing.Size(180, 22);
             this.MIeditDetail.Text = "Edit";
             this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
             // 
             // MIdeleteDetail
             // 
             this.MIdeleteDetail.Name = "MIdeleteDetail";
-            this.MIdeleteDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIdeleteDetail.Size = new System.Drawing.Size(180, 22);
             this.MIdeleteDetail.Text = "Delete";
+            this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // MIattachments
             // 
             this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(142, 22);
+            this.MIattachments.Size = new System.Drawing.Size(180, 22);
             this.MIattachments.Text = "Attachments";
             // 
             // fIDetailBindingSource
