@@ -26,6 +26,7 @@ namespace IAFollowUp
         }
 
         public List<FICategory> categoriesList = FICategory.GetSqlFICategoriesList();
+
         public FIHeaderInsert(Audit audit, FIHeader header) //Update
         {
             InitializeComponent();
@@ -101,7 +102,7 @@ namespace IAFollowUp
                 {
                     ChangeLog.Insert(oldHeaderRecord, newHeaderRecord, "FIHeader");
 
-                    MessageBox.Show("Header updated successfully!");
+                    MessageBox.Show("F/I Header updated successfully!");
                     success = true;
                     Close();
                 }

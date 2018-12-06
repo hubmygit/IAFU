@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FIView));
             this.btnCreateNewHeader = new System.Windows.Forms.Button();
             this.btnCreateNewDetail = new System.Windows.Forms.Button();
@@ -58,19 +59,24 @@
             this.MIdeleteDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
+            this.fIDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colId1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFIHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionReq = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsClosed = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsDeleted1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).BeginInit();
             this.cmsHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fIDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,6 +223,7 @@
             this.gridViewHeaders.Name = "gridViewHeaders";
             this.gridViewHeaders.OptionsBehavior.Editable = false;
             this.gridViewHeaders.OptionsBehavior.ReadOnly = true;
+            this.gridViewHeaders.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridViewHeaders_MouseDown);
             // 
             // colId
             // 
@@ -286,7 +293,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControlDetails.ContextMenuStrip = this.cmsDetail;
-            this.gridControlDetails.DataSource = this.fIHeaderBindingSource;
+            this.gridControlDetails.DataSource = this.fIDetailBindingSource;
+            gridLevelNode1.RelationName = "Owners";
+            this.gridControlDetails.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
             this.gridControlDetails.Location = new System.Drawing.Point(0, 387);
             this.gridControlDetails.MainView = this.gridViewDetails;
             this.gridControlDetails.Name = "gridControlDetails";
@@ -310,6 +320,7 @@
             this.MIeditDetail.Name = "MIeditDetail";
             this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
             this.MIeditDetail.Text = "Edit";
+            this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
             // 
             // MIdeleteDetail
             // 
@@ -328,59 +339,89 @@
             this.MIattachments.Size = new System.Drawing.Size(142, 22);
             this.MIattachments.Text = "Attachments";
             // 
+            // fIDetailBindingSource
+            // 
+            this.fIDetailBindingSource.DataSource = typeof(IAFollowUp.FIDetail);
+            // 
             // gridViewDetails
             // 
             this.gridViewDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6});
+            this.colId1,
+            this.colDescription,
+            this.colFIHeaderId,
+            this.colActionDt,
+            this.colActionReq,
+            this.colActionCode,
+            this.colIsClosed,
+            this.colIsFinalized,
+            this.colIsDeleted1});
             this.gridViewDetails.GridControl = this.gridControlDetails;
             this.gridViewDetails.Name = "gridViewDetails";
             this.gridViewDetails.OptionsBehavior.Editable = false;
             this.gridViewDetails.OptionsBehavior.ReadOnly = true;
             // 
-            // gridColumn1
+            // colId1
             // 
-            this.gridColumn1.FieldName = "Id";
-            this.gridColumn1.Name = "gridColumn1";
+            this.colId1.FieldName = "Id";
+            this.colId1.Name = "colId1";
+            this.colId1.Visible = true;
+            this.colId1.VisibleIndex = 0;
             // 
-            // gridColumn2
+            // colDescription
             // 
-            this.gridColumn2.FieldName = "AuditId";
-            this.gridColumn2.Name = "gridColumn2";
+            this.colDescription.FieldName = "Description";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.Visible = true;
+            this.colDescription.VisibleIndex = 1;
             // 
-            // gridColumn3
+            // colFIHeaderId
             // 
-            this.gridColumn3.Caption = "Title";
-            this.gridColumn3.FieldName = "Title";
-            this.gridColumn3.MinWidth = 200;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 220;
+            this.colFIHeaderId.FieldName = "FIHeaderId";
+            this.colFIHeaderId.Name = "colFIHeaderId";
+            this.colFIHeaderId.Visible = true;
+            this.colFIHeaderId.VisibleIndex = 2;
             // 
-            // gridColumn4
+            // colActionDt
             // 
-            this.gridColumn4.Caption = "Category";
-            this.gridColumn4.FieldName = "FICategory.Name";
-            this.gridColumn4.MinWidth = 200;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 1;
-            this.gridColumn4.Width = 200;
+            this.colActionDt.FieldName = "ActionDt";
+            this.colActionDt.Name = "colActionDt";
+            this.colActionDt.Visible = true;
+            this.colActionDt.VisibleIndex = 3;
             // 
-            // gridColumn5
+            // colActionReq
             // 
-            this.gridColumn5.FieldName = "IsDeleted";
-            this.gridColumn5.Name = "gridColumn5";
+            this.colActionReq.FieldName = "ActionReq";
+            this.colActionReq.Name = "colActionReq";
+            this.colActionReq.Visible = true;
+            this.colActionReq.VisibleIndex = 4;
             // 
-            // gridColumn6
+            // colActionCode
             // 
-            this.gridColumn6.FieldName = "IsPublished";
-            this.gridColumn6.Name = "gridColumn6";
+            this.colActionCode.FieldName = "ActionCode";
+            this.colActionCode.Name = "colActionCode";
+            this.colActionCode.Visible = true;
+            this.colActionCode.VisibleIndex = 5;
+            // 
+            // colIsClosed
+            // 
+            this.colIsClosed.FieldName = "IsClosed";
+            this.colIsClosed.Name = "colIsClosed";
+            this.colIsClosed.Visible = true;
+            this.colIsClosed.VisibleIndex = 6;
+            // 
+            // colIsFinalized
+            // 
+            this.colIsFinalized.FieldName = "IsFinalized";
+            this.colIsFinalized.Name = "colIsFinalized";
+            this.colIsFinalized.Visible = true;
+            this.colIsFinalized.VisibleIndex = 7;
+            // 
+            // colIsDeleted1
+            // 
+            this.colIsDeleted1.FieldName = "IsDeleted";
+            this.colIsDeleted1.Name = "colIsDeleted1";
+            this.colIsDeleted1.Visible = true;
+            this.colIsDeleted1.VisibleIndex = 8;
             // 
             // FIView
             // 
@@ -410,6 +451,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).EndInit();
             this.cmsDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fIDetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -441,16 +483,20 @@
         private System.Windows.Forms.Label lblDetails;
         private DevExpress.XtraGrid.GridControl gridControlDetails;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewDetails;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         public System.Windows.Forms.ContextMenuStrip cmsDetail;
         private System.Windows.Forms.ToolStripMenuItem MIeditDetail;
         private System.Windows.Forms.ToolStripMenuItem MIdeleteDetail;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem MIattachments;
+        private System.Windows.Forms.BindingSource fIDetailBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colId1;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescription;
+        private DevExpress.XtraGrid.Columns.GridColumn colFIHeaderId;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionReq;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsClosed;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsFinalized;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsDeleted1;
     }
 }

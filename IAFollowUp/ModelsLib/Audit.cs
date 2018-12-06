@@ -406,7 +406,7 @@ namespace IAFollowUp
 
                     if (reader["ActionDt"] == System.DBNull.Value)
                     {
-                        DetailActionDt = new DateTime();
+                        DetailActionDt = null;
                     }
                     else
                     {

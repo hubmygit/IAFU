@@ -56,11 +56,10 @@ namespace IAFollowUp
             // Update
             if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
-                //FIHeader firstHeader = thisAudit.FIHeaders[0];
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
-                FIHeader firstHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
-                FIHeaderInsert fiHeaderUpdate = new FIHeaderInsert(thisAudit, firstHeader);
+                FIHeaderInsert fiHeaderUpdate = new FIHeaderInsert(thisAudit, selHeader);
                 fiHeaderUpdate.ShowDialog();
 
                 //refresh
@@ -76,17 +75,16 @@ namespace IAFollowUp
             //Delete
             if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
-                //FIHeader firstHeader = thisAudit.FIHeaders[0];
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
-                FIHeader firstHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to permanently delete this record?", "F/I Header Deletion", MessageBoxButtons.YesNo);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    if (FIHeader.Delete(firstHeader.Id))
+                    if (FIHeader.Delete(selHeader.Id))
                     {
-                        ChangeLog.Insert(new FIHeader() { Id = firstHeader.Id, IsDeleted = false }, new FIHeader() { Id = firstHeader.Id, IsDeleted = true }, "FIHeader");
+                        ChangeLog.Insert(new FIHeader() { Id = selHeader.Id, IsDeleted = false }, new FIHeader() { Id = selHeader.Id, IsDeleted = true }, "FIHeader");
 
                         MessageBox.Show("The Deletion was successful!");
 
@@ -105,10 +103,49 @@ namespace IAFollowUp
         {
             //User Actions...
 
-            FIDetailInsert frmFIDetailIns = new FIDetailInsert(); //change constructors
-            frmFIDetailIns.ShowDialog();
+            if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
+            {
+                int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
+
+                FIDetailInsert frmFIDetailIns = new FIDetailInsert(thisAudit, selHeader); 
+                frmFIDetailIns.ShowDialog();
+            }
 
             //Refresh...
+        }
+
+
+        private void gridViewHeaders_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
+            {
+                int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
+                List<FIDetail> RefDetails = thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails;
+
+                gridControlDetails.DataSource = new BindingList<FIDetail>(RefDetails);
+            }
+        }
+
+        private void MIeditDetail_Click(object sender, EventArgs e)
+        {
+            //User Actions...
+
+
+            // Update
+            if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0)
+            {
+                int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+                int detailId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["Id"]).ToString());
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+                FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
+
+                FIDetailInsert fiDetailUpdate = new FIDetailInsert(thisAudit, selHeader, selDetail);
+                fiDetailUpdate.ShowDialog();
+
+                //refresh
+                //...
+            }
         }
     }
 }

@@ -79,6 +79,90 @@ namespace IAFollowUp
 
             Ins_ChLog(chLog);
         }
+
+        public static void Insert(FIDetail oldRec, FIDetail newRec, string section)
+        {
+            ChangeLog chLog = new ChangeLog();
+            chLog.Section = section;
+            chLog.Tbl_Id = oldRec.Id;
+            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.Dt = DateTime.Now;
+            chLog.ExecStatement = "UPDATE";
+            if (newRec.IsDeleted == true)
+            {
+                chLog.ExecStatement = "DELETE";
+            }
+            chLog.TableName = "FIDetail";
+
+            List<ChLogFields> FieldsToCheck = new List<ChLogFields>();
+
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Description", FieldNameToShow = "Description" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "ActionDt", FieldNameToShow = "Action Date" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "ActionReq", FieldNameToShow = "Action Required" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "ActionCode", FieldNameToShow = "Action Code" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Owners", FieldNameToShow = "Owners" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsClosed", FieldNameToShow = "Closure Flag" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsFinalized", FieldNameToShow = "Finalization Flag" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
+            
+            foreach (ChLogFields chlf in FieldsToCheck)
+            {
+                object objOld = oldRec.GetType().GetProperty(chlf.FieldName).GetValue(oldRec, null);
+                object objNew = newRec.GetType().GetProperty(chlf.FieldName).GetValue(newRec, null);
+                string strOld = "";
+                string strNew = "";
+
+                if (objOld != null)
+                {
+                    if (objOld.GetType() == typeof(List<Users>))
+                    {
+                        foreach (Users thisUser in (List<Users>)objOld)
+                        {
+                            strOld += thisUser.FullName + "|";
+                        }
+                        if (strOld.Length > 2)
+                        {
+                            strOld = strOld.Remove(strOld.Length - 1, 1);
+                        }
+                    }
+                    else
+                    {
+                        strOld = objOld.ToString();
+                    }
+                }
+
+                if (objNew != null)
+                {
+                    if (objNew.GetType() == typeof(List<Users>))
+                    {
+                        foreach (Users thisUser in (List<Users>)objNew)
+                        {
+                            strNew += thisUser.FullName + "|";
+                        }
+                        if (strNew.Length > 2)
+                        {
+                            strNew = strNew.Remove(strNew.Length - 1, 1);
+                        }
+                    }
+                    else
+                    {
+                        strNew = objNew.ToString();
+                    }
+                }
+
+                if (strOld != strNew)
+                {
+                    chLog.FieldName = chlf.FieldName;
+                    chLog.OldValue = strOld;
+                    chLog.NewValue = strNew;
+                    chLog.FieldNameToShow = chlf.FieldNameToShow;
+
+                    Ins_ChLog(chLog);
+                }
+
+            }
+        }
+
         public static void Insert(FIHeader oldRec, FIHeader newRec, string section)
         {
             ChangeLog chLog = new ChangeLog();

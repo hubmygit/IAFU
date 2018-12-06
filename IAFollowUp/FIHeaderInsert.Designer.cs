@@ -56,7 +56,7 @@
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblCategory.Location = new System.Drawing.Point(12, 273);
+            this.lblCategory.Location = new System.Drawing.Point(10, 273);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(73, 20);
             this.lblCategory.TabIndex = 60;
@@ -89,7 +89,7 @@
             // 
             this.lblHeaderTitle.AutoSize = true;
             this.lblHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblHeaderTitle.Location = new System.Drawing.Point(12, 197);
+            this.lblHeaderTitle.Location = new System.Drawing.Point(10, 197);
             this.lblHeaderTitle.Name = "lblHeaderTitle";
             this.lblHeaderTitle.Size = new System.Drawing.Size(38, 20);
             this.lblHeaderTitle.TabIndex = 59;
@@ -115,11 +115,11 @@
             this.txtCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtCompany.Location = new System.Drawing.Point(84, 6);
+            this.txtCompany.Location = new System.Drawing.Point(91, 6);
             this.txtCompany.MaxLength = 3;
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.ReadOnly = true;
-            this.txtCompany.Size = new System.Drawing.Size(748, 22);
+            this.txtCompany.Size = new System.Drawing.Size(741, 22);
             this.txtCompany.TabIndex = 65;
             // 
             // txtAuditTitle
@@ -127,13 +127,13 @@
             this.txtAuditTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtAuditTitle.Location = new System.Drawing.Point(84, 34);
+            this.txtAuditTitle.Location = new System.Drawing.Point(91, 34);
             this.txtAuditTitle.MaxLength = 500;
             this.txtAuditTitle.Multiline = true;
             this.txtAuditTitle.Name = "txtAuditTitle";
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtAuditTitle.Size = new System.Drawing.Size(748, 72);
+            this.txtAuditTitle.Size = new System.Drawing.Size(741, 72);
             this.txtAuditTitle.TabIndex = 62;
             // 
             // lblAuditTitle
@@ -150,7 +150,7 @@
             // 
             this.lblCompany.AutoSize = true;
             this.lblCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblCompany.Location = new System.Drawing.Point(12, 9);
+            this.lblCompany.Location = new System.Drawing.Point(11, 9);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(66, 16);
             this.lblCompany.TabIndex = 63;
