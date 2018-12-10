@@ -85,5 +85,11 @@ namespace IAFollowUp
                 frmInsertNewAudit.ShowDialog();
             }
         }
+
+        private void viewChangeLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeLogView viewChangeLog = new ChangeLogView();
+            viewChangeLog.ShowDialog();
+        }
     }
 }

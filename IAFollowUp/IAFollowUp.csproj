@@ -85,6 +85,12 @@
     <Compile Include="AuditView.Designer.cs">
       <DependentUpon>AuditView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeLogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeLogView.Designer.cs">
+      <DependentUpon>ChangeLogView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditView.resx">
       <DependentUpon>AuditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeLogView.resx">
+      <DependentUpon>ChangeLogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>

@@ -35,10 +35,14 @@ namespace IAFollowUp
                            "([Tbl_Id], [AppUsers_Id], [Dt], [ExecStatement], [TableName], [FieldName], [FieldNameToShow], [OldValue], [NewValue], [Section]) " +
                            "VALUES " +
                            "(@Tbl_Id, @AppUsers_Id, @Dt, @ExecStatement, @TableName, @FieldName, @FieldNameToShow, @OldValue, @NewValue, @Section) ";
+
+            //encryptByPassPhrase(@passPhrase, convert(varchar(500), @Email))
             try
             {
                 sqlConn.Open();
                 SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                //cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
 
                 cmd.Parameters.AddWithValue("@Tbl_Id", givenLog.Tbl_Id);
                 

@@ -45,6 +45,7 @@
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewChangeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -137,7 +138,8 @@
             this.viewRolesToolStripMenuItem,
             this.createRoleToolStripMenuItem,
             this.viewUsersToolStripMenuItem,
-            this.createUserToolStripMenuItem});
+            this.createUserToolStripMenuItem,
+            this.viewChangeLogToolStripMenuItem});
             this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
             this.administratorToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.administratorToolStripMenuItem.Tag = "3";
@@ -147,28 +149,28 @@
             // viewRolesToolStripMenuItem
             // 
             this.viewRolesToolStripMenuItem.Name = "viewRolesToolStripMenuItem";
-            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewRolesToolStripMenuItem.Text = "View / Edit Roles";
             this.viewRolesToolStripMenuItem.Click += new System.EventHandler(this.viewRolesToolStripMenuItem_Click);
             // 
             // createRoleToolStripMenuItem
             // 
             this.createRoleToolStripMenuItem.Name = "createRoleToolStripMenuItem";
-            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createRoleToolStripMenuItem.Text = "Create New Role";
             this.createRoleToolStripMenuItem.Click += new System.EventHandler(this.createRoleToolStripMenuItem_Click);
             // 
             // viewUsersToolStripMenuItem
             // 
             this.viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
-            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewUsersToolStripMenuItem.Text = "View / Edit Users";
             this.viewUsersToolStripMenuItem.Click += new System.EventHandler(this.viewUsersToolStripMenuItem_Click);
             // 
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createUserToolStripMenuItem.Text = "Create New User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.createUserToolStripMenuItem_Click);
             // 
@@ -186,6 +188,13 @@
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
+            // viewChangeLogToolStripMenuItem
+            // 
+            this.viewChangeLogToolStripMenuItem.Name = "viewChangeLogToolStripMenuItem";
+            this.viewChangeLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewChangeLogToolStripMenuItem.Text = "View Change Log";
+            this.viewChangeLogToolStripMenuItem.Click += new System.EventHandler(this.viewChangeLogToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -230,5 +239,6 @@
         private System.Windows.Forms.ToolStripMenuItem createUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewChangeLogToolStripMenuItem;
     }
 }
