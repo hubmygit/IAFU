@@ -54,9 +54,8 @@ namespace IAFollowUp
 
                 if (frmUpdateAudit.success)
                 {
-                    //int gridTopRowIndex = gridView1.TopRowIndex; //a
-
-                    //int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle); //b
+                    //int gridTopRowIndex = gridView1.TopRowIndex; //a (this way does not select the line that was focused before update)
+                    int index1 = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle); //b
 
                     //refresh
                     auditBList = Audit.Select(); //BindingList
@@ -64,8 +63,8 @@ namespace IAFollowUp
 
                     //gridView1.TopRowIndex = gridTopRowIndex; //a
 
-                    //int rowHandle = gridView1.GetRowHandle(index); //b
-                    //gridView1.FocusedRowHandle = rowHandle; //b
+                    int rowHandle1 = gridView1.GetRowHandle(index1); //b
+                    gridView1.FocusedRowHandle = rowHandle1; //b
                 }
             }
         }
@@ -144,8 +143,11 @@ namespace IAFollowUp
                 if (attachedFiles.success)
                 {
                     //refresh
+                    int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
                     auditBList = Audit.Select(); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
+                    int rowHandle = gridView1.GetRowHandle(index);
+                    gridView1.FocusedRowHandle = rowHandle;
                 }
 
             }
@@ -182,8 +184,11 @@ namespace IAFollowUp
                     MessageBox.Show("The Update was successful!");
 
                     //refresh
+                    int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
                     auditBList = Audit.Select(); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
+                    int rowHandle = gridView1.GetRowHandle(index);
+                    gridView1.FocusedRowHandle = rowHandle;
                 }
                 else
                 {
@@ -216,12 +221,15 @@ namespace IAFollowUp
                 frmInsertNewAudit.ShowDialog();
 
 
-
-                //gridControl1.RefreshDataSource
-
+                //refresh
+                //int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                auditBList = Audit.Select(); //BindingList
+                gridControl1.DataSource = auditBList; //DataSource
+                //int rowHandle = gridView1.GetRowHandle(index);
+                //gridView1.FocusedRowHandle = rowHandle;
             }
 
-            
+
 
         }
     }

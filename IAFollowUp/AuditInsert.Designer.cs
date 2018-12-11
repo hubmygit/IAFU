@@ -64,7 +64,7 @@
             this.btnEraseRating.Location = new System.Drawing.Point(712, 351);
             this.btnEraseRating.Name = "btnEraseRating";
             this.btnEraseRating.Size = new System.Drawing.Size(59, 23);
-            this.btnEraseRating.TabIndex = 50;
+            this.btnEraseRating.TabIndex = 14;
             this.btnEraseRating.Text = "Clear";
             this.btnEraseRating.UseVisualStyleBackColor = true;
             this.btnEraseRating.Click += new System.EventHandler(this.btnEraseRating_Click);
@@ -78,7 +78,7 @@
             this.cbRating.Location = new System.Drawing.Point(522, 350);
             this.cbRating.Name = "cbRating";
             this.cbRating.Size = new System.Drawing.Size(184, 24);
-            this.cbRating.TabIndex = 48;
+            this.cbRating.TabIndex = 13;
             // 
             // lblRating
             // 
@@ -88,7 +88,7 @@
             this.lblRating.Location = new System.Drawing.Point(435, 353);
             this.lblRating.Name = "lblRating";
             this.lblRating.Size = new System.Drawing.Size(80, 16);
-            this.lblRating.TabIndex = 49;
+            this.lblRating.TabIndex = 0;
             this.lblRating.Text = "Audit Rating";
             // 
             // btnEraseSupervisor
@@ -98,7 +98,7 @@
             this.btnEraseSupervisor.Location = new System.Drawing.Point(712, 294);
             this.btnEraseSupervisor.Name = "btnEraseSupervisor";
             this.btnEraseSupervisor.Size = new System.Drawing.Size(59, 23);
-            this.btnEraseSupervisor.TabIndex = 47;
+            this.btnEraseSupervisor.TabIndex = 12;
             this.btnEraseSupervisor.Text = "Clear";
             this.btnEraseSupervisor.UseVisualStyleBackColor = true;
             this.btnEraseSupervisor.Click += new System.EventHandler(this.btnEraseSupervisor_Click);
@@ -110,7 +110,7 @@
             this.btnEraseAuditor2.Location = new System.Drawing.Point(712, 237);
             this.btnEraseAuditor2.Name = "btnEraseAuditor2";
             this.btnEraseAuditor2.Size = new System.Drawing.Size(59, 23);
-            this.btnEraseAuditor2.TabIndex = 46;
+            this.btnEraseAuditor2.TabIndex = 10;
             this.btnEraseAuditor2.Text = "Clear";
             this.btnEraseAuditor2.UseVisualStyleBackColor = true;
             this.btnEraseAuditor2.Click += new System.EventHandler(this.btnEraseAuditor2_Click);
@@ -124,7 +124,7 @@
             this.cbSupervisor.Location = new System.Drawing.Point(522, 293);
             this.cbSupervisor.Name = "cbSupervisor";
             this.cbSupervisor.Size = new System.Drawing.Size(184, 24);
-            this.cbSupervisor.TabIndex = 40;
+            this.cbSupervisor.TabIndex = 11;
             // 
             // lblSupervisor
             // 
@@ -134,7 +134,7 @@
             this.lblSupervisor.Location = new System.Drawing.Point(435, 296);
             this.lblSupervisor.Name = "lblSupervisor";
             this.lblSupervisor.Size = new System.Drawing.Size(73, 16);
-            this.lblSupervisor.TabIndex = 45;
+            this.lblSupervisor.TabIndex = 0;
             this.lblSupervisor.Text = "Supervisor";
             // 
             // cbAuditor2
@@ -146,7 +146,7 @@
             this.cbAuditor2.Location = new System.Drawing.Point(522, 236);
             this.cbAuditor2.Name = "cbAuditor2";
             this.cbAuditor2.Size = new System.Drawing.Size(184, 24);
-            this.cbAuditor2.TabIndex = 39;
+            this.cbAuditor2.TabIndex = 9;
             // 
             // lblAuditor2
             // 
@@ -156,7 +156,7 @@
             this.lblAuditor2.Location = new System.Drawing.Point(435, 239);
             this.lblAuditor2.Name = "lblAuditor2";
             this.lblAuditor2.Size = new System.Drawing.Size(60, 16);
-            this.lblAuditor2.TabIndex = 44;
+            this.lblAuditor2.TabIndex = 0;
             this.lblAuditor2.Text = "Auditor 2";
             // 
             // cbAuditor1
@@ -168,7 +168,7 @@
             this.cbAuditor1.Location = new System.Drawing.Point(522, 179);
             this.cbAuditor1.Name = "cbAuditor1";
             this.cbAuditor1.Size = new System.Drawing.Size(184, 24);
-            this.cbAuditor1.TabIndex = 37;
+            this.cbAuditor1.TabIndex = 8;
             // 
             // lblAuditor1
             // 
@@ -178,7 +178,7 @@
             this.lblAuditor1.Location = new System.Drawing.Point(435, 182);
             this.lblAuditor1.Name = "lblAuditor1";
             this.lblAuditor1.Size = new System.Drawing.Size(60, 16);
-            this.lblAuditor1.TabIndex = 43;
+            this.lblAuditor1.TabIndex = 0;
             this.lblAuditor1.Text = "Auditor 1";
             // 
             // dtpReportDate
@@ -191,7 +191,7 @@
             this.dtpReportDate.Location = new System.Drawing.Point(522, 124);
             this.dtpReportDate.Name = "dtpReportDate";
             this.dtpReportDate.Size = new System.Drawing.Size(184, 22);
-            this.dtpReportDate.TabIndex = 36;
+            this.dtpReportDate.TabIndex = 7;
             // 
             // lblReportDate
             // 
@@ -201,7 +201,7 @@
             this.lblReportDate.Location = new System.Drawing.Point(435, 129);
             this.lblReportDate.Name = "lblReportDate";
             this.lblReportDate.Size = new System.Drawing.Size(81, 16);
-            this.lblReportDate.TabIndex = 42;
+            this.lblReportDate.TabIndex = 0;
             this.lblReportDate.Text = "Report Date";
             // 
             // txtTitle
@@ -216,7 +216,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtTitle.Size = new System.Drawing.Size(569, 72);
-            this.txtTitle.TabIndex = 27;
+            this.txtTitle.TabIndex = 1;
             // 
             // lblTitle
             // 
@@ -225,7 +225,7 @@
             this.lblTitle.Location = new System.Drawing.Point(29, 48);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(38, 20);
-            this.lblTitle.TabIndex = 41;
+            this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Title";
             // 
             // txtIASentNumber
@@ -237,7 +237,7 @@
             this.txtIASentNumber.MaxLength = 3;
             this.txtIASentNumber.Name = "txtIASentNumber";
             this.txtIASentNumber.Size = new System.Drawing.Size(184, 22);
-            this.txtIASentNumber.TabIndex = 35;
+            this.txtIASentNumber.TabIndex = 6;
             // 
             // lblIASentNumber
             // 
@@ -247,7 +247,7 @@
             this.lblIASentNumber.Location = new System.Drawing.Point(30, 353);
             this.lblIASentNumber.Name = "lblIASentNumber";
             this.lblIASentNumber.Size = new System.Drawing.Size(101, 16);
-            this.lblIASentNumber.TabIndex = 38;
+            this.lblIASentNumber.TabIndex = 0;
             this.lblIASentNumber.Text = "IA Sent Number";
             // 
             // cbAuditTypes
@@ -260,7 +260,7 @@
             this.cbAuditTypes.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.cbAuditTypes.Name = "cbAuditTypes";
             this.cbAuditTypes.Size = new System.Drawing.Size(184, 24);
-            this.cbAuditTypes.TabIndex = 33;
+            this.cbAuditTypes.TabIndex = 5;
             // 
             // lblAuditType
             // 
@@ -270,7 +270,7 @@
             this.lblAuditType.Location = new System.Drawing.Point(30, 296);
             this.lblAuditType.Name = "lblAuditType";
             this.lblAuditType.Size = new System.Drawing.Size(73, 16);
-            this.lblAuditType.TabIndex = 34;
+            this.lblAuditType.TabIndex = 0;
             this.lblAuditType.Text = "Audit Type";
             // 
             // txtAuditNumber
@@ -282,7 +282,7 @@
             this.txtAuditNumber.MaxLength = 3;
             this.txtAuditNumber.Name = "txtAuditNumber";
             this.txtAuditNumber.Size = new System.Drawing.Size(184, 22);
-            this.txtAuditNumber.TabIndex = 32;
+            this.txtAuditNumber.TabIndex = 4;
             // 
             // lblAuditNumber
             // 
@@ -292,7 +292,7 @@
             this.lblAuditNumber.Location = new System.Drawing.Point(30, 239);
             this.lblAuditNumber.Name = "lblAuditNumber";
             this.lblAuditNumber.Size = new System.Drawing.Size(89, 16);
-            this.lblAuditNumber.TabIndex = 31;
+            this.lblAuditNumber.TabIndex = 0;
             this.lblAuditNumber.Text = "Audit Number";
             // 
             // cbCompanies
@@ -305,7 +305,7 @@
             this.cbCompanies.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.cbCompanies.Name = "cbCompanies";
             this.cbCompanies.Size = new System.Drawing.Size(184, 24);
-            this.cbCompanies.TabIndex = 30;
+            this.cbCompanies.TabIndex = 3;
             // 
             // lblCompany
             // 
@@ -315,7 +315,7 @@
             this.lblCompany.Location = new System.Drawing.Point(30, 182);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(66, 16);
-            this.lblCompany.TabIndex = 28;
+            this.lblCompany.TabIndex = 0;
             this.lblCompany.Text = "Company";
             // 
             // dtpYear
@@ -329,7 +329,7 @@
             this.dtpYear.Name = "dtpYear";
             this.dtpYear.ShowUpDown = true;
             this.dtpYear.Size = new System.Drawing.Size(184, 22);
-            this.dtpYear.TabIndex = 29;
+            this.dtpYear.TabIndex = 2;
             // 
             // lblYear
             // 
@@ -339,7 +339,7 @@
             this.lblYear.Location = new System.Drawing.Point(30, 130);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(37, 16);
-            this.lblYear.TabIndex = 26;
+            this.lblYear.TabIndex = 0;
             this.lblYear.Text = "Year";
             // 
             // btnSave
@@ -351,7 +351,7 @@
             this.btnSave.Location = new System.Drawing.Point(340, 398);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
-            this.btnSave.TabIndex = 23;
+            this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
