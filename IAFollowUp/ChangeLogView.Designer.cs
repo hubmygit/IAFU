@@ -34,7 +34,7 @@
             this.changeLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colTbl_Id = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAppUsers_Id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAppUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colExecStatement = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTableName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,7 +70,7 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colTbl_Id,
-            this.colAppUsers_Id,
+            this.colAppUser,
             this.colDt,
             this.colExecStatement,
             this.colTableName,
@@ -89,12 +89,12 @@
             this.colTbl_Id.Visible = true;
             this.colTbl_Id.VisibleIndex = 0;
             // 
-            // colAppUsers_Id
+            // colAppUser
             // 
-            this.colAppUsers_Id.FieldName = "AppUsers_Id";
-            this.colAppUsers_Id.Name = "colAppUsers_Id";
-            this.colAppUsers_Id.Visible = true;
-            this.colAppUsers_Id.VisibleIndex = 1;
+            this.colAppUser.FieldName = "AppUser.FullName";
+            this.colAppUser.Name = "colAppUser";
+            this.colAppUser.Visible = true;
+            this.colAppUser.VisibleIndex = 1;
             // 
             // colDt
             // 
@@ -176,7 +176,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.BindingSource changeLogBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colTbl_Id;
-        private DevExpress.XtraGrid.Columns.GridColumn colAppUsers_Id;
+        private DevExpress.XtraGrid.Columns.GridColumn colAppUser;
         private DevExpress.XtraGrid.Columns.GridColumn colDt;
         private DevExpress.XtraGrid.Columns.GridColumn colExecStatement;
         private DevExpress.XtraGrid.Columns.GridColumn colTableName;

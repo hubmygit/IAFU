@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace IAFollowUp
     public class ChangeLog
     {
         public int Tbl_Id { get; set; }
-        public int AppUsers_Id { get; set; }
+        public Users AppUser { get; set; }
         public DateTime Dt { get; set; }
         public string ExecStatement { get; set; }
         public string TableName { get; set; }
@@ -45,8 +46,16 @@ namespace IAFollowUp
                 //cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
 
                 cmd.Parameters.AddWithValue("@Tbl_Id", givenLog.Tbl_Id);
-                
-                cmd.Parameters.AddWithValue("@AppUsers_Id", givenLog.AppUsers_Id);
+
+                //cmd.Parameters.AddWithValue("@AppUsers_Id", givenLog.AppUsers_Id);
+                if (givenLog.AppUser.Id <= 0)
+                {
+                    cmd.Parameters.AddWithValue("@AppUsers_Id", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@AppUsers_Id", givenLog.AppUser.Id);
+                }
                 cmd.Parameters.AddWithValue("@Dt", givenLog.Dt);
                 cmd.Parameters.AddWithValue("@ExecStatement", givenLog.ExecStatement);
                 cmd.Parameters.AddWithValue("@TableName", givenLog.TableName);
@@ -66,12 +75,13 @@ namespace IAFollowUp
             sqlConn.Close();
         }
 
-        public static void Insert_Attachments() //attachments
+        public static void Insert_Attachments(int auditId) //attachments
         {
             ChangeLog chLog = new ChangeLog();
             chLog.Section = "Attachments";
-            chLog.Tbl_Id = 0;
-            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.Tbl_Id = auditId;
+            //chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.AppUser = new Users() { Id = UserInfo.userDetails.Id, FullName = UserInfo.userDetails.FullName, RoleName = UserInfo.roleDetails.Name };
             chLog.Dt = DateTime.Now;
             chLog.ExecStatement = "UPDATE";
             chLog.TableName = "Audit_Attachments";
@@ -89,7 +99,8 @@ namespace IAFollowUp
             ChangeLog chLog = new ChangeLog();
             chLog.Section = section;
             chLog.Tbl_Id = oldRec.Id;
-            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            //chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.AppUser = new Users() { Id = UserInfo.userDetails.Id, FullName = UserInfo.userDetails.FullName, RoleName = UserInfo.roleDetails.Name };
             chLog.Dt = DateTime.Now;
             chLog.ExecStatement = "UPDATE";
             if (newRec.IsDeleted == true)
@@ -172,7 +183,8 @@ namespace IAFollowUp
             ChangeLog chLog = new ChangeLog();
             chLog.Section = section;
             chLog.Tbl_Id = oldRec.Id;
-            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            //chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.AppUser = new Users() { Id = UserInfo.userDetails.Id, FullName = UserInfo.userDetails.FullName, RoleName = UserInfo.roleDetails.Name };
             chLog.Dt = DateTime.Now;
             chLog.ExecStatement = "UPDATE";
             if (newRec.IsDeleted == true)
@@ -238,7 +250,8 @@ namespace IAFollowUp
             chLog.Section = section;
             chLog.Tbl_Id = oldRec.Id;
             //tml.TM_Status_Id = null;
-            chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            //chLog.AppUsers_Id = UserInfo.userDetails.Id;
+            chLog.AppUser = new Users() { Id = UserInfo.userDetails.Id, FullName = UserInfo.userDetails.FullName, RoleName = UserInfo.roleDetails.Name };
             chLog.Dt = DateTime.Now;
             chLog.ExecStatement = "UPDATE";
             if (newRec.IsDeleted == true)
@@ -379,6 +392,62 @@ namespace IAFollowUp
                 //}
 
             }
+        }
+
+        public static BindingList<ChangeLog> Select()
+        {
+            BindingList<ChangeLog> ret = new BindingList<ChangeLog>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT L.[ExecStatement], L.[Dt], L.[Section], L.[TableName], L.[FieldNameToShow], L.[OldValue], L.[NewValue], L.[AppUsers_Id], " +
+                              "L.[FieldName], L.[Tbl_Id] " +
+                              "FROM [dbo].[ChangeLog] L " +
+                              "ORDER BY L.Id "; //ToDo
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Users applicationUser;
+                    if (reader["AppUsers_Id"] == System.DBNull.Value)
+                    {
+                        applicationUser = new Users();
+                    }
+                    else
+                    {
+                        applicationUser = new Users(Convert.ToInt32(reader["AppUsers_Id"].ToString()));
+                    }
+
+
+                    ret.Add(new ChangeLog()
+                    {
+                        ExecStatement = reader["ExecStatement"].ToString(),                        
+                        Dt = Convert.ToDateTime(reader["Dt"].ToString()),
+                        Section = reader["Section"].ToString(),
+                        TableName = reader["TableName"].ToString(),
+                        FieldNameToShow = reader["FieldNameToShow"].ToString(),
+                        OldValue = reader["OldValue"].ToString(),
+                        NewValue = reader["NewValue"].ToString(),
+                        //AppUsers_Id = Convert.ToInt32(reader["AppUsers_Id"].ToString())
+                        AppUser = applicationUser,
+
+                        Tbl_Id = Convert.ToInt32(reader["Tbl_Id"].ToString()),
+                        FieldName = reader["FieldName"].ToString()
+                    });
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
         }
 
     }

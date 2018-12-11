@@ -36,6 +36,14 @@ namespace IAFollowUp
         public int AttCnt;
         public bool success = false;
 
+        public void makeReadOnly()
+        {
+            btnAddFiles.Enabled = false;
+            btnRemoveAll.Enabled = false;
+            btnRemoveFile.Enabled = false;
+            btnSave.Enabled = false;
+        }
+
         public string[] getSavedAttachments(int tableId)
         {
             List<string> ret = new List<string>();
@@ -453,7 +461,7 @@ namespace IAFollowUp
                 }
             }
 
-            ChangeLog.Insert_Attachments();
+            ChangeLog.Insert_Attachments(Id);
 
             //}
             //else

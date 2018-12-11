@@ -15,7 +15,7 @@ namespace IAFollowUp
         {
             InitializeComponent();
 
-            changeLogBList = new BindingList<ChangeLog>(); //ChangeLog.Select() here...
+            changeLogBList = ChangeLog.Select();
             gridControl1.DataSource = changeLogBList;
         }
 

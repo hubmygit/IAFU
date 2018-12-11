@@ -131,18 +131,12 @@ namespace IAFollowUp
 
                 if (thisAudit.IsCompleted == true || thisAudit.IsDeleted == true)
                 {
-                    attachedFiles.btnAddFiles.Enabled = false;
-                    attachedFiles.btnRemoveAll.Enabled = false;
-                    attachedFiles.btnRemoveFile.Enabled = false;
-                    attachedFiles.btnSave.Enabled = false;
+                    attachedFiles.makeReadOnly();
                 }
 
                 if (!UserAction.IsLegal(Action.Audit_Attach, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
                 {
-                    attachedFiles.btnAddFiles.Enabled = false;
-                    attachedFiles.btnRemoveAll.Enabled = false;
-                    attachedFiles.btnRemoveFile.Enabled = false;
-                    attachedFiles.btnSave.Enabled = false;
+                    attachedFiles.makeReadOnly();
                 }
 
                 attachedFiles.ShowDialog();
