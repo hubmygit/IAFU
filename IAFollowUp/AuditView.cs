@@ -16,7 +16,7 @@ namespace IAFollowUp
         {
             InitializeComponent();
 
-            auditBList = Audit.Select();
+            auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin);
 
             gridControl1.DataSource = auditBList;
         }
@@ -32,22 +32,24 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
 
-                if (thisAudit.IsDeleted)
+                //Έτσι κι αλλιώς δε βλέπω Deleted ως εδώ
+                //if (thisAudit.IsDeleted)
+                //{
+                //    MessageBox.Show("The audit has been deleted!");
+                //    return;
+                //}
+
+                //if (!UserAction.IsLegal(Action.Audit_Edit, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                if (!UserAction.IsLegal(Action.Audit_Edit, thisAudit))
                 {
-                    MessageBox.Show("The audit has been deleted!");
                     return;
                 }
 
-                if (!UserAction.IsLegal(Action.Audit_Edit, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
-                {
-                    return;
-                }
-
-                if (thisAudit.IsCompleted == true)
-                {
-                    MessageBox.Show("The audit has been finalized!"); //check if published too...
-                    return;
-                }
+                //if (thisAudit.IsCompleted == true)
+                //{
+                //    MessageBox.Show("The audit has been finalized!"); //check if published too...
+                //    return;
+                //}
                 
                 AuditInsert frmUpdateAudit = new AuditInsert(thisAudit);
                 frmUpdateAudit.ShowDialog();
@@ -58,7 +60,7 @@ namespace IAFollowUp
                     int index1 = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle); //b
 
                     //refresh
-                    auditBList = Audit.Select(); //BindingList
+                    auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
 
                     //gridView1.TopRowIndex = gridTopRowIndex; //a
@@ -82,7 +84,7 @@ namespace IAFollowUp
                     return;
                 }
 
-                if (!UserAction.IsLegal(Action.Audit_Delete, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                if (!UserAction.IsLegal(Action.Audit_Delete, thisAudit))
                 {
                     return;
                 }
@@ -106,7 +108,7 @@ namespace IAFollowUp
                         MessageBox.Show("The Deletion was successful!");
 
                         //refresh
-                        auditBList = Audit.Select(); //BindingList
+                        auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin); //BindingList
                         gridControl1.DataSource = auditBList; //DataSource
                     }
                     else
@@ -133,7 +135,7 @@ namespace IAFollowUp
                     attachedFiles.makeReadOnly();
                 }
 
-                if (!UserAction.IsLegal(Action.Audit_Attach, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                if (!UserAction.IsLegal(Action.Audit_Attach, thisAudit))
                 {
                     attachedFiles.makeReadOnly();
                 }
@@ -144,7 +146,7 @@ namespace IAFollowUp
                 {
                     //refresh
                     int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
-                    auditBList = Audit.Select(); //BindingList
+                    auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
                     int rowHandle = gridView1.GetRowHandle(index);
                     gridView1.FocusedRowHandle = rowHandle;
@@ -172,7 +174,7 @@ namespace IAFollowUp
                     return;
                 }
 
-                if (!UserAction.IsLegal(Action.Audit_Finalize, thisAudit.Auditor1.Id, thisAudit.Auditor2.Id, thisAudit.Supervisor.Id))
+                if (!UserAction.IsLegal(Action.Audit_Finalize, thisAudit))
                 {
                     return;
                 }
@@ -185,7 +187,7 @@ namespace IAFollowUp
 
                     //refresh
                     int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
-                    auditBList = Audit.Select(); //BindingList
+                    auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin); //BindingList
                     gridControl1.DataSource = auditBList; //DataSource
                     int rowHandle = gridView1.GetRowHandle(index);
                     gridView1.FocusedRowHandle = rowHandle;
@@ -223,7 +225,7 @@ namespace IAFollowUp
 
                 //refresh
                 //int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
-                auditBList = Audit.Select(); //BindingList
+                auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin); //BindingList
                 gridControl1.DataSource = auditBList; //DataSource
                 //int rowHandle = gridView1.GetRowHandle(index);
                 //gridView1.FocusedRowHandle = rowHandle;

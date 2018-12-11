@@ -120,6 +120,7 @@ namespace IAFollowUp
             FieldsToCheck.Add(new ChLogFields() { FieldName = "ActionCode", FieldNameToShow = "Action Code" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "Owners", FieldNameToShow = "Owners" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsClosed", FieldNameToShow = "Closure Flag" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsPublished", FieldNameToShow = "Publication Flag" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsFinalized", FieldNameToShow = "Finalization Flag" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
             
@@ -201,7 +202,7 @@ namespace IAFollowUp
             FieldsToCheck.Add(new ChLogFields() { FieldName = "Title", FieldNameToShow = "Title" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "FICategory", FieldNameToShow = "FICategory" }); //obj
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
-            FieldsToCheck.Add(new ChLogFields() { FieldName = "IsPublished", FieldNameToShow = "Publication Flag" });
+            //FieldsToCheck.Add(new ChLogFields() { FieldName = "IsPublished", FieldNameToShow = "Publication Flag" });
 
             foreach (ChLogFields chlf in FieldsToCheck)
             {

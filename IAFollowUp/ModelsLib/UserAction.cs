@@ -28,10 +28,10 @@ namespace IAFollowUp
 
     public class UserAction
     {
-        public static bool IsLegal(Action action, int? auditor1 = null, int? auditor2 = null, int? supervisor = null, bool? isPublished = null)
+        public static bool IsLegal(Action action, Audit audit = null) //int? auditor1 = null, int? auditor2 = null, int? supervisor = null, bool? isPublished = null)
         {
             bool ret = false;
-            bool showMessage = true;
+            //bool showMessage = true;
 
             switch (action)
             {
@@ -50,53 +50,73 @@ namespace IAFollowUp
                 case Action.Audit_Edit:
                     {
                         //Only Auditor1, 2, Supervisor can edit this audit
-                        if (UserInfo.userDetails.Id == auditor1 || UserInfo.userDetails.Id == auditor2 || UserInfo.userDetails.Id == supervisor) // || UserInfo.roleDetails.IsAdmin
+                        //if (UserInfo.userDetails.Id == auditor1 || UserInfo.userDetails.Id == auditor2 || UserInfo.userDetails.Id == supervisor) // || UserInfo.roleDetails.IsAdmin
+                        if (UserInfo.userDetails.Id == audit.Auditor1.Id || UserInfo.userDetails.Id == audit.Auditor2.Id || UserInfo.userDetails.Id == audit.Supervisor.Id || 
+                            UserInfo.roleDetails.IsAdmin)
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
                         }
+
+
+                        //audit.AreAllDetailsOfAuditPublished
+                        //audit.AreAllDetailsOfAuditFinalized
+
+                        if (audit.IsCompleted == false || UserInfo.roleDetails.IsAdmin) //detail.published & detail.finalized
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The audit has been finalized!");
+                        }
+
                         break;
                     }
                 case Action.Audit_Delete:
                     {
                         //Only Auditor1, 2, Supervisor can delete this audit
-                        if (UserInfo.userDetails.Id == auditor1 || UserInfo.userDetails.Id == auditor2 || UserInfo.userDetails.Id == supervisor) // || UserInfo.roleDetails.IsAdmin
+                        if (UserInfo.userDetails.Id == audit.Auditor1.Id || UserInfo.userDetails.Id == audit.Auditor2.Id || UserInfo.userDetails.Id == audit.Supervisor.Id)
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
                         }
                         break;
                     }
                 case Action.Audit_Attach:
                     {
                         //Only Auditor1, 2, Supervisor can attach Audit Report
-                        if (UserInfo.userDetails.Id == auditor1 || UserInfo.userDetails.Id == auditor2 || UserInfo.userDetails.Id == supervisor) // || UserInfo.roleDetails.IsAdmin
+                        if (UserInfo.userDetails.Id == audit.Auditor1.Id || UserInfo.userDetails.Id == audit.Auditor2.Id || UserInfo.userDetails.Id == audit.Supervisor.Id)
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            showMessage = false;
+                            //showMessage = false;
                         }
                         break;
                     }
                 case Action.Audit_Finalize:
                     {
                         //Only Auditor1, 2, Supervisor can finalize this audit
-                        if (UserInfo.userDetails.Id == auditor1 || UserInfo.userDetails.Id == auditor2 || UserInfo.userDetails.Id == supervisor) // || UserInfo.roleDetails.IsAdmin
+                        if (UserInfo.userDetails.Id == audit.Auditor1.Id || UserInfo.userDetails.Id == audit.Auditor2.Id || UserInfo.userDetails.Id == audit.Supervisor.Id)
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
                         }
                         break;
                     }
@@ -104,20 +124,22 @@ namespace IAFollowUp
                 case Action.Header_Create:
                     {
                         //Only Auditor1, 2, Supervisor can create new header referring to this audit
-                        if (UserInfo.userDetails.Id == auditor1 || UserInfo.userDetails.Id == auditor2 || UserInfo.userDetails.Id == supervisor) // || UserInfo.roleDetails.IsAdmin
+                        if (UserInfo.userDetails.Id == audit.Auditor1.Id || UserInfo.userDetails.Id == audit.Auditor2.Id || UserInfo.userDetails.Id == audit.Supervisor.Id)
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
                         }
                         break;
                     }
                 case Action.Header_View:
                     {
+                        /*
                         //Only Auditor1, 2, Supervisor - unpublished && All - published, can view new header referring to this audit
-                        if (UserInfo.userDetails.Id == auditor1 || UserInfo.userDetails.Id == auditor2 || UserInfo.userDetails.Id == supervisor || isPublished == true) // || UserInfo.roleDetails.IsAdmin
+                        if (UserInfo.userDetails.Id == audit.Auditor1.Id || UserInfo.userDetails.Id == audit.Auditor2.Id || UserInfo.userDetails.Id == audit.Supervisor.Id || isPublished == true) // || UserInfo.roleDetails.IsAdmin
                         {
                             ret = true;
                         }
@@ -125,6 +147,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                         }
+                        */
                         break;
                     }
 
@@ -140,10 +163,10 @@ namespace IAFollowUp
                     }
             }
 
-            if (ret == false && showMessage == true)
-            {
-                MessageBox.Show("You are not authorized to perform this action!");
-            }
+            //if (ret == false && showMessage == true)
+            //{
+            //    MessageBox.Show("You are not authorized to perform this action!");
+            //}
 
             return ret;
         }
