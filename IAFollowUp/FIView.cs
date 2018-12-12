@@ -119,18 +119,20 @@ namespace IAFollowUp
 
         private void btnCreateNewDetail_Click(object sender, EventArgs e)
         {
-            //User Actions...
-
             if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
-                FIDetailInsert frmFIDetailIns = new FIDetailInsert(thisAudit, selHeader); 
-                frmFIDetailIns.ShowDialog();
-            }
+                if (UserAction.IsLegal(Action.Detail_Create, thisAudit, selHeader))
+                {
+                    FIDetailInsert frmFIDetailIns = new FIDetailInsert(thisAudit, selHeader);
+                    frmFIDetailIns.ShowDialog();
 
-            //Refresh...
+                    //Refresh details' view
+                    gridControlDetails.DataSource = new BindingList<FIDetail>(selHeader.FIDetails);
+                }
+            }
         }
 
 
@@ -141,15 +143,15 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
                 List<FIDetail> RefDetails = thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails;
 
-                gridControlDetails.DataSource = new BindingList<FIDetail>(RefDetails);
+                if (UserAction.IsLegal(Action.Detail_View))
+                {
+                    gridControlDetails.DataSource = new BindingList<FIDetail>(RefDetails);
+                }
             }
         }
 
         private void MIeditDetail_Click(object sender, EventArgs e)
         {
-            //User Actions...
-
-
             // Update
             if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0)
             {
@@ -158,11 +160,26 @@ namespace IAFollowUp
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
                 FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
 
+                if (!UserAction.IsLegal(Action.Detail_Edit, thisAudit, selHeader))
+                {
+                    return;
+                }
+
                 FIDetailInsert fiDetailUpdate = new FIDetailInsert(thisAudit, selHeader, selDetail);
                 fiDetailUpdate.ShowDialog();
 
-                //refresh
-                //...
+                if (fiDetailUpdate.success)
+                {
+                    int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+
+                    //refresh
+                    AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                    thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                    gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+
+                    int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                    gridViewDetails.FocusedRowHandle = rowHandle1;
+                }
             }
         }
 

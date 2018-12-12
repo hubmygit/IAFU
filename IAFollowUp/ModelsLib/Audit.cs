@@ -384,7 +384,7 @@ namespace IAFollowUp
             return ret;
         }
 
-        public static List<FIDetail> getFIDetails(int HeaderId, bool showDeleted)
+        public static List<FIDetail> getFIDetails(int HeaderId, bool showDeleted, AuditOwners auditOwners)
         {
             List<FIDetail> ret = new List<FIDetail>();
 
@@ -417,6 +417,7 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    FIDetail tmp = new FIDetail();
                     DateTime? DetailActionDt;
 
                     if (reader["ActionDt"] == System.DBNull.Value)
@@ -428,7 +429,7 @@ namespace IAFollowUp
                         DetailActionDt = Convert.ToDateTime(reader["ActionDt"].ToString());
                     }
 
-                    ret.Add(new FIDetail()
+                    tmp = new FIDetail()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
                         FIHeaderId = HeaderId,
@@ -441,7 +442,20 @@ namespace IAFollowUp
                         IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
                         Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
-                    });
+                    };
+
+                    //==============================================================
+                    if (UserInfo.roleDetails.IsAdmin)
+                    {
+                        ret.Add(tmp);
+                    }
+                    //owner ή το detail να είναι published (από αυτά που επιτρέπεται να δει!)
+                    else if (auditOwners.IsUser_AuditOwner() || tmp.IsPublished == true)
+                    {
+                        ret.Add(tmp);
+                    }
+                    //==============================================================
+
                 }
                 reader.Close();
                 sqlConn.Close();
@@ -458,7 +472,6 @@ namespace IAFollowUp
         {
             List<FIHeader> ret = new List<FIHeader>();
             
-
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
                               "H.[FICategoryId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
@@ -505,7 +518,7 @@ namespace IAFollowUp
                         FICategory = fiCat,
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
-                        FIDetails = Audit.getFIDetails(Convert.ToInt32(reader["Id"].ToString()), showDeleted)
+                        FIDetails = Audit.getFIDetails(Convert.ToInt32(reader["Id"].ToString()), showDeleted, auditOwners)
                     };
 
                     //==============================================================
