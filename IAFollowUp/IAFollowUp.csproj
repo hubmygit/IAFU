@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="ModelsLib\AppVer.cs" />
     <Compile Include="ModelsLib\Audit.cs" />
+    <Compile Include="ModelsLib\AuditOwners.cs" />
     <Compile Include="ModelsLib\AuditRating.cs" />
     <Compile Include="ModelsLib\AuditTypes.cs" />
     <Compile Include="ModelsLib\ChangeLog.cs" />

@@ -33,50 +33,61 @@ namespace IAFollowUp
 
         private void btnCreateNewHeader_Click(object sender, EventArgs e)
         {
-            //if (!UserAction.IsLegal(Action.Header_Create, glAudit.Auditor1ID, glAudit.Auditor2ID, glAudit.SupervisorID))
-            //{
-            //    return;
-            //}
+            if (UserAction.IsLegal(Action.Header_Create, thisAudit))
+            {
+                FIHeaderInsert frmFIHeaderIns = new FIHeaderInsert(thisAudit);
+                frmFIHeaderIns.ShowDialog();
 
-            FIHeaderInsert frmFIHeaderIns = new FIHeaderInsert(thisAudit);
-            frmFIHeaderIns.ShowDialog();
-
-
-            
-            //refresh
-            //auditBList = SelectAudit(); //BindingList
-            //gridControl1.DataSource = auditBList; //DataSource
+                //refresh
+                AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                thisAudit.FIHeaders = Audit.getFIHeaders(thisAudit.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                gridControlHeaders.DataSource = new BindingList<FIHeader>(thisAudit.FIHeaders); //DataSource
+            }          
         }
 
         private void MIeditHeader_Click(object sender, EventArgs e)
         {
-            //User Actions...
-
-
             // Update
             if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
+                if (!UserAction.IsLegal(Action.Header_Edit, thisAudit, selHeader))
+                {
+                    return;
+                }
+
                 FIHeaderInsert fiHeaderUpdate = new FIHeaderInsert(thisAudit, selHeader);
                 fiHeaderUpdate.ShowDialog();
 
-                //refresh
-                //...
+                if (fiHeaderUpdate.success)
+                {
+                    int index1 = gridViewHeaders.GetDataSourceRowIndex(gridViewHeaders.FocusedRowHandle);
+
+                    //refresh
+                    AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                    thisAudit.FIHeaders = Audit.getFIHeaders(thisAudit.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                    gridControlHeaders.DataSource = new BindingList<FIHeader>(thisAudit.FIHeaders); //DataSource
+                 
+                    int rowHandle1 = gridViewHeaders.GetRowHandle(index1);
+                    gridViewHeaders.FocusedRowHandle = rowHandle1;
+                }
             }
         }
 
         private void MIdeleteHeader_Click(object sender, EventArgs e)
         {
-            //User Actions...
-
-
             //Delete
             if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
             {
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
+
+                if (!UserAction.IsLegal(Action.Header_Delete, thisAudit, selHeader))
+                {
+                    return;
+                }
 
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to permanently delete this record?", "F/I Header Deletion", MessageBoxButtons.YesNo);
 
@@ -87,9 +98,16 @@ namespace IAFollowUp
                         ChangeLog.Insert(new FIHeader() { Id = selHeader.Id, IsDeleted = false }, new FIHeader() { Id = selHeader.Id, IsDeleted = true }, "FIHeader");
 
                         MessageBox.Show("The Deletion was successful!");
-
+                        
                         //refresh
-                        //...
+                        int index1 = gridViewHeaders.GetDataSourceRowIndex(gridViewHeaders.FocusedRowHandle);
+
+                        AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                        thisAudit.FIHeaders = Audit.getFIHeaders(thisAudit.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                        gridControlHeaders.DataSource = new BindingList<FIHeader>(thisAudit.FIHeaders); //DataSource
+
+                        int rowHandle1 = gridViewHeaders.GetRowHandle(index1);
+                        gridViewHeaders.FocusedRowHandle = rowHandle1;
                     }
                     else
                     {

@@ -115,6 +115,9 @@ namespace IAFollowUp
                         //AuditRating_Id = Convert.ToInt32(reader["AuditRatingId"].ToString());
                         AuditRating_rating = new AuditRating(Convert.ToInt32(reader["AuditRatingId"].ToString()));
                     }
+
+                    AuditOwners auditOwners = new AuditOwners(new Users(Convert.ToInt32(reader["Auditor1Id"].ToString())), Auditor2_User, Supervisor_User);
+
                     ret.Add(new Audit()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
@@ -144,7 +147,7 @@ namespace IAFollowUp
                         AuditRating = AuditRating_rating,
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
-                        FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()))
+                        FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()), showDeleted, auditOwners)
                     });
                 }
                 reader.Close();
@@ -381,20 +384,26 @@ namespace IAFollowUp
             return ret;
         }
 
-        public static List<FIDetail> getFIDetails(int HeaderId)
+        public static List<FIDetail> getFIDetails(int HeaderId, bool showDeleted)
         {
             List<FIDetail> ret = new List<FIDetail>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " + 
+            string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
                               "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
                               "D.ActionDt, " +
                               "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
-                              "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " + 
+                              "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
                               "isnull(D.[IsDeleted], 'FALSE') as IsDeleted " +
                               "FROM [dbo].[FIDetail] D " +
-                              "WHERE D.[FIHeaderId] = @HeaderId " +
-                              "ORDER BY D.Id "; //ToDo
+                              "WHERE D.[FIHeaderId] = @HeaderId ";
+
+            if (!showDeleted)
+            {
+                SelectSt += "AND isnull(D.[IsDeleted], 'FALSE') = 'FALSE' ";
+            }
+
+            SelectSt += "ORDER BY D.Id "; //ToDo
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -445,16 +454,23 @@ namespace IAFollowUp
             return ret;
         }
 
-        public static List<FIHeader> getFIHeaders(int AuditId)
+        public static List<FIHeader> getFIHeaders(int AuditId, bool showDeleted, AuditOwners auditOwners)
         {
             List<FIHeader> ret = new List<FIHeader>();
+            
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
                               "H.[FICategoryId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
                               "FROM [dbo].[FIHeader] H " +
-                              "WHERE H.[AuditId] = @AuditId " +
-                              "ORDER BY H.Id "; //ToDo
+                              "WHERE H.[AuditId] = @AuditId ";
+
+            if (!showDeleted)
+            {
+                SelectSt += "AND isnull(H.[IsDeleted], 'FALSE') = 'FALSE' ";
+            }
+
+            SelectSt += "ORDER BY H.Id "; //ToDo
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -468,6 +484,7 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    FIHeader tmp = new FIHeader();
                     FICategory fiCat;
 
                     if (reader["FICategoryId"] == System.DBNull.Value)
@@ -479,7 +496,7 @@ namespace IAFollowUp
                         fiCat = new FICategory(Convert.ToInt32(reader["FICategoryId"].ToString()));
                     }
 
-                    ret.Add(new FIHeader()
+                    tmp = new FIHeader()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
                         AuditId = AuditId,
@@ -488,11 +505,25 @@ namespace IAFollowUp
                         FICategory = fiCat,
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
-                        FIDetails = Audit.getFIDetails(Convert.ToInt32(reader["Id"].ToString()))
-                    });
+                        FIDetails = Audit.getFIDetails(Convert.ToInt32(reader["Id"].ToString()), showDeleted)
+                    };
+
+                    //==============================================================
+                    if (UserInfo.roleDetails.IsAdmin)
+                    {
+                        ret.Add(tmp);
+                    }
+                    //owner ή έστω και ένα detail published (από αυτά που επιτρέπεται να δει!)
+                    //αν ενα header δεν έχει details, οι υπόλοιποι auditors δεν θα δουν τίποτα...
+                    else if (auditOwners.IsUser_AuditOwner() || tmp.FIDetails.Exists(i => i.IsPublished == true)) 
+                    {
+                        ret.Add(tmp);
+                    }
+                    //==============================================================
+
                 }
                 reader.Close();
-                sqlConn.Close();
+                sqlConn.Close();                
             }
             catch (Exception ex)
             {
@@ -512,6 +543,32 @@ namespace IAFollowUp
         public bool IsDetailFinalized(int headerId, int detailId)
         {
             bool ret = this.FIHeaders.Where(i => i.Id == headerId).First().FIDetails.Where(j => j.Id == detailId).First().IsFinalized;
+
+            return ret;
+        }
+
+        public static bool IsDetailPublished(Audit audit, int headerId, int detailId)
+        {
+            bool ret = audit.FIHeaders.Where(i => i.Id == headerId).First().FIDetails.Where(j => j.Id == detailId).First().IsPublished;
+
+            return ret;
+        }
+        public static bool IsDetailFinalized(Audit audit, int headerId, int detailId)
+        {
+            bool ret = audit.FIHeaders.Where(i => i.Id == headerId).First().FIDetails.Where(j => j.Id == detailId).First().IsFinalized;
+
+            return ret;
+        }
+
+        public static bool IsDetailPublished(FIHeader header, int detailId)
+        {
+            bool ret = header.FIDetails.Where(j => j.Id == detailId).First().IsPublished;
+
+            return ret;
+        }
+        public static bool IsDetailFinalized(FIHeader header, int detailId)
+        {
+            bool ret = header.FIDetails.Where(j => j.Id == detailId).First().IsFinalized;
 
             return ret;
         }
@@ -550,6 +607,90 @@ namespace IAFollowUp
             }
 
             foreach (FIDetail thisDetail in thisHeader.FIDetails)
+            {
+                if (!thisDetail.IsFinalized)
+                {
+                    return false;
+                }
+            }
+
+            return ret;
+        }
+
+        public static bool AreAllDetailsOfHeaderPublished(Audit audit, int headerId)
+        {
+            bool ret = true;
+
+            FIHeader thisHeader = audit.FIHeaders.Where(i => i.Id == headerId).First();
+
+            if (thisHeader.FIDetails is null || thisHeader.FIDetails.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (FIDetail thisDetail in thisHeader.FIDetails)
+            {
+                if (!thisDetail.IsPublished)
+                {
+                    return false;
+                }
+            }
+
+            return ret;
+        }
+
+        public static bool AreAllDetailsOfHeaderFinalized(Audit audit, int headerId)
+        {
+            bool ret = true;
+
+            FIHeader thisHeader = audit.FIHeaders.Where(i => i.Id == headerId).First();
+
+            if (thisHeader.FIDetails is null || thisHeader.FIDetails.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (FIDetail thisDetail in thisHeader.FIDetails)
+            {
+                if (!thisDetail.IsFinalized)
+                {
+                    return false;
+                }
+            }
+
+            return ret;
+        }
+
+        public static bool AreAllDetailsOfHeaderPublished(FIHeader header)
+        {
+            bool ret = true;
+
+            if (header.FIDetails is null || header.FIDetails.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (FIDetail thisDetail in header.FIDetails)
+            {
+                if (!thisDetail.IsPublished)
+                {
+                    return false;
+                }
+            }
+
+            return ret;
+        }
+
+        public static bool AreAllDetailsOfHeaderFinalized(FIHeader header)
+        {
+            bool ret = true;
+
+            if (header.FIDetails is null || header.FIDetails.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (FIDetail thisDetail in header.FIDetails)
             {
                 if (!thisDetail.IsFinalized)
                 {
@@ -600,5 +741,44 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static bool AreAllDetailsOfAuditPublished(Audit audit)
+        {
+            bool ret = true;
+
+            if (audit.FIHeaders is null || audit.FIHeaders.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (FIHeader thisHeader in audit.FIHeaders)
+            {
+                if (!AreAllDetailsOfHeaderPublished(thisHeader))
+                {
+                    return false;
+                }
+            }
+
+            return ret;
+        }
+
+        public static bool AreAllDetailsOfAuditFinalized(Audit audit)
+        {
+            bool ret = true;
+
+            if (audit.FIHeaders is null || audit.FIHeaders.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (FIHeader thisHeader in audit.FIHeaders)
+            {
+                if (!AreAllDetailsOfHeaderFinalized(thisHeader))
+                {
+                    return false;
+                }
+            }
+
+            return ret;
+        }
     }
 }

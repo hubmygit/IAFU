@@ -207,11 +207,11 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
 
-                //if (UserAction.IsLegal(Action.Header_View)) //header OR detail view?????
-                //{
+                if (UserAction.IsLegal(Action.Header_View)) 
+                {
                     FIView frmFIView = new FIView(thisAudit);
                     frmFIView.ShowDialog();
-                //}
+                }
             }
         }
 
