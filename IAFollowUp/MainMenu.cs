@@ -91,5 +91,6 @@ namespace IAFollowUp
             ChangeLogView viewChangeLog = new ChangeLogView();
             viewChangeLog.ShowDialog();
         }
+
     }
 }

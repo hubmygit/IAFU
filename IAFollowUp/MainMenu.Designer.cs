@@ -35,7 +35,6 @@
             this.auditorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertNewAuditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.findingsAndImprovementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,9 +42,9 @@
             this.createRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewChangeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewChangeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -86,8 +85,7 @@
             // 
             this.auditorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.auditViewToolStripMenuItem,
-            this.insertNewAuditToolStripMenuItem,
-            this.findingsAndImprovementsToolStripMenuItem});
+            this.insertNewAuditToolStripMenuItem});
             this.auditorsToolStripMenuItem.Name = "auditorsToolStripMenuItem";
             this.auditorsToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.auditorsToolStripMenuItem.Tag = "1";
@@ -97,7 +95,7 @@
             // auditViewToolStripMenuItem
             // 
             this.auditViewToolStripMenuItem.Name = "auditViewToolStripMenuItem";
-            this.auditViewToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.auditViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.auditViewToolStripMenuItem.Tag = "";
             this.auditViewToolStripMenuItem.Text = "Audit View";
             this.auditViewToolStripMenuItem.Click += new System.EventHandler(this.auditViewToolStripMenuItem_Click);
@@ -105,15 +103,9 @@
             // insertNewAuditToolStripMenuItem
             // 
             this.insertNewAuditToolStripMenuItem.Name = "insertNewAuditToolStripMenuItem";
-            this.insertNewAuditToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.insertNewAuditToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.insertNewAuditToolStripMenuItem.Text = "Insert New Audit";
             this.insertNewAuditToolStripMenuItem.Click += new System.EventHandler(this.insertNewAuditToolStripMenuItem_Click);
-            // 
-            // findingsAndImprovementsToolStripMenuItem
-            // 
-            this.findingsAndImprovementsToolStripMenuItem.Name = "findingsAndImprovementsToolStripMenuItem";
-            this.findingsAndImprovementsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.findingsAndImprovementsToolStripMenuItem.Text = "Findings and Improvements";
             // 
             // auditeesToolStripMenuItem
             // 
@@ -149,30 +141,37 @@
             // viewRolesToolStripMenuItem
             // 
             this.viewRolesToolStripMenuItem.Name = "viewRolesToolStripMenuItem";
-            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.viewRolesToolStripMenuItem.Text = "View / Edit Roles";
             this.viewRolesToolStripMenuItem.Click += new System.EventHandler(this.viewRolesToolStripMenuItem_Click);
             // 
             // createRoleToolStripMenuItem
             // 
             this.createRoleToolStripMenuItem.Name = "createRoleToolStripMenuItem";
-            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.createRoleToolStripMenuItem.Text = "Create New Role";
             this.createRoleToolStripMenuItem.Click += new System.EventHandler(this.createRoleToolStripMenuItem_Click);
             // 
             // viewUsersToolStripMenuItem
             // 
             this.viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
-            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.viewUsersToolStripMenuItem.Text = "View / Edit Users";
             this.viewUsersToolStripMenuItem.Click += new System.EventHandler(this.viewUsersToolStripMenuItem_Click);
             // 
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.createUserToolStripMenuItem.Text = "Create New User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.createUserToolStripMenuItem_Click);
+            // 
+            // viewChangeLogToolStripMenuItem
+            // 
+            this.viewChangeLogToolStripMenuItem.Name = "viewChangeLogToolStripMenuItem";
+            this.viewChangeLogToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.viewChangeLogToolStripMenuItem.Text = "View Change Log";
+            this.viewChangeLogToolStripMenuItem.Click += new System.EventHandler(this.viewChangeLogToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -188,13 +187,6 @@
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
-            // 
-            // viewChangeLogToolStripMenuItem
-            // 
-            this.viewChangeLogToolStripMenuItem.Name = "viewChangeLogToolStripMenuItem";
-            this.viewChangeLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewChangeLogToolStripMenuItem.Text = "View Change Log";
-            this.viewChangeLogToolStripMenuItem.Click += new System.EventHandler(this.viewChangeLogToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -229,7 +221,6 @@
         private System.Windows.Forms.ToolStripMenuItem auditorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auditViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insertNewAuditToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem findingsAndImprovementsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auditeesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem administratorToolStripMenuItem;

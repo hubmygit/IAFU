@@ -78,24 +78,24 @@ namespace IAFollowUp
                 int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
 
-                if (thisAudit.IsDeleted)
-                {
-                    MessageBox.Show("The audit has already been deleted!");
-                    return;
-                }
+                //if (thisAudit.IsDeleted)
+                //{
+                //    MessageBox.Show("The audit has already been deleted!");
+                //    return;
+                //}
 
                 if (!UserAction.IsLegal(Action.Audit_Delete, thisAudit))
                 {
                     return;
                 }
 
-                if (thisAudit.IsCompleted == true)
-                {
-                    MessageBox.Show("The audit has been finalized!"); //check if published too...
-                    return;
-                }
+                //if (thisAudit.IsCompleted == true)
+                //{
+                //    MessageBox.Show("The audit has been finalized!"); //check if published too...
+                //    return;
+                //}
 
-                //check references. ToDo...............................................................................
+                //check references of header/detail?? or only published/finalized??
 
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to permanently delete this record?", "Audit Deletion", MessageBoxButtons.YesNo);
 
@@ -130,10 +130,10 @@ namespace IAFollowUp
 
                 AuditAttachments attachedFiles = new AuditAttachments(Id);
 
-                if (thisAudit.IsCompleted == true || thisAudit.IsDeleted == true)
-                {
-                    attachedFiles.makeReadOnly();
-                }
+                //if (thisAudit.IsCompleted == true || thisAudit.IsDeleted == true)
+                //{
+                //    attachedFiles.makeReadOnly();
+                //}
 
                 if (!UserAction.IsLegal(Action.Audit_Attach, thisAudit))
                 {
@@ -162,17 +162,17 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
                 
-                if (thisAudit.IsDeleted == true)
-                {
-                    MessageBox.Show("The audit has been deleted!");
-                    return;
-                }
+                //if (thisAudit.IsDeleted == true)
+                //{
+                //    MessageBox.Show("The audit has been deleted!");
+                //    return;
+                //}
 
-                if (thisAudit.IsCompleted == true)
-                {
-                    MessageBox.Show("The audit has already been completed!");
-                    return;
-                }
+                //if (thisAudit.IsCompleted == true)
+                //{
+                //    MessageBox.Show("The audit has already been completed!");
+                //    return;
+                //}
 
                 if (!UserAction.IsLegal(Action.Audit_Finalize, thisAudit))
                 {
