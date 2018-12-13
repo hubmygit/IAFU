@@ -160,6 +160,7 @@
     <Compile Include="ModelsLib\ComboboxItem.cs" />
     <Compile Include="ModelsLib\Companies.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
+    <Compile Include="ModelsLib\EmailProperties.cs" />
     <Compile Include="ModelsLib\FICategory.cs" />
     <Compile Include="ModelsLib\FIDetail.cs" />
     <Compile Include="ModelsLib\FIHeader.cs" />

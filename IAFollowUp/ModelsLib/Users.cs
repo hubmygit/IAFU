@@ -155,5 +155,35 @@ namespace IAFollowUp
 
             return ret;
         }
+
+        public string getEmail()
+        {
+            string ret = "";
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT Email " +
+                              "FROM [dbo].[Users] " +
+                              "WHERE Id = @Id ";
+                       
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+                cmd.Parameters.AddWithValue("@Id", this.Id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = reader["Email"].ToString();
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
     }
 }

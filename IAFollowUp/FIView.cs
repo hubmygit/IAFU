@@ -251,7 +251,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("The Publication completed with errors: " + detailsPublishedCnt.ToString() + "/"+ detailsToPublishCnt.ToString() + " rows published!");
+                        MessageBox.Show("The Publication completed with errors: " + detailsPublishedCnt.ToString() + "/" + detailsToPublishCnt.ToString() + " rows published!");
                     }
 
                     List<FIDetail> detailsToSendEmail = detailsPublished.Where(i => i.IsClosed == false).ToList();
@@ -259,7 +259,23 @@ namespace IAFollowUp
                     if (detailsToSendEmail.Count > 0) //(detailsPublished - Closed) > 0 then send email
                     {
                         //...................SendEmail...................
+                        List<EmailProperties> emailList = new List<EmailProperties>();
+
+                        EmailProperties emailProp = new EmailProperties();
+                        emailProp.Subject = "ΕΣΩΤΕΡΙΚΟΣ ΕΛΕΓΧΟΣ: " + thisAudit.Title;
+                        emailProp.Body = "Σας ενημερώνουμε ότι έχουν καταχωρηθεί στην εφαρμογή του Εσωτερικού Ελέγχου ευρήματα / ενέργειες της περιοχής ευθύνης σας. Παρακαλούμε για τις ενέργειές σας.";
                         
+                        foreach (FIDetail det in detailsToSendEmail)
+                        {
+                            foreach (Users usr in det.Owners)
+                            {
+                                emailProp.RecipientFullName = usr.FullName;
+                                emailProp.RecipientEmail = usr.getEmail();
+                                emailList.Add(emailProp);
+                            }
+                        }
+                        
+                        //Check distinct mails per User!!!!!!!!!!!!!!!!!!!!!! and show into form...
                     }
 
                     //update audit Protocol numbers
@@ -270,8 +286,7 @@ namespace IAFollowUp
                         frmAuditProtocolNums.ShowDialog();
                     }
                     
-                    //refresh audit too..............
-                    //refresh
+                    //refresh audit too: no need to update because protocol numbers are not used in authorization or security
                     int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
                     AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
                     thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
