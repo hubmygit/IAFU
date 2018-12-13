@@ -176,6 +176,8 @@ namespace IAFollowUp
                 Owners = newOwners,
                 FIHeaderId = currentHeader.Id,
                 //AttCnt = oldFIDetailRecord.AttCnt
+
+                IsClosed = chbIsClosed.Checked
             };
 
             if (isInsert) //insert

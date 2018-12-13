@@ -25,7 +25,9 @@ namespace IAFollowUp
         Detail_Create,
         Detail_View,
         Detail_Edit,
-        Detail_Delete
+        Detail_Delete,
+        Detail_Publish,
+        Detail_Finalize
     }
 
     public class UserAction
@@ -51,6 +53,21 @@ namespace IAFollowUp
                 {
                     MessageBox.Show("The header has already been deleted!");
                 }
+
+                if (action == Action.Detail_Delete && detail.IsDeleted)
+                {
+                    MessageBox.Show("The detail has already been deleted!");
+                }
+
+                if (action == Action.Detail_Publish && detail.IsPublished)
+                {
+                    MessageBox.Show("The detail has already been published!");
+                }
+
+                //if (action == Action.Detail_Finalize && detail.IsFinalized)
+                //{
+                //    MessageBox.Show("The detail has already been finalized!");
+                //}
 
                 return true;
             }
@@ -468,8 +485,128 @@ namespace IAFollowUp
                             MessageBox.Show("You are not authorized to perform this action!");
                         }
 
+                        if (audit.IsCompleted == false)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The Audit has been Finalized!");
+                        }
 
-                        //######################################################
+                        if (detail.IsPublished == false) //checking this detail not all details of this header(??)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The Detail has been Published!");
+                        }
+
+                        if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The Detail has been Finalized!");
+                        }
+
+                        break;
+                    }
+                case Action.Detail_Delete:
+                    {
+                        if (isUserAuditOwner)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                        }
+
+                        if (audit.IsCompleted == false)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The Audit has been Finalized!");
+                        }
+
+                        if (detail.IsPublished == false) //checking this detail not all details of this header(??)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The Detail has been Published!");
+                        }
+
+                        if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The Detail has been Finalized!");
+                        }
+
+                        break;
+                    }
+                case Action.Detail_Publish:
+                    {
+                        if (isUserAuditOwner)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                        }
+
+                        if (audit.IsCompleted == true)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You have to finalize the Audit before publication!");
+                        }
+
+                        if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("The Detail has been Finalized!");
+                        }
+
+                        break;
+                    }
+                case Action.Detail_Finalize:
+                    {
+                        //if (isUserAuditOwner)
+                        //{
+                        //    ret = true;
+                        //}
+                        //else
+                        //{
+                        //    ret = false;
+                        //    MessageBox.Show("You are not authorized to perform this action!");
+                        //}
+
 
 
                         break;

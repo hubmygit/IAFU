@@ -160,7 +160,7 @@ namespace IAFollowUp
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
                 FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
 
-                if (!UserAction.IsLegal(Action.Detail_Edit, thisAudit, selHeader))
+                if (!UserAction.IsLegal(Action.Detail_Edit, thisAudit, selHeader, selDetail))
                 {
                     return;
                 }
@@ -170,9 +170,8 @@ namespace IAFollowUp
 
                 if (fiDetailUpdate.success)
                 {
-                    int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
-
                     //refresh
+                    int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
                     AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
                     thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
                     gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
@@ -185,9 +184,6 @@ namespace IAFollowUp
 
         private void MIdeleteDetail_Click(object sender, EventArgs e)
         {
-            //User Actions...
-
-
             //Delete
             if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0)
             {
@@ -195,6 +191,11 @@ namespace IAFollowUp
                 int detailId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["Id"]).ToString());
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
                 FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
+
+                if (!UserAction.IsLegal(Action.Detail_Delete, thisAudit, selHeader, selDetail))
+                {
+                    return;
+                }
 
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to permanently delete this record?", "F/I Detail Deletion", MessageBoxButtons.YesNo);
 
@@ -207,13 +208,123 @@ namespace IAFollowUp
                         MessageBox.Show("The Deletion was successful!");
 
                         //refresh
-                        //...
+                        int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                        AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                        thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                        gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+
+                        int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                        gridViewDetails.FocusedRowHandle = rowHandle1;
                     }
                     else
                     {
                         MessageBox.Show("The Deletion was not successful!");
                     }
                 }
+            }
+
+        }
+
+        private void btnPublishDetails_Click(object sender, EventArgs e)
+        {
+            //Publish & Send email & Update audit.protocol
+            if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0 && gridViewDetails.RowCount > 0)
+            {
+                int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+
+                if (!UserAction.IsLegal(Action.Detail_Publish, thisAudit, selHeader))
+                {
+                    return;
+                }
+
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to publish all details for this header?", "F/I Detail Publication", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int detailsToPublishCnt = selHeader.FIDetails.Where(i=>i.IsDeleted == false && i.IsPublished == false).ToList().Count;
+                    List<FIDetail> detailsPublished = FIDetail.PublishAll(selHeader);
+                    int detailsPublishedCnt = detailsPublished.Count;
+                    if (detailsPublishedCnt >= detailsToPublishCnt) //>= error... 
+                    {
+                        MessageBox.Show("The Publication was successful!");                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("The Publication completed with errors: " + detailsPublishedCnt.ToString() + "/"+ detailsToPublishCnt.ToString() + " rows published!");
+                    }
+
+                    List<FIDetail> detailsToSendEmail = detailsPublished.Where(i => i.IsClosed == false).ToList();
+
+                    if (detailsToSendEmail.Count > 0) //(detailsPublished - Closed) > 0 then send email
+                    {
+                        //...................SendEmail...................
+                        
+                    }
+
+                    //update audit Protocol numbers
+                    if (detailsPublishedCnt > 0)
+                    {
+                        MessageBox.Show("Please check if protocol numbers are correct or give the final values on the following form!");
+                        AuditProtocolNums frmAuditProtocolNums = new AuditProtocolNums(thisAudit);
+                        frmAuditProtocolNums.ShowDialog();
+                    }
+                    
+                    //refresh audit too..............
+                    //refresh
+                    int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                    AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                    thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                    gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+
+                    int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                    gridViewDetails.FocusedRowHandle = rowHandle1;
+                }
+            }
+        }
+
+        private void mIfinalizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Finalize
+            if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0)
+            {
+                int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+                int detailId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["Id"]).ToString());
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+                FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
+
+                if (!UserAction.IsLegal(Action.Detail_Finalize, thisAudit, selHeader, selDetail))
+                {
+                    return;
+                }
+
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to finalize this record?", "F/I Detail Finalization", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (FIDetail.Finalize(selDetail.Id))
+                    {
+                        ChangeLog.Insert(new FIDetail() { Id = selDetail.Id, IsFinalized = selDetail.IsFinalized }, new FIDetail() { Id = selDetail.Id, IsFinalized = true }, "FIDetail");
+
+                        MessageBox.Show("The Finalization was successful!");
+
+                        //refresh
+                        int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                        AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                        thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                        gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+
+                        int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                        gridViewDetails.FocusedRowHandle = rowHandle1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The Finalization was not successful!");
+                    }
+                }
+
+
+
             }
 
         }

@@ -51,10 +51,12 @@
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblHeaderTitle = new System.Windows.Forms.Label();
             this.dgvOwners = new System.Windows.Forms.DataGridView();
-            this.lblOwners = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblOwners = new System.Windows.Forms.Label();
+            this.chbIsClosed = new System.Windows.Forms.CheckBox();
+            this.lblIsClosed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOwners)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +65,7 @@
             this.lblDetail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblDetail.AutoSize = true;
             this.lblDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblDetail.Location = new System.Drawing.Point(386, 257);
+            this.lblDetail.Location = new System.Drawing.Point(386, 237);
             this.lblDetail.Name = "lblDetail";
             this.lblDetail.Size = new System.Drawing.Size(73, 25);
             this.lblDetail.TabIndex = 50;
@@ -73,7 +75,7 @@
             // 
             this.lblDetailDescription.AutoSize = true;
             this.lblDetailDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblDetailDescription.Location = new System.Drawing.Point(10, 310);
+            this.lblDetailDescription.Location = new System.Drawing.Point(10, 290);
             this.lblDetailDescription.Name = "lblDetailDescription";
             this.lblDetailDescription.Size = new System.Drawing.Size(89, 20);
             this.lblDetailDescription.TabIndex = 53;
@@ -84,7 +86,7 @@
             this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtDescription.Location = new System.Drawing.Point(139, 285);
+            this.txtDescription.Location = new System.Drawing.Point(139, 265);
             this.txtDescription.MaxLength = 500;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -109,7 +111,7 @@
             // 
             this.lblActionReq.AutoSize = true;
             this.lblActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblActionReq.Location = new System.Drawing.Point(10, 448);
+            this.lblActionReq.Location = new System.Drawing.Point(10, 445);
             this.lblActionReq.Name = "lblActionReq";
             this.lblActionReq.Size = new System.Drawing.Size(123, 20);
             this.lblActionReq.TabIndex = 56;
@@ -118,7 +120,7 @@
             // txtActionCode
             // 
             this.txtActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtActionCode.Location = new System.Drawing.Point(139, 363);
+            this.txtActionCode.Location = new System.Drawing.Point(139, 343);
             this.txtActionCode.MaxLength = 3;
             this.txtActionCode.Name = "txtActionCode";
             this.txtActionCode.Size = new System.Drawing.Size(200, 22);
@@ -128,7 +130,7 @@
             // 
             this.lblActionCode.AutoSize = true;
             this.lblActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblActionCode.Location = new System.Drawing.Point(10, 363);
+            this.lblActionCode.Location = new System.Drawing.Point(10, 343);
             this.lblActionCode.Name = "lblActionCode";
             this.lblActionCode.Size = new System.Drawing.Size(96, 20);
             this.lblActionCode.TabIndex = 59;
@@ -138,7 +140,7 @@
             // 
             this.lblActionDate.AutoSize = true;
             this.lblActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblActionDate.Location = new System.Drawing.Point(10, 393);
+            this.lblActionDate.Location = new System.Drawing.Point(10, 373);
             this.lblActionDate.Name = "lblActionDate";
             this.lblActionDate.Size = new System.Drawing.Size(93, 20);
             this.lblActionDate.TabIndex = 58;
@@ -149,7 +151,7 @@
             this.dtpActionDate.CustomFormat = " ";
             this.dtpActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dtpActionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpActionDate.Location = new System.Drawing.Point(139, 391);
+            this.dtpActionDate.Location = new System.Drawing.Point(139, 371);
             this.dtpActionDate.Name = "dtpActionDate";
             this.dtpActionDate.Size = new System.Drawing.Size(200, 22);
             this.dtpActionDate.TabIndex = 62;
@@ -306,16 +308,6 @@
             this.dgvOwners.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOwners_CellValueChanged);
             this.dgvOwners.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvOwners_CurrentCellDirtyStateChanged);
             // 
-            // lblOwners
-            // 
-            this.lblOwners.AutoSize = true;
-            this.lblOwners.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblOwners.Location = new System.Drawing.Point(10, 524);
-            this.lblOwners.Name = "lblOwners";
-            this.lblOwners.Size = new System.Drawing.Size(63, 20);
-            this.lblOwners.TabIndex = 75;
-            this.lblOwners.Text = "Owners";
-            // 
             // Id
             // 
             this.Id.HeaderText = "Id";
@@ -338,11 +330,44 @@
             this.Role.ReadOnly = true;
             this.Role.Width = 310;
             // 
+            // lblOwners
+            // 
+            this.lblOwners.AutoSize = true;
+            this.lblOwners.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblOwners.Location = new System.Drawing.Point(10, 524);
+            this.lblOwners.Name = "lblOwners";
+            this.lblOwners.Size = new System.Drawing.Size(63, 20);
+            this.lblOwners.TabIndex = 75;
+            this.lblOwners.Text = "Owners";
+            // 
+            // chbIsClosed
+            // 
+            this.chbIsClosed.AutoSize = true;
+            this.chbIsClosed.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chbIsClosed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.chbIsClosed.Location = new System.Drawing.Point(139, 399);
+            this.chbIsClosed.Name = "chbIsClosed";
+            this.chbIsClosed.Size = new System.Drawing.Size(15, 14);
+            this.chbIsClosed.TabIndex = 77;
+            this.chbIsClosed.UseVisualStyleBackColor = true;
+            // 
+            // lblIsClosed
+            // 
+            this.lblIsClosed.AutoSize = true;
+            this.lblIsClosed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblIsClosed.Location = new System.Drawing.Point(10, 395);
+            this.lblIsClosed.Name = "lblIsClosed";
+            this.lblIsClosed.Size = new System.Drawing.Size(58, 20);
+            this.lblIsClosed.TabIndex = 78;
+            this.lblIsClosed.Text = "Closed";
+            // 
             // FIDetailInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 716);
+            this.Controls.Add(this.lblIsClosed);
+            this.Controls.Add(this.chbIsClosed);
             this.Controls.Add(this.lblOwners);
             this.Controls.Add(this.dgvOwners);
             this.Controls.Add(this.lblCategory);
@@ -399,5 +424,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewComboBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;
+        private System.Windows.Forms.CheckBox chbIsClosed;
+        private System.Windows.Forms.Label lblIsClosed;
     }
 }

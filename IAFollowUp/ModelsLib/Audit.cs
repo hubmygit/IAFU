@@ -793,5 +793,43 @@ namespace IAFollowUp
 
             return ret;
         }
+
+    public static bool UpdateProtocolNums(Audit givenAudit)
+    {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[Audit] SET [AuditNumber] = @AuditNumber, [IASentNumber] = @IASentNumber, " + 
+                "[UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
+                "WHERE Id = @auditId ";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@auditId", givenAudit.Id);
+                cmd.Parameters.AddWithValue("@AuditNumber", givenAudit.AuditNumber);
+                cmd.Parameters.AddWithValue("@IASentNumber", givenAudit.IASentNumber);
+                cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
     }
 }

@@ -79,6 +79,12 @@
     <Compile Include="AuditInsert.Designer.cs">
       <DependentUpon>AuditInsert.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuditProtocolNums.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuditProtocolNums.Designer.cs">
+      <DependentUpon>AuditProtocolNums.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuditView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditInsert.resx">
       <DependentUpon>AuditInsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuditProtocolNums.resx">
+      <DependentUpon>AuditProtocolNums.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuditView.resx">
       <DependentUpon>AuditView.cs</DependentUpon>

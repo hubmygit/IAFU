@@ -70,6 +70,9 @@
             this.colIsClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDeleted1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnPublishDetails = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mIfinalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).BeginInit();
             this.cmsHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).BeginInit();
@@ -311,9 +314,11 @@
             this.MIeditDetail,
             this.MIdeleteDetail,
             this.toolStripSeparator1,
-            this.MIattachments});
+            this.MIattachments,
+            this.toolStripSeparator2,
+            this.mIfinalizeToolStripMenuItem});
             this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(181, 98);
+            this.cmsDetail.Size = new System.Drawing.Size(181, 126);
             // 
             // MIeditDetail
             // 
@@ -424,11 +429,37 @@
             this.colIsDeleted1.Visible = true;
             this.colIsDeleted1.VisibleIndex = 8;
             // 
+            // btnPublishDetails
+            // 
+            this.btnPublishDetails.Image = global::IAFollowUp.Properties.Resources.Create_32x;
+            this.btnPublishDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPublishDetails.Location = new System.Drawing.Point(884, 354);
+            this.btnPublishDetails.Name = "btnPublishDetails";
+            this.btnPublishDetails.Size = new System.Drawing.Size(100, 30);
+            this.btnPublishDetails.TabIndex = 76;
+            this.btnPublishDetails.Text = "Publish All";
+            this.btnPublishDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPublishDetails.UseVisualStyleBackColor = true;
+            this.btnPublishDetails.Click += new System.EventHandler(this.btnPublishDetails_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // mIfinalizeToolStripMenuItem
+            // 
+            this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
+            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mIfinalizeToolStripMenuItem.Text = "Finalize";
+            this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
+            // 
             // FIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 587);
+            this.Controls.Add(this.btnPublishDetails);
             this.Controls.Add(this.gridControlDetails);
             this.Controls.Add(this.lblDetails);
             this.Controls.Add(this.lblHeaders);
@@ -499,5 +530,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colIsClosed;
         private DevExpress.XtraGrid.Columns.GridColumn colIsFinalized;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDeleted1;
+        private System.Windows.Forms.Button btnPublishDetails;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem mIfinalizeToolStripMenuItem;
     }
 }

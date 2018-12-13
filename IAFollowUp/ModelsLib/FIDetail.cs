@@ -124,11 +124,11 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[FIDetail] ([FIHeaderId], [Description], [ActionReq], [ActionDt], [ActionCode], [InsUserId], [InsDt] ) " +
+            string InsSt = "INSERT INTO [dbo].[FIDetail] ([FIHeaderId], [Description], [ActionReq], [ActionDt], [ActionCode], [IsClosed], [InsUserId], [InsDt] ) " +
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
                            "(@HeaderId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Description)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @ActionReq))," +
-                           "@ActionDt, @ActionCode, @InsUserId, getDate()) ";
+                           "@ActionDt, @ActionCode, @IsClosed  @InsUserId, getDate()) ";
             try
             {
                 sqlConn.Open();
@@ -149,6 +149,9 @@ namespace IAFollowUp
                     cmd.Parameters.AddWithValue("@ActionDt", fiDetail.ActionDt);
                 }
                 cmd.Parameters.AddWithValue("@ActionCode", fiDetail.ActionCode);
+
+                cmd.Parameters.AddWithValue("@IsClosed", fiDetail.IsClosed);
+
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
@@ -225,7 +228,7 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "UPDATE [dbo].[FIDetail] SET [FIHeaderId] = @HeaderId, [Description] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Description)), " +
                           "[ActionReq] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @ActionReq)), [ActionDt] = @ActionDt, [ActionCode] = @ActionCode, " +
-                          "[UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
+                          "[IsClosed] = @IsClosed, [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                           "WHERE id = @id";
             try
             {
@@ -249,6 +252,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@Description", detail.Description);
                 cmd.Parameters.AddWithValue("@ActionReq", detail.ActionReq);
                 cmd.Parameters.AddWithValue("@ActionCode", detail.ActionCode);
+                cmd.Parameters.AddWithValue("@IsClosed", detail.IsClosed);
                 cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
@@ -300,6 +304,97 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@id", id);
 
                 cmd.Parameters.AddWithValue("@UpdUserID", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        public static bool PublishSingle(FIDetail detail)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIDetail] SET [IsPublished] = 'TRUE', [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
+                "WHERE Id = @detailId AND isnull([IsDeleted], 'FALSE') = 'FALSE' ";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@detailId", detail.Id);
+
+                cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        public static List<FIDetail> PublishAll(FIHeader header)
+        {
+            List<FIDetail> ret = new List<FIDetail>();
+
+            foreach (FIDetail detail in header.FIDetails)
+            {
+                if (detail.IsDeleted == false)
+                {
+                    if (PublishSingle(detail))
+                    {
+                        ChangeLog.Insert(new FIDetail() { Id = detail.Id, IsPublished = detail.IsPublished }, new FIDetail() { Id = detail.Id, IsPublished = true }, "FIDetail");
+                        ret.Add(detail);
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        public static bool Finalize(int detailId)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIDetail] SET [IsFinalized] = 'TRUE', [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
+                "WHERE Id = @detailId ";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+
+                cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
                 int rowsAffected = cmd.ExecuteNonQuery();
