@@ -11,5 +11,10 @@ namespace IAFollowUp
         public string RecipientEmail { get; set; }
         public string Body { get; set; }
         public string Subject { get; set; }
+        //public bool ToSend { get; set; }
+
+        public EmailProperties()
+        {
+        }
     }
 }

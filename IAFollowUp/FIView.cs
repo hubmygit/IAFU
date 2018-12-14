@@ -271,10 +271,13 @@ namespace IAFollowUp
                             {
                                 emailProp.RecipientFullName = usr.FullName;
                                 emailProp.RecipientEmail = usr.getEmail();
+                                //emailProp.ToSend = true;
                                 emailList.Add(emailProp);
                             }
                         }
-                        
+
+                        EmailToSend frmSendEmailToAuditees = new EmailToSend(emailList);
+                        frmSendEmailToAuditees.ShowDialog();
                         //Check distinct mails per User!!!!!!!!!!!!!!!!!!!!!! and show into form...
                     }
 

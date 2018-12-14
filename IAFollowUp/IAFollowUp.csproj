@@ -115,6 +115,12 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmailToSend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailToSend.Designer.cs">
+      <DependentUpon>EmailToSend.cs</DependentUpon>
+    </Compile>
     <Compile Include="FIDetailInsert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmailToSend.resx">
+      <DependentUpon>EmailToSend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FIDetailInsert.resx">
       <DependentUpon>FIDetailInsert.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,5 +302,9 @@
   <ItemGroup>
     <None Include="Resources\Create_32x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mail_32x.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

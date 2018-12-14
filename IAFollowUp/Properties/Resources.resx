@@ -121,6 +121,9 @@
   <data name="OpenAttachment_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenAttachment_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Create_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Create_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AddAttachment_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddAttachment_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,7 +139,7 @@
   <data name="InternalAuditFollowUp_MainImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InternalAuditFollowUp_MainImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Create_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Create_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Mail_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mail_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
