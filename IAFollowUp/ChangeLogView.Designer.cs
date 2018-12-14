@@ -39,9 +39,9 @@
             this.colExecStatement = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTableName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFieldName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFieldNameToShow = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOldValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNewValue = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFieldNameToShow = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSection = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.changeLogBindingSource)).BeginInit();
@@ -75,15 +75,18 @@
             this.colExecStatement,
             this.colTableName,
             this.colFieldName,
+            this.colFieldNameToShow,
             this.colOldValue,
             this.colNewValue,
-            this.colFieldNameToShow,
             this.colSection});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colTbl_Id
             // 
+            this.colTbl_Id.Caption = "Table Id";
             this.colTbl_Id.FieldName = "Tbl_Id";
             this.colTbl_Id.Name = "colTbl_Id";
             this.colTbl_Id.Visible = true;
@@ -91,6 +94,7 @@
             // 
             // colAppUser
             // 
+            this.colAppUser.Caption = "App User";
             this.colAppUser.FieldName = "AppUser.FullName";
             this.colAppUser.Name = "colAppUser";
             this.colAppUser.Visible = true;
@@ -98,6 +102,7 @@
             // 
             // colDt
             // 
+            this.colDt.Caption = "Date";
             this.colDt.FieldName = "Dt";
             this.colDt.Name = "colDt";
             this.colDt.Visible = true;
@@ -105,6 +110,7 @@
             // 
             // colExecStatement
             // 
+            this.colExecStatement.Caption = "Exec Statement";
             this.colExecStatement.FieldName = "ExecStatement";
             this.colExecStatement.Name = "colExecStatement";
             this.colExecStatement.Visible = true;
@@ -112,6 +118,7 @@
             // 
             // colTableName
             // 
+            this.colTableName.Caption = "Table";
             this.colTableName.FieldName = "TableName";
             this.colTableName.Name = "colTableName";
             this.colTableName.Visible = true;
@@ -119,34 +126,39 @@
             // 
             // colFieldName
             // 
+            this.colFieldName.Caption = "Field";
             this.colFieldName.FieldName = "FieldName";
             this.colFieldName.Name = "colFieldName";
             this.colFieldName.Visible = true;
             this.colFieldName.VisibleIndex = 5;
             // 
-            // colOldValue
-            // 
-            this.colOldValue.FieldName = "OldValue";
-            this.colOldValue.Name = "colOldValue";
-            this.colOldValue.Visible = true;
-            this.colOldValue.VisibleIndex = 6;
-            // 
-            // colNewValue
-            // 
-            this.colNewValue.FieldName = "NewValue";
-            this.colNewValue.Name = "colNewValue";
-            this.colNewValue.Visible = true;
-            this.colNewValue.VisibleIndex = 7;
-            // 
             // colFieldNameToShow
             // 
+            this.colFieldNameToShow.Caption = "Field Name";
             this.colFieldNameToShow.FieldName = "FieldNameToShow";
             this.colFieldNameToShow.Name = "colFieldNameToShow";
             this.colFieldNameToShow.Visible = true;
-            this.colFieldNameToShow.VisibleIndex = 8;
+            this.colFieldNameToShow.VisibleIndex = 6;
+            // 
+            // colOldValue
+            // 
+            this.colOldValue.Caption = "Old Value";
+            this.colOldValue.FieldName = "OldValue";
+            this.colOldValue.Name = "colOldValue";
+            this.colOldValue.Visible = true;
+            this.colOldValue.VisibleIndex = 7;
+            // 
+            // colNewValue
+            // 
+            this.colNewValue.Caption = "New Value";
+            this.colNewValue.FieldName = "NewValue";
+            this.colNewValue.Name = "colNewValue";
+            this.colNewValue.Visible = true;
+            this.colNewValue.VisibleIndex = 8;
             // 
             // colSection
             // 
+            this.colSection.Caption = "Section";
             this.colSection.FieldName = "Section";
             this.colSection.Name = "colSection";
             this.colSection.Visible = true;

@@ -31,6 +31,29 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FIView));
+            this.gridViewOwners = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colOwnerId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFullName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridControlDetails = new DevExpress.XtraGrid.GridControl();
+            this.cmsDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MIeditDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIdeleteDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mIfinalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fIDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridViewDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFIHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionReq = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsClosed = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewHeader = new System.Windows.Forms.Button();
             this.btnCreateNewDetail = new System.Windows.Forms.Button();
             this.txtCompany = new System.Windows.Forms.TextBox();
@@ -53,35 +76,209 @@
             this.colIsPublished = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblHeaders = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
-            this.gridControlDetails = new DevExpress.XtraGrid.GridControl();
-            this.cmsDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MIeditDetail = new System.Windows.Forms.ToolStripMenuItem();
-            this.MIdeleteDetail = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
-            this.fIDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridViewDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colId1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFIHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colActionReq = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIsClosed = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIsDeleted1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnPublishDetails = new System.Windows.Forms.Button();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mIfinalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).BeginInit();
-            this.cmsHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewOwners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).BeginInit();
+            this.cmsHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).BeginInit();
             this.SuspendLayout();
+            // 
+            // gridViewOwners
+            // 
+            this.gridViewOwners.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colOwnerId,
+            this.colFullName,
+            this.colRoleName});
+            this.gridViewOwners.GridControl = this.gridControlDetails;
+            this.gridViewOwners.Name = "gridViewOwners";
+            this.gridViewOwners.OptionsBehavior.Editable = false;
+            this.gridViewOwners.OptionsBehavior.ReadOnly = true;
+            this.gridViewOwners.OptionsView.ShowGroupPanel = false;
+            // 
+            // colOwnerId
+            // 
+            this.colOwnerId.Caption = "Id";
+            this.colOwnerId.FieldName = "Id";
+            this.colOwnerId.Name = "colOwnerId";
+            // 
+            // colFullName
+            // 
+            this.colFullName.Caption = "Full Name";
+            this.colFullName.FieldName = "FullName";
+            this.colFullName.Name = "colFullName";
+            this.colFullName.Visible = true;
+            this.colFullName.VisibleIndex = 0;
+            // 
+            // colRoleName
+            // 
+            this.colRoleName.Caption = "Role Name";
+            this.colRoleName.FieldName = "RoleName";
+            this.colRoleName.Name = "colRoleName";
+            this.colRoleName.Visible = true;
+            this.colRoleName.VisibleIndex = 1;
+            // 
+            // gridControlDetails
+            // 
+            this.gridControlDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControlDetails.ContextMenuStrip = this.cmsDetail;
+            this.gridControlDetails.DataSource = this.fIDetailBindingSource;
+            gridLevelNode1.LevelTemplate = this.gridViewOwners;
+            gridLevelNode1.RelationName = "Owners";
+            this.gridControlDetails.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
+            this.gridControlDetails.Location = new System.Drawing.Point(0, 387);
+            this.gridControlDetails.MainView = this.gridViewDetails;
+            this.gridControlDetails.Name = "gridControlDetails";
+            this.gridControlDetails.Size = new System.Drawing.Size(984, 200);
+            this.gridControlDetails.TabIndex = 75;
+            this.gridControlDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewDetails,
+            this.gridViewOwners});
+            // 
+            // cmsDetail
+            // 
+            this.cmsDetail.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MIeditDetail,
+            this.MIdeleteDetail,
+            this.toolStripSeparator1,
+            this.MIattachments,
+            this.toolStripSeparator2,
+            this.mIfinalizeToolStripMenuItem});
+            this.cmsDetail.Name = "cmsHeader";
+            this.cmsDetail.Size = new System.Drawing.Size(143, 104);
+            // 
+            // MIeditDetail
+            // 
+            this.MIeditDetail.Name = "MIeditDetail";
+            this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIeditDetail.Text = "Edit";
+            this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
+            // 
+            // MIdeleteDetail
+            // 
+            this.MIdeleteDetail.Name = "MIdeleteDetail";
+            this.MIdeleteDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIdeleteDetail.Text = "Delete";
+            this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
+            // 
+            // MIattachments
+            // 
+            this.MIattachments.Name = "MIattachments";
+            this.MIattachments.Size = new System.Drawing.Size(142, 22);
+            this.MIattachments.Text = "Attachments";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
+            // 
+            // mIfinalizeToolStripMenuItem
+            // 
+            this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
+            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.mIfinalizeToolStripMenuItem.Text = "Finalize";
+            this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
+            // 
+            // fIDetailBindingSource
+            // 
+            this.fIDetailBindingSource.DataSource = typeof(IAFollowUp.FIDetail);
+            // 
+            // gridViewDetails
+            // 
+            this.gridViewDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colDetailsId,
+            this.colFIHeaderId,
+            this.colDescription,
+            this.colActionDt,
+            this.colActionReq,
+            this.colActionCode,
+            this.colIsClosed,
+            this.colIsFinalized,
+            this.colDetailIsDeleted});
+            this.gridViewDetails.GridControl = this.gridControlDetails;
+            this.gridViewDetails.Name = "gridViewDetails";
+            this.gridViewDetails.OptionsBehavior.Editable = false;
+            this.gridViewDetails.OptionsBehavior.ReadOnly = true;
+            // 
+            // colDetailsId
+            // 
+            this.colDetailsId.Caption = "Id";
+            this.colDetailsId.FieldName = "Id";
+            this.colDetailsId.Name = "colDetailsId";
+            // 
+            // colDescription
+            // 
+            this.colDescription.Caption = "Description";
+            this.colDescription.FieldName = "Description";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.Visible = true;
+            this.colDescription.VisibleIndex = 0;
+            // 
+            // colFIHeaderId
+            // 
+            this.colFIHeaderId.Caption = "FIHeaderId";
+            this.colFIHeaderId.FieldName = "FIHeaderId";
+            this.colFIHeaderId.Name = "colFIHeaderId";
+            // 
+            // colActionDt
+            // 
+            this.colActionDt.Caption = "Action Date";
+            this.colActionDt.FieldName = "ActionDt";
+            this.colActionDt.Name = "colActionDt";
+            this.colActionDt.Visible = true;
+            this.colActionDt.VisibleIndex = 1;
+            // 
+            // colActionReq
+            // 
+            this.colActionReq.Caption = "Action Required";
+            this.colActionReq.FieldName = "ActionReq";
+            this.colActionReq.Name = "colActionReq";
+            this.colActionReq.Visible = true;
+            this.colActionReq.VisibleIndex = 2;
+            // 
+            // colActionCode
+            // 
+            this.colActionCode.Caption = "Action Code";
+            this.colActionCode.FieldName = "ActionCode";
+            this.colActionCode.Name = "colActionCode";
+            this.colActionCode.Visible = true;
+            this.colActionCode.VisibleIndex = 3;
+            // 
+            // colIsClosed
+            // 
+            this.colIsClosed.Caption = "Closed";
+            this.colIsClosed.FieldName = "IsClosed";
+            this.colIsClosed.Name = "colIsClosed";
+            this.colIsClosed.Visible = true;
+            this.colIsClosed.VisibleIndex = 4;
+            // 
+            // colIsFinalized
+            // 
+            this.colIsFinalized.Caption = "Finalized";
+            this.colIsFinalized.FieldName = "IsFinalized";
+            this.colIsFinalized.Name = "colIsFinalized";
+            this.colIsFinalized.Visible = true;
+            this.colIsFinalized.VisibleIndex = 5;
+            // 
+            // colDetailIsDeleted
+            // 
+            this.colDetailIsDeleted.Caption = "Deleted";
+            this.colDetailIsDeleted.FieldName = "IsDeleted";
+            this.colDetailIsDeleted.Name = "colDetailIsDeleted";
+            this.colDetailIsDeleted.Visible = true;
+            this.colDetailIsDeleted.VisibleIndex = 6;
             // 
             // btnCreateNewHeader
             // 
@@ -182,6 +379,7 @@
             this.gridControlHeaders.Location = new System.Drawing.Point(0, 135);
             this.gridControlHeaders.MainView = this.gridViewHeaders;
             this.gridControlHeaders.Name = "gridControlHeaders";
+            this.gridControlHeaders.ShowOnlyPredefinedDetails = true;
             this.gridControlHeaders.Size = new System.Drawing.Size(984, 200);
             this.gridControlHeaders.TabIndex = 72;
             this.gridControlHeaders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -290,147 +488,9 @@
             this.lblDetails.TabIndex = 74;
             this.lblDetails.Text = "Details";
             // 
-            // gridControlDetails
-            // 
-            this.gridControlDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlDetails.ContextMenuStrip = this.cmsDetail;
-            this.gridControlDetails.DataSource = this.fIDetailBindingSource;
-            gridLevelNode1.RelationName = "Owners";
-            this.gridControlDetails.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.gridControlDetails.Location = new System.Drawing.Point(0, 387);
-            this.gridControlDetails.MainView = this.gridViewDetails;
-            this.gridControlDetails.Name = "gridControlDetails";
-            this.gridControlDetails.Size = new System.Drawing.Size(984, 200);
-            this.gridControlDetails.TabIndex = 75;
-            this.gridControlDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewDetails});
-            // 
-            // cmsDetail
-            // 
-            this.cmsDetail.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MIeditDetail,
-            this.MIdeleteDetail,
-            this.toolStripSeparator1,
-            this.MIattachments,
-            this.toolStripSeparator2,
-            this.mIfinalizeToolStripMenuItem});
-            this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(181, 126);
-            // 
-            // MIeditDetail
-            // 
-            this.MIeditDetail.Name = "MIeditDetail";
-            this.MIeditDetail.Size = new System.Drawing.Size(180, 22);
-            this.MIeditDetail.Text = "Edit";
-            this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
-            // 
-            // MIdeleteDetail
-            // 
-            this.MIdeleteDetail.Name = "MIdeleteDetail";
-            this.MIdeleteDetail.Size = new System.Drawing.Size(180, 22);
-            this.MIdeleteDetail.Text = "Delete";
-            this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // MIattachments
-            // 
-            this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(180, 22);
-            this.MIattachments.Text = "Attachments";
-            // 
-            // fIDetailBindingSource
-            // 
-            this.fIDetailBindingSource.DataSource = typeof(IAFollowUp.FIDetail);
-            // 
-            // gridViewDetails
-            // 
-            this.gridViewDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colId1,
-            this.colDescription,
-            this.colFIHeaderId,
-            this.colActionDt,
-            this.colActionReq,
-            this.colActionCode,
-            this.colIsClosed,
-            this.colIsFinalized,
-            this.colIsDeleted1});
-            this.gridViewDetails.GridControl = this.gridControlDetails;
-            this.gridViewDetails.Name = "gridViewDetails";
-            this.gridViewDetails.OptionsBehavior.Editable = false;
-            this.gridViewDetails.OptionsBehavior.ReadOnly = true;
-            // 
-            // colId1
-            // 
-            this.colId1.FieldName = "Id";
-            this.colId1.Name = "colId1";
-            this.colId1.Visible = true;
-            this.colId1.VisibleIndex = 0;
-            // 
-            // colDescription
-            // 
-            this.colDescription.FieldName = "Description";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 1;
-            // 
-            // colFIHeaderId
-            // 
-            this.colFIHeaderId.FieldName = "FIHeaderId";
-            this.colFIHeaderId.Name = "colFIHeaderId";
-            this.colFIHeaderId.Visible = true;
-            this.colFIHeaderId.VisibleIndex = 2;
-            // 
-            // colActionDt
-            // 
-            this.colActionDt.FieldName = "ActionDt";
-            this.colActionDt.Name = "colActionDt";
-            this.colActionDt.Visible = true;
-            this.colActionDt.VisibleIndex = 3;
-            // 
-            // colActionReq
-            // 
-            this.colActionReq.FieldName = "ActionReq";
-            this.colActionReq.Name = "colActionReq";
-            this.colActionReq.Visible = true;
-            this.colActionReq.VisibleIndex = 4;
-            // 
-            // colActionCode
-            // 
-            this.colActionCode.FieldName = "ActionCode";
-            this.colActionCode.Name = "colActionCode";
-            this.colActionCode.Visible = true;
-            this.colActionCode.VisibleIndex = 5;
-            // 
-            // colIsClosed
-            // 
-            this.colIsClosed.FieldName = "IsClosed";
-            this.colIsClosed.Name = "colIsClosed";
-            this.colIsClosed.Visible = true;
-            this.colIsClosed.VisibleIndex = 6;
-            // 
-            // colIsFinalized
-            // 
-            this.colIsFinalized.FieldName = "IsFinalized";
-            this.colIsFinalized.Name = "colIsFinalized";
-            this.colIsFinalized.Visible = true;
-            this.colIsFinalized.VisibleIndex = 7;
-            // 
-            // colIsDeleted1
-            // 
-            this.colIsDeleted1.FieldName = "IsDeleted";
-            this.colIsDeleted1.Name = "colIsDeleted1";
-            this.colIsDeleted1.Visible = true;
-            this.colIsDeleted1.VisibleIndex = 8;
-            // 
             // btnPublishDetails
             // 
+            this.btnPublishDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPublishDetails.Image = global::IAFollowUp.Properties.Resources.Create_32x;
             this.btnPublishDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPublishDetails.Location = new System.Drawing.Point(884, 354);
@@ -441,18 +501,6 @@
             this.btnPublishDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPublishDetails.UseVisualStyleBackColor = true;
             this.btnPublishDetails.Click += new System.EventHandler(this.btnPublishDetails_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // mIfinalizeToolStripMenuItem
-            // 
-            this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
-            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.mIfinalizeToolStripMenuItem.Text = "Finalize";
-            this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
             // 
             // FIView
             // 
@@ -477,14 +525,15 @@
             this.Name = "FIView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Findings and Improvements View";
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).EndInit();
-            this.cmsHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewOwners)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).EndInit();
             this.cmsDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).EndInit();
+            this.cmsHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,7 +570,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem MIattachments;
         private System.Windows.Forms.BindingSource fIDetailBindingSource;
-        private DevExpress.XtraGrid.Columns.GridColumn colId1;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailsId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;
         private DevExpress.XtraGrid.Columns.GridColumn colFIHeaderId;
         private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
@@ -529,9 +578,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn colActionCode;
         private DevExpress.XtraGrid.Columns.GridColumn colIsClosed;
         private DevExpress.XtraGrid.Columns.GridColumn colIsFinalized;
-        private DevExpress.XtraGrid.Columns.GridColumn colIsDeleted1;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailIsDeleted;
         private System.Windows.Forms.Button btnPublishDetails;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mIfinalizeToolStripMenuItem;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewOwners;
+        private DevExpress.XtraGrid.Columns.GridColumn colOwnerId;
+        private DevExpress.XtraGrid.Columns.GridColumn colFullName;
+        private DevExpress.XtraGrid.Columns.GridColumn colRoleName;
     }
 }

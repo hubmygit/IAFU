@@ -39,10 +39,26 @@
             this.tsSep2 = new System.Windows.Forms.ToolStripSeparator();
             this.MIshowFindings = new System.Windows.Forms.ToolStripMenuItem();
             this.MIfinalizeAudit = new System.Windows.Forms.ToolStripMenuItem();
+            this.auditBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colYear = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCompany = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIASentNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditRating = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colReportDt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditor1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditor2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSupervisor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsCompleted = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewAudit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +68,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.ContextMenuStrip = this.cmsOnGrid;
+            this.gridControl1.DataSource = this.auditBindingSource;
             this.gridControl1.Location = new System.Drawing.Point(0, 89);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.ShowOnlyPredefinedDetails = true;
             this.gridControl1.Size = new System.Drawing.Size(984, 473);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -118,10 +136,141 @@
             this.MIfinalizeAudit.Text = "Finalize Audit";
             this.MIfinalizeAudit.Click += new System.EventHandler(this.MIfinalizeAudit_Click);
             // 
+            // auditBindingSource
+            // 
+            this.auditBindingSource.DataSource = typeof(IAFollowUp.Audit);
+            // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId,
+            this.colYear,
+            this.colCompany,
+            this.colAuditNumber,
+            this.colAuditType,
+            this.colIASentNumber,
+            this.colTitle,
+            this.colAuditRating,
+            this.colReportDt,
+            this.colAuditor1,
+            this.colAuditor2,
+            this.colSupervisor,
+            this.colIsCompleted,
+            this.colIsDeleted});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            // 
+            // colId
+            // 
+            this.colId.Caption = "Id";
+            this.colId.FieldName = "Id";
+            this.colId.Name = "colId";
+            // 
+            // colYear
+            // 
+            this.colYear.Caption = "Year";
+            this.colYear.FieldName = "Year";
+            this.colYear.Name = "colYear";
+            this.colYear.Visible = true;
+            this.colYear.VisibleIndex = 0;
+            // 
+            // colCompany
+            // 
+            this.colCompany.Caption = "Company";
+            this.colCompany.FieldName = "Company.Name";
+            this.colCompany.Name = "colCompany";
+            this.colCompany.Visible = true;
+            this.colCompany.VisibleIndex = 1;
+            // 
+            // colAuditNumber
+            // 
+            this.colAuditNumber.Caption = "Audit Number";
+            this.colAuditNumber.FieldName = "AuditNumber";
+            this.colAuditNumber.Name = "colAuditNumber";
+            this.colAuditNumber.Visible = true;
+            this.colAuditNumber.VisibleIndex = 2;
+            // 
+            // colAuditType
+            // 
+            this.colAuditType.Caption = "Audit Type";
+            this.colAuditType.FieldName = "AuditType.Name";
+            this.colAuditType.Name = "colAuditType";
+            this.colAuditType.Visible = true;
+            this.colAuditType.VisibleIndex = 3;
+            // 
+            // colIASentNumber
+            // 
+            this.colIASentNumber.Caption = "IA Sent Number";
+            this.colIASentNumber.FieldName = "IASentNumber";
+            this.colIASentNumber.Name = "colIASentNumber";
+            this.colIASentNumber.Visible = true;
+            this.colIASentNumber.VisibleIndex = 4;
+            // 
+            // colTitle
+            // 
+            this.colTitle.Caption = "Title";
+            this.colTitle.FieldName = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.Visible = true;
+            this.colTitle.VisibleIndex = 5;
+            // 
+            // colAuditRating
+            // 
+            this.colAuditRating.Caption = "Audit Rating";
+            this.colAuditRating.FieldName = "AuditRating.Name";
+            this.colAuditRating.Name = "colAuditRating";
+            this.colAuditRating.Visible = true;
+            this.colAuditRating.VisibleIndex = 6;
+            // 
+            // colReportDt
+            // 
+            this.colReportDt.Caption = "Report Date";
+            this.colReportDt.FieldName = "ReportDt";
+            this.colReportDt.Name = "colReportDt";
+            this.colReportDt.Visible = true;
+            this.colReportDt.VisibleIndex = 7;
+            // 
+            // colAuditor1
+            // 
+            this.colAuditor1.Caption = "Auditor1";
+            this.colAuditor1.FieldName = "Auditor1.FullName";
+            this.colAuditor1.Name = "colAuditor1";
+            this.colAuditor1.Visible = true;
+            this.colAuditor1.VisibleIndex = 8;
+            // 
+            // colAuditor2
+            // 
+            this.colAuditor2.Caption = "Auditor2";
+            this.colAuditor2.FieldName = "Auditor2.FullName";
+            this.colAuditor2.Name = "colAuditor2";
+            this.colAuditor2.Visible = true;
+            this.colAuditor2.VisibleIndex = 9;
+            // 
+            // colSupervisor
+            // 
+            this.colSupervisor.Caption = "Supervisor";
+            this.colSupervisor.FieldName = "Supervisor.FullName";
+            this.colSupervisor.Name = "colSupervisor";
+            this.colSupervisor.Visible = true;
+            this.colSupervisor.VisibleIndex = 10;
+            // 
+            // colIsCompleted
+            // 
+            this.colIsCompleted.Caption = "Finalized";
+            this.colIsCompleted.FieldName = "IsCompleted";
+            this.colIsCompleted.Name = "colIsCompleted";
+            this.colIsCompleted.Visible = true;
+            this.colIsCompleted.VisibleIndex = 11;
+            // 
+            // colIsDeleted
+            // 
+            this.colIsDeleted.Caption = "Deleted";
+            this.colIsDeleted.FieldName = "IsDeleted";
+            this.colIsDeleted.Name = "colIsDeleted";
+            this.colIsDeleted.Visible = true;
+            this.colIsDeleted.VisibleIndex = 12;
             // 
             // btnCreateNewAudit
             // 
@@ -150,6 +299,7 @@
             this.Text = "Audits View";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             this.cmsOnGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -168,5 +318,20 @@
         private System.Windows.Forms.ToolStripMenuItem MIshowFindings;
         private System.Windows.Forms.ToolStripMenuItem MIfinalizeAudit;
         private System.Windows.Forms.Button btnCreateNewAudit;
+        private System.Windows.Forms.BindingSource auditBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colYear;
+        private DevExpress.XtraGrid.Columns.GridColumn colCompany;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditType;
+        private DevExpress.XtraGrid.Columns.GridColumn colTitle;
+        private DevExpress.XtraGrid.Columns.GridColumn colReportDt;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditor1;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditor2;
+        private DevExpress.XtraGrid.Columns.GridColumn colSupervisor;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsCompleted;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colIASentNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditRating;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsDeleted;
     }
 }
