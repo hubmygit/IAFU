@@ -74,7 +74,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.ShowOnlyPredefinedDetails = true;
             this.gridControl1.Size = new System.Drawing.Size(984, 473);
-            this.gridControl1.TabIndex = 0;
+            this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -279,7 +279,7 @@
             this.btnCreateNewAudit.Location = new System.Drawing.Point(12, 24);
             this.btnCreateNewAudit.Name = "btnCreateNewAudit";
             this.btnCreateNewAudit.Size = new System.Drawing.Size(120, 45);
-            this.btnCreateNewAudit.TabIndex = 37;
+            this.btnCreateNewAudit.TabIndex = 2;
             this.btnCreateNewAudit.Text = "New Audit";
             this.btnCreateNewAudit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateNewAudit.UseVisualStyleBackColor = true;

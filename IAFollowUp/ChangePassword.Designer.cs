@@ -47,7 +47,7 @@
             this.btnChangePassword.Location = new System.Drawing.Point(140, 225);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(164, 25);
-            this.btnChangePassword.TabIndex = 22;
+            this.btnChangePassword.TabIndex = 5;
             this.btnChangePassword.Text = "Change Password";
             this.btnChangePassword.UseVisualStyleBackColor = true;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
@@ -59,7 +59,7 @@
             this.txtNewPassword2.Name = "txtNewPassword2";
             this.txtNewPassword2.PasswordChar = '*';
             this.txtNewPassword2.Size = new System.Drawing.Size(164, 22);
-            this.txtNewPassword2.TabIndex = 21;
+            this.txtNewPassword2.TabIndex = 4;
             // 
             // lblNewPassword2
             // 
@@ -68,7 +68,7 @@
             this.lblNewPassword2.Location = new System.Drawing.Point(88, 168);
             this.lblNewPassword2.Name = "lblNewPassword2";
             this.lblNewPassword2.Size = new System.Drawing.Size(98, 16);
-            this.lblNewPassword2.TabIndex = 28;
+            this.lblNewPassword2.TabIndex = 0;
             this.lblNewPassword2.Text = "New Password";
             // 
             // txtNewPassword
@@ -78,7 +78,7 @@
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '*';
             this.txtNewPassword.Size = new System.Drawing.Size(164, 22);
-            this.txtNewPassword.TabIndex = 20;
+            this.txtNewPassword.TabIndex = 3;
             // 
             // lblNewPassword
             // 
@@ -87,7 +87,7 @@
             this.lblNewPassword.Location = new System.Drawing.Point(88, 140);
             this.lblNewPassword.Name = "lblNewPassword";
             this.lblNewPassword.Size = new System.Drawing.Size(98, 16);
-            this.lblNewPassword.TabIndex = 27;
+            this.lblNewPassword.TabIndex = 0;
             this.lblNewPassword.Text = "New Password";
             // 
             // lblFullName
@@ -96,7 +96,7 @@
             this.lblFullName.Location = new System.Drawing.Point(189, 78);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(51, 13);
-            this.lblFullName.TabIndex = 26;
+            this.lblFullName.TabIndex = 0;
             this.lblFullName.Text = "unknown";
             // 
             // txtUserName
@@ -106,7 +106,7 @@
             this.txtUserName.Location = new System.Drawing.Point(192, 53);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(164, 22);
-            this.txtUserName.TabIndex = 23;
+            this.txtUserName.TabIndex = 1;
             // 
             // txtOldPassword
             // 
@@ -115,7 +115,7 @@
             this.txtOldPassword.Name = "txtOldPassword";
             this.txtOldPassword.PasswordChar = '*';
             this.txtOldPassword.Size = new System.Drawing.Size(164, 22);
-            this.txtOldPassword.TabIndex = 19;
+            this.txtOldPassword.TabIndex = 2;
             // 
             // lblOldPassword
             // 
@@ -124,7 +124,7 @@
             this.lblOldPassword.Location = new System.Drawing.Point(94, 112);
             this.lblOldPassword.Name = "lblOldPassword";
             this.lblOldPassword.Size = new System.Drawing.Size(92, 16);
-            this.lblOldPassword.TabIndex = 25;
+            this.lblOldPassword.TabIndex = 0;
             this.lblOldPassword.Text = "Old Password";
             // 
             // lblUserName
@@ -134,7 +134,7 @@
             this.lblUserName.Location = new System.Drawing.Point(109, 56);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(77, 16);
-            this.lblUserName.TabIndex = 24;
+            this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "User Name";
             // 
             // ChangePassword

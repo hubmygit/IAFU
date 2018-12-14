@@ -49,7 +49,7 @@
             this.lblHeader.Location = new System.Drawing.Point(383, 149);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(79, 24);
-            this.lblHeader.TabIndex = 61;
+            this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Header";
             // 
             // lblCategory
@@ -59,7 +59,7 @@
             this.lblCategory.Location = new System.Drawing.Point(10, 273);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(73, 20);
-            this.lblCategory.TabIndex = 60;
+            this.lblCategory.TabIndex = 0;
             this.lblCategory.Text = "Category";
             // 
             // cbCategory
@@ -70,7 +70,7 @@
             this.cbCategory.Location = new System.Drawing.Point(91, 273);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(250, 24);
-            this.cbCategory.TabIndex = 57;
+            this.cbCategory.TabIndex = 2;
             // 
             // txtHeaderTitle
             // 
@@ -83,7 +83,7 @@
             this.txtHeaderTitle.Name = "txtHeaderTitle";
             this.txtHeaderTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtHeaderTitle.Size = new System.Drawing.Size(741, 72);
-            this.txtHeaderTitle.TabIndex = 56;
+            this.txtHeaderTitle.TabIndex = 1;
             // 
             // lblHeaderTitle
             // 
@@ -92,7 +92,7 @@
             this.lblHeaderTitle.Location = new System.Drawing.Point(10, 197);
             this.lblHeaderTitle.Name = "lblHeaderTitle";
             this.lblHeaderTitle.Size = new System.Drawing.Size(38, 20);
-            this.lblHeaderTitle.TabIndex = 59;
+            this.lblHeaderTitle.TabIndex = 0;
             this.lblHeaderTitle.Text = "Title";
             // 
             // btnSave
@@ -120,7 +120,7 @@
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.ReadOnly = true;
             this.txtCompany.Size = new System.Drawing.Size(741, 22);
-            this.txtCompany.TabIndex = 65;
+            this.txtCompany.TabIndex = 0;
             // 
             // txtAuditTitle
             // 
@@ -134,7 +134,7 @@
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtAuditTitle.Size = new System.Drawing.Size(741, 72);
-            this.txtAuditTitle.TabIndex = 62;
+            this.txtAuditTitle.TabIndex = 0;
             // 
             // lblAuditTitle
             // 
@@ -143,7 +143,7 @@
             this.lblAuditTitle.Location = new System.Drawing.Point(11, 51);
             this.lblAuditTitle.Name = "lblAuditTitle";
             this.lblAuditTitle.Size = new System.Drawing.Size(67, 16);
-            this.lblAuditTitle.TabIndex = 64;
+            this.lblAuditTitle.TabIndex = 0;
             this.lblAuditTitle.Text = "Audit Title";
             // 
             // lblCompany
@@ -153,7 +153,7 @@
             this.lblCompany.Location = new System.Drawing.Point(11, 9);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(66, 16);
-            this.lblCompany.TabIndex = 63;
+            this.lblCompany.TabIndex = 0;
             this.lblCompany.Text = "Company";
             // 
             // FIHeaderInsert

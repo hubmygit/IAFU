@@ -27,6 +27,9 @@ namespace IAFollowUp
             txtAuditTitle.Text = thisAudit.Title;
 
             gridControlHeaders.DataSource = new BindingList<FIHeader>(thisAudit.FIHeaders);
+
+            gridViewHeaders.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
+            gridViewDetails.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
         }
 
         Audit thisAudit = new Audit();

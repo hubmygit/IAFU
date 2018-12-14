@@ -45,7 +45,7 @@
             this.chbIsAdmin.Location = new System.Drawing.Point(46, 154);
             this.chbIsAdmin.Name = "chbIsAdmin";
             this.chbIsAdmin.Size = new System.Drawing.Size(105, 20);
-            this.chbIsAdmin.TabIndex = 10;
+            this.chbIsAdmin.TabIndex = 4;
             this.chbIsAdmin.Text = "Administrator";
             this.chbIsAdmin.UseVisualStyleBackColor = true;
             // 
@@ -57,7 +57,7 @@
             this.chbIsAuditee.Location = new System.Drawing.Point(78, 115);
             this.chbIsAuditee.Name = "chbIsAuditee";
             this.chbIsAuditee.Size = new System.Drawing.Size(73, 20);
-            this.chbIsAuditee.TabIndex = 9;
+            this.chbIsAuditee.TabIndex = 3;
             this.chbIsAuditee.Text = "Auditee";
             this.chbIsAuditee.UseVisualStyleBackColor = true;
             // 
@@ -69,7 +69,7 @@
             this.chbIsAuditor.Location = new System.Drawing.Point(82, 76);
             this.chbIsAuditor.Name = "chbIsAuditor";
             this.chbIsAuditor.Size = new System.Drawing.Size(69, 20);
-            this.chbIsAuditor.TabIndex = 8;
+            this.chbIsAuditor.TabIndex = 2;
             this.chbIsAuditor.Text = "Auditor";
             this.chbIsAuditor.UseVisualStyleBackColor = true;
             // 
@@ -80,7 +80,7 @@
             this.lblName.Location = new System.Drawing.Point(56, 41);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(77, 16);
-            this.lblName.TabIndex = 12;
+            this.lblName.TabIndex = 0;
             this.lblName.Text = "Role Name";
             // 
             // txtName
@@ -90,7 +90,7 @@
             this.txtName.MaxLength = 50;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(300, 22);
-            this.txtName.TabIndex = 7;
+            this.txtName.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -101,7 +101,7 @@
             this.btnSave.Location = new System.Drawing.Point(182, 210);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
-            this.btnSave.TabIndex = 11;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;

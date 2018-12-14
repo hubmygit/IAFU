@@ -40,7 +40,7 @@
             this.lblPass.Location = new System.Drawing.Point(61, 45);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(162, 20);
-            this.lblPass.TabIndex = 3;
+            this.lblPass.TabIndex = 2;
             this.lblPass.Text = "New User\'s Password";
             // 
             // txtPass
@@ -50,7 +50,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.ReadOnly = true;
             this.txtPass.Size = new System.Drawing.Size(200, 26);
-            this.txtPass.TabIndex = 2;
+            this.txtPass.TabIndex = 1;
             // 
             // NewPassword
             // 

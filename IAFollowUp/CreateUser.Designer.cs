@@ -48,7 +48,7 @@
             this.cbRoles.Location = new System.Drawing.Point(134, 155);
             this.cbRoles.Name = "cbRoles";
             this.cbRoles.Size = new System.Drawing.Size(300, 24);
-            this.cbRoles.TabIndex = 33;
+            this.cbRoles.TabIndex = 4;
             // 
             // lblRole
             // 
@@ -57,7 +57,7 @@
             this.lblRole.Location = new System.Drawing.Point(91, 158);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(37, 16);
-            this.lblRole.TabIndex = 38;
+            this.lblRole.TabIndex = 0;
             this.lblRole.Text = "Role";
             // 
             // lblEmail
@@ -67,7 +67,7 @@
             this.lblEmail.Location = new System.Drawing.Point(86, 121);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 16);
-            this.lblEmail.TabIndex = 37;
+            this.lblEmail.TabIndex = 0;
             this.lblEmail.Text = "Email";
             // 
             // txtEmail
@@ -77,7 +77,7 @@
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(300, 22);
-            this.txtEmail.TabIndex = 32;
+            this.txtEmail.TabIndex = 3;
             // 
             // lblFullName
             // 
@@ -86,7 +86,7 @@
             this.lblFullName.Location = new System.Drawing.Point(59, 81);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(69, 16);
-            this.lblFullName.TabIndex = 36;
+            this.lblFullName.TabIndex = 0;
             this.lblFullName.Text = "Full Name";
             // 
             // txtFullName
@@ -96,7 +96,7 @@
             this.txtFullName.MaxLength = 100;
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(300, 22);
-            this.txtFullName.TabIndex = 31;
+            this.txtFullName.TabIndex = 2;
             // 
             // lblUserName
             // 
@@ -105,7 +105,7 @@
             this.lblUserName.Location = new System.Drawing.Point(51, 41);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(77, 16);
-            this.lblUserName.TabIndex = 35;
+            this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "User Name";
             // 
             // txtUserName
@@ -115,7 +115,7 @@
             this.txtUserName.MaxLength = 50;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(300, 22);
-            this.txtUserName.TabIndex = 30;
+            this.txtUserName.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -126,7 +126,7 @@
             this.btnSave.Location = new System.Drawing.Point(182, 210);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
-            this.btnSave.TabIndex = 34;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;

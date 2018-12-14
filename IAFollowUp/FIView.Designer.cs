@@ -46,8 +46,8 @@
             this.fIDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFIHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionReq = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,7 +73,6 @@
             this.colTitle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFICategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIsPublished = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblHeaders = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
             this.btnPublishDetails = new System.Windows.Forms.Button();
@@ -137,7 +136,7 @@
             this.gridControlDetails.MainView = this.gridViewDetails;
             this.gridControlDetails.Name = "gridControlDetails";
             this.gridControlDetails.Size = new System.Drawing.Size(984, 200);
-            this.gridControlDetails.TabIndex = 75;
+            this.gridControlDetails.TabIndex = 3;
             this.gridControlDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDetails,
             this.gridViewOwners});
@@ -218,6 +217,12 @@
             this.colDetailsId.FieldName = "Id";
             this.colDetailsId.Name = "colDetailsId";
             // 
+            // colFIHeaderId
+            // 
+            this.colFIHeaderId.Caption = "FIHeaderId";
+            this.colFIHeaderId.FieldName = "FIHeaderId";
+            this.colFIHeaderId.Name = "colFIHeaderId";
+            // 
             // colDescription
             // 
             this.colDescription.Caption = "Description";
@@ -225,12 +230,6 @@
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 0;
-            // 
-            // colFIHeaderId
-            // 
-            this.colFIHeaderId.Caption = "FIHeaderId";
-            this.colFIHeaderId.FieldName = "FIHeaderId";
-            this.colFIHeaderId.Name = "colFIHeaderId";
             // 
             // colActionDt
             // 
@@ -287,7 +286,7 @@
             this.btnCreateNewHeader.Location = new System.Drawing.Point(0, 102);
             this.btnCreateNewHeader.Name = "btnCreateNewHeader";
             this.btnCreateNewHeader.Size = new System.Drawing.Size(100, 30);
-            this.btnCreateNewHeader.TabIndex = 36;
+            this.btnCreateNewHeader.TabIndex = 2;
             this.btnCreateNewHeader.Text = "New Header";
             this.btnCreateNewHeader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateNewHeader.UseVisualStyleBackColor = true;
@@ -300,7 +299,7 @@
             this.btnCreateNewDetail.Location = new System.Drawing.Point(0, 354);
             this.btnCreateNewDetail.Name = "btnCreateNewDetail";
             this.btnCreateNewDetail.Size = new System.Drawing.Size(100, 30);
-            this.btnCreateNewDetail.TabIndex = 37;
+            this.btnCreateNewDetail.TabIndex = 4;
             this.btnCreateNewDetail.Text = "New Detail";
             this.btnCreateNewDetail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateNewDetail.UseVisualStyleBackColor = true;
@@ -314,7 +313,7 @@
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.ReadOnly = true;
             this.txtCompany.Size = new System.Drawing.Size(500, 22);
-            this.txtCompany.TabIndex = 69;
+            this.txtCompany.TabIndex = 0;
             // 
             // txtAuditTitle
             // 
@@ -328,7 +327,7 @@
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtAuditTitle.Size = new System.Drawing.Size(888, 50);
-            this.txtAuditTitle.TabIndex = 66;
+            this.txtAuditTitle.TabIndex = 0;
             // 
             // lblAuditTitle
             // 
@@ -337,7 +336,7 @@
             this.lblAuditTitle.Location = new System.Drawing.Point(11, 51);
             this.lblAuditTitle.Name = "lblAuditTitle";
             this.lblAuditTitle.Size = new System.Drawing.Size(67, 16);
-            this.lblAuditTitle.TabIndex = 68;
+            this.lblAuditTitle.TabIndex = 0;
             this.lblAuditTitle.Text = "Audit Title";
             // 
             // lblCompany
@@ -347,7 +346,7 @@
             this.lblCompany.Location = new System.Drawing.Point(12, 9);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(66, 16);
-            this.lblCompany.TabIndex = 67;
+            this.lblCompany.TabIndex = 0;
             this.lblCompany.Text = "Company";
             // 
             // txtYear
@@ -358,7 +357,7 @@
             this.txtYear.Name = "txtYear";
             this.txtYear.ReadOnly = true;
             this.txtYear.Size = new System.Drawing.Size(200, 22);
-            this.txtYear.TabIndex = 71;
+            this.txtYear.TabIndex = 0;
             // 
             // lblYear
             // 
@@ -367,7 +366,7 @@
             this.lblYear.Location = new System.Drawing.Point(729, 9);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(37, 16);
-            this.lblYear.TabIndex = 70;
+            this.lblYear.TabIndex = 0;
             this.lblYear.Text = "Year";
             // 
             // gridControlHeaders
@@ -381,7 +380,7 @@
             this.gridControlHeaders.Name = "gridControlHeaders";
             this.gridControlHeaders.ShowOnlyPredefinedDetails = true;
             this.gridControlHeaders.Size = new System.Drawing.Size(984, 200);
-            this.gridControlHeaders.TabIndex = 72;
+            this.gridControlHeaders.TabIndex = 1;
             this.gridControlHeaders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewHeaders});
             // 
@@ -418,8 +417,7 @@
             this.colAuditId,
             this.colTitle,
             this.colFICategory,
-            this.colIsDeleted,
-            this.colIsPublished});
+            this.colIsDeleted});
             this.gridViewHeaders.GridControl = this.gridControlHeaders;
             this.gridViewHeaders.Name = "gridViewHeaders";
             this.gridViewHeaders.OptionsBehavior.Editable = false;
@@ -458,13 +456,11 @@
             // 
             // colIsDeleted
             // 
+            this.colIsDeleted.Caption = "Deleted";
             this.colIsDeleted.FieldName = "IsDeleted";
             this.colIsDeleted.Name = "colIsDeleted";
-            // 
-            // colIsPublished
-            // 
-            this.colIsPublished.FieldName = "IsPublished";
-            this.colIsPublished.Name = "colIsPublished";
+            this.colIsDeleted.Visible = true;
+            this.colIsDeleted.VisibleIndex = 2;
             // 
             // lblHeaders
             // 
@@ -474,7 +470,7 @@
             this.lblHeaders.Location = new System.Drawing.Point(442, 102);
             this.lblHeaders.Name = "lblHeaders";
             this.lblHeaders.Size = new System.Drawing.Size(100, 25);
-            this.lblHeaders.TabIndex = 73;
+            this.lblHeaders.TabIndex = 0;
             this.lblHeaders.Text = "Headers";
             // 
             // lblDetails
@@ -485,7 +481,7 @@
             this.lblDetails.Location = new System.Drawing.Point(442, 354);
             this.lblDetails.Name = "lblDetails";
             this.lblDetails.Size = new System.Drawing.Size(85, 25);
-            this.lblDetails.TabIndex = 74;
+            this.lblDetails.TabIndex = 0;
             this.lblDetails.Text = "Details";
             // 
             // btnPublishDetails
@@ -496,7 +492,7 @@
             this.btnPublishDetails.Location = new System.Drawing.Point(884, 354);
             this.btnPublishDetails.Name = "btnPublishDetails";
             this.btnPublishDetails.Size = new System.Drawing.Size(100, 30);
-            this.btnPublishDetails.TabIndex = 76;
+            this.btnPublishDetails.TabIndex = 5;
             this.btnPublishDetails.Text = "Publish All";
             this.btnPublishDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPublishDetails.UseVisualStyleBackColor = true;
@@ -556,7 +552,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTitle;
         private DevExpress.XtraGrid.Columns.GridColumn colFICategory;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDeleted;
-        private DevExpress.XtraGrid.Columns.GridColumn colIsPublished;
         private System.Windows.Forms.Label lblHeaders;
         public System.Windows.Forms.ContextMenuStrip cmsHeader;
         private System.Windows.Forms.ToolStripMenuItem MIeditHeader;

@@ -32,15 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmailToSend));
             this.btnSendMail = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.emailPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colRecipientFullName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRecipientEmail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBody = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSubject = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailPropertiesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSendMail
@@ -52,7 +52,7 @@
             this.btnSendMail.Location = new System.Drawing.Point(332, 390);
             this.btnSendMail.Name = "btnSendMail";
             this.btnSendMail.Size = new System.Drawing.Size(120, 40);
-            this.btnSendMail.TabIndex = 72;
+            this.btnSendMail.TabIndex = 2;
             this.btnSendMail.Text = "Send";
             this.btnSendMail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSendMail.UseVisualStyleBackColor = true;
@@ -65,9 +65,13 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(784, 200);
-            this.gridControl1.TabIndex = 73;
+            this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            // 
+            // emailPropertiesBindingSource
+            // 
+            this.emailPropertiesBindingSource.DataSource = typeof(IAFollowUp.EmailProperties);
             // 
             // gridView1
             // 
@@ -78,10 +82,6 @@
             this.colSubject});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            // 
-            // emailPropertiesBindingSource
-            // 
-            this.emailPropertiesBindingSource.DataSource = typeof(IAFollowUp.EmailProperties);
             // 
             // colRecipientFullName
             // 
@@ -123,8 +123,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Send Emails";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailPropertiesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }

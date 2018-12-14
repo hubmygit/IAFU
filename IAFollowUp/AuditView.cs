@@ -19,6 +19,8 @@ namespace IAFollowUp
             auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin);
 
             gridControl1.DataSource = auditBList;
+            
+            gridView1.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
         }
 
         public BindingList<Audit> auditBList = new BindingList<Audit>();

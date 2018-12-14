@@ -68,7 +68,7 @@
             this.lblDetail.Location = new System.Drawing.Point(386, 237);
             this.lblDetail.Name = "lblDetail";
             this.lblDetail.Size = new System.Drawing.Size(73, 25);
-            this.lblDetail.TabIndex = 50;
+            this.lblDetail.TabIndex = 0;
             this.lblDetail.Text = "Detail";
             // 
             // lblDetailDescription
@@ -78,7 +78,7 @@
             this.lblDetailDescription.Location = new System.Drawing.Point(10, 290);
             this.lblDetailDescription.Name = "lblDetailDescription";
             this.lblDetailDescription.Size = new System.Drawing.Size(89, 20);
-            this.lblDetailDescription.TabIndex = 53;
+            this.lblDetailDescription.TabIndex = 0;
             this.lblDetailDescription.Text = "Description";
             // 
             // txtDescription
@@ -92,7 +92,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtDescription.Size = new System.Drawing.Size(693, 72);
-            this.txtDescription.TabIndex = 52;
+            this.txtDescription.TabIndex = 1;
             // 
             // txtActionReq
             // 
@@ -105,7 +105,7 @@
             this.txtActionReq.Name = "txtActionReq";
             this.txtActionReq.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtActionReq.Size = new System.Drawing.Size(693, 72);
-            this.txtActionReq.TabIndex = 55;
+            this.txtActionReq.TabIndex = 5;
             // 
             // lblActionReq
             // 
@@ -114,7 +114,7 @@
             this.lblActionReq.Location = new System.Drawing.Point(10, 445);
             this.lblActionReq.Name = "lblActionReq";
             this.lblActionReq.Size = new System.Drawing.Size(123, 20);
-            this.lblActionReq.TabIndex = 56;
+            this.lblActionReq.TabIndex = 0;
             this.lblActionReq.Text = "Action Required";
             // 
             // txtActionCode
@@ -124,7 +124,7 @@
             this.txtActionCode.MaxLength = 3;
             this.txtActionCode.Name = "txtActionCode";
             this.txtActionCode.Size = new System.Drawing.Size(200, 22);
-            this.txtActionCode.TabIndex = 60;
+            this.txtActionCode.TabIndex = 2;
             // 
             // lblActionCode
             // 
@@ -133,7 +133,7 @@
             this.lblActionCode.Location = new System.Drawing.Point(10, 343);
             this.lblActionCode.Name = "lblActionCode";
             this.lblActionCode.Size = new System.Drawing.Size(96, 20);
-            this.lblActionCode.TabIndex = 59;
+            this.lblActionCode.TabIndex = 0;
             this.lblActionCode.Text = "Action Code";
             // 
             // lblActionDate
@@ -143,7 +143,7 @@
             this.lblActionDate.Location = new System.Drawing.Point(10, 373);
             this.lblActionDate.Name = "lblActionDate";
             this.lblActionDate.Size = new System.Drawing.Size(93, 20);
-            this.lblActionDate.TabIndex = 58;
+            this.lblActionDate.TabIndex = 0;
             this.lblActionDate.Text = "Action Date";
             // 
             // dtpActionDate
@@ -154,7 +154,7 @@
             this.dtpActionDate.Location = new System.Drawing.Point(139, 371);
             this.dtpActionDate.Name = "dtpActionDate";
             this.dtpActionDate.Size = new System.Drawing.Size(200, 22);
-            this.dtpActionDate.TabIndex = 62;
+            this.dtpActionDate.TabIndex = 3;
             this.dtpActionDate.ValueChanged += new System.EventHandler(this.dtpActionDate_ValueChanged);
             this.dtpActionDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpActionDate_KeyDown);
             // 
@@ -167,7 +167,7 @@
             this.btnSave.Location = new System.Drawing.Point(362, 664);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
-            this.btnSave.TabIndex = 63;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -183,7 +183,7 @@
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.ReadOnly = true;
             this.txtCompany.Size = new System.Drawing.Size(735, 22);
-            this.txtCompany.TabIndex = 69;
+            this.txtCompany.TabIndex = 0;
             // 
             // txtAuditTitle
             // 
@@ -197,7 +197,7 @@
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtAuditTitle.Size = new System.Drawing.Size(735, 72);
-            this.txtAuditTitle.TabIndex = 66;
+            this.txtAuditTitle.TabIndex = 0;
             // 
             // lblAuditTitle
             // 
@@ -206,7 +206,7 @@
             this.lblAuditTitle.Location = new System.Drawing.Point(11, 57);
             this.lblAuditTitle.Name = "lblAuditTitle";
             this.lblAuditTitle.Size = new System.Drawing.Size(67, 16);
-            this.lblAuditTitle.TabIndex = 68;
+            this.lblAuditTitle.TabIndex = 0;
             this.lblAuditTitle.Text = "Audit Title";
             // 
             // lblCompany
@@ -216,7 +216,7 @@
             this.lblCompany.Location = new System.Drawing.Point(11, 15);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(66, 16);
-            this.lblCompany.TabIndex = 67;
+            this.lblCompany.TabIndex = 0;
             this.lblCompany.Text = "Company";
             // 
             // txtCategory
@@ -229,7 +229,7 @@
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(735, 22);
-            this.txtCategory.TabIndex = 71;
+            this.txtCategory.TabIndex = 0;
             // 
             // txtHeaderTitle
             // 
@@ -243,7 +243,7 @@
             this.txtHeaderTitle.ReadOnly = true;
             this.txtHeaderTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtHeaderTitle.Size = new System.Drawing.Size(735, 72);
-            this.txtHeaderTitle.TabIndex = 70;
+            this.txtHeaderTitle.TabIndex = 0;
             // 
             // lblCategory
             // 
@@ -252,7 +252,7 @@
             this.lblCategory.Location = new System.Drawing.Point(11, 121);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(63, 16);
-            this.lblCategory.TabIndex = 73;
+            this.lblCategory.TabIndex = 0;
             this.lblCategory.Text = "Category";
             // 
             // lblHeaderTitle
@@ -262,7 +262,7 @@
             this.lblHeaderTitle.Location = new System.Drawing.Point(11, 173);
             this.lblHeaderTitle.Name = "lblHeaderTitle";
             this.lblHeaderTitle.Size = new System.Drawing.Size(80, 16);
-            this.lblHeaderTitle.TabIndex = 72;
+            this.lblHeaderTitle.TabIndex = 0;
             this.lblHeaderTitle.Text = "HeaderTitle";
             // 
             // dgvOwners
@@ -304,7 +304,7 @@
             this.dgvOwners.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvOwners.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOwners.Size = new System.Drawing.Size(693, 153);
-            this.dgvOwners.TabIndex = 74;
+            this.dgvOwners.TabIndex = 6;
             this.dgvOwners.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOwners_CellValueChanged);
             this.dgvOwners.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvOwners_CurrentCellDirtyStateChanged);
             // 
@@ -337,7 +337,7 @@
             this.lblOwners.Location = new System.Drawing.Point(10, 524);
             this.lblOwners.Name = "lblOwners";
             this.lblOwners.Size = new System.Drawing.Size(63, 20);
-            this.lblOwners.TabIndex = 75;
+            this.lblOwners.TabIndex = 0;
             this.lblOwners.Text = "Owners";
             // 
             // chbIsClosed
@@ -348,7 +348,7 @@
             this.chbIsClosed.Location = new System.Drawing.Point(139, 399);
             this.chbIsClosed.Name = "chbIsClosed";
             this.chbIsClosed.Size = new System.Drawing.Size(15, 14);
-            this.chbIsClosed.TabIndex = 77;
+            this.chbIsClosed.TabIndex = 4;
             this.chbIsClosed.UseVisualStyleBackColor = true;
             // 
             // lblIsClosed
@@ -358,7 +358,7 @@
             this.lblIsClosed.Location = new System.Drawing.Point(10, 395);
             this.lblIsClosed.Name = "lblIsClosed";
             this.lblIsClosed.Size = new System.Drawing.Size(58, 20);
-            this.lblIsClosed.TabIndex = 78;
+            this.lblIsClosed.TabIndex = 0;
             this.lblIsClosed.Text = "Closed";
             // 
             // FIDetailInsert

@@ -46,7 +46,7 @@
             this.lblFullName.Location = new System.Drawing.Point(114, 77);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(51, 13);
-            this.lblFullName.TabIndex = 15;
+            this.lblFullName.TabIndex = 0;
             this.lblFullName.Text = "unknown";
             // 
             // txtUserName
@@ -55,7 +55,7 @@
             this.txtUserName.Location = new System.Drawing.Point(117, 52);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(164, 22);
-            this.txtUserName.TabIndex = 10;
+            this.txtUserName.TabIndex = 1;
             this.txtUserName.Text = "hkylidis";
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
@@ -65,7 +65,7 @@
             this.btnLogin.Location = new System.Drawing.Point(306, 107);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 25);
-            this.btnLogin.TabIndex = 14;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -77,7 +77,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(164, 22);
-            this.txtPassword.TabIndex = 12;
+            this.txtPassword.TabIndex = 2;
             this.txtPassword.Text = "12345QWERTY!@#";
             // 
             // lblPassword
@@ -87,7 +87,7 @@
             this.lblPassword.Location = new System.Drawing.Point(34, 111);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(68, 16);
-            this.lblPassword.TabIndex = 13;
+            this.lblPassword.TabIndex = 0;
             this.lblPassword.Text = "Password";
             // 
             // lblUserName
@@ -97,7 +97,7 @@
             this.lblUserName.Location = new System.Drawing.Point(34, 55);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(77, 16);
-            this.lblUserName.TabIndex = 11;
+            this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "User Name";
             // 
             // statusStrip1
@@ -107,7 +107,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 200);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(414, 22);
-            this.statusStrip1.TabIndex = 16;
+            this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripMess

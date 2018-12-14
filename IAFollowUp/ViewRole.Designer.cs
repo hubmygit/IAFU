@@ -97,7 +97,7 @@
             this.dgvRoleView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRoleView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRoleView.Size = new System.Drawing.Size(964, 393);
-            this.dgvRoleView.TabIndex = 15;
+            this.dgvRoleView.TabIndex = 1;
             this.dgvRoleView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvRoleView_MouseDown);
             // 
             // Id
@@ -169,7 +169,7 @@
             this.btnNew.Location = new System.Drawing.Point(12, 12);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(100, 31);
-            this.btnNew.TabIndex = 16;
+            this.btnNew.TabIndex = 2;
             this.btnNew.Text = "New Role";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);

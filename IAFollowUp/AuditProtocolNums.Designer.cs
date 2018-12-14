@@ -51,7 +51,7 @@
             this.txtAuditNumber.MaxLength = 3;
             this.txtAuditNumber.Name = "txtAuditNumber";
             this.txtAuditNumber.Size = new System.Drawing.Size(184, 22);
-            this.txtAuditNumber.TabIndex = 6;
+            this.txtAuditNumber.TabIndex = 1;
             // 
             // lblAuditNumber
             // 
@@ -60,7 +60,7 @@
             this.lblAuditNumber.Location = new System.Drawing.Point(12, 206);
             this.lblAuditNumber.Name = "lblAuditNumber";
             this.lblAuditNumber.Size = new System.Drawing.Size(89, 16);
-            this.lblAuditNumber.TabIndex = 5;
+            this.lblAuditNumber.TabIndex = 0;
             this.lblAuditNumber.Text = "Audit Number";
             // 
             // txtIASentNumber
@@ -73,7 +73,7 @@
             this.txtIASentNumber.MaxLength = 3;
             this.txtIASentNumber.Name = "txtIASentNumber";
             this.txtIASentNumber.Size = new System.Drawing.Size(184, 22);
-            this.txtIASentNumber.TabIndex = 8;
+            this.txtIASentNumber.TabIndex = 2;
             // 
             // lblIASentNumber
             // 
@@ -82,7 +82,7 @@
             this.lblIASentNumber.Location = new System.Drawing.Point(12, 234);
             this.lblIASentNumber.Name = "lblIASentNumber";
             this.lblIASentNumber.Size = new System.Drawing.Size(101, 16);
-            this.lblIASentNumber.TabIndex = 7;
+            this.lblIASentNumber.TabIndex = 0;
             this.lblIASentNumber.Text = "IA Sent Number";
             // 
             // txtCompany
@@ -95,7 +95,7 @@
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.ReadOnly = true;
             this.txtCompany.Size = new System.Drawing.Size(653, 22);
-            this.txtCompany.TabIndex = 69;
+            this.txtCompany.TabIndex = 0;
             // 
             // txtAuditTitle
             // 
@@ -109,7 +109,7 @@
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtAuditTitle.Size = new System.Drawing.Size(653, 72);
-            this.txtAuditTitle.TabIndex = 66;
+            this.txtAuditTitle.TabIndex = 0;
             // 
             // lblAuditTitle
             // 
@@ -118,7 +118,7 @@
             this.lblAuditTitle.Location = new System.Drawing.Point(12, 51);
             this.lblAuditTitle.Name = "lblAuditTitle";
             this.lblAuditTitle.Size = new System.Drawing.Size(67, 16);
-            this.lblAuditTitle.TabIndex = 68;
+            this.lblAuditTitle.TabIndex = 0;
             this.lblAuditTitle.Text = "Audit Title";
             // 
             // lblCompany
@@ -128,7 +128,7 @@
             this.lblCompany.Location = new System.Drawing.Point(12, 9);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(66, 16);
-            this.lblCompany.TabIndex = 67;
+            this.lblCompany.TabIndex = 0;
             this.lblCompany.Text = "Company";
             // 
             // lblProtocolNums
@@ -139,7 +139,7 @@
             this.lblProtocolNums.Location = new System.Drawing.Point(303, 153);
             this.lblProtocolNums.Name = "lblProtocolNums";
             this.lblProtocolNums.Size = new System.Drawing.Size(178, 24);
-            this.lblProtocolNums.TabIndex = 70;
+            this.lblProtocolNums.TabIndex = 0;
             this.lblProtocolNums.Text = "Protocol Numbers";
             // 
             // btnSave
@@ -151,7 +151,7 @@
             this.btnSave.Location = new System.Drawing.Point(332, 310);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
-            this.btnSave.TabIndex = 71;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;

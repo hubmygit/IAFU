@@ -46,7 +46,7 @@
             this.btnOpenFile.Location = new System.Drawing.Point(29, 57);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(120, 28);
-            this.btnOpenFile.TabIndex = 40;
+            this.btnOpenFile.TabIndex = 2;
             this.btnOpenFile.Text = "Open File";
             this.btnOpenFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpenFile.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@
             this.btnRemoveAll.Location = new System.Drawing.Point(29, 137);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(120, 28);
-            this.btnRemoveAll.TabIndex = 42;
+            this.btnRemoveAll.TabIndex = 4;
             this.btnRemoveAll.Text = "Remove All";
             this.btnRemoveAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveAll.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             this.btnRemoveFile.Location = new System.Drawing.Point(29, 97);
             this.btnRemoveFile.Name = "btnRemoveFile";
             this.btnRemoveFile.Size = new System.Drawing.Size(120, 28);
-            this.btnRemoveFile.TabIndex = 41;
+            this.btnRemoveFile.TabIndex = 3;
             this.btnRemoveFile.Text = "Remove File";
             this.btnRemoveFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveFile.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@
             this.lvAttachedFiles.MultiSelect = false;
             this.lvAttachedFiles.Name = "lvAttachedFiles";
             this.lvAttachedFiles.Size = new System.Drawing.Size(280, 148);
-            this.lvAttachedFiles.TabIndex = 38;
+            this.lvAttachedFiles.TabIndex = 5;
             this.lvAttachedFiles.UseCompatibleStateImageBehavior = false;
             this.lvAttachedFiles.View = System.Windows.Forms.View.Details;
             // 
@@ -109,7 +109,7 @@
             this.btnSave.Location = new System.Drawing.Point(182, 199);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
-            this.btnSave.TabIndex = 43;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -123,7 +123,7 @@
             this.btnAddFiles.Location = new System.Drawing.Point(31, 17);
             this.btnAddFiles.Name = "btnAddFiles";
             this.btnAddFiles.Size = new System.Drawing.Size(120, 28);
-            this.btnAddFiles.TabIndex = 39;
+            this.btnAddFiles.TabIndex = 1;
             this.btnAddFiles.Text = "Add File(s)";
             this.btnAddFiles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddFiles.UseVisualStyleBackColor = true;
