@@ -262,26 +262,31 @@ namespace IAFollowUp
                     if (detailsToSendEmail.Count > 0) //(detailsPublished - Closed) > 0 then send email
                     {
                         //...................SendEmail...................
-                        List<EmailProperties> emailList = new List<EmailProperties>();
-
                         EmailProperties emailProp = new EmailProperties();
                         emailProp.Subject = "ΕΣΩΤΕΡΙΚΟΣ ΕΛΕΓΧΟΣ: " + thisAudit.Title;
                         emailProp.Body = "Σας ενημερώνουμε ότι έχουν καταχωρηθεί στην εφαρμογή του Εσωτερικού Ελέγχου ευρήματα / ενέργειες της περιοχής ευθύνης σας. Παρακαλούμε για τις ενέργειές σας.";
-                        
+
+                        List<Recipient> distinctRecipients = new List<Recipient>();
+
                         foreach (FIDetail det in detailsToSendEmail)
                         {
                             foreach (Users usr in det.Owners)
                             {
-                                emailProp.RecipientFullName = usr.FullName;
-                                emailProp.RecipientEmail = usr.getEmail();
-                                //emailProp.ToSend = true;
-                                emailList.Add(emailProp);
+                                Recipient thisRecipient = new Recipient() { FullName = usr.FullName, Email = usr.getEmail() };
+
+                                if (distinctRecipients.Exists(i => i.Email == thisRecipient.Email) == false || distinctRecipients.Exists(i => i.FullName == thisRecipient.FullName) == false)
+                                {
+                                    distinctRecipients.Add(thisRecipient);
+                                }
                             }
                         }
 
-                        EmailToSend frmSendEmailToAuditees = new EmailToSend(emailList);
+                        emailProp.Recipients = distinctRecipients;
+                        //emailProp.ToSend = true;
+                        //emailList.Add(emailProp);
+
+                        EmailToSend frmSendEmailToAuditees = new EmailToSend(emailProp);
                         frmSendEmailToAuditees.ShowDialog();
-                        //Check distinct mails per User!!!!!!!!!!!!!!!!!!!!!! and show into form...
                     }
 
                     //update audit Protocol numbers

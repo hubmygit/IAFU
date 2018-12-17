@@ -15,18 +15,32 @@ namespace IAFollowUp
         {
             InitializeComponent();
         }
-        public EmailToSend(List<EmailProperties> emailList)
+        public EmailToSend(EmailProperties emailList)
         {
             InitializeComponent();
-            
-            gridControl1.DataSource = new BindingList<EmailProperties>(emailList);
+
+            thisEmailList = emailList;
+
+            txtSubject.Text = emailList.Subject;
+            txtBody.Text = emailList.Body;
+
+            gridControl1.DataSource = new BindingList<Recipient>(emailList.Recipients);
         }
+
+        private EmailProperties thisEmailList = new EmailProperties();
 
         private void btnSendMail_Click(object sender, EventArgs e)
         {
             //send email(s)....
+            if (Email.SendBcc(thisEmailList))
+            {
+                MessageBox.Show("Email(s) sent!");
+            }
+            else
+            {
+                MessageBox.Show("Emails have not been sent!");
+            }
 
-            MessageBox.Show("Email(s) sent!");
             Close();
         }
     }

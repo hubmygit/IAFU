@@ -54,6 +54,9 @@
     <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.Exchange.WebServices">
+      <HintPath>..\Files\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -166,12 +169,15 @@
     <Compile Include="ModelsLib\ComboboxItem.cs" />
     <Compile Include="ModelsLib\Companies.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
+    <Compile Include="ModelsLib\Email.cs" />
+    <Compile Include="ModelsLib\EmailParams.cs" />
     <Compile Include="ModelsLib\EmailProperties.cs" />
     <Compile Include="ModelsLib\FICategory.cs" />
     <Compile Include="ModelsLib\FIDetail.cs" />
     <Compile Include="ModelsLib\FIHeader.cs" />
     <Compile Include="ModelsLib\LibFunctions.cs" />
     <Compile Include="ModelsLib\PasswordHistory.cs" />
+    <Compile Include="ModelsLib\Recipient.cs" />
     <Compile Include="ModelsLib\Role.cs" />
     <Compile Include="ModelsLib\SqlDBInfo.cs" />
     <Compile Include="ModelsLib\myCryptographyFunctions.cs" />
