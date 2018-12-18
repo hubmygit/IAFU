@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -410,6 +411,90 @@ namespace IAFollowUp
 
             }
             sqlConn.Close();
+
+            return ret;
+        }
+
+        public static List<FIDetail> Select(bool showDeleted)
+        {
+            List<FIDetail> ret = new List<FIDetail>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "D.ActionDt, " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
+                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "FROM [dbo].[FIDetail] D ";
+
+            if (!showDeleted)
+            {
+                SelectSt += "WHERE isnull(D.[IsDeleted], 'FALSE') = 'FALSE' ";
+            }
+
+            SelectSt += "ORDER BY D.Id "; //ToDo
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    FIDetail tmp = new FIDetail();
+                    DateTime? DetailActionDt;
+
+                    if (reader["ActionDt"] == System.DBNull.Value)
+                    {
+                        DetailActionDt = null;
+                    }
+                    else
+                    {
+                        DetailActionDt = Convert.ToDateTime(reader["ActionDt"].ToString());
+                    }
+
+                    tmp = new FIDetail()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        FIHeaderId = Convert.ToInt32(reader["FIHeaderId"].ToString()),
+                        Description = reader["Description"].ToString(),
+                        ActionDt = DetailActionDt,
+                        ActionReq = reader["ActionReq"].ToString(),
+                        ActionCode = reader["ActionCode"].ToString(),
+                        IsClosed = Convert.ToBoolean(reader["IsClosed"].ToString()),
+                        IsPublished = Convert.ToBoolean(reader["IsPublished"].ToString()),
+                        IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
+                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
+                        Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                    };
+
+                    //==============================================================
+
+                    FIDetailOwners detailOwners = new FIDetailOwners(tmp.Owners);
+
+                    if (UserInfo.roleDetails.IsAdmin)
+                    {
+                        ret.Add(tmp);
+                    }
+                    //owner ή το detail να είναι published (από αυτά που επιτρέπεται να δει!)
+                    else if (detailOwners.IsUser_DetailOwner())
+                    {
+                        ret.Add(tmp);
+                    }
+                    //==============================================================
+
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
 
             return ret;
         }

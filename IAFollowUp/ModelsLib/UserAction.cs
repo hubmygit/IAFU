@@ -10,6 +10,7 @@ namespace IAFollowUp
     {
         None,
 
+        //auditors----->
         Audit_Create,
         Audit_View,
         Audit_Edit,
@@ -27,7 +28,12 @@ namespace IAFollowUp
         Detail_Edit,
         Detail_Delete,
         Detail_Publish,
-        Detail_Finalize
+        Detail_Finalize,
+        //auditors<-----
+
+        //auditees----->
+        FI_View
+        //auditees<-----
     }
 
     public class UserAction
@@ -74,6 +80,9 @@ namespace IAFollowUp
 
             AuditOwners auditOwners = new AuditOwners(audit.Auditor1, audit.Auditor2, audit.Supervisor);
             bool isUserAuditOwner = auditOwners.IsUser_AuditOwner();
+
+            //FIDetailOwners detailOwners = new FIDetailOwners(detail.Owners);
+            //bool isUserDetailOwner = detailOwners.IsUser_DetailOwner();
 
             switch (action)
             {
@@ -612,6 +621,16 @@ namespace IAFollowUp
                         break;
                     }
                 //<---------- Detail ----------
+
+                //---------- FI ---------->
+                case Action.FI_View:
+                    {
+
+                        //checking auditees(detail owners) into select function (detail/header/audit infos)
+                        ret = true;
+                        break;
+                    }
+                //<---------- FI ----------
 
                 default:
                     {

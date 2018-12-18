@@ -36,7 +36,7 @@
             this.auditViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertNewAuditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +95,7 @@
             // auditViewToolStripMenuItem
             // 
             this.auditViewToolStripMenuItem.Name = "auditViewToolStripMenuItem";
-            this.auditViewToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.auditViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.auditViewToolStripMenuItem.Tag = "";
             this.auditViewToolStripMenuItem.Text = "Audit View";
             this.auditViewToolStripMenuItem.Click += new System.EventHandler(this.auditViewToolStripMenuItem_Click);
@@ -103,26 +103,27 @@
             // insertNewAuditToolStripMenuItem
             // 
             this.insertNewAuditToolStripMenuItem.Name = "insertNewAuditToolStripMenuItem";
-            this.insertNewAuditToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.insertNewAuditToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.insertNewAuditToolStripMenuItem.Text = "Insert New Audit";
             this.insertNewAuditToolStripMenuItem.Click += new System.EventHandler(this.insertNewAuditToolStripMenuItem_Click);
             // 
             // auditeesToolStripMenuItem
             // 
             this.auditeesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem1});
+            this.fiToolStripMenuItem});
             this.auditeesToolStripMenuItem.Name = "auditeesToolStripMenuItem";
             this.auditeesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.auditeesToolStripMenuItem.Tag = "2";
             this.auditeesToolStripMenuItem.Text = "Auditees";
             this.auditeesToolStripMenuItem.Visible = false;
             // 
-            // testToolStripMenuItem1
+            // fiToolStripMenuItem
             // 
-            this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
-            this.testToolStripMenuItem1.Size = new System.Drawing.Size(96, 22);
-            this.testToolStripMenuItem1.Tag = "1";
-            this.testToolStripMenuItem1.Text = "Test";
+            this.fiToolStripMenuItem.Name = "fiToolStripMenuItem";
+            this.fiToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.fiToolStripMenuItem.Tag = "1";
+            this.fiToolStripMenuItem.Text = "Findings and Improvements";
+            this.fiToolStripMenuItem.Click += new System.EventHandler(this.fiToolStripMenuItem_Click);
             // 
             // administratorToolStripMenuItem
             // 
@@ -141,35 +142,35 @@
             // viewRolesToolStripMenuItem
             // 
             this.viewRolesToolStripMenuItem.Name = "viewRolesToolStripMenuItem";
-            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.viewRolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewRolesToolStripMenuItem.Text = "View / Edit Roles";
             this.viewRolesToolStripMenuItem.Click += new System.EventHandler(this.viewRolesToolStripMenuItem_Click);
             // 
             // createRoleToolStripMenuItem
             // 
             this.createRoleToolStripMenuItem.Name = "createRoleToolStripMenuItem";
-            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.createRoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createRoleToolStripMenuItem.Text = "Create New Role";
             this.createRoleToolStripMenuItem.Click += new System.EventHandler(this.createRoleToolStripMenuItem_Click);
             // 
             // viewUsersToolStripMenuItem
             // 
             this.viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
-            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewUsersToolStripMenuItem.Text = "View / Edit Users";
             this.viewUsersToolStripMenuItem.Click += new System.EventHandler(this.viewUsersToolStripMenuItem_Click);
             // 
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createUserToolStripMenuItem.Text = "Create New User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.createUserToolStripMenuItem_Click);
             // 
             // viewChangeLogToolStripMenuItem
             // 
             this.viewChangeLogToolStripMenuItem.Name = "viewChangeLogToolStripMenuItem";
-            this.viewChangeLogToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.viewChangeLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewChangeLogToolStripMenuItem.Text = "View Change Log";
             this.viewChangeLogToolStripMenuItem.Click += new System.EventHandler(this.viewChangeLogToolStripMenuItem_Click);
             // 
@@ -184,7 +185,7 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
@@ -222,7 +223,7 @@
         private System.Windows.Forms.ToolStripMenuItem auditViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insertNewAuditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auditeesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem fiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administratorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewRolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createRoleToolStripMenuItem;

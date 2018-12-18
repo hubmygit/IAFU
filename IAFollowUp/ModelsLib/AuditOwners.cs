@@ -17,9 +17,9 @@ namespace IAFollowUp
 
         public AuditOwners(Users auditor1, Users auditor2, Users supervisor)
         {
-            auditor1 = Auditor1;
-            auditor2 = Auditor2;
-            supervisor = Supervisor;
+            Auditor1 = auditor1;
+            Auditor2 = auditor2;
+            Supervisor = supervisor;
         }
 
         public bool IsUser_AuditOwner()

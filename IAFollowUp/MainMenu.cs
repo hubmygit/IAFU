@@ -32,6 +32,7 @@ namespace IAFollowUp
         public Role role = new Role();
         UserAuthorization UserAuth = new UserAuthorization();
 
+        //help---------->
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChangePassword frmChangePass = new ChangePassword(user);
@@ -42,7 +43,9 @@ namespace IAFollowUp
                 return;
             }
         }
+        //help<----------
 
+        //administrator---------->
         private void createRoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateRole frmNewRole = new CreateRole();
@@ -67,6 +70,14 @@ namespace IAFollowUp
             frmViewUser.ShowDialog();
         }
 
+        private void viewChangeLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeLogView viewChangeLog = new ChangeLogView();
+            viewChangeLog.ShowDialog();
+        }
+        //administrator<----------
+
+        //auditors---------->
         private void auditViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UserAction.IsLegal(Action.Audit_View))
@@ -84,13 +95,14 @@ namespace IAFollowUp
                 AuditInsert frmInsertNewAudit = new AuditInsert();
                 frmInsertNewAudit.ShowDialog();
             }
-        }
+        }        
+        //auditors<----------
 
-        private void viewChangeLogToolStripMenuItem_Click(object sender, EventArgs e)
+        //auditees---------->
+        private void fiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChangeLogView viewChangeLog = new ChangeLogView();
-            viewChangeLog.ShowDialog();
-        }
 
+        }
+        //auditees<----------
     }
 }
