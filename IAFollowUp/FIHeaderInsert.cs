@@ -72,8 +72,8 @@ namespace IAFollowUp
             newHeaderRecord = new FIHeader()
             {
                 Id = oldHeaderRecord.Id, //only on update, else 0
-                //Title = txtHeaderTitle.Text,
-                Title = txtHeaderTitle.Text.Replace('\r', ' ').Replace('\n', ' '),
+                Title = txtHeaderTitle.Text,
+                //Title = txtHeaderTitle.Text.Replace('\r', ' ').Replace('\n', ' '),
                 FICategory = LibFunctions.getComboboxItem<FICategory>(cbCategory),
                 AuditId = currentAudit.Id
 

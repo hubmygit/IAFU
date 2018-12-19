@@ -71,11 +71,14 @@
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colFICategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblHeaders = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
             this.btnPublishDetails = new System.Windows.Forms.Button();
+            this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.repositoryItemMemoEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOwners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
@@ -85,6 +88,9 @@
             this.cmsHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).BeginInit();
             this.SuspendLayout();
             // 
             // gridViewOwners
@@ -135,6 +141,9 @@
             this.gridControlDetails.Location = new System.Drawing.Point(0, 387);
             this.gridControlDetails.MainView = this.gridViewDetails;
             this.gridControlDetails.Name = "gridControlDetails";
+            this.gridControlDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemMemoEdit2,
+            this.repositoryItemMemoEdit3});
             this.gridControlDetails.Size = new System.Drawing.Size(984, 200);
             this.gridControlDetails.TabIndex = 3;
             this.gridControlDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -210,6 +219,7 @@
             this.gridViewDetails.Name = "gridViewDetails";
             this.gridViewDetails.OptionsBehavior.Editable = false;
             this.gridViewDetails.OptionsBehavior.ReadOnly = true;
+            this.gridViewDetails.OptionsView.RowAutoHeight = true;
             // 
             // colDetailsId
             // 
@@ -226,6 +236,7 @@
             // colDescription
             // 
             this.colDescription.Caption = "Description";
+            this.colDescription.ColumnEdit = this.repositoryItemMemoEdit3;
             this.colDescription.FieldName = "Description";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
@@ -242,6 +253,7 @@
             // colActionReq
             // 
             this.colActionReq.Caption = "Action Required";
+            this.colActionReq.ColumnEdit = this.repositoryItemMemoEdit2;
             this.colActionReq.FieldName = "ActionReq";
             this.colActionReq.Name = "colActionReq";
             this.colActionReq.Visible = true;
@@ -378,6 +390,8 @@
             this.gridControlHeaders.Location = new System.Drawing.Point(0, 135);
             this.gridControlHeaders.MainView = this.gridViewHeaders;
             this.gridControlHeaders.Name = "gridControlHeaders";
+            this.gridControlHeaders.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemMemoEdit1});
             this.gridControlHeaders.ShowOnlyPredefinedDetails = true;
             this.gridControlHeaders.Size = new System.Drawing.Size(984, 200);
             this.gridControlHeaders.TabIndex = 1;
@@ -422,6 +436,7 @@
             this.gridViewHeaders.Name = "gridViewHeaders";
             this.gridViewHeaders.OptionsBehavior.Editable = false;
             this.gridViewHeaders.OptionsBehavior.ReadOnly = true;
+            this.gridViewHeaders.OptionsView.RowAutoHeight = true;
             this.gridViewHeaders.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridViewHeaders_MouseDown);
             // 
             // colId
@@ -437,12 +452,17 @@
             // colTitle
             // 
             this.colTitle.Caption = "Title";
+            this.colTitle.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colTitle.FieldName = "Title";
             this.colTitle.MinWidth = 200;
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
             this.colTitle.VisibleIndex = 0;
             this.colTitle.Width = 220;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // colFICategory
             // 
@@ -498,6 +518,14 @@
             this.btnPublishDetails.UseVisualStyleBackColor = true;
             this.btnPublishDetails.Click += new System.EventHandler(this.btnPublishDetails_Click);
             // 
+            // repositoryItemMemoEdit2
+            // 
+            this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
+            // 
+            // repositoryItemMemoEdit3
+            // 
+            this.repositoryItemMemoEdit3.Name = "repositoryItemMemoEdit3";
+            // 
             // FIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -530,6 +558,9 @@
             this.cmsHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -581,5 +612,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colOwnerId;
         private DevExpress.XtraGrid.Columns.GridColumn colFullName;
         private DevExpress.XtraGrid.Columns.GridColumn colRoleName;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
     }
 }

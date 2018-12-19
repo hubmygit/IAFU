@@ -168,9 +168,11 @@ namespace IAFollowUp
             newDetailRecord = new FIDetail()
             {
                 Id = oldDetailRecord.Id,
-                Description = txtDescription.Text.Replace('\r', ' ').Replace('\n', ' '),
+                Description = txtDescription.Text,
+                //Description = txtDescription.Text.Replace('\r', ' ').Replace('\n', ' '),
                 ActionCode = txtActionCode.Text,
-                ActionReq = txtActionReq.Text.Replace('\r', ' ').Replace('\n', ' '),
+                ActionReq = txtActionReq.Text,
+                //ActionReq = txtActionReq.Text.Replace('\r', ' ').Replace('\n', ' '),
                 ActionDt = dt_Action,
                 //OwnersCnt = oldFIDetailRecord.OwnersCnt,
                 Owners = newOwners,

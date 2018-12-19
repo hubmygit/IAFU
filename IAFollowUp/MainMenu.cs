@@ -101,7 +101,11 @@ namespace IAFollowUp
         //auditees---------->
         private void fiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (UserAction.IsLegal(Action.FI_View))
+            {
+                FIView_Auditees frmFIViewAuditees = new FIView_Auditees();
+                frmFIViewAuditees.ShowDialog();
+            }
         }
         //auditees<----------
     }

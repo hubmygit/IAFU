@@ -56,10 +56,12 @@
             this.colIsCompleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewAudit = new System.Windows.Forms.Button();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -72,6 +74,8 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 89);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemMemoEdit1});
             this.gridControl1.ShowOnlyPredefinedDetails = true;
             this.gridControl1.Size = new System.Drawing.Size(984, 473);
             this.gridControl1.TabIndex = 1;
@@ -161,6 +165,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.RowAutoHeight = true;
             // 
             // colId
             // 
@@ -211,6 +216,7 @@
             // colTitle
             // 
             this.colTitle.Caption = "Title";
+            this.colTitle.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colTitle.FieldName = "Title";
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
@@ -285,6 +291,10 @@
             this.btnCreateNewAudit.UseVisualStyleBackColor = true;
             this.btnCreateNewAudit.Click += new System.EventHandler(this.btnCreateNewAudit_Click);
             // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
             // AuditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,6 +311,7 @@
             this.cmsOnGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -333,5 +344,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colIASentNumber;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditRating;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDeleted;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
     }
 }
