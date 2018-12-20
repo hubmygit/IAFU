@@ -48,8 +48,10 @@
             this.colDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFIHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionReq = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -77,20 +79,18 @@
             this.lblHeaders = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
             this.btnPublishDetails = new System.Windows.Forms.Button();
-            this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.repositoryItemMemoEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOwners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).BeginInit();
             this.cmsHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).BeginInit();
             this.SuspendLayout();
             // 
             // gridViewOwners
@@ -160,42 +160,43 @@
             this.toolStripSeparator2,
             this.mIfinalizeToolStripMenuItem});
             this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(143, 104);
+            this.cmsDetail.Size = new System.Drawing.Size(181, 126);
             // 
             // MIeditDetail
             // 
             this.MIeditDetail.Name = "MIeditDetail";
-            this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIeditDetail.Size = new System.Drawing.Size(180, 22);
             this.MIeditDetail.Text = "Edit";
             this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
             // 
             // MIdeleteDetail
             // 
             this.MIdeleteDetail.Name = "MIdeleteDetail";
-            this.MIdeleteDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIdeleteDetail.Size = new System.Drawing.Size(180, 22);
             this.MIdeleteDetail.Text = "Delete";
             this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // MIattachments
             // 
             this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(142, 22);
+            this.MIattachments.Size = new System.Drawing.Size(180, 22);
             this.MIattachments.Text = "Attachments";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // mIfinalizeToolStripMenuItem
             // 
+            this.mIfinalizeToolStripMenuItem.Enabled = false;
             this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
-            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mIfinalizeToolStripMenuItem.Text = "Finalize";
             this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
             // 
@@ -242,6 +243,10 @@
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 0;
             // 
+            // repositoryItemMemoEdit3
+            // 
+            this.repositoryItemMemoEdit3.Name = "repositoryItemMemoEdit3";
+            // 
             // colActionDt
             // 
             this.colActionDt.Caption = "Action Date";
@@ -258,6 +263,10 @@
             this.colActionReq.Name = "colActionReq";
             this.colActionReq.Visible = true;
             this.colActionReq.VisibleIndex = 2;
+            // 
+            // repositoryItemMemoEdit2
+            // 
+            this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
             // 
             // colActionCode
             // 
@@ -518,14 +527,6 @@
             this.btnPublishDetails.UseVisualStyleBackColor = true;
             this.btnPublishDetails.Click += new System.EventHandler(this.btnPublishDetails_Click);
             // 
-            // repositoryItemMemoEdit2
-            // 
-            this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
-            // 
-            // repositoryItemMemoEdit3
-            // 
-            this.repositoryItemMemoEdit3.Name = "repositoryItemMemoEdit3";
-            // 
             // FIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,13 +555,13 @@
             this.cmsDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHeaders)).EndInit();
             this.cmsHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fIHeaderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHeaders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -56,7 +56,7 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
-                if (!UserAction.IsLegal(Action.Header_Edit, thisAudit, selHeader))
+                if (!UserAction.IsLegal(Action.Header_Edit, thisAudit))//, selHeader))
                 {
                     return;
                 }
@@ -127,7 +127,7 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
 
-                if (UserAction.IsLegal(Action.Detail_Create, thisAudit, selHeader))
+                if (UserAction.IsLegal(Action.Detail_Create, thisAudit)) //, selHeader))
                 {
                     FIDetailInsert frmFIDetailIns = new FIDetailInsert(thisAudit, selHeader);
                     frmFIDetailIns.ShowDialog();
@@ -163,7 +163,7 @@ namespace IAFollowUp
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
                 FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
 
-                if (!UserAction.IsLegal(Action.Detail_Edit, thisAudit, selHeader, selDetail))
+                if (!UserAction.IsLegal(Action.Detail_Edit, thisAudit)) //, selHeader, selDetail))
                 {
                     return;
                 }
@@ -230,83 +230,94 @@ namespace IAFollowUp
 
         private void btnPublishDetails_Click(object sender, EventArgs e)
         {
-            //Publish & Send email & Update audit.protocol
-            if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0 && gridViewDetails.RowCount > 0)
-            {
-                int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
-                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+            //Publish & Send email & Update audit.protocol !!! closure->finalized
+            //if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0 && gridViewDetails.RowCount > 0)
 
-                if (!UserAction.IsLegal(Action.Detail_Publish, thisAudit, selHeader))
+            //to delete (those 2 lines)
+            int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+            FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+
+            if (!UserAction.IsLegal(Action.Detail_Publish, thisAudit)) //, selHeader))
+            {
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to publish all details of all headers?", "F/I Details Publication", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                //STEP 1 ->********** give real protocol nums **********
+                MessageBox.Show("Before publication please check if protocol numbers are correct or give the final values on the following form!");
+                AuditProtocolNums frmAuditProtocolNums = new AuditProtocolNums(thisAudit);
+                frmAuditProtocolNums.ShowDialog();
+                if (!frmAuditProtocolNums.success)
                 {
                     return;
                 }
+                //STEP 1 <-********** give real protocol nums **********
 
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to publish all details for this header?", "F/I Detail Publication", MessageBoxButtons.YesNo);
-
-                if (dialogResult == DialogResult.Yes)
+                //STEP 2 ->********** publish - update flags **********
+                int detailsToPublishCnt = 0;
+                if (thisAudit.FIHeaders.Exists(i => i.IsDeleted == false))
                 {
-                    int detailsToPublishCnt = selHeader.FIDetails.Where(i=>i.IsDeleted == false && i.IsPublished == false).ToList().Count;
-                    List<FIDetail> detailsPublished = FIDetail.PublishAll(selHeader);
-                    int detailsPublishedCnt = detailsPublished.Count;
-                    if (detailsPublishedCnt >= detailsToPublishCnt) //>= error... 
+                    detailsToPublishCnt = thisAudit.FIHeaders.Where(i => i.IsDeleted == false).Count(j => j.IsDeleted == false); //isPublished
+                }
+                List<FIDetail> detailsPublished = FIDetail.PublishAll(thisAudit);
+                int detailsPublishedCnt = detailsPublished.Count;
+                MessageBox.Show(detailsPublishedCnt.ToString() + " out of " + detailsToPublishCnt.ToString() + " Details Published!");
+                if (detailsPublishedCnt <= 0)
+                {
+                    return;
+                }
+                //STEP 2 <-********** publish - update flags **********
+
+                //STEP 3 ->********** closure flag --> auto finalized **********
+                int closedDetailsToFinalizeCnt = detailsPublished.Count(i => i.IsClosed);
+                if (closedDetailsToFinalizeCnt > 0)
+                {
+                    int closedDetailsFinalizedCnt = FIDetail.FinalizeClosed(detailsPublished);
+                    MessageBox.Show(closedDetailsFinalizedCnt.ToString() + " out of " + closedDetailsToFinalizeCnt.ToString() + " Closed Details Finalized!");
+                }
+                //STEP 3 <-********** closure flag --> auto finalized **********
+
+                //STEP 4 ->********** send email **********
+                List<FIDetail> detailsToSendEmail = detailsPublished.Where(i => i.IsClosed == false).ToList();
+
+                if (detailsToSendEmail.Count > 0) //(detailsPublished - Closed) > 0 then send email
+                {
+                    EmailProperties emailProp = new EmailProperties();
+                    emailProp.Subject = "ΕΣΩΤΕΡΙΚΟΣ ΕΛΕΓΧΟΣ: " + thisAudit.Title;
+                    emailProp.Body = "Σας ενημερώνουμε ότι έχουν καταχωρηθεί στην εφαρμογή του Εσωτερικού Ελέγχου ευρήματα / ενέργειες της περιοχής ευθύνης σας. Παρακαλούμε για τις ενέργειές σας.";
+                    List<Recipient> distinctRecipients = new List<Recipient>();
+                    foreach (FIDetail det in detailsToSendEmail)
                     {
-                        MessageBox.Show("The Publication was successful!");                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("The Publication completed with errors: " + detailsPublishedCnt.ToString() + "/" + detailsToPublishCnt.ToString() + " rows published!");
-                    }
-
-                    List<FIDetail> detailsToSendEmail = detailsPublished.Where(i => i.IsClosed == false).ToList();
-
-                    if (detailsToSendEmail.Count > 0) //(detailsPublished - Closed) > 0 then send email
-                    {
-                        //...................SendEmail...................
-                        EmailProperties emailProp = new EmailProperties();
-                        emailProp.Subject = "ΕΣΩΤΕΡΙΚΟΣ ΕΛΕΓΧΟΣ: " + thisAudit.Title;
-                        emailProp.Body = "Σας ενημερώνουμε ότι έχουν καταχωρηθεί στην εφαρμογή του Εσωτερικού Ελέγχου ευρήματα / ενέργειες της περιοχής ευθύνης σας. Παρακαλούμε για τις ενέργειές σας.";
-
-                        List<Recipient> distinctRecipients = new List<Recipient>();
-
-                        foreach (FIDetail det in detailsToSendEmail)
+                        foreach (Users usr in det.Owners)
                         {
-                            foreach (Users usr in det.Owners)
+                            Recipient thisRecipient = new Recipient() { FullName = usr.FullName, Email = usr.getEmail() };
+                            if (distinctRecipients.Exists(i => i.Email == thisRecipient.Email) == false || distinctRecipients.Exists(i => i.FullName == thisRecipient.FullName) == false)
                             {
-                                Recipient thisRecipient = new Recipient() { FullName = usr.FullName, Email = usr.getEmail() };
-
-                                if (distinctRecipients.Exists(i => i.Email == thisRecipient.Email) == false || distinctRecipients.Exists(i => i.FullName == thisRecipient.FullName) == false)
-                                {
-                                    distinctRecipients.Add(thisRecipient);
-                                }
+                                distinctRecipients.Add(thisRecipient);
                             }
                         }
-
-                        emailProp.Recipients = distinctRecipients;
-                        //emailProp.ToSend = true;
-                        //emailList.Add(emailProp);
-
-                        EmailToSend frmSendEmailToAuditees = new EmailToSend(emailProp);
-                        frmSendEmailToAuditees.ShowDialog();
                     }
-
-                    //update audit Protocol numbers
-                    if (detailsPublishedCnt > 0)
-                    {
-                        MessageBox.Show("Please check if protocol numbers are correct or give the final values on the following form!");
-                        AuditProtocolNums frmAuditProtocolNums = new AuditProtocolNums(thisAudit);
-                        frmAuditProtocolNums.ShowDialog();
-                    }
-                    
-                    //refresh audit too: no need to update because protocol numbers are not used in authorization or security
-                    int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
-                    AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
-                    thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
-                    gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
-
-                    int rowHandle1 = gridViewDetails.GetRowHandle(index1);
-                    gridViewDetails.FocusedRowHandle = rowHandle1;
+                    emailProp.Recipients = distinctRecipients;
+                    EmailToSend frmSendEmailToAuditees = new EmailToSend(emailProp);
+                    frmSendEmailToAuditees.ShowDialog();
                 }
+                //STEP 4 <-********** send email **********
+                       
+                //->********** refresh **********
+                //refresh audit too: no need to update because protocol numbers are not used in authorization or security
+                int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+
+                int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                gridViewDetails.FocusedRowHandle = rowHandle1;
+                //<-********** refresh **********
             }
+
         }
 
         private void mIfinalizeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -319,7 +330,7 @@ namespace IAFollowUp
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
                 FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
 
-                if (!UserAction.IsLegal(Action.Detail_Finalize, thisAudit, selHeader, selDetail))
+                if (!UserAction.IsLegal(Action.Detail_Finalize, thisAudit)) //, selHeader, selDetail))
                 {
                     return;
                 }

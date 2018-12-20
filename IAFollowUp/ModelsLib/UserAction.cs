@@ -48,33 +48,44 @@ namespace IAFollowUp
                 if (action == Action.Audit_Delete && audit.IsDeleted)
                 {
                     MessageBox.Show("The audit has already been deleted!");
+                    return false;
                 }
 
                 if (action == Action.Audit_Finalize && audit.IsCompleted)
                 {
                     MessageBox.Show("The audit has already been finalized!");
+                    return false;
                 }
 
                 if (action == Action.Header_Delete && header.IsDeleted)
                 {
                     MessageBox.Show("The header has already been deleted!");
+                    return false;
                 }
 
                 if (action == Action.Detail_Delete && detail.IsDeleted)
                 {
                     MessageBox.Show("The detail has already been deleted!");
+                    return false;
                 }
 
-                if (action == Action.Detail_Publish && detail.IsPublished)
+                if (action == Action.Detail_Publish)
                 {
-                    MessageBox.Show("The detail has already been published!");
+                    //if (detail.IsPublished)
+                    if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
+                    {
+                        MessageBox.Show("Details have been published!");
+                        return false;
+                    }
+
+                    if (detail.IsDeleted)
+                    {
+                        MessageBox.Show("The detail has been deleted!");
+                        return false;
+                    }
+                    
                 }
-
-                //if (action == Action.Detail_Finalize && detail.IsFinalized)
-                //{
-                //    MessageBox.Show("The detail has already been finalized!");
-                //}
-
+                
                 return true;
             }
 
@@ -133,24 +144,26 @@ namespace IAFollowUp
                             MessageBox.Show("The Audit has been Finalized!");
                         }
 
-                        if (audit.AreAllDetailsOfAuditPublished() == false)
+                        //if (audit.AreAllDetailsOfAuditPublished() == false)
+                        if(audit.FIHeaders.Exists(i=>i.FIDetails.Exists(j=>j.IsPublished == true) == true) == false) //esto kai ena na einai published apo olo to audit
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("All Details have been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
-                        if (audit.AreAllDetailsOfAuditFinalized() == false)
+                        //if (audit.AreAllDetailsOfAuditFinalized() == false)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized apo olo to audit
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("All Details have been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -223,25 +236,26 @@ namespace IAFollowUp
                             MessageBox.Show("The Audit has been Finalized!");
                         }
 
-                        if (audit.AreAllDetailsOfAuditPublished() == false)
-                        //if (header.FIDetails.Exists(i => i.IsPublished == true) == false) //esto kai ena na einai published
+                        //if (audit.AreAllDetailsOfAuditPublished() == false)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("All Details have been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
-                        if (audit.AreAllDetailsOfAuditFinalized() == false)
+                        //if (audit.AreAllDetailsOfAuditFinalized() == false)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("All Details have been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -313,24 +327,26 @@ namespace IAFollowUp
                             MessageBox.Show("The Audit has been Finalized!");
                         }
 
-                        if (audit.AreAllDetailsOfAuditPublished() == false)
+                        //if (audit.AreAllDetailsOfAuditPublished() == false)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("All Details have been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
-                        if (audit.AreAllDetailsOfAuditFinalized() == false)
+                        //if (audit.AreAllDetailsOfAuditFinalized() == false)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("All Details have been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -356,26 +372,29 @@ namespace IAFollowUp
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
                         }
-                        
+
                         //exartatai poio header thelei!
-                        if(header.FIDetails.Exists(i => i.IsPublished == true) == false) //esto kai ena na einai published
+                        //if(header.FIDetails.Exists(i => i.IsPublished == true) == false) //esto kai ena na einai published
+                        //olo to audit!!!!!Ginontai ola publish
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published apo olo to audit
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("At least one Detail of this Header has been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
-                        if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
+                        //if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized apo olo to audit
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("At least one Detail of this Header has been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -403,24 +422,26 @@ namespace IAFollowUp
                         }
 
                         //exartatai poio header thelei!
-                        if (header.FIDetails.Exists(i => i.IsPublished == true) == false) //esto kai ena na einai published
+                        //if (header.FIDetails.Exists(i => i.IsPublished == true) == false) //esto kai ena na einai published
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published apo olo to audit
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("At least one Detail of this Header has been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
-                        if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
+                        //if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized apo olo to audit
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("At least one Detail of this Header has been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -458,25 +479,28 @@ namespace IAFollowUp
                         }
 
                         //sto idio header
-                        if (header.FIDetails.Exists(i => i.IsPublished == true) == false) //esto kai ena na einai published
+                        //if (header.FIDetails.Exists(i => i.IsPublished == true) == false) //esto kai ena na einai published
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
+
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("At least one Detail of this Header has been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
                         //sto idio header
-                        if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
+                        //if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("At least one Detail of this Header has been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -504,24 +528,26 @@ namespace IAFollowUp
                             MessageBox.Show("The Audit has been Finalized!");
                         }
 
-                        if (detail.IsPublished == false) //checking this detail not all details of this header(??)
+                        //if (detail.IsPublished == false) //checking this detail not all details of this header(??)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("The Detail has been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
-                        if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+                        //if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("The Detail has been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -548,24 +574,27 @@ namespace IAFollowUp
                             MessageBox.Show("The Audit has been Finalized!");
                         }
 
-                        if (detail.IsPublished == false) //checking this detail not all details of this header(??)
+                        //if (detail.IsPublished == false) //checking this detail not all details of this header(??)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
+
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("The Detail has been Published!");
+                            MessageBox.Show("Details have been Published!");
                         }
 
-                        if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+                        //if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("The Detail has been Finalized!");
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;
@@ -592,14 +621,30 @@ namespace IAFollowUp
                             MessageBox.Show("You have to finalize the Audit before publication!");
                         }
 
-                        if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
+
+                        //## estw kai mia eggrafi published se olo to audit ##
+                        //if (detail.IsPublished == false) //checking this detail *and all* details of this header(??)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
+
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("The Detail has been Finalized!");
+                            MessageBox.Show("Details have been Published!");
+                        }
+
+                        //## estw kai mia eggrafi finalized se olo to audit ##
+                        //if (detail.IsFinalized == false) //checking this detail *and all* details of this header(??)
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("Details have been Finalized!");
                         }
 
                         break;

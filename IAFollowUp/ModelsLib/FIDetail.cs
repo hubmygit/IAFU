@@ -354,25 +354,48 @@ namespace IAFollowUp
             catch (Exception ex)
             {
                 MessageBox.Show("The following error occurred: " + ex.Message);
-
             }
             sqlConn.Close();
 
             return ret;
         }
 
-        public static List<FIDetail> PublishAll(FIHeader header)
+        //public static List<FIDetail> PublishAll(FIHeader header)
+        //{
+        //    List<FIDetail> ret = new List<FIDetail>();
+
+        //    foreach (FIDetail detail in header.FIDetails)
+        //    {
+        //        if (detail.IsDeleted == false)
+        //        {
+        //            if (PublishSingle(detail))
+        //            {
+        //                ChangeLog.Insert(new FIDetail() { Id = detail.Id, IsPublished = detail.IsPublished }, new FIDetail() { Id = detail.Id, IsPublished = true }, "FIDetail");
+        //                ret.Add(detail);
+        //            }
+        //        }
+        //    }
+
+        //    return ret;
+        //}
+
+        public static List<FIDetail> PublishAll(Audit audit)
         {
             List<FIDetail> ret = new List<FIDetail>();
 
-            foreach (FIDetail detail in header.FIDetails)
+            List<FIHeader> headerList = audit.FIHeaders.Where(i => i.IsDeleted == false).ToList();
+
+            foreach (FIHeader header in headerList)
             {
-                if (detail.IsDeleted == false)
+                foreach (FIDetail detail in header.FIDetails)
                 {
-                    if (PublishSingle(detail))
+                    if (detail.IsDeleted == false)
                     {
-                        ChangeLog.Insert(new FIDetail() { Id = detail.Id, IsPublished = detail.IsPublished }, new FIDetail() { Id = detail.Id, IsPublished = true }, "FIDetail");
-                        ret.Add(detail);
+                        if (PublishSingle(detail))
+                        {
+                            ChangeLog.Insert(new FIDetail() { Id = detail.Id, IsPublished = detail.IsPublished }, new FIDetail() { Id = detail.Id, IsPublished = true }, "FIDetail");
+                            ret.Add(detail);
+                        }
                     }
                 }
             }
@@ -494,6 +517,21 @@ namespace IAFollowUp
             catch (Exception ex)
             {
                 MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
+        public static int FinalizeClosed(List<FIDetail> detailList)
+        {
+            int ret = 0;
+
+            foreach (FIDetail detail in detailList)
+            {
+                if (Finalize(detail.Id))
+                {
+                    ret++;
+                }
             }
 
             return ret;
