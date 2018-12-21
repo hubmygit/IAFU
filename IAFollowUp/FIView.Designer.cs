@@ -54,6 +54,7 @@
             this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsClosed = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsPublished = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewHeader = new System.Windows.Forms.Button();
@@ -160,43 +161,43 @@
             this.toolStripSeparator2,
             this.mIfinalizeToolStripMenuItem});
             this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(181, 126);
+            this.cmsDetail.Size = new System.Drawing.Size(143, 104);
             // 
             // MIeditDetail
             // 
             this.MIeditDetail.Name = "MIeditDetail";
-            this.MIeditDetail.Size = new System.Drawing.Size(180, 22);
+            this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
             this.MIeditDetail.Text = "Edit";
             this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
             // 
             // MIdeleteDetail
             // 
             this.MIdeleteDetail.Name = "MIdeleteDetail";
-            this.MIdeleteDetail.Size = new System.Drawing.Size(180, 22);
+            this.MIdeleteDetail.Size = new System.Drawing.Size(142, 22);
             this.MIdeleteDetail.Text = "Delete";
             this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
             // 
             // MIattachments
             // 
             this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(180, 22);
+            this.MIattachments.Size = new System.Drawing.Size(142, 22);
             this.MIattachments.Text = "Attachments";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
             // 
             // mIfinalizeToolStripMenuItem
             // 
             this.mIfinalizeToolStripMenuItem.Enabled = false;
             this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
-            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.mIfinalizeToolStripMenuItem.Text = "Finalize";
             this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
             // 
@@ -214,6 +215,7 @@
             this.colActionReq,
             this.colActionCode,
             this.colIsClosed,
+            this.colIsPublished,
             this.colIsFinalized,
             this.colDetailIsDeleted});
             this.gridViewDetails.GridControl = this.gridControlDetails;
@@ -284,13 +286,21 @@
             this.colIsClosed.Visible = true;
             this.colIsClosed.VisibleIndex = 4;
             // 
+            // colIsPublished
+            // 
+            this.colIsPublished.Caption = "Published";
+            this.colIsPublished.FieldName = "IsPublished";
+            this.colIsPublished.Name = "colIsPublished";
+            this.colIsPublished.Visible = true;
+            this.colIsPublished.VisibleIndex = 5;
+            // 
             // colIsFinalized
             // 
             this.colIsFinalized.Caption = "Finalized";
             this.colIsFinalized.FieldName = "IsFinalized";
             this.colIsFinalized.Name = "colIsFinalized";
             this.colIsFinalized.Visible = true;
-            this.colIsFinalized.VisibleIndex = 5;
+            this.colIsFinalized.VisibleIndex = 6;
             // 
             // colDetailIsDeleted
             // 
@@ -298,7 +308,7 @@
             this.colDetailIsDeleted.FieldName = "IsDeleted";
             this.colDetailIsDeleted.Name = "colDetailIsDeleted";
             this.colDetailIsDeleted.Visible = true;
-            this.colDetailIsDeleted.VisibleIndex = 6;
+            this.colDetailIsDeleted.VisibleIndex = 7;
             // 
             // btnCreateNewHeader
             // 
@@ -616,5 +626,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsPublished;
     }
 }

@@ -129,7 +129,7 @@ namespace IAFollowUp
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
                            "(@HeaderId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Description)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @ActionReq))," +
-                           "@ActionDt, @ActionCode, @IsClosed  @InsUserId, getDate()) ";
+                           "@ActionDt, @ActionCode, @IsClosed,  @InsUserId, getDate()) ";
             try
             {
                 sqlConn.Open();

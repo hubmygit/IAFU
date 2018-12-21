@@ -289,7 +289,14 @@ namespace IAFollowUp
                     cmd.Parameters.AddWithValue("@Id", Id);
                     cmd.Parameters.AddWithValue("@UsersId", UserInfo.userDetails.Id);
                     cmd.Parameters.AddWithValue("@Filename", fileName);
+
                     //encrypt files
+                    if (fileBytes.Length <= 0)
+                    {
+                        MessageBox.Show("File Is Empty!");
+                        return false;
+                    }
+
                     byte[] encrFileCont = CryptoFuncs.EncryptBytesToBytes_Aes(fileBytes);
                     cmd.Parameters.Add("@FileCont", SqlDbType.VarBinary).Value = encrFileCont;
 

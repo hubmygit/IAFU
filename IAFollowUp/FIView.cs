@@ -134,7 +134,13 @@ namespace IAFollowUp
 
                     //Refresh details' view
                     gridControlDetails.DataSource = new BindingList<FIDetail>(selHeader.FIDetails);
+
+                    MessageBox.Show("ToDo...Refresh details grid after insert");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select a Header first!");
             }
         }
 
@@ -233,10 +239,6 @@ namespace IAFollowUp
             //Publish & Send email & Update audit.protocol !!! closure->finalized
             //if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0 && gridViewDetails.RowCount > 0)
 
-            //to delete (those 2 lines)
-            int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
-            FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
-
             if (!UserAction.IsLegal(Action.Detail_Publish, thisAudit)) //, selHeader))
             {
                 return;
@@ -260,7 +262,11 @@ namespace IAFollowUp
                 int detailsToPublishCnt = 0;
                 if (thisAudit.FIHeaders.Exists(i => i.IsDeleted == false))
                 {
-                    detailsToPublishCnt = thisAudit.FIHeaders.Where(i => i.IsDeleted == false).Count(j => j.IsDeleted == false); //isPublished
+                    List<FIHeader> headersToPub = thisAudit.FIHeaders.Where(i => i.IsDeleted == false).ToList();
+                    foreach (FIHeader headToPub in headersToPub)
+                    {
+                        detailsToPublishCnt += headToPub.FIDetails.Count(i => i.IsDeleted == false);
+                    }
                 }
                 List<FIDetail> detailsPublished = FIDetail.PublishAll(thisAudit);
                 int detailsPublishedCnt = detailsPublished.Count;
@@ -275,7 +281,7 @@ namespace IAFollowUp
                 int closedDetailsToFinalizeCnt = detailsPublished.Count(i => i.IsClosed);
                 if (closedDetailsToFinalizeCnt > 0)
                 {
-                    int closedDetailsFinalizedCnt = FIDetail.FinalizeClosed(detailsPublished);
+                    int closedDetailsFinalizedCnt = FIDetail.FinalizeClosed(detailsPublished.Where(i => i.IsClosed).ToList());
                     MessageBox.Show(closedDetailsFinalizedCnt.ToString() + " out of " + closedDetailsToFinalizeCnt.ToString() + " Closed Details Finalized!");
                 }
                 //STEP 3 <-********** closure flag --> auto finalized **********
@@ -305,16 +311,22 @@ namespace IAFollowUp
                     frmSendEmailToAuditees.ShowDialog();
                 }
                 //STEP 4 <-********** send email **********
-                       
-                //->********** refresh **********
-                //refresh audit too: no need to update because protocol numbers are not used in authorization or security
-                int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
-                AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
-                thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
-                gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
 
-                int rowHandle1 = gridViewDetails.GetRowHandle(index1);
-                gridViewDetails.FocusedRowHandle = rowHandle1;
+                //->********** refresh **********
+                MessageBox.Show("ToDo: Refresh Grids...");
+
+                //to delete (those 2 lines): error mporei na min yparxoyn headers akoma kai spaei!!!!!!!!!!!!
+                //int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+                //FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+
+                ////refresh audit too: no need to update because protocol numbers are not used in authorization or security
+                //int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                //AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                //thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                //gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+
+                //int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                //gridViewDetails.FocusedRowHandle = rowHandle1;
                 //<-********** refresh **********
             }
 

@@ -72,25 +72,31 @@ namespace IAFollowUp
                 if (action == Action.Detail_Publish)
                 {
                     //if (detail.IsPublished)
-                    if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
+                    if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true)) //esto kai ena na einai published
                     {
-                        MessageBox.Show("Details have been published!");
+                        MessageBox.Show("Details have already been published!");
                         return false;
                     }
 
-                    if (detail.IsDeleted)
-                    {
-                        MessageBox.Show("The detail has been deleted!");
-                        return false;
-                    }
+                    //etsi ki alliws ta deleted den ginontai publish
+                    //if (detail.IsDeleted)
+                    //{
+                    //    MessageBox.Show("The detail has been deleted!");
+                    //    return false;
+                    //}
                     
                 }
                 
                 return true;
             }
 
-            AuditOwners auditOwners = new AuditOwners(audit.Auditor1, audit.Auditor2, audit.Supervisor);
-            bool isUserAuditOwner = auditOwners.IsUser_AuditOwner();
+            AuditOwners auditOwners; // = new AuditOwners(audit.Auditor1, audit.Auditor2, audit.Supervisor);
+            bool isUserAuditOwner = false; // = auditOwners.IsUser_AuditOwner();
+            if (audit != null)
+            {
+                auditOwners = new AuditOwners(audit.Auditor1, audit.Auditor2, audit.Supervisor);
+                isUserAuditOwner = auditOwners.IsUser_AuditOwner();
+            }
 
             //FIDetailOwners detailOwners = new FIDetailOwners(detail.Owners);
             //bool isUserDetailOwner = detailOwners.IsUser_DetailOwner();
@@ -122,6 +128,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsDeleted == false)
@@ -132,6 +139,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The audit has been deleted!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -142,6 +150,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //if (audit.AreAllDetailsOfAuditPublished() == false)
@@ -153,6 +162,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //if (audit.AreAllDetailsOfAuditFinalized() == false)
@@ -164,6 +174,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -179,6 +190,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             //don't show Message
+                            break;
                         }
 
                         if (audit.IsDeleted == false)
@@ -189,6 +201,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             //don't show Message
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -199,6 +212,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             //don't show Message
+                            break;
                         }
 
                         break;
@@ -214,6 +228,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsDeleted == false)
@@ -224,6 +239,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The audit has already been deleted!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -234,6 +250,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //if (audit.AreAllDetailsOfAuditPublished() == false)
@@ -245,6 +262,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //if (audit.AreAllDetailsOfAuditFinalized() == false)
@@ -256,6 +274,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -271,6 +290,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsDeleted == false)
@@ -281,6 +301,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The audit has already been deleted!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -291,6 +312,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The audit has already been finalized!");
+                            break;
                         }
 
                         break;
@@ -315,6 +337,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
                                                
                         if (audit.IsCompleted == false)
@@ -325,6 +348,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //if (audit.AreAllDetailsOfAuditPublished() == false)
@@ -336,6 +360,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //if (audit.AreAllDetailsOfAuditFinalized() == false)
@@ -347,6 +372,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -361,6 +387,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -371,6 +398,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //exartatai poio header thelei!
@@ -384,6 +412,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
@@ -395,6 +424,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -409,6 +439,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -419,6 +450,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //exartatai poio header thelei!
@@ -431,6 +463,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //if (header.FIDetails.Exists(i => i.IsFinalized == true) == false) //esto kai ena na einai finalized
@@ -442,6 +475,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -466,6 +500,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -476,6 +511,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //sto idio header
@@ -489,6 +525,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //sto idio header
@@ -501,6 +538,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -516,6 +554,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -526,6 +565,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //if (detail.IsPublished == false) //checking this detail not all details of this header(??)
@@ -537,6 +577,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
@@ -548,6 +589,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -562,6 +604,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsCompleted == false)
@@ -572,6 +615,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("The Audit has been Finalized!");
+                            break;
                         }
 
                         //if (detail.IsPublished == false) //checking this detail not all details of this header(??)
@@ -584,6 +628,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //if (detail.IsFinalized == false) //checking this detail not all details of this header(??)
@@ -595,6 +640,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;
@@ -609,6 +655,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
+                            break;
                         }
 
                         if (audit.IsCompleted == true)
@@ -619,6 +666,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You have to finalize the Audit before publication!");
+                            break;
                         }
 
 
@@ -633,6 +681,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Published!");
+                            break;
                         }
 
                         //## estw kai mia eggrafi finalized se olo to audit ##
@@ -645,6 +694,7 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("Details have been Finalized!");
+                            break;
                         }
 
                         break;

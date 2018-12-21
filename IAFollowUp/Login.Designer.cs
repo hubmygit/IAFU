@@ -56,7 +56,6 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(164, 22);
             this.txtUserName.TabIndex = 1;
-            this.txtUserName.Text = "hkylidis";
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
             // btnLogin
@@ -78,7 +77,6 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(164, 22);
             this.txtPassword.TabIndex = 2;
-            this.txtPassword.Text = "12345QWERTY!@#";
             // 
             // lblPassword
             // 
