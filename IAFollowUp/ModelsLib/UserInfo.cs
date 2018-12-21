@@ -220,7 +220,7 @@ namespace IAFollowUp
 
             DateTime expirationDate = passUpdDate.AddDays(roleDetails.PasswordPeriod);
 
-            if (expirationDate < DateTime.Now)
+            if (expirationDate < DateTime.Now) // ToDo:  PcTime! -> we need to check server (SQL) time
             {
                 ret = true;
             }

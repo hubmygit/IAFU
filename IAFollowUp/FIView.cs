@@ -132,10 +132,14 @@ namespace IAFollowUp
                     FIDetailInsert frmFIDetailIns = new FIDetailInsert(thisAudit, selHeader);
                     frmFIDetailIns.ShowDialog();
 
-                    //Refresh details' view
+                    //refresh
+                    int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                    AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                    thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
                     gridControlDetails.DataSource = new BindingList<FIDetail>(selHeader.FIDetails);
-
-                    MessageBox.Show("ToDo...Refresh details grid after insert");
+                    //gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+                    int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                    gridViewDetails.FocusedRowHandle = rowHandle1;
                 }
             }
             else
@@ -314,19 +318,29 @@ namespace IAFollowUp
 
                 //->********** refresh **********
                 MessageBox.Show("ToDo: Refresh Grids...");
+                /*
+                //selected row sta details-to focus efyge apo to header!!!!!! ---oxi---
+                //int zzHeaderId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+                //int zzHeaderRowHandle = gridViewHeaders.GetRowHandle(thisAudit.FIHeaders.FindIndex(i => i.Id == zzHeaderId));
+                //int zzHeaderIndex = gridViewHeaders.GetDataSourceRowIndex(zzHeaderRowHandle);
 
-                //to delete (those 2 lines): error mporei na min yparxoyn headers akoma kai spaei!!!!!!!!!!!!
-                //int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
-                //FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
-
-                ////refresh audit too: no need to update because protocol numbers are not used in authorization or security
-                //int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
-                //AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
-                //thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
-                //gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
-
-                //int rowHandle1 = gridViewDetails.GetRowHandle(index1);
-                //gridViewDetails.FocusedRowHandle = rowHandle1;
+                //check an kanei publish kai den exei kanei klik pouthena px den exei katholou details fortomena!!!!!!
+                //----------------------------
+                int HeaderIndex = gridViewHeaders.GetDataSourceRowIndex(gridViewHeaders.FocusedRowHandle);
+                int DetailIndex = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
+                
+                thisAudit.FIHeaders = Audit.getFIHeaders(thisAudit.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //refresh headers/details
+                gridControlHeaders.DataSource = new BindingList<FIHeader>(thisAudit.FIHeaders); //DataSource
+                //IndexOf de douleuei me to object mou...na allaksei
+                gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+                int HeaderRowHandle = gridViewHeaders.GetRowHandle(HeaderIndex);
+                int DetailRowHandle = gridViewDetails.GetRowHandle(DetailIndex);
+                gridViewHeaders.FocusedRowHandle = HeaderRowHandle;
+                gridViewDetails.FocusedRowHandle = DetailRowHandle;
+                */
                 //<-********** refresh **********
             }
 
