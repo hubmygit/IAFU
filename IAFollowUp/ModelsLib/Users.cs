@@ -161,7 +161,7 @@ namespace IAFollowUp
             string ret = "";
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT Email " +
+            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [Email])) as Email " +
                               "FROM [dbo].[Users] " +
                               "WHERE Id = @Id ";
                        
@@ -169,6 +169,9 @@ namespace IAFollowUp
             try
             {
                 sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
                 cmd.Parameters.AddWithValue("@Id", this.Id);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

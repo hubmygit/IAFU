@@ -48,6 +48,7 @@
             this.colAuditType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIASentNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colAuditRating = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colReportDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditor1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -56,7 +57,6 @@
             this.colIsCompleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewAudit = new System.Windows.Forms.Button();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).BeginInit();
@@ -222,6 +222,10 @@
             this.colTitle.Visible = true;
             this.colTitle.VisibleIndex = 5;
             // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
             // colAuditRating
             // 
             this.colAuditRating.Caption = "Audit Rating";
@@ -291,10 +295,6 @@
             this.btnCreateNewAudit.UseVisualStyleBackColor = true;
             this.btnCreateNewAudit.Click += new System.EventHandler(this.btnCreateNewAudit_Click);
             // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
-            // 
             // AuditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,6 +307,7 @@
             this.Name = "AuditView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Audits View";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             this.cmsOnGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).EndInit();

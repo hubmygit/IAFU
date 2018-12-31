@@ -80,6 +80,7 @@
             this.lblHeaders = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
             this.btnPublishDetails = new System.Windows.Forms.Button();
+            this.MIduplicateDetail = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOwners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
@@ -155,49 +156,50 @@
             // 
             this.cmsDetail.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MIeditDetail,
+            this.MIduplicateDetail,
             this.MIdeleteDetail,
             this.toolStripSeparator1,
             this.MIattachments,
             this.toolStripSeparator2,
             this.mIfinalizeToolStripMenuItem});
             this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(143, 104);
+            this.cmsDetail.Size = new System.Drawing.Size(181, 148);
             // 
             // MIeditDetail
             // 
             this.MIeditDetail.Name = "MIeditDetail";
-            this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIeditDetail.Size = new System.Drawing.Size(180, 22);
             this.MIeditDetail.Text = "Edit";
             this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
             // 
             // MIdeleteDetail
             // 
             this.MIdeleteDetail.Name = "MIdeleteDetail";
-            this.MIdeleteDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIdeleteDetail.Size = new System.Drawing.Size(180, 22);
             this.MIdeleteDetail.Text = "Delete";
             this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // MIattachments
             // 
             this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(142, 22);
+            this.MIattachments.Size = new System.Drawing.Size(180, 22);
             this.MIattachments.Text = "Attachments";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // mIfinalizeToolStripMenuItem
             // 
             this.mIfinalizeToolStripMenuItem.Enabled = false;
             this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
-            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mIfinalizeToolStripMenuItem.Text = "Finalize";
             this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
             // 
@@ -537,6 +539,13 @@
             this.btnPublishDetails.UseVisualStyleBackColor = true;
             this.btnPublishDetails.Click += new System.EventHandler(this.btnPublishDetails_Click);
             // 
+            // MIduplicateDetail
+            // 
+            this.MIduplicateDetail.Name = "MIduplicateDetail";
+            this.MIduplicateDetail.Size = new System.Drawing.Size(180, 22);
+            this.MIduplicateDetail.Text = "Duplicate";
+            this.MIduplicateDetail.Click += new System.EventHandler(this.MIduplicateDetail_Click);
+            // 
             // FIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -560,6 +569,7 @@
             this.Name = "FIView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Findings and Improvements View";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOwners)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).EndInit();
             this.cmsDetail.ResumeLayout(false);
@@ -627,5 +637,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
         private DevExpress.XtraGrid.Columns.GridColumn colIsPublished;
+        private System.Windows.Forms.ToolStripMenuItem MIduplicateDetail;
     }
 }

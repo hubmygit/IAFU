@@ -26,12 +26,12 @@ namespace IAFollowUp
             currentHeader = header;
         }
 
-        public FIDetailInsert(Audit audit, FIHeader header, FIDetail detail) //update
+        public FIDetailInsert(Audit audit, FIHeader header, FIDetail detail, bool IsInsertion) //update - duplicate
         {
             InitializeComponent();
 
             Init(audit, header);
-            isInsert = false;
+            isInsert = IsInsertion; //false - update, true - duplicate
             currentAudit = audit;
             currentHeader = header;
 
@@ -49,7 +49,10 @@ namespace IAFollowUp
                 dgvOwners.Rows.Add(new object[] { thisOwner.Id, thisOwner.FullName, thisOwner.RoleName });
             }
 
-            oldDetailRecord = detail;
+            if (IsInsertion == false)
+            {
+                oldDetailRecord = detail;
+            }
         }
 
         public bool isInsert = false;

@@ -178,7 +178,7 @@ namespace IAFollowUp
                     return;
                 }
 
-                FIDetailInsert fiDetailUpdate = new FIDetailInsert(thisAudit, selHeader, selDetail);
+                FIDetailInsert fiDetailUpdate = new FIDetailInsert(thisAudit, selHeader, selDetail, false);
                 fiDetailUpdate.ShowDialog();
 
                 if (fiDetailUpdate.success)
@@ -380,6 +380,36 @@ namespace IAFollowUp
 
             }
 
+        }
+
+        private void MIduplicateDetail_Click(object sender, EventArgs e)
+        {
+            // Duplicate
+            if (gridViewDetails.SelectedRowsCount > 0 && gridViewDetails.GetSelectedRows()[0] >= 0)
+            {
+                int headerId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
+                int detailId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["Id"]).ToString());
+                FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == headerId).First();
+                FIDetail selDetail = selHeader.FIDetails.Where(k => k.Id == detailId).First();
+
+                if (UserAction.IsLegal(Action.Detail_Create, thisAudit)) 
+                {
+                    FIDetailInsert frmFIDetailIns = new FIDetailInsert(thisAudit, selHeader, selDetail, true);
+                    frmFIDetailIns.ShowDialog();
+
+                    //refresh
+                    int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
+                    AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
+                    thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
+                    gridControlDetails.DataSource = new BindingList<FIDetail>(selHeader.FIDetails);
+                    int rowHandle1 = gridViewDetails.GetRowHandle(index1);
+                    gridViewDetails.FocusedRowHandle = rowHandle1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a Header first!");
+            }
         }
     }
 }
