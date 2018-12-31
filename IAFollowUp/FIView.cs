@@ -317,30 +317,20 @@ namespace IAFollowUp
                 //STEP 4 <-********** send email **********
 
                 //->********** refresh **********
-                MessageBox.Show("ToDo: Refresh Grids...");
-                /*
-                //selected row sta details-to focus efyge apo to header!!!!!! ---oxi---
-                //int zzHeaderId = Convert.ToInt32(gridViewDetails.GetRowCellValue(gridViewDetails.GetSelectedRows()[0], gridViewDetails.Columns["FIHeaderId"]).ToString());
-                //int zzHeaderRowHandle = gridViewHeaders.GetRowHandle(thisAudit.FIHeaders.FindIndex(i => i.Id == zzHeaderId));
-                //int zzHeaderIndex = gridViewHeaders.GetDataSourceRowIndex(zzHeaderRowHandle);
-
-                //check an kanei publish kai den exei kanei klik pouthena px den exei katholou details fortomena!!!!!!
-                //----------------------------
                 int HeaderIndex = gridViewHeaders.GetDataSourceRowIndex(gridViewHeaders.FocusedRowHandle);
                 int DetailIndex = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
                 AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
                 int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
                 FIHeader selHeader = thisAudit.FIHeaders.Where(i => i.Id == Id).First();
-                
                 thisAudit.FIHeaders = Audit.getFIHeaders(thisAudit.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //refresh headers/details
                 gridControlHeaders.DataSource = new BindingList<FIHeader>(thisAudit.FIHeaders); //DataSource
-                //IndexOf de douleuei me to object mou...na allaksei
-                gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+                //IndexOf => de douleuei me to object
+                //gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
+                gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders.Where(i=>i.Id==selHeader.Id).First().FIDetails); //DataSource
                 int HeaderRowHandle = gridViewHeaders.GetRowHandle(HeaderIndex);
                 int DetailRowHandle = gridViewDetails.GetRowHandle(DetailIndex);
                 gridViewHeaders.FocusedRowHandle = HeaderRowHandle;
                 gridViewDetails.FocusedRowHandle = DetailRowHandle;
-                */
                 //<-********** refresh **********
             }
 
