@@ -111,6 +111,8 @@ namespace IAFollowUp
 
                         int rowHandle1 = gridViewHeaders.GetRowHandle(index1);
                         gridViewHeaders.FocusedRowHandle = rowHandle1;
+
+                        gridControlDetails.DataSource = null;
                     }
                     else
                     {
@@ -151,16 +153,29 @@ namespace IAFollowUp
 
         private void gridViewHeaders_MouseDown(object sender, MouseEventArgs e)
         {
-            if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
-            {
-                int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
-                List<FIDetail> RefDetails = thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails;
+            //if (gridViewHeaders.SelectedRowsCount > 0 && gridViewHeaders.GetSelectedRows()[0] >= 0)
+            //{
+            //    int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(gridViewHeaders.GetSelectedRows()[0], gridViewHeaders.Columns["Id"]).ToString());
+            //    List<FIDetail> RefDetails = thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails;
+            //    if (UserAction.IsLegal(Action.Detail_View))
+            //    {
+            //        gridControlDetails.DataSource = new BindingList<FIDetail>(RefDetails);
+            //    }
+            //}
 
+            DevExpress.Utils.DXMouseEventArgs ea = e as DevExpress.Utils.DXMouseEventArgs;
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(ea.Location);
+            if (hitInfo.InRowCell) //(hitInfo.InRow)
+            {
+                int Id = Convert.ToInt32(gridViewHeaders.GetRowCellValue(hitInfo.RowHandle, "Id").ToString());
+                List<FIDetail> RefDetails = thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails;
                 if (UserAction.IsLegal(Action.Detail_View))
                 {
                     gridControlDetails.DataSource = new BindingList<FIDetail>(RefDetails);
                 }
             }
+
         }
 
         private void MIeditDetail_Click(object sender, EventArgs e)
