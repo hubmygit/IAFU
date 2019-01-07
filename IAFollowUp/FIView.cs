@@ -112,7 +112,8 @@ namespace IAFollowUp
                         int rowHandle1 = gridViewHeaders.GetRowHandle(index1);
                         gridViewHeaders.FocusedRowHandle = rowHandle1;
 
-                        gridControlDetails.DataSource = null;
+                        gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails); //DataSource
+                        //thisAudit.FIHeaders.Where(i => i.Id == Id).First()
                     }
                     else
                     {
@@ -253,6 +254,8 @@ namespace IAFollowUp
 
         }
 
+
+        /*
         private void btnPublishDetails_Click(object sender, EventArgs e)
         {
             //Publish & Send email & Update audit.protocol !!! closure->finalized
@@ -268,7 +271,7 @@ namespace IAFollowUp
             if (dialogResult == DialogResult.Yes)
             {
                 //STEP 1 ->********** give real protocol nums **********
-                MessageBox.Show("Before publication please check if protocol numbers are correct or give the final values on the following form!");
+                MessageBox.Show("Before publication please check if Protocol Numbers and Report Date are correct or give the final values on the following form!");
                 AuditProtocolNums frmAuditProtocolNums = new AuditProtocolNums(thisAudit);
                 frmAuditProtocolNums.ShowDialog();
                 if (!frmAuditProtocolNums.success)
@@ -350,6 +353,7 @@ namespace IAFollowUp
             }
 
         }
+        */
 
         private void mIfinalizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -373,15 +377,12 @@ namespace IAFollowUp
                     if (FIDetail.Finalize(selDetail.Id))
                     {
                         ChangeLog.Insert(new FIDetail() { Id = selDetail.Id, IsFinalized = selDetail.IsFinalized }, new FIDetail() { Id = selDetail.Id, IsFinalized = true }, "FIDetail");
-
                         MessageBox.Show("The Finalization was successful!");
-
                         //refresh
                         int index1 = gridViewDetails.GetDataSourceRowIndex(gridViewDetails.FocusedRowHandle);
                         AuditOwners auditOwners = new AuditOwners(thisAudit.Auditor1, thisAudit.Auditor2, thisAudit.Supervisor);
                         thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails = Audit.getFIDetails(selHeader.Id, UserInfo.roleDetails.IsAdmin, auditOwners); //List -> (BindingList)
                         gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders[thisAudit.FIHeaders.IndexOf(selHeader)].FIDetails); //DataSource
-
                         int rowHandle1 = gridViewDetails.GetRowHandle(index1);
                         gridViewDetails.FocusedRowHandle = rowHandle1;
                     }
@@ -390,11 +391,7 @@ namespace IAFollowUp
                         MessageBox.Show("The Finalization was not successful!");
                     }
                 }
-
-
-
             }
-
         }
 
         private void MIduplicateDetail_Click(object sender, EventArgs e)

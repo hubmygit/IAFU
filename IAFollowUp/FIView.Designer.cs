@@ -38,6 +38,7 @@
             this.gridControlDetails = new DevExpress.XtraGrid.GridControl();
             this.cmsDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MIeditDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIduplicateDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.MIdeleteDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,8 +80,6 @@
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblHeaders = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
-            this.btnPublishDetails = new System.Windows.Forms.Button();
-            this.MIduplicateDetail = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOwners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
@@ -163,43 +162,50 @@
             this.toolStripSeparator2,
             this.mIfinalizeToolStripMenuItem});
             this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(181, 148);
+            this.cmsDetail.Size = new System.Drawing.Size(143, 126);
             // 
             // MIeditDetail
             // 
             this.MIeditDetail.Name = "MIeditDetail";
-            this.MIeditDetail.Size = new System.Drawing.Size(180, 22);
+            this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
             this.MIeditDetail.Text = "Edit";
             this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
+            // 
+            // MIduplicateDetail
+            // 
+            this.MIduplicateDetail.Name = "MIduplicateDetail";
+            this.MIduplicateDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIduplicateDetail.Text = "Duplicate";
+            this.MIduplicateDetail.Click += new System.EventHandler(this.MIduplicateDetail_Click);
             // 
             // MIdeleteDetail
             // 
             this.MIdeleteDetail.Name = "MIdeleteDetail";
-            this.MIdeleteDetail.Size = new System.Drawing.Size(180, 22);
+            this.MIdeleteDetail.Size = new System.Drawing.Size(142, 22);
             this.MIdeleteDetail.Text = "Delete";
             this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
             // 
             // MIattachments
             // 
             this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(180, 22);
+            this.MIattachments.Size = new System.Drawing.Size(142, 22);
             this.MIattachments.Text = "Attachments";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
             // 
             // mIfinalizeToolStripMenuItem
             // 
             this.mIfinalizeToolStripMenuItem.Enabled = false;
             this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
-            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.mIfinalizeToolStripMenuItem.Text = "Finalize";
             this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
             // 
@@ -525,33 +531,11 @@
             this.lblDetails.TabIndex = 0;
             this.lblDetails.Text = "Details";
             // 
-            // btnPublishDetails
-            // 
-            this.btnPublishDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPublishDetails.Image = global::IAFollowUp.Properties.Resources.Create_32x;
-            this.btnPublishDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPublishDetails.Location = new System.Drawing.Point(884, 354);
-            this.btnPublishDetails.Name = "btnPublishDetails";
-            this.btnPublishDetails.Size = new System.Drawing.Size(100, 30);
-            this.btnPublishDetails.TabIndex = 5;
-            this.btnPublishDetails.Text = "Publish All";
-            this.btnPublishDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPublishDetails.UseVisualStyleBackColor = true;
-            this.btnPublishDetails.Click += new System.EventHandler(this.btnPublishDetails_Click);
-            // 
-            // MIduplicateDetail
-            // 
-            this.MIduplicateDetail.Name = "MIduplicateDetail";
-            this.MIduplicateDetail.Size = new System.Drawing.Size(180, 22);
-            this.MIduplicateDetail.Text = "Duplicate";
-            this.MIduplicateDetail.Click += new System.EventHandler(this.MIduplicateDetail_Click);
-            // 
             // FIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 587);
-            this.Controls.Add(this.btnPublishDetails);
             this.Controls.Add(this.gridControlDetails);
             this.Controls.Add(this.lblDetails);
             this.Controls.Add(this.lblHeaders);
@@ -626,7 +610,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colIsClosed;
         private DevExpress.XtraGrid.Columns.GridColumn colIsFinalized;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailIsDeleted;
-        private System.Windows.Forms.Button btnPublishDetails;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mIfinalizeToolStripMenuItem;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewOwners;

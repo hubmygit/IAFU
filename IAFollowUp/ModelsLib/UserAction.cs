@@ -27,7 +27,7 @@ namespace IAFollowUp
         Detail_View,
         Detail_Edit,
         Detail_Delete,
-        Detail_Publish,
+        //Detail_Publish,
         Detail_Finalize,
         //auditors<-----
 
@@ -69,7 +69,7 @@ namespace IAFollowUp
                     return false;
                 }
 
-                if (action == Action.Detail_Publish)
+                /*if (action == Action.Detail_Publish)
                 {
                     //if (detail.IsPublished)
                     if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true)) //esto kai ena na einai published
@@ -86,7 +86,8 @@ namespace IAFollowUp
                     //}
                     
                 }
-                
+                */
+
                 return true;
             }
 
@@ -645,6 +646,7 @@ namespace IAFollowUp
 
                         break;
                     }
+                    /*
                 case Action.Detail_Publish:
                     {
                         if (isUserAuditOwner)
@@ -699,6 +701,7 @@ namespace IAFollowUp
 
                         break;
                     }
+                    */
                 case Action.Detail_Finalize:
                     {
                         //if (isUserAuditOwner)

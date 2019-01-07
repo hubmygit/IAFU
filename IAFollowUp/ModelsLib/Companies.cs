@@ -58,7 +58,8 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [Name], [NameShort] " +
-                              "FROM [dbo].[Companies] ";
+                              "FROM [dbo].[Companies] " +
+                              "ORDER BY SortOrder, Name ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {

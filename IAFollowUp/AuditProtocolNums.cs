@@ -28,6 +28,7 @@ namespace IAFollowUp
 
             txtAuditNumber.Text = audit.AuditNumber;
             txtIASentNumber.Text = audit.IASentNumber;
+            dtpReportDate.Value = audit.ReportDt;
         }
 
         public Audit currentAudit = new Audit();
@@ -45,23 +46,24 @@ namespace IAFollowUp
             {
                 MessageBox.Show("Please insert an IA Sent Number!");
                 return;
-            }
+            }            
 
             newAuditRecord.AuditNumber = txtAuditNumber.Text.Trim();
             newAuditRecord.IASentNumber = txtIASentNumber.Text.Trim();
+            newAuditRecord.ReportDt = dtpReportDate.Value.Date;
 
             if (Audit.UpdateProtocolNums(currentAudit))//check if newAuditRecord and currentAudit have diff values (reference??)
             {
-                ChangeLog.Insert(new Audit() { Id = currentAudit.Id, AuditNumber = currentAudit.AuditNumber, IASentNumber = currentAudit.IASentNumber }, 
-                                 new Audit() { Id = currentAudit.Id, AuditNumber = newAuditRecord.AuditNumber, IASentNumber = newAuditRecord.IASentNumber }, "AuditProtocolNums");
+                ChangeLog.Insert(new Audit() { Id = currentAudit.Id, AuditNumber = currentAudit.AuditNumber, IASentNumber = currentAudit.IASentNumber, ReportDt = currentAudit.ReportDt }, 
+                                 new Audit() { Id = currentAudit.Id, AuditNumber = newAuditRecord.AuditNumber, IASentNumber = newAuditRecord.IASentNumber, ReportDt = newAuditRecord.ReportDt }, "AuditProtocolNums");
 
-                MessageBox.Show("Protocol Numbers updated successfully!");
+                MessageBox.Show("Protocol Numbers and Report Date updated successfully!");
                 success = true;
                 Close();
             }
             else
             {
-                MessageBox.Show("Protocol Numbers have not been updated!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Protocol Numbers and Report Date have not been updated!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 

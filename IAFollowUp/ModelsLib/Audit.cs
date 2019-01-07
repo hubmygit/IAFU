@@ -921,7 +921,7 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[Audit] SET [AuditNumber] = @AuditNumber, [IASentNumber] = @IASentNumber, " + 
+            string InsSt = "UPDATE [dbo].[Audit] SET [AuditNumber] = @AuditNumber, [IASentNumber] = @IASentNumber, [ReportDt] = @ReportDt, " + 
                 "[UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                 "WHERE Id = @auditId ";
             try
@@ -933,6 +933,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@auditId", givenAudit.Id);
                 cmd.Parameters.AddWithValue("@AuditNumber", givenAudit.AuditNumber);
                 cmd.Parameters.AddWithValue("@IASentNumber", givenAudit.IASentNumber);
+                cmd.Parameters.AddWithValue("@ReportDt", givenAudit.ReportDt.Date);
                 cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;

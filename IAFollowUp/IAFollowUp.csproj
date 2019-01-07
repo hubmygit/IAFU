@@ -190,7 +190,7 @@
     <Compile Include="ModelsLib\Recipient.cs" />
     <Compile Include="ModelsLib\Role.cs" />
     <Compile Include="ModelsLib\SqlDBInfo.cs" />
-    <Compile Include="ModelsLib\myCryptographyFunctions.cs" />
+    <Compile Include="ModelsLib\CryptoFuncs.cs" />
     <Compile Include="ModelsLib\User.cs" />
     <Compile Include="ModelsLib\UserAction.cs" />
     <Compile Include="ModelsLib\UserAuthorization.cs" />
