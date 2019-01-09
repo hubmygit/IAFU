@@ -33,7 +33,7 @@ namespace IAFollowUp
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[ChangeLog] " +
-                           "([Tbl_Id], [AppUsers_Id], [Dt], [ExecStatement], [TableName2], [FieldName2], [FieldNameToShow2], [OldValue2], [NewValue2], [Section2]) " +
+                           "([Tbl_Id], [AppUsers_Id], [Dt], [ExecStatement], [TableName], [FieldName], [FieldNameToShow], [OldValue], [NewValue], [Section]) " +
                            "VALUES " +
                            "(@Tbl_Id, @AppUsers_Id, @Dt, @ExecStatement, " +
                            //"@TableName, @FieldName, @FieldNameToShow, @OldValue, @NewValue, @Section) ";
@@ -405,12 +405,12 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = //"SELECT L.[ExecStatement], L.[Dt], L.[Section], L.[TableName], L.[FieldNameToShow], L.[OldValue], L.[NewValue], L.[AppUsers_Id], " +
                               //"L.[FieldName], L.[Tbl_Id] " +
-                              "SELECT L.[ExecStatement], L.[Dt], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[Section2])) as Section, " + 
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[TableName2])) as TableName, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldNameToShow2])) as FieldNameToShow, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[OldValue2])) as OldValue, " + 
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[NewValue2])) as NewValue, L.[AppUsers_Id], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldName2])) as FieldName, L.[Tbl_Id] " +
+                              "SELECT L.[ExecStatement], L.[Dt], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[Section])) as Section, " + 
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[TableName])) as TableName, " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldNameToShow])) as FieldNameToShow, " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[OldValue])) as OldValue, " + 
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[NewValue])) as NewValue, L.[AppUsers_Id], " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldName])) as FieldName, L.[Tbl_Id] " +
 
                               "FROM [dbo].[ChangeLog] L " +
                               "ORDER BY L.Id "; //ToDo

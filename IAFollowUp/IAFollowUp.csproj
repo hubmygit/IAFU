@@ -177,6 +177,8 @@
     <Compile Include="ModelsLib\ChangeLog.cs" />
     <Compile Include="ModelsLib\ComboboxItem.cs" />
     <Compile Include="ModelsLib\Companies.cs" />
+    <Compile Include="ModelsLib\Departments.cs" />
+    <Compile Include="ModelsLib\DetailOwners.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
     <Compile Include="ModelsLib\Email.cs" />
     <Compile Include="ModelsLib\EmailParams.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="ModelsLib\FIHeader.cs" />
     <Compile Include="ModelsLib\LibFunctions.cs" />
     <Compile Include="ModelsLib\PasswordHistory.cs" />
+    <Compile Include="ModelsLib\Placeholders.cs" />
     <Compile Include="ModelsLib\Recipient.cs" />
     <Compile Include="ModelsLib\Role.cs" />
     <Compile Include="ModelsLib\SqlDBInfo.cs" />

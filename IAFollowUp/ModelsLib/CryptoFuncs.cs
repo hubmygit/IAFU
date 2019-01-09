@@ -13,6 +13,23 @@ namespace IAFollowUp
         public static byte[] EncryptStringToBytes_Aes(string plainText)
         {
             //RijndaelManaged myRijndael = new RijndaelManaged();
+            //var mahByteArray = new List<byte>();
+            //mahByteArray.Add(0x00);
+            //mahByteArray.Add(0x00);
+            //mahByteArray.Add(0x00);
+            //mahByteArray.Add(0x00);
+            //mahByteArray.Add(0x00);
+            //mahByteArray.Add(0x00);
+            //byte[] newKey = mahByteArray.ToArray();
+
+            //m=D6
+            //y=97
+            //K=B4
+            //e=56
+            //y=97
+            //I=94
+            //V=65
+            //!=12
 
             byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
             byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIV");

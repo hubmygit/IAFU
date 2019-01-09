@@ -24,6 +24,8 @@ namespace IAFollowUp
             isInsert = true;
             currentAudit = audit;
             currentHeader = header;
+
+            gridControl1.DataSource = new BindingList<DetailOwners>(DetailOwners.GetCurrentDetailOwnersListPerCompany(audit.Company.Id));
         }
 
         public FIDetailInsert(Audit audit, FIHeader header, FIDetail detail, bool IsInsertion) //update - duplicate

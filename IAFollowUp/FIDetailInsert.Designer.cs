@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -57,7 +58,19 @@
             this.lblOwners = new System.Windows.Forms.Label();
             this.chbIsClosed = new System.Windows.Forms.CheckBox();
             this.lblIsClosed = new System.Windows.Forms.Label();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.detailOwnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.IsOwner = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPlaceholderId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPlaceholderName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUserId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOwners)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detailOwnersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDetail
@@ -304,7 +317,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvOwners.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvOwners.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOwners.Size = new System.Drawing.Size(693, 153);
+            this.dgvOwners.Size = new System.Drawing.Size(693, 19);
             this.dgvOwners.TabIndex = 6;
             this.dgvOwners.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOwners_CellValueChanged);
             this.dgvOwners.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvOwners_CurrentCellDirtyStateChanged);
@@ -362,11 +375,89 @@
             this.lblIsClosed.TabIndex = 0;
             this.lblIsClosed.Text = "Closed";
             // 
+            // gridControl1
+            // 
+            this.gridControl1.DataSource = this.detailOwnersBindingSource;
+            this.gridControl1.Location = new System.Drawing.Point(139, 524);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(693, 134);
+            this.gridControl1.TabIndex = 8;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // detailOwnersBindingSource
+            // 
+            this.detailOwnersBindingSource.DataSource = typeof(IAFollowUp.DetailOwners);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.IsOwner,
+            this.colId,
+            this.colPlaceholderId,
+            this.colPlaceholderName,
+            this.colUserId,
+            this.colUserName});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // IsOwner
+            // 
+            this.IsOwner.Caption = "Owner";
+            this.IsOwner.FieldName = "gcIsOwner";
+            this.IsOwner.Name = "IsOwner";
+            this.IsOwner.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
+            this.IsOwner.Visible = true;
+            this.IsOwner.VisibleIndex = 0;
+            // 
+            // colId
+            // 
+            this.colId.Caption = "Id";
+            this.colId.FieldName = "Id";
+            this.colId.Name = "colId";
+            this.colId.Visible = true;
+            this.colId.VisibleIndex = 1;
+            // 
+            // colPlaceholderId
+            // 
+            this.colPlaceholderId.Caption = "PlaceholderId";
+            this.colPlaceholderId.FieldName = "Placeholder.Department.Id";
+            this.colPlaceholderId.Name = "colPlaceholderId";
+            this.colPlaceholderId.Visible = true;
+            this.colPlaceholderId.VisibleIndex = 2;
+            // 
+            // colPlaceholderName
+            // 
+            this.colPlaceholderName.Caption = "Department";
+            this.colPlaceholderName.FieldName = "Placeholder.Department.Name";
+            this.colPlaceholderName.Name = "colPlaceholderName";
+            this.colPlaceholderName.Visible = true;
+            this.colPlaceholderName.VisibleIndex = 3;
+            // 
+            // colUserId
+            // 
+            this.colUserId.Caption = "UserId";
+            this.colUserId.FieldName = "User.Id";
+            this.colUserId.Name = "colUserId";
+            this.colUserId.Visible = true;
+            this.colUserId.VisibleIndex = 4;
+            // 
+            // colUserName
+            // 
+            this.colUserName.Caption = "Full Name";
+            this.colUserName.FieldName = "User.FullName";
+            this.colUserName.Name = "colUserName";
+            this.colUserName.Visible = true;
+            this.colUserName.VisibleIndex = 5;
+            // 
             // FIDetailInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 716);
+            this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.lblIsClosed);
             this.Controls.Add(this.chbIsClosed);
             this.Controls.Add(this.lblOwners);
@@ -396,6 +487,9 @@
             this.Text = "Findings and Improvements Detail";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvOwners)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detailOwnersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,5 +522,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;
         private System.Windows.Forms.CheckBox chbIsClosed;
         private System.Windows.Forms.Label lblIsClosed;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource detailOwnersBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colPlaceholderId;
+        private DevExpress.XtraGrid.Columns.GridColumn colUserId;
+        private DevExpress.XtraGrid.Columns.GridColumn colPlaceholderName;
+        private DevExpress.XtraGrid.Columns.GridColumn colUserName;
+        private DevExpress.XtraGrid.Columns.GridColumn IsOwner;
     }
 }

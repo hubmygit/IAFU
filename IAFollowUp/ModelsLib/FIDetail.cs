@@ -19,6 +19,41 @@ namespace IAFollowUp
         public string ActionCode { get; set; } //the only mandatory field!!!
         public List<Users> Owners { get; set; } //
 
+        /*public List<Users> Owners
+        {
+            get
+            {
+                if (Owners is null)
+                {
+                    Owners = new List<Users>();
+                }
+
+                return Owners;
+            }
+            set
+            {
+                if (Owners[0] != null)
+                {
+                    Owner1 = Owners[0];
+                }
+
+                if (Owners[1] != null)
+                {
+                    Owner2 = Owners[1];
+                }
+
+                if (Owners[2] != null)
+                {
+                    Owner3 = Owners[2];
+                }
+            }
+        } //
+        */
+
+        public Users Owner1 { get; set; }
+        public Users Owner2 { get; set; }
+        public Users Owner3 { get; set; }
+
         //public int OwnersCnt { get; set; }
 
         //public int InsUserId { get; set; }
@@ -40,6 +75,10 @@ namespace IAFollowUp
         public FIDetail()
         {
             Owners = new List<Users>();
+
+            Owner1 = new Users();
+            Owner2 = new Users();
+            Owner3 = new Users();
         }
 
         /*
