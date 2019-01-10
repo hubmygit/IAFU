@@ -58,6 +58,12 @@
             this.colIsPublished = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCurrentDept1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCurrentUser1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCurrentDept2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCurrentUser2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCurrentDept3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCurrentUser3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewHeader = new System.Windows.Forms.Button();
             this.btnCreateNewDetail = new System.Windows.Forms.Button();
             this.txtCompany = new System.Windows.Forms.TextBox();
@@ -225,7 +231,13 @@
             this.colIsClosed,
             this.colIsPublished,
             this.colIsFinalized,
-            this.colDetailIsDeleted});
+            this.colDetailIsDeleted,
+            this.colCurrentDept1,
+            this.colCurrentUser1,
+            this.colCurrentDept2,
+            this.colCurrentUser2,
+            this.colCurrentDept3,
+            this.colCurrentUser3});
             this.gridViewDetails.GridControl = this.gridControlDetails;
             this.gridViewDetails.Name = "gridViewDetails";
             this.gridViewDetails.OptionsBehavior.Editable = false;
@@ -317,6 +329,54 @@
             this.colDetailIsDeleted.Name = "colDetailIsDeleted";
             this.colDetailIsDeleted.Visible = true;
             this.colDetailIsDeleted.VisibleIndex = 7;
+            // 
+            // colCurrentDept1
+            // 
+            this.colCurrentDept1.Caption = "Department1";
+            this.colCurrentDept1.FieldName = "CurrentOwner1.Placeholder.Department.Name";
+            this.colCurrentDept1.Name = "colCurrentDept1";
+            this.colCurrentDept1.Visible = true;
+            this.colCurrentDept1.VisibleIndex = 8;
+            // 
+            // colCurrentUser1
+            // 
+            this.colCurrentUser1.Caption = "Owner1";
+            this.colCurrentUser1.FieldName = "CurrentOwner1.User.FullName";
+            this.colCurrentUser1.Name = "colCurrentUser1";
+            this.colCurrentUser1.Visible = true;
+            this.colCurrentUser1.VisibleIndex = 9;
+            // 
+            // colCurrentDept2
+            // 
+            this.colCurrentDept2.Caption = "Department2";
+            this.colCurrentDept2.FieldName = "CurrentOwner2.Placeholder.Department.Name";
+            this.colCurrentDept2.Name = "colCurrentDept2";
+            this.colCurrentDept2.Visible = true;
+            this.colCurrentDept2.VisibleIndex = 10;
+            // 
+            // colCurrentUser2
+            // 
+            this.colCurrentUser2.Caption = "Owner2";
+            this.colCurrentUser2.FieldName = "CurrentOwner2.User.FullName";
+            this.colCurrentUser2.Name = "colCurrentUser2";
+            this.colCurrentUser2.Visible = true;
+            this.colCurrentUser2.VisibleIndex = 11;
+            // 
+            // colCurrentDept3
+            // 
+            this.colCurrentDept3.Caption = "Department3";
+            this.colCurrentDept3.FieldName = "CurrentOwner3.Placeholder.Department.Name";
+            this.colCurrentDept3.Name = "colCurrentDept3";
+            this.colCurrentDept3.Visible = true;
+            this.colCurrentDept3.VisibleIndex = 12;
+            // 
+            // colCurrentUser3
+            // 
+            this.colCurrentUser3.Caption = "Owner3";
+            this.colCurrentUser3.FieldName = "CurrentOwner3.User.FullName";
+            this.colCurrentUser3.Name = "colCurrentUser3";
+            this.colCurrentUser3.Visible = true;
+            this.colCurrentUser3.VisibleIndex = 13;
             // 
             // btnCreateNewHeader
             // 
@@ -621,5 +681,11 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
         private DevExpress.XtraGrid.Columns.GridColumn colIsPublished;
         private System.Windows.Forms.ToolStripMenuItem MIduplicateDetail;
+        private DevExpress.XtraGrid.Columns.GridColumn colCurrentDept1;
+        private DevExpress.XtraGrid.Columns.GridColumn colCurrentDept2;
+        private DevExpress.XtraGrid.Columns.GridColumn colCurrentDept3;
+        private DevExpress.XtraGrid.Columns.GridColumn colCurrentUser1;
+        private DevExpress.XtraGrid.Columns.GridColumn colCurrentUser2;
+        private DevExpress.XtraGrid.Columns.GridColumn colCurrentUser3;
     }
 }

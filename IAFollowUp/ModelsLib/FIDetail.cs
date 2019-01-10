@@ -53,9 +53,10 @@ namespace IAFollowUp
                
         */
 
-        //public Users Owner1 { get; set; }
-        //public Users Owner2 { get; set; }
-        //public Users Owner3 { get; set; }
+        public DetailOwners CurrentOwner1 { get; set; }
+        public DetailOwners CurrentOwner2 { get; set; }
+        public DetailOwners CurrentOwner3 { get; set; }
+
 
 
         //public int OwnersCnt { get; set; }
@@ -80,10 +81,11 @@ namespace IAFollowUp
         {
             //Owners = new List<Users>();
             Placeholders = new List<Placeholders>();
-            
-            //Owner1 = new Users();
-            //Owner2 = new Users();
-            //Owner3 = new Users();
+
+
+            CurrentOwner1 = new DetailOwners();
+            CurrentOwner2 = new DetailOwners();
+            CurrentOwner3 = new DetailOwners();
         }
 
         /*

@@ -564,8 +564,23 @@ namespace IAFollowUp
                         IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
                         //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
-                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))                        
                     };
+
+
+                    if(tmp.Placeholders.Count >= 1 && tmp.Placeholders[0] != null)
+                    {
+                        tmp.CurrentOwner1 = DetailOwners.GetCurrentDetailOwner(tmp.Placeholders[0].Id);
+                    }
+                    if (tmp.Placeholders.Count >= 2 && tmp.Placeholders[1] != null)
+                    {
+                        tmp.CurrentOwner2 = DetailOwners.GetCurrentDetailOwner(tmp.Placeholders[1].Id);
+                    }
+                    if (tmp.Placeholders.Count >= 3 && tmp.Placeholders[2] != null)
+                    {
+                        tmp.CurrentOwner3 = DetailOwners.GetCurrentDetailOwner(tmp.Placeholders[2].Id);
+                    }
+
 
                     //==============================================================
                     if (UserInfo.roleDetails.IsAdmin)
