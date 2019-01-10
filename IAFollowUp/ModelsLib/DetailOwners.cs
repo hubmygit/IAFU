@@ -116,6 +116,41 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static DetailOwners GetCurrentDetailOwner(int givenPlaceholderId)
+        {
+            DetailOwners ret = new DetailOwners();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
+                              "FROM [dbo].[Owners] " +
+                              "WHERE IsCurrent = 'TRUE' and PlaceholderId = " + givenPlaceholderId.ToString();
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = new DetailOwners()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),
+                        User = new Users(Convert.ToInt32(reader["UserId"].ToString())),
+                        InsDt = Convert.ToDateTime(reader["InsDt"].ToString()),
+                        IsCurrent = Convert.ToBoolean(reader["IsCurrent"].ToString())
+                    };
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
         public static List<DetailOwners> GetCurrentDetailOwnersListPerCompany(int givenCompanyId)
         {
             List<DetailOwners> ret = new List<DetailOwners>();

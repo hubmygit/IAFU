@@ -294,7 +294,14 @@ namespace IAFollowUp
                     List<Recipient> distinctRecipients = new List<Recipient>();
                     foreach (FIDetail det in detailsToSendEmail)
                     {
-                        foreach (Users usr in det.Owners)
+                        List<Users> usersList = new List<Users>();
+                        foreach (Placeholders ph in det.Placeholders)
+                        {
+                            usersList.Add(DetailOwners.GetCurrentDetailOwner(ph.Id).User);
+                        }
+
+                        //foreach (Users usr in det.Owners)
+                        foreach (Users usr in usersList)
                         {
                             Recipient thisRecipient = new Recipient() { FullName = usr.FullName, Email = usr.getEmail() };
                             if (distinctRecipients.Exists(i => i.Email == thisRecipient.Email) == false || distinctRecipients.Exists(i => i.FullName == thisRecipient.FullName) == false)

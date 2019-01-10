@@ -563,7 +563,8 @@ namespace IAFollowUp
                         IsPublished = Convert.ToBoolean(reader["IsPublished"].ToString()),
                         IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
-                        Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
                     };
 
                     //==============================================================

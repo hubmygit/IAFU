@@ -118,7 +118,8 @@ namespace IAFollowUp
             FieldsToCheck.Add(new ChLogFields() { FieldName = "ActionDt", FieldNameToShow = "Action Date" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "ActionReq", FieldNameToShow = "Action Required" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "ActionCode", FieldNameToShow = "Action Code" });
-            FieldsToCheck.Add(new ChLogFields() { FieldName = "Owners", FieldNameToShow = "Owners" });
+            //FieldsToCheck.Add(new ChLogFields() { FieldName = "Owners", FieldNameToShow = "Owners" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "Placeholders", FieldNameToShow = "Owner" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsClosed", FieldNameToShow = "Closure Flag" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsPublished", FieldNameToShow = "Publication Flag" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsFinalized", FieldNameToShow = "Finalization Flag" });
@@ -133,11 +134,27 @@ namespace IAFollowUp
 
                 if (objOld != null)
                 {
-                    if (objOld.GetType() == typeof(List<Users>))
+                    //if (objOld.GetType() == typeof(List<Users>))
+                    //{
+                    //    foreach (Users thisUser in (List<Users>)objOld)
+                    //    {
+                    //        strOld += thisUser.FullName + "|";
+                    //    }
+                    //    if (strOld.Length > 2)
+                    //    {
+                    //        strOld = strOld.Remove(strOld.Length - 1, 1);
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    strOld = objOld.ToString();
+                    //}
+
+                    if (objOld.GetType() == typeof(List<Placeholders>))
                     {
-                        foreach (Users thisUser in (List<Users>)objOld)
+                        foreach (Placeholders thisPH in (List<Placeholders>)objOld)
                         {
-                            strOld += thisUser.FullName + "|";
+                            strOld += thisPH.Department.Name + "|";
                         }
                         if (strOld.Length > 2)
                         {
@@ -150,13 +167,32 @@ namespace IAFollowUp
                     }
                 }
 
+                //if (objNew != null)
+                //{
+                //    if (objNew.GetType() == typeof(List<Users>))
+                //    {
+                //        foreach (Users thisUser in (List<Users>)objNew)
+                //        {
+                //            strNew += thisUser.FullName + "|";
+                //        }
+                //        if (strNew.Length > 2)
+                //        {
+                //            strNew = strNew.Remove(strNew.Length - 1, 1);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        strNew = objNew.ToString();
+                //    }
+                //}
+
                 if (objNew != null)
                 {
-                    if (objNew.GetType() == typeof(List<Users>))
+                    if (objNew.GetType() == typeof(List<Placeholders>))
                     {
-                        foreach (Users thisUser in (List<Users>)objNew)
+                        foreach (Placeholders thisPH in (List<Placeholders>)objNew)
                         {
-                            strNew += thisUser.FullName + "|";
+                            strNew += thisPH.Department.Name + "|";
                         }
                         if (strNew.Length > 2)
                         {

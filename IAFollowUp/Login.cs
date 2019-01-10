@@ -70,6 +70,9 @@ namespace IAFollowUp
                 if (failedLoginAttempts == 5)
                 {
                     MessageBox.Show("You reached the maximum number of failed attempts to log in!");
+
+                    //disable User - functions to enable User
+
                     Close();
                 }
             }

@@ -25,7 +25,7 @@ namespace IAFollowUp
             currentAudit = audit;
             currentHeader = header;
 
-            gridControl1.DataSource = new BindingList<DetailOwners>(DetailOwners.GetCurrentDetailOwnersListPerCompany(audit.Company.Id));
+            //gridControl1.DataSource = new BindingList<DetailOwners>(DetailOwners.GetCurrentDetailOwnersListPerCompany(audit.Company.Id));
         }
 
         public FIDetailInsert(Audit audit, FIHeader header, FIDetail detail, bool IsInsertion) //update - duplicate
@@ -37,6 +37,8 @@ namespace IAFollowUp
             currentAudit = audit;
             currentHeader = header;
 
+            //gridControl1.DataSource = new BindingList<DetailOwners>(DetailOwners.GetCurrentDetailOwnersListPerCompany(audit.Company.Id));
+
             txtDescription.Text = detail.Description;
             txtActionCode.Text = detail.ActionCode;
             if (detail.ActionDt != null)
@@ -46,10 +48,36 @@ namespace IAFollowUp
             txtActionReq.Text = detail.ActionReq;
 
             //fIDetail.Owners = fIDetail.getOwners(fIDetail.Id, fIDetail.RevNo);
-            foreach (Users thisOwner in detail.Owners)
+            //foreach (Users thisOwner in detail.Owners)
+            //{
+            //    dgvOwners.Rows.Add(new object[] { thisOwner.Id, thisOwner.FullName, thisOwner.RoleName });
+            //}
+
+            foreach (Placeholders thisPlaceholder in detail.Placeholders)
             {
-                dgvOwners.Rows.Add(new object[] { thisOwner.Id, thisOwner.FullName, thisOwner.RoleName });
+                DataGridViewRow row =dgvAllOwners.Rows
+                                    .Cast<DataGridViewRow>()
+                                    .Where(r => Convert.ToInt32(r.Cells["Placeholders_Id"].Value.ToString()) == thisPlaceholder.Id)
+                                    .First();
+
+                if (row.Index >= 0)
+                {
+                    dgvAllOwners["IsOwner", row.Index].Value = "True";
+                }
             }
+            //foreach (int countryId in givenRec.CountryIds)
+            //{
+            //    DataGridViewRow row = dgvCountries.Rows
+            //                          .Cast<DataGridViewRow>()
+            //                          .Where(r => Convert.ToInt32(r.Cells["Country_Id"].Value.ToString()) == countryId)
+            //                          .First();
+
+            //    if (row.Index >= 0)
+            //    {
+            //        dgvCountries["Country_Checked", row.Index].Value = "True";
+            //    }
+            //}
+
 
             if (IsInsertion == false)
             {
@@ -68,7 +96,13 @@ namespace IAFollowUp
 
         public void Init(Audit audit, FIHeader header)
         {
-            FullName.Items.AddRange(ownersList.Select(i => i.FullName).OrderBy(i => i).ToArray());
+            //FullName.Items.AddRange(ownersList.Select(i => i.FullName).OrderBy(i => i).ToArray());
+
+            List<DetailOwners> AllDetailOwners = DetailOwners.GetCurrentDetailOwnersListPerCompany(audit.Company.Id);
+            foreach (DetailOwners thisOwner in AllDetailOwners)
+            {
+                dgvAllOwners.Rows.Add(new object[] { false, thisOwner.Id, thisOwner.Placeholder.Id, thisOwner.User.Id, thisOwner.Placeholder.Department.Name, thisOwner.User.FullName });
+            }
 
             txtAuditTitle.Text = audit.Title;
             txtCompany.Text = audit.Company.Name;
@@ -90,41 +124,41 @@ namespace IAFollowUp
             dtpActionDate.CustomFormat = "dd.MM.yyyy";
         }
 
-        private void dgvOwners_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1)
-            {
-                DataGridViewComboBoxCell cb = (DataGridViewComboBoxCell)dgvOwners.Rows[e.RowIndex].Cells["FullName"];
+        //private void dgvOwners_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex != -1)
+        //    {
+        //        DataGridViewComboBoxCell cb = (DataGridViewComboBoxCell)dgvOwners.Rows[e.RowIndex].Cells["FullName"];
 
-                if (cb.Value != null)
-                {
-                    dgvOwners.Invalidate();
-                }
-            }
-        }
+        //        if (cb.Value != null)
+        //        {
+        //            dgvOwners.Invalidate();
+        //        }
+        //    }
+        //}
 
-        private void dgvOwners_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (dgvOwners.IsCurrentCellDirty)
-            {
-                bool commited = false;
+        //private void dgvOwners_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        //{
+        //    if (dgvOwners.IsCurrentCellDirty)
+        //    {
+        //        bool commited = false;
 
-                // This fires the cell value changed handler below
-                try
-                {
-                    commited = dgvOwners.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Commited: " + commited + " / " + ex.Message);
-                }
-                //MessageBox.Show(dgvOwners.SelectedRows[0].Cells["FullName"].Value.ToString());
+        //        // This fires the cell value changed handler below
+        //        try
+        //        {
+        //            commited = dgvOwners.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Commited: " + commited + " / " + ex.Message);
+        //        }
+        //        //MessageBox.Show(dgvOwners.SelectedRows[0].Cells["FullName"].Value.ToString());
 
-                dgvOwners.SelectedRows[0].Cells["Id"].Value = ownersList.Where(i => i.FullName == dgvOwners.SelectedRows[0].Cells["FullName"].Value.ToString()).First().Id;
-                dgvOwners.SelectedRows[0].Cells["Role"].Value = ownersList.Where(i => i.FullName == dgvOwners.SelectedRows[0].Cells["FullName"].Value.ToString()).First().RoleName;
+        //        dgvOwners.SelectedRows[0].Cells["Id"].Value = ownersList.Where(i => i.FullName == dgvOwners.SelectedRows[0].Cells["FullName"].Value.ToString()).First().Id;
+        //        dgvOwners.SelectedRows[0].Cells["Role"].Value = ownersList.Where(i => i.FullName == dgvOwners.SelectedRows[0].Cells["FullName"].Value.ToString()).First().RoleName;
 
-            }
-        }
+        //    }
+        //}
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -140,21 +174,37 @@ namespace IAFollowUp
                 return;
             }
 
-            List<Users> newOwners = new List<Users>();
-            for (int l = 0; l < dgvOwners.Rows.Count; l++)
+            //List<Users> newOwners = new List<Users>();
+            //for (int l = 0; l < dgvOwners.Rows.Count; l++)
+            //{
+            //    if (dgvOwners.Rows[l].IsNewRow == false)
+            //    {
+            //        newOwners.Add(new Users()
+            //        {
+            //            Id = Convert.ToInt32(dgvOwners.Rows[l].Cells["Id"].Value.ToString()),
+            //            FullName = dgvOwners.Rows[l].Cells["FullName"].Value.ToString(),
+            //            RoleName = dgvOwners.Rows[l].Cells["Role"].Value.ToString()
+            //        });
+            //    }
+            //}
+
+            List<Placeholders> newPlaceholders = new List<Placeholders>();
+            for (int l = 0; l < dgvAllOwners.Rows.Count; l++)
             {
-                if (dgvOwners.Rows[l].IsNewRow == false)
+                if (Convert.ToBoolean(dgvAllOwners.Rows[l].Cells["IsOwner"].Value.ToString()))
                 {
-                    newOwners.Add(new Users()
-                    {
-                        Id = Convert.ToInt32(dgvOwners.Rows[l].Cells["Id"].Value.ToString()),
-                        FullName = dgvOwners.Rows[l].Cells["FullName"].Value.ToString(),
-                        RoleName = dgvOwners.Rows[l].Cells["Role"].Value.ToString()
-                    });
+                    newPlaceholders.Add(new Placeholders(Convert.ToInt32(dgvAllOwners.Rows[l].Cells["Placeholders_Id"].Value.ToString())));
                 }
             }
+            
 
-            if (newOwners.Count <= 0)
+            //if (newOwners.Count <= 0)
+            //{
+            //    MessageBox.Show("Please insert at least one Owner!");
+            //    return;
+            //}
+
+            if (newPlaceholders.Count <= 0)
             {
                 MessageBox.Show("Please insert at least one Owner!");
                 return;
@@ -180,7 +230,8 @@ namespace IAFollowUp
                 //ActionReq = txtActionReq.Text.Replace('\r', ' ').Replace('\n', ' '),
                 ActionDt = dt_Action,
                 //OwnersCnt = oldFIDetailRecord.OwnersCnt,
-                Owners = newOwners,
+                //Owners = newOwners,
+                Placeholders = newPlaceholders,
                 FIHeaderId = currentHeader.Id,
                 //AttCnt = oldFIDetailRecord.AttCnt
 

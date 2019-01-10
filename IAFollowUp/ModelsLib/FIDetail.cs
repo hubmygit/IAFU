@@ -17,7 +17,9 @@ namespace IAFollowUp
         public DateTime? ActionDt { get; set; } //
         public string ActionReq { get; set; } //
         public string ActionCode { get; set; } //the only mandatory field!!!
-        public List<Users> Owners { get; set; } //
+        //public List<Users> Owners { get; set; } //
+
+        public List<Placeholders> Placeholders { get; set; }
 
         /*public List<Users> Owners
         {
@@ -48,11 +50,13 @@ namespace IAFollowUp
                 }
             }
         } //
+               
         */
 
-        public Users Owner1 { get; set; }
-        public Users Owner2 { get; set; }
-        public Users Owner3 { get; set; }
+        //public Users Owner1 { get; set; }
+        //public Users Owner2 { get; set; }
+        //public Users Owner3 { get; set; }
+
 
         //public int OwnersCnt { get; set; }
 
@@ -74,11 +78,12 @@ namespace IAFollowUp
 
         public FIDetail()
         {
-            Owners = new List<Users>();
-
-            Owner1 = new Users();
-            Owner2 = new Users();
-            Owner3 = new Users();
+            //Owners = new List<Users>();
+            Placeholders = new List<Placeholders>();
+            
+            //Owner1 = new Users();
+            //Owner2 = new Users();
+            //Owner3 = new Users();
         }
 
         /*
@@ -92,6 +97,7 @@ namespace IAFollowUp
         }
         */
 
+        /*
         public static List<Users> getOwners(int detail_Id)
         {
             List<Users> ret = new List<Users>();
@@ -122,6 +128,38 @@ namespace IAFollowUp
 
             return ret;
         }
+        */
+
+        public static List<Placeholders> getOwners(int detail_Id)
+        {
+            List<Placeholders> ret = new List<Placeholders>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT [PlaceholderId] " +
+                              "FROM [dbo].[FIDetail_Placeholders] " +
+                              "WHERE FIDetailId = @detail_Id ";
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detail_Id", detail_Id);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret.Add(new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())));
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
 
         private static bool InsertIntoTable_FIDetailOwners(int fiDetailId, Users SingleOwner) //INSERT [dbo].[FIDetail_Owners]
         {
@@ -140,6 +178,41 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@OwnerId", SingleOwner.Id);
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 
+                cmd.CommandType = CommandType.Text;
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        private static bool InsertIntoTable_FIDetailPlaceholders(int fiDetailId, Placeholders SinglePlaceholder) //INSERT [dbo].[FIDetail_Placeholders]
+        {
+            bool ret = false;
+
+            //dgvOwners.Rows.Add(new object[] { thisOwner.Id, thisOwner.FullName, thisOwner.RoleName });
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[FIDetail_Placeholders] ([FIDetailId], [PlaceholderId]) " +
+                           "VALUES (@DetailId, @PlaceholderId) ";
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@DetailId", fiDetailId);
+                cmd.Parameters.AddWithValue("@PlaceholderId", SinglePlaceholder.Id);
+                
                 cmd.CommandType = CommandType.Text;
 
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -210,14 +283,22 @@ namespace IAFollowUp
                 {
                     ret = true;
 
-                    foreach (Users thisOwner in fiDetail.Owners)
+                    //foreach (Users thisOwner in fiDetail.Owners)
+                    //{
+                    //    if (!InsertIntoTable_FIDetailOwners(fiDetail.Id, thisOwner))
+                    //    {
+                    //        ret = false;
+                    //    }
+                    //}
+
+                    foreach (Placeholders thisPlaceholder in fiDetail.Placeholders)
                     {
-                        if (!InsertIntoTable_FIDetailOwners(fiDetail.Id, thisOwner))
+                        if (!InsertIntoTable_FIDetailPlaceholders(fiDetail.Id, thisPlaceholder))
                         {
                             ret = false;
                         }
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -230,12 +311,45 @@ namespace IAFollowUp
             return ret;
         }
 
+        /*
         public static bool DeleteOwners(int detailId)
         {
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "DELETE FROM [dbo].[FIDetail_Owners] WHERE FIDetailId = @FIDetailId ";
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@FIDetailId", detailId);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+        */
+
+        public static bool DeleteOwners(int detailId)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "DELETE FROM [dbo].[FIDetail_Placeholders] WHERE FIDetailId = @FIDetailId ";
             try
             {
                 sqlConn.Open();
@@ -303,14 +417,28 @@ namespace IAFollowUp
                     ret = true;
 
                     //delete old Owners
+
+                    //if (!DeleteOwners(detail.Id))
+                    //{
+                    //    ret = false;
+                    //}
+
+                    //foreach (Users thisOwner in detail.Owners)
+                    //{
+                    //    if (!InsertIntoTable_FIDetailOwners(detail.Id, thisOwner))
+                    //    {
+                    //        ret = false;
+                    //    }
+                    //}
+
                     if (!DeleteOwners(detail.Id))
                     {
                         ret = false;
                     }
 
-                    foreach (Users thisOwner in detail.Owners)
+                    foreach (Placeholders thisPlaceholder in detail.Placeholders)
                     {
-                        if (!InsertIntoTable_FIDetailOwners(detail.Id, thisOwner))
+                        if (!InsertIntoTable_FIDetailPlaceholders(detail.Id, thisPlaceholder))
                         {
                             ret = false;
                         }
@@ -531,12 +659,20 @@ namespace IAFollowUp
                         IsPublished = Convert.ToBoolean(reader["IsPublished"].ToString()),
                         IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
-                        Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
                     };
 
                     //==============================================================
 
-                    FIDetailOwners detailOwners = new FIDetailOwners(tmp.Owners);
+                    List<Users> usersList = new List<Users>();
+                    foreach (Placeholders ph in tmp.Placeholders)
+                    {
+                        usersList.Add(DetailOwners.GetCurrentDetailOwner(ph.Id).User);
+                    }
+                                        
+                    //FIDetailOwners detailOwners = new FIDetailOwners(tmp.Owners);
+                    FIDetailOwners detailOwners = new FIDetailOwners(usersList);
 
                     if (UserInfo.roleDetails.IsAdmin)
                     {
