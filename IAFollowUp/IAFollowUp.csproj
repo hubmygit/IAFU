@@ -188,6 +188,7 @@
     <Compile Include="ModelsLib\FIDetailOwners.cs" />
     <Compile Include="ModelsLib\FIHeader.cs" />
     <Compile Include="ModelsLib\LibFunctions.cs" />
+    <Compile Include="ModelsLib\MyBytes.cs" />
     <Compile Include="ModelsLib\PasswordHistory.cs" />
     <Compile Include="ModelsLib\Placeholders.cs" />
     <Compile Include="ModelsLib\Recipient.cs" />

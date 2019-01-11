@@ -58,6 +58,9 @@ namespace IAFollowUp
         public DetailOwners CurrentOwner3 { get; set; }
 
 
+        public DetailOwners RealOwner1 { get; set; }
+        public DetailOwners RealOwner2 { get; set; }
+        public DetailOwners RealOwner3 { get; set; }
 
         //public int OwnersCnt { get; set; }
 
@@ -81,11 +84,14 @@ namespace IAFollowUp
         {
             //Owners = new List<Users>();
             Placeholders = new List<Placeholders>();
-
-
+            
             CurrentOwner1 = new DetailOwners();
             CurrentOwner2 = new DetailOwners();
             CurrentOwner3 = new DetailOwners();
+
+            RealOwner1 = new DetailOwners();
+            RealOwner2 = new DetailOwners();
+            RealOwner3 = new DetailOwners();
         }
 
         /*
@@ -564,10 +570,63 @@ namespace IAFollowUp
                         {
                             ChangeLog.Insert(new FIDetail() { Id = detail.Id, IsPublished = detail.IsPublished }, new FIDetail() { Id = detail.Id, IsPublished = true }, "FIDetail");
                             ret.Add(detail);
+
+                            if (detail.Placeholders.Count >= 1 && detail.Placeholders[0] != null)
+                            {
+                                //detail.CurrentOwner1 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[0].Id);
+                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[0].Id, detail.CurrentOwner1.Id);
+                            }
+                            if (detail.Placeholders.Count >= 2 && detail.Placeholders[1] != null)
+                            {
+                                //detail.CurrentOwner2 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[1].Id);
+                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[1].Id, detail.CurrentOwner2.Id);
+                            }
+                            if (detail.Placeholders.Count >= 3 && detail.Placeholders[2] != null)
+                            {
+                                //detail.CurrentOwner3 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[2].Id);
+                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[2].Id, detail.CurrentOwner3.Id);
+                            }
+
                         }
                     }
                 }
             }
+
+            return ret;
+        }
+
+        public static bool Update_FIDetailPlaceholders_RealOwner(int detailId, int placeholderId, int currentOwnerId) //UPDATE [dbo].[FIDetail_Placeholders]
+        {
+            bool ret = false;
+
+            //dgvOwners.Rows.Add(new object[] { thisOwner.Id, thisOwner.FullName, thisOwner.RoleName });
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIDetail_Placeholders] SET [RealOwnerId] = @RealOwnerId " +
+                           "WHERE [FIDetailId] = @DetailId AND [PlaceholderId] = @PlaceholderId ";
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@DetailId", detailId);
+                cmd.Parameters.AddWithValue("@PlaceholderId", placeholderId);
+                cmd.Parameters.AddWithValue("@RealOwnerId", currentOwnerId);
+
+                cmd.CommandType = CommandType.Text;
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
 
             return ret;
         }

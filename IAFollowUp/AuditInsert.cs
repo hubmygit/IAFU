@@ -99,16 +99,16 @@ namespace IAFollowUp
                 MessageBox.Show("Please insert a Title!");
                 return;
             }
-            //if (txtAuditNumber.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Please insert an Audit Number!");
-            //    return;
-            //}
-            //if (txtIASentNumber.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Please insert a IA Sent Number!");
-            //    return;
-            //}
+            if (txtAuditNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Please insert an Audit Number!");
+                return;
+            }
+            if (txtIASentNumber.Text.Trim() == "")
+            {
+                MessageBox.Show("Please insert a IA Sent Number!");
+                return;
+            }
             if (cbCompanies.Text.Trim() == "")
             {
                 MessageBox.Show("Please choose a Company!");

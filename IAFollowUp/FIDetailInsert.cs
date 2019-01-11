@@ -174,6 +174,12 @@ namespace IAFollowUp
                 return;
             }
 
+            if (txtActionCode.Text.Trim() == "")
+            {
+                MessageBox.Show("Please insert an Action Code!");
+                return;
+            }
+
             //List<Users> newOwners = new List<Users>();
             //for (int l = 0; l < dgvOwners.Rows.Count; l++)
             //{

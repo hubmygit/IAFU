@@ -274,7 +274,7 @@ namespace IAFollowUp
                 }
                 //STEP 3 <-********** publish details - update flags **********
 
-                //STEP 4 ->********** closure flag --> auto finalized **********
+                //STEP 4 <-********** closure flag --> auto finalized **********
                 int closedDetailsToFinalizeCnt = detailsPublished.Count(i => i.IsClosed);
                 if (closedDetailsToFinalizeCnt > 0)
                 {

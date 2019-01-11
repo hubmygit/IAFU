@@ -12,27 +12,8 @@ namespace IAFollowUp
     {
         public static byte[] EncryptStringToBytes_Aes(string plainText)
         {
-            //RijndaelManaged myRijndael = new RijndaelManaged();
-            //var mahByteArray = new List<byte>();
-            //mahByteArray.Add(0x00);
-            //mahByteArray.Add(0x00);
-            //mahByteArray.Add(0x00);
-            //mahByteArray.Add(0x00);
-            //mahByteArray.Add(0x00);
-            //mahByteArray.Add(0x00);
-            //byte[] newKey = mahByteArray.ToArray();
-
-            //m=D6
-            //y=97
-            //K=B4
-            //e=56
-            //y=97
-            //I=94
-            //V=65
-            //!=12
-
-            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
-            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIV");
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes(MyBytes.getKey()); 
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes(MyBytes.getIV()); 
 
             // Check arguments.
             if (plainText == null || plainText.Length <= 0)
@@ -85,8 +66,8 @@ namespace IAFollowUp
 
         public static string DecryptStringFromBytes_Aes(byte[] cipherText)
         {
-            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
-            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIV");
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes(MyBytes.getKey()); 
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes(MyBytes.getIV()); 
 
             // Check arguments.
             if (cipherText == null || cipherText.Length <= 0)
@@ -149,8 +130,8 @@ namespace IAFollowUp
             return EncryptStringToBytes_Aes(str);
 
             /*
-            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
-            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIV");
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes("xxxxxxxxxxxxxxxx");
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes("xxxxxxxx");
 
             // Check arguments.
             if (fileContents == null || fileContents.Length <= 0)
@@ -209,8 +190,8 @@ namespace IAFollowUp
             return StringToByteArray(str);
 
             /*
-            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
-            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIV");
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes("xxxxxxxxxxxxxxxx");
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes("xxxxxxxx");
 
             // Check arguments.
             if (cipherText == null || cipherText.Length <= 0)
@@ -268,8 +249,8 @@ namespace IAFollowUp
         //------------------- * new byte[] functions * -------------------
         public static byte[] encryptStream(byte[] fileContents)
         {
-            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
-            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIVmyIVmyIV");
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes("xxxxxxxxxxxxxxxx");
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes("xxxxxxxxxxxxxxxx");
 
             // Check arguments.
             if (fileContents == null || fileContents.Length <= 0)
@@ -297,8 +278,8 @@ namespace IAFollowUp
 
         public static byte[] mydec(byte[] fileContents)
         {
-            byte[] Key = System.Text.Encoding.Unicode.GetBytes("myKeymyKeymyKey!");
-            byte[] IV = System.Text.Encoding.Unicode.GetBytes("myIVmyIVmyIVmyIV");
+            byte[] Key = System.Text.Encoding.Unicode.GetBytes("xxxxxxxxxxxxxxxx");
+            byte[] IV = System.Text.Encoding.Unicode.GetBytes("xxxxxxxxxxxxxxxx");
             // Check arguments.
             if (fileContents == null || fileContents.Length <= 0)
                 throw new ArgumentNullException("cipherText");
@@ -332,4 +313,5 @@ namespace IAFollowUp
         */
 
     }
+
 }

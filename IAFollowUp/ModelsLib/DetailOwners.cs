@@ -151,6 +151,8 @@ namespace IAFollowUp
             return ret;
         }
 
+        
+
         public static List<DetailOwners> GetCurrentDetailOwnersListPerCompany(int givenCompanyId)
         {
             List<DetailOwners> ret = new List<DetailOwners>();
