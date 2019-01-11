@@ -57,6 +57,7 @@
             this.colIsCompleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewAudit = new System.Windows.Forms.Button();
+            this.colAuditRef = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).BeginInit();
@@ -148,6 +149,7 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
+            this.colAuditRef,
             this.colYear,
             this.colCompany,
             this.colAuditNumber,
@@ -179,7 +181,7 @@
             this.colYear.FieldName = "Year";
             this.colYear.Name = "colYear";
             this.colYear.Visible = true;
-            this.colYear.VisibleIndex = 0;
+            this.colYear.VisibleIndex = 1;
             // 
             // colCompany
             // 
@@ -187,7 +189,7 @@
             this.colCompany.FieldName = "Company.Name";
             this.colCompany.Name = "colCompany";
             this.colCompany.Visible = true;
-            this.colCompany.VisibleIndex = 1;
+            this.colCompany.VisibleIndex = 2;
             // 
             // colAuditNumber
             // 
@@ -195,7 +197,7 @@
             this.colAuditNumber.FieldName = "AuditNumber";
             this.colAuditNumber.Name = "colAuditNumber";
             this.colAuditNumber.Visible = true;
-            this.colAuditNumber.VisibleIndex = 2;
+            this.colAuditNumber.VisibleIndex = 3;
             // 
             // colAuditType
             // 
@@ -203,7 +205,7 @@
             this.colAuditType.FieldName = "AuditType.Name";
             this.colAuditType.Name = "colAuditType";
             this.colAuditType.Visible = true;
-            this.colAuditType.VisibleIndex = 3;
+            this.colAuditType.VisibleIndex = 4;
             // 
             // colIASentNumber
             // 
@@ -211,7 +213,7 @@
             this.colIASentNumber.FieldName = "IASentNumber";
             this.colIASentNumber.Name = "colIASentNumber";
             this.colIASentNumber.Visible = true;
-            this.colIASentNumber.VisibleIndex = 4;
+            this.colIASentNumber.VisibleIndex = 5;
             // 
             // colTitle
             // 
@@ -220,7 +222,7 @@
             this.colTitle.FieldName = "Title";
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
-            this.colTitle.VisibleIndex = 5;
+            this.colTitle.VisibleIndex = 6;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -232,7 +234,7 @@
             this.colAuditRating.FieldName = "AuditRating.Name";
             this.colAuditRating.Name = "colAuditRating";
             this.colAuditRating.Visible = true;
-            this.colAuditRating.VisibleIndex = 6;
+            this.colAuditRating.VisibleIndex = 7;
             // 
             // colReportDt
             // 
@@ -240,7 +242,7 @@
             this.colReportDt.FieldName = "ReportDt";
             this.colReportDt.Name = "colReportDt";
             this.colReportDt.Visible = true;
-            this.colReportDt.VisibleIndex = 7;
+            this.colReportDt.VisibleIndex = 8;
             // 
             // colAuditor1
             // 
@@ -248,7 +250,7 @@
             this.colAuditor1.FieldName = "Auditor1.FullName";
             this.colAuditor1.Name = "colAuditor1";
             this.colAuditor1.Visible = true;
-            this.colAuditor1.VisibleIndex = 8;
+            this.colAuditor1.VisibleIndex = 9;
             // 
             // colAuditor2
             // 
@@ -256,7 +258,7 @@
             this.colAuditor2.FieldName = "Auditor2.FullName";
             this.colAuditor2.Name = "colAuditor2";
             this.colAuditor2.Visible = true;
-            this.colAuditor2.VisibleIndex = 9;
+            this.colAuditor2.VisibleIndex = 10;
             // 
             // colSupervisor
             // 
@@ -264,7 +266,7 @@
             this.colSupervisor.FieldName = "Supervisor.FullName";
             this.colSupervisor.Name = "colSupervisor";
             this.colSupervisor.Visible = true;
-            this.colSupervisor.VisibleIndex = 10;
+            this.colSupervisor.VisibleIndex = 11;
             // 
             // colIsCompleted
             // 
@@ -272,7 +274,7 @@
             this.colIsCompleted.FieldName = "IsCompleted";
             this.colIsCompleted.Name = "colIsCompleted";
             this.colIsCompleted.Visible = true;
-            this.colIsCompleted.VisibleIndex = 11;
+            this.colIsCompleted.VisibleIndex = 12;
             // 
             // colIsDeleted
             // 
@@ -280,7 +282,7 @@
             this.colIsDeleted.FieldName = "IsDeleted";
             this.colIsDeleted.Name = "colIsDeleted";
             this.colIsDeleted.Visible = true;
-            this.colIsDeleted.VisibleIndex = 12;
+            this.colIsDeleted.VisibleIndex = 13;
             // 
             // btnCreateNewAudit
             // 
@@ -294,6 +296,13 @@
             this.btnCreateNewAudit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateNewAudit.UseVisualStyleBackColor = true;
             this.btnCreateNewAudit.Click += new System.EventHandler(this.btnCreateNewAudit_Click);
+            // 
+            // colAuditRef
+            // 
+            this.colAuditRef.FieldName = "AuditRef";
+            this.colAuditRef.Name = "colAuditRef";
+            this.colAuditRef.Visible = true;
+            this.colAuditRef.VisibleIndex = 0;
             // 
             // AuditView
             // 
@@ -346,5 +355,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAuditRating;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDeleted;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditRef;
     }
 }

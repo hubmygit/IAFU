@@ -37,6 +37,8 @@ namespace IAFollowUp
 
         public List<FIHeader> FIHeaders { get; set; }
 
+        public string AuditRef { get; set; }
+
         /*
         public static bool isEqual(Audit x, Audit y)
         {
@@ -61,7 +63,7 @@ namespace IAFollowUp
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
                               //"(SELECT count(*) FROM [dbo].[Audit_Attachments] T WHERE a.id = T.AuditID and A.RevNo = T.RevNo) as AttCnt, " +
-                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted, A.[AuditRef] " +
                               "FROM [dbo].[Audit] A ";
 
             if (!showDeleted)
@@ -145,6 +147,7 @@ namespace IAFollowUp
 
                         //AuditRatingId = AuditRating_Id,
                         AuditRating = AuditRating_rating,
+                        AuditRef = reader["AuditRef"].ToString(),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
                         FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()), showDeleted, auditOwners)
@@ -172,7 +175,7 @@ namespace IAFollowUp
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
                               //"(SELECT count(*) FROM [dbo].[Audit_Attachments] T WHERE a.id = T.AuditID and A.RevNo = T.RevNo) as AttCnt, " +
-                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted, A.[AuditRef] " +
                               "FROM [dbo].[Audit] A ";
 
             if (!showDeleted)
@@ -259,6 +262,8 @@ namespace IAFollowUp
 
                         //AuditRatingId = AuditRating_Id,
                         AuditRating = AuditRating_rating,
+                        AuditRef = reader["AuditRef"].ToString(),
+
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
                         //FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()), showDeleted, auditOwners)
@@ -290,9 +295,9 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[Audit] " +
                            "([Year], [CompanyID], [AuditTypeID], [Title], [ReportDt], [Auditor1ID], [Auditor2ID], [SupervisorID], [IsCompleted], [AuditNumber], " +
-                           "[IASentNumber],[InsUserID],[InsDt], [AuditRatingId]) VALUES " +
+                           "[IASentNumber],[InsUserID],[InsDt], [AuditRatingId], [AuditRef]) VALUES " +
                            "(@Year, @CompanyID, @AuditTypeID, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), @ReportDt, @Auditor1ID, " +
-                           "@Auditor2ID, @SupervisorID, @IsCompleted, @AuditNumber, @IASentNumber, @InsUserID, getDate(), @AuditRatingId) ";
+                           "@Auditor2ID, @SupervisorID, @IsCompleted, @AuditNumber, @IASentNumber, @InsUserID, getDate(), @AuditRatingId, @AuditRef) ";
             try
             {
                 sqlConn.Open();
@@ -336,6 +341,9 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@IsCompleted", audit.IsCompleted);
                 cmd.Parameters.AddWithValue("@AuditNumber", audit.AuditNumber);
                 cmd.Parameters.AddWithValue("@IASentNumber", audit.IASentNumber);
+
+                cmd.Parameters.AddWithValue("@AuditRef", audit.AuditRef);
+
                 //cmd.Parameters.AddWithValue("@InsUserID", user.Id);
                 cmd.Parameters.AddWithValue("@InsUserID", UserInfo.userDetails.Id);
 
@@ -366,7 +374,7 @@ namespace IAFollowUp
                 "[Title] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title))," +
                 "[ReportDt] = @ReportDt, " +
                 "[Auditor1ID] = @Auditor1ID, [Auditor2ID] = @Auditor2ID, [SupervisorID] = @SupervisorID, [IsCompleted] = @IsCompleted, [AuditNumber] = @AuditNumber, " +
-                "[IASentNumber] = @IASentNumber, [UpdUserID] = @UpdUserID, [UpdDt] = getDate(), [AuditRatingId]= @AuditRatingId " +
+                "[IASentNumber] = @IASentNumber, [UpdUserID] = @UpdUserID, [UpdDt] = getDate(), [AuditRatingId] = @AuditRatingId, [AuditRef] = @AuditRef " +
                 "WHERE id=@id";
             try
             {
@@ -414,6 +422,9 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@IsCompleted", audit.IsCompleted);
                 cmd.Parameters.AddWithValue("@AuditNumber", audit.AuditNumber);
                 cmd.Parameters.AddWithValue("@IASentNumber", audit.IASentNumber);
+
+                cmd.Parameters.AddWithValue("@AuditRef", audit.AuditRef);
+
                 //cmd.Parameters.AddWithValue("@InsUserID", user.Id);
                 cmd.Parameters.AddWithValue("@UpdUserID", UserInfo.userDetails.Id);
 
@@ -937,7 +948,7 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[Audit] SET [AuditNumber] = @AuditNumber, [IASentNumber] = @IASentNumber, [ReportDt] = @ReportDt, " + 
+            string InsSt = "UPDATE [dbo].[Audit] SET [AuditNumber] = @AuditNumber, [IASentNumber] = @IASentNumber, [ReportDt] = @ReportDt, [AuditRef] = @AuditRef, " + 
                 "[UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                 "WHERE Id = @auditId ";
             try
@@ -950,6 +961,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@AuditNumber", givenAudit.AuditNumber);
                 cmd.Parameters.AddWithValue("@IASentNumber", givenAudit.IASentNumber);
                 cmd.Parameters.AddWithValue("@ReportDt", givenAudit.ReportDt.Date);
+                cmd.Parameters.AddWithValue("@AuditRef", givenAudit.AuditRef);
                 cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;

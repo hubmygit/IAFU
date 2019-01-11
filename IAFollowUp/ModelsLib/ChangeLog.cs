@@ -312,6 +312,7 @@ namespace IAFollowUp
             FieldsToCheck.Add(new ChLogFields() { FieldName = "Supervisor", FieldNameToShow = "Supervisor" }); //obj
             FieldsToCheck.Add(new ChLogFields() { FieldName = "AuditNumber", FieldNameToShow = "Audit Number" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IASentNumber", FieldNameToShow = "IA Sent Number" });
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "AuditRef", FieldNameToShow = "Audit Ref" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "AuditRating", FieldNameToShow = "Audit Rating" }); //obj
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsCompleted", FieldNameToShow = "Completion Flag" });

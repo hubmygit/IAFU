@@ -36,6 +36,7 @@ namespace IAFollowUp
 
             txtAuditNumber.Text = audit.AuditNumber;
             txtIASentNumber.Text = audit.IASentNumber;
+            txtAuditRef.Text = audit.AuditRef;
             dtpReportDate.Value = audit.ReportDt;
 
             cbAuditTypes.SelectedIndex = cbAuditTypes.FindStringExact(audit.AuditType.Name);
@@ -139,6 +140,7 @@ namespace IAFollowUp
                 Year = dtpYear.Value.Year,
                 ReportDt = dtpReportDate.Value.Date,
                 IsCompleted = false,
+                AuditRef = txtAuditRef.Text,
 
                 Id = AuditUpdId//, //only on update
                 //AttCnt = oldAuditRecord.AttCnt
@@ -204,6 +206,66 @@ namespace IAFollowUp
             }
 
 
+        }
+
+        void AuditRefAutoComplete()
+        {
+            string year = "____"; 
+            if (dtpYear.Value.ToString() != "")
+            {
+                year = dtpYear.Value.Year.ToString();
+            }
+
+            string com = "__";  //LibFunctions.getComboboxItem<Companies>(cbCompanies).NameShort;
+            if (cbCompanies.Text.Trim() != "")
+            {
+                com = LibFunctions.getComboboxItem<Companies>(cbCompanies).NameShort;
+            }
+
+            string aNum = "___";
+            if (txtAuditNumber.Text.Trim() != "")
+            {
+                aNum = txtAuditNumber.Text.Trim();
+            }
+
+            string aType = "__";  //LibFunctions.getComboboxItem<Companies>(cbCompanies).NameShort;
+            if (cbAuditTypes.Text.Trim() != "")
+            {
+                aType = LibFunctions.getComboboxItem<AuditTypes>(cbAuditTypes).NameShort;
+            }
+
+            string iaSentNum = "___";
+            if (txtIASentNumber.Text.Trim() != "")
+            {
+                iaSentNum = txtIASentNumber.Text.Trim();
+            }
+
+            txtAuditRef.Text = year + "." + com + "." + aNum + "." + aType + "-" + iaSentNum;
+        }
+
+        private void dtpYear_ValueChanged(object sender, EventArgs e)
+        {
+            AuditRefAutoComplete();
+        }
+
+        private void cbCompanies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AuditRefAutoComplete();
+        }
+
+        private void txtAuditNumber_TextChanged(object sender, EventArgs e)
+        {
+            AuditRefAutoComplete();
+        }
+
+        private void cbAuditTypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AuditRefAutoComplete();
+        }
+
+        private void txtIASentNumber_TextChanged(object sender, EventArgs e)
+        {
+            AuditRefAutoComplete();
         }
     }
 }

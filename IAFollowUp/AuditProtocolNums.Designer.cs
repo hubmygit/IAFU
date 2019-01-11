@@ -41,6 +41,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.dtpReportDate = new System.Windows.Forms.DateTimePicker();
             this.lblReportDate = new System.Windows.Forms.Label();
+            this.lblAuditRef = new System.Windows.Forms.Label();
+            this.txtAuditRef = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtAuditNumber
@@ -48,19 +50,20 @@
             this.txtAuditNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuditNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtAuditNumber.Location = new System.Drawing.Point(354, 203);
+            this.txtAuditNumber.Location = new System.Drawing.Point(354, 237);
             this.txtAuditNumber.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtAuditNumber.MaxLength = 3;
             this.txtAuditNumber.Name = "txtAuditNumber";
             this.txtAuditNumber.Size = new System.Drawing.Size(184, 22);
             this.txtAuditNumber.TabIndex = 1;
+            this.txtAuditNumber.TextChanged += new System.EventHandler(this.txtAuditNumber_TextChanged);
             // 
             // lblAuditNumber
             // 
             this.lblAuditNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAuditNumber.AutoSize = true;
             this.lblAuditNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblAuditNumber.Location = new System.Drawing.Point(247, 206);
+            this.lblAuditNumber.Location = new System.Drawing.Point(247, 240);
             this.lblAuditNumber.Name = "lblAuditNumber";
             this.lblAuditNumber.Size = new System.Drawing.Size(89, 16);
             this.lblAuditNumber.TabIndex = 0;
@@ -71,19 +74,20 @@
             this.txtIASentNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIASentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtIASentNumber.Location = new System.Drawing.Point(354, 231);
+            this.txtIASentNumber.Location = new System.Drawing.Point(354, 265);
             this.txtIASentNumber.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtIASentNumber.MaxLength = 3;
             this.txtIASentNumber.Name = "txtIASentNumber";
             this.txtIASentNumber.Size = new System.Drawing.Size(184, 22);
             this.txtIASentNumber.TabIndex = 2;
+            this.txtIASentNumber.TextChanged += new System.EventHandler(this.txtIASentNumber_TextChanged);
             // 
             // lblIASentNumber
             // 
             this.lblIASentNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblIASentNumber.AutoSize = true;
             this.lblIASentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblIASentNumber.Location = new System.Drawing.Point(247, 234);
+            this.lblIASentNumber.Location = new System.Drawing.Point(247, 268);
             this.lblIASentNumber.Name = "lblIASentNumber";
             this.lblIASentNumber.Size = new System.Drawing.Size(101, 16);
             this.lblIASentNumber.TabIndex = 0;
@@ -113,7 +117,7 @@
             this.txtAuditTitle.Name = "txtAuditTitle";
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtAuditTitle.Size = new System.Drawing.Size(653, 72);
+            this.txtAuditTitle.Size = new System.Drawing.Size(653, 92);
             this.txtAuditTitle.TabIndex = 0;
             // 
             // lblAuditTitle
@@ -141,7 +145,7 @@
             this.lblProtocolNums.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblProtocolNums.AutoSize = true;
             this.lblProtocolNums.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblProtocolNums.Location = new System.Drawing.Point(303, 153);
+            this.lblProtocolNums.Location = new System.Drawing.Point(303, 187);
             this.lblProtocolNums.Name = "lblProtocolNums";
             this.lblProtocolNums.Size = new System.Drawing.Size(178, 24);
             this.lblProtocolNums.TabIndex = 0;
@@ -153,7 +157,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnSave.Image = global::IAFollowUp.Properties.Resources.Save_32x;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(332, 310);
+            this.btnSave.Location = new System.Drawing.Point(332, 360);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
             this.btnSave.TabIndex = 3;
@@ -170,7 +174,7 @@
             this.dtpReportDate.CustomFormat = "dd.MM.yyyy";
             this.dtpReportDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dtpReportDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpReportDate.Location = new System.Drawing.Point(354, 259);
+            this.dtpReportDate.Location = new System.Drawing.Point(354, 293);
             this.dtpReportDate.Name = "dtpReportDate";
             this.dtpReportDate.Size = new System.Drawing.Size(184, 22);
             this.dtpReportDate.TabIndex = 9;
@@ -180,17 +184,41 @@
             this.lblReportDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblReportDate.AutoSize = true;
             this.lblReportDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblReportDate.Location = new System.Drawing.Point(247, 264);
+            this.lblReportDate.Location = new System.Drawing.Point(247, 298);
             this.lblReportDate.Name = "lblReportDate";
             this.lblReportDate.Size = new System.Drawing.Size(81, 16);
             this.lblReportDate.TabIndex = 8;
             this.lblReportDate.Text = "Report Date";
             // 
+            // lblAuditRef
+            // 
+            this.lblAuditRef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAuditRef.AutoSize = true;
+            this.lblAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblAuditRef.Location = new System.Drawing.Point(12, 135);
+            this.lblAuditRef.Name = "lblAuditRef";
+            this.lblAuditRef.Size = new System.Drawing.Size(62, 16);
+            this.lblAuditRef.TabIndex = 18;
+            this.lblAuditRef.Text = "Audit Ref";
+            // 
+            // txtAuditRef
+            // 
+            this.txtAuditRef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtAuditRef.Location = new System.Drawing.Point(119, 132);
+            this.txtAuditRef.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
+            this.txtAuditRef.MaxLength = 50;
+            this.txtAuditRef.Name = "txtAuditRef";
+            this.txtAuditRef.Size = new System.Drawing.Size(653, 22);
+            this.txtAuditRef.TabIndex = 19;
+            // 
             // AuditProtocolNums
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 362);
+            this.ClientSize = new System.Drawing.Size(784, 412);
+            this.Controls.Add(this.txtAuditRef);
+            this.Controls.Add(this.lblAuditRef);
             this.Controls.Add(this.dtpReportDate);
             this.Controls.Add(this.lblReportDate);
             this.Controls.Add(this.btnSave);
@@ -227,5 +255,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DateTimePicker dtpReportDate;
         private System.Windows.Forms.Label lblReportDate;
+        private System.Windows.Forms.Label lblAuditRef;
+        private System.Windows.Forms.TextBox txtAuditRef;
     }
 }
