@@ -46,6 +46,7 @@ namespace IAFollowUp
                 dtpActionDate.Value = (DateTime)detail.ActionDt;
             }
             txtActionReq.Text = detail.ActionReq;
+            txtFISubId.Text = detail.FISubId;
 
             //fIDetail.Owners = fIDetail.getOwners(fIDetail.Id, fIDetail.RevNo);
             //foreach (Users thisOwner in detail.Owners)
@@ -180,6 +181,12 @@ namespace IAFollowUp
                 return;
             }
 
+            if (txtFISubId.Text.Trim() == "")
+            {
+                MessageBox.Show("Please insert a SubId!");
+                return;
+            }
+
             //List<Users> newOwners = new List<Users>();
             //for (int l = 0; l < dgvOwners.Rows.Count; l++)
             //{
@@ -241,7 +248,9 @@ namespace IAFollowUp
                 FIHeaderId = currentHeader.Id,
                 //AttCnt = oldFIDetailRecord.AttCnt
 
-                IsClosed = chbIsClosed.Checked
+                IsClosed = chbIsClosed.Checked,
+
+                FISubId = txtFISubId.Text
             };
 
             if (isInsert) //insert

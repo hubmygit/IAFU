@@ -79,6 +79,7 @@ namespace IAFollowUp
         public bool IsFinalized { get; set; }
 
         public bool IsDeleted { get; set; }
+        public string FISubId { get; set; }
 
         public FIDetail()
         {
@@ -245,11 +246,11 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[FIDetail] ([FIHeaderId], [Description], [ActionReq], [ActionDt], [ActionCode], [IsClosed], [InsUserId], [InsDt] ) " +
+            string InsSt = "INSERT INTO [dbo].[FIDetail] ([FIHeaderId], [Description], [ActionReq], [ActionDt], [ActionCode], [IsClosed], [FISubId], [InsUserId], [InsDt] ) " +
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
                            "(@HeaderId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Description)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @ActionReq))," +
-                           "@ActionDt, @ActionCode, @IsClosed,  @InsUserId, getDate()) ";
+                           "@ActionDt, @ActionCode, @IsClosed, @FISubId, @InsUserId, getDate()) ";
             try
             {
                 sqlConn.Open();
@@ -272,6 +273,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@ActionCode", fiDetail.ActionCode);
 
                 cmd.Parameters.AddWithValue("@IsClosed", fiDetail.IsClosed);
+                cmd.Parameters.AddWithValue("@FISubId", fiDetail.FISubId);
 
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 
@@ -390,7 +392,7 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "UPDATE [dbo].[FIDetail] SET [FIHeaderId] = @HeaderId, [Description] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Description)), " +
                           "[ActionReq] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @ActionReq)), [ActionDt] = @ActionDt, [ActionCode] = @ActionCode, " +
-                          "[IsClosed] = @IsClosed, [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
+                          "[IsClosed] = @IsClosed, [FISubId] = @FISubId, [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                           "WHERE id = @id";
             try
             {
@@ -415,6 +417,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@ActionReq", detail.ActionReq);
                 cmd.Parameters.AddWithValue("@ActionCode", detail.ActionCode);
                 cmd.Parameters.AddWithValue("@IsClosed", detail.IsClosed);
+                cmd.Parameters.AddWithValue("@FISubId", detail.FISubId);
                 cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
@@ -676,7 +679,7 @@ namespace IAFollowUp
                               "D.ActionDt, " +
                               "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
                               "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
-                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
                               "FROM [dbo].[FIDetail] D ";
 
             if (!showDeleted)
@@ -721,7 +724,8 @@ namespace IAFollowUp
                         IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
                         //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
-                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString())),
+                        FISubId = reader["FISubId"].ToString()
                     };
 
                     //==============================================================

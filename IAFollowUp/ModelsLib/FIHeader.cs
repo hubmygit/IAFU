@@ -26,6 +26,8 @@ namespace IAFollowUp
 
         public List<FIDetail> FIDetails { get; set; }
 
+        public string FIId { get; set; }
+
         public FIHeader()
         {
         }
@@ -45,9 +47,9 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[FIHeader] ([AuditId], [Title], [FICategoryId], [InsUserId], [InsDt]) VALUES " +
+            string InsSt = "INSERT INTO [dbo].[FIHeader] ([AuditId], [Title], [FICategoryId], [FIId], [InsUserId], [InsDt]) VALUES " +
                            "(@AuditId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), " +
-                           "@FICategoryId, @InsUserId, getDate()) ";
+                           "@FICategoryId, @FIId, @InsUserId, getDate()) ";
             try
             {
                 sqlConn.Open();
@@ -58,6 +60,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@AuditId", fiHeader.AuditId);
                 cmd.Parameters.AddWithValue("@Title", fiHeader.Title);
                 cmd.Parameters.AddWithValue("@FICategoryId", fiHeader.FICategory.Id);
+                cmd.Parameters.AddWithValue("@FIId", fiHeader.FIId);
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
@@ -83,8 +86,8 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[FIHeader] SET [Title] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), [FICategoryId] = @FICategoryId, [UpdUserId] = @UpdUserId, " +
-                "[UpdDt] = getDate() " +
+            string InsSt = "UPDATE [dbo].[FIHeader] SET [Title] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), [FICategoryId] = @FICategoryId, " +
+                "[FIId] = @FIId, [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                 "WHERE id=@id";
             try
             {
@@ -97,6 +100,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@id", header.Id);
                 cmd.Parameters.AddWithValue("@FICategoryId", header.FICategory.Id);
                 cmd.Parameters.AddWithValue("@Title", header.Title);
+                cmd.Parameters.AddWithValue("@FIId", header.FIId);
                 cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
@@ -159,7 +163,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
-                              "H.[FICategoryId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "H.[FICategoryId], H.[FIId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
                               "FROM [dbo].[FIHeader] H ";
 
             if (!showDeleted)
@@ -198,6 +202,7 @@ namespace IAFollowUp
                         Title = reader["Title"].ToString(),
 
                         FICategory = fiCat,
+                        FIId = reader["FIId"].ToString(),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
                         FIDetails = new List<FIDetail>()

@@ -37,6 +37,7 @@ namespace IAFollowUp
 
             txtHeaderTitle.Text = header.Title;
             cbCategory.SelectedIndex = cbCategory.FindStringExact(header.FICategory.Name);
+            txtFIId.Text = header.FIId;
 
             oldHeaderRecord = header;
         }
@@ -69,12 +70,19 @@ namespace IAFollowUp
                 return;
             }
 
+            if (txtFIId.Text.Trim() == "")
+            {
+                MessageBox.Show("Please insert an Id!");
+                return;
+            }
+
             newHeaderRecord = new FIHeader()
             {
                 Id = oldHeaderRecord.Id, //only on update, else 0
                 Title = txtHeaderTitle.Text,
                 //Title = txtHeaderTitle.Text.Replace('\r', ' ').Replace('\n', ' '),
                 FICategory = LibFunctions.getComboboxItem<FICategory>(cbCategory),
+                FIId = txtFIId.Text,
                 AuditId = currentAudit.Id
 
                 //IsDeleted //?????????

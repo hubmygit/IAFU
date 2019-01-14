@@ -39,6 +39,8 @@
             this.txtAuditTitle = new System.Windows.Forms.TextBox();
             this.lblAuditTitle = new System.Windows.Forms.Label();
             this.lblCompany = new System.Windows.Forms.Label();
+            this.txtFIId = new System.Windows.Forms.TextBox();
+            this.lblFIId = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -101,7 +103,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnSave.Image = global::IAFollowUp.Properties.Resources.Save_32x;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(362, 410);
+            this.btnSave.Location = new System.Drawing.Point(362, 385);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
             this.btnSave.TabIndex = 58;
@@ -156,11 +158,35 @@
             this.lblCompany.TabIndex = 0;
             this.lblCompany.Text = "Company";
             // 
+            // txtFIId
+            // 
+            this.txtFIId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtFIId.Location = new System.Drawing.Point(502, 273);
+            this.txtFIId.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
+            this.txtFIId.MaxLength = 50;
+            this.txtFIId.Name = "txtFIId";
+            this.txtFIId.Size = new System.Drawing.Size(330, 22);
+            this.txtFIId.TabIndex = 60;
+            // 
+            // lblFIId
+            // 
+            this.lblFIId.AutoSize = true;
+            this.lblFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFIId.Location = new System.Drawing.Point(450, 273);
+            this.lblFIId.Name = "lblFIId";
+            this.lblFIId.Size = new System.Drawing.Size(46, 20);
+            this.lblFIId.TabIndex = 61;
+            this.lblFIId.Text = "F/I Id";
+            // 
             // FIHeaderInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 462);
+            this.ClientSize = new System.Drawing.Size(844, 437);
+            this.Controls.Add(this.lblFIId);
+            this.Controls.Add(this.txtFIId);
             this.Controls.Add(this.txtCompany);
             this.Controls.Add(this.txtAuditTitle);
             this.Controls.Add(this.lblAuditTitle);
@@ -173,7 +199,7 @@
             this.Controls.Add(this.lblHeaderTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1500, 500);
-            this.MinimumSize = new System.Drawing.Size(860, 500);
+            this.MinimumSize = new System.Drawing.Size(860, 475);
             this.Name = "FIHeaderInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Findings and Improvements Header";
@@ -194,5 +220,7 @@
         private System.Windows.Forms.TextBox txtAuditTitle;
         private System.Windows.Forms.Label lblAuditTitle;
         private System.Windows.Forms.Label lblCompany;
+        private System.Windows.Forms.TextBox txtFIId;
+        private System.Windows.Forms.Label lblFIId;
     }
 }

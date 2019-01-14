@@ -124,7 +124,8 @@ namespace IAFollowUp
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsPublished", FieldNameToShow = "Publication Flag" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsFinalized", FieldNameToShow = "Finalization Flag" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
-            
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "FISubId", FieldNameToShow = "FISubId" });
+
             foreach (ChLogFields chlf in FieldsToCheck)
             {
                 object objOld = oldRec.GetType().GetProperty(chlf.FieldName).GetValue(oldRec, null);
@@ -237,6 +238,7 @@ namespace IAFollowUp
 
             FieldsToCheck.Add(new ChLogFields() { FieldName = "Title", FieldNameToShow = "Title" });
             FieldsToCheck.Add(new ChLogFields() { FieldName = "FICategory", FieldNameToShow = "FICategory" }); //obj
+            FieldsToCheck.Add(new ChLogFields() { FieldName = "FIId", FieldNameToShow = "FIId" }); //obj
             FieldsToCheck.Add(new ChLogFields() { FieldName = "IsDeleted", FieldNameToShow = "Deletion Flag" });
             //FieldsToCheck.Add(new ChLogFields() { FieldName = "IsPublished", FieldNameToShow = "Publication Flag" });
 

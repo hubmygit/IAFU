@@ -527,7 +527,7 @@ namespace IAFollowUp
                               "D.ActionDt, " +
                               "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
                               "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
-                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
                               "FROM [dbo].[FIDetail] D " +
                               "WHERE D.[FIHeaderId] = @HeaderId ";
 
@@ -575,7 +575,8 @@ namespace IAFollowUp
                         IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
                         //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
-                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))                        
+                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString())),
+                        FISubId = reader["FISubId"].ToString()
                     };
 
 
@@ -623,7 +624,7 @@ namespace IAFollowUp
             
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
-                              "H.[FICategoryId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "H.[FICategoryId], H.[FIId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
                               "FROM [dbo].[FIHeader] H " +
                               "WHERE H.[AuditId] = @AuditId ";
 
@@ -665,6 +666,7 @@ namespace IAFollowUp
                         Title = reader["Title"].ToString(),
 
                         FICategory = fiCat,
+                        FIId = reader["FIId"].ToString(),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
                         FIDetails = Audit.getFIDetails(Convert.ToInt32(reader["Id"].ToString()), showDeleted, auditOwners)

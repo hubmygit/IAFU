@@ -58,6 +58,8 @@
             this.Users_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Department_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.User_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblFISubId = new System.Windows.Forms.Label();
+            this.txtFISubId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllOwners)).BeginInit();
             this.SuspendLayout();
             // 
@@ -366,11 +368,35 @@
             this.User_Name.ReadOnly = true;
             this.User_Name.Width = 200;
             // 
+            // lblFISubId
+            // 
+            this.lblFISubId.AutoSize = true;
+            this.lblFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFISubId.Location = new System.Drawing.Point(421, 343);
+            this.lblFISubId.Name = "lblFISubId";
+            this.lblFISubId.Size = new System.Drawing.Size(75, 20);
+            this.lblFISubId.TabIndex = 63;
+            this.lblFISubId.Text = "F/I SubId";
+            // 
+            // txtFISubId
+            // 
+            this.txtFISubId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtFISubId.Location = new System.Drawing.Point(502, 343);
+            this.txtFISubId.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
+            this.txtFISubId.MaxLength = 50;
+            this.txtFISubId.Name = "txtFISubId";
+            this.txtFISubId.Size = new System.Drawing.Size(330, 22);
+            this.txtFISubId.TabIndex = 62;
+            // 
             // FIDetailInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 716);
+            this.Controls.Add(this.lblFISubId);
+            this.Controls.Add(this.txtFISubId);
             this.Controls.Add(this.dgvAllOwners);
             this.Controls.Add(this.lblIsClosed);
             this.Controls.Add(this.chbIsClosed);
@@ -435,5 +461,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Users_Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Department_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn User_Name;
+        private System.Windows.Forms.Label lblFISubId;
+        private System.Windows.Forms.TextBox txtFISubId;
     }
 }
