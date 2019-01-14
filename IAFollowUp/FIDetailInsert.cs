@@ -99,8 +99,8 @@ namespace IAFollowUp
         {
             //FullName.Items.AddRange(ownersList.Select(i => i.FullName).OrderBy(i => i).ToArray());
 
-            List<DetailOwners> AllDetailOwners = DetailOwners.GetCurrentDetailOwnersListPerCompany(audit.Company.Id);
-            foreach (DetailOwners thisOwner in AllDetailOwners)
+            List<Owners_MT> AllDetailOwners = Owners_MT.GetCurrentDetailOwnersListPerCompany(audit.Company.Id);
+            foreach (Owners_MT thisOwner in AllDetailOwners)
             {
                 dgvAllOwners.Rows.Add(new object[] { false, thisOwner.Id, thisOwner.Placeholder.Id, thisOwner.User.Id, thisOwner.Placeholder.Department.Name, thisOwner.User.FullName });
             }

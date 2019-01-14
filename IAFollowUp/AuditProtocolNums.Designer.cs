@@ -209,6 +209,7 @@
             this.txtAuditRef.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtAuditRef.MaxLength = 50;
             this.txtAuditRef.Name = "txtAuditRef";
+            this.txtAuditRef.ReadOnly = true;
             this.txtAuditRef.Size = new System.Drawing.Size(653, 22);
             this.txtAuditRef.TabIndex = 19;
             // 

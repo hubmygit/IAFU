@@ -53,14 +53,14 @@ namespace IAFollowUp
                
         */
 
-        public DetailOwners CurrentOwner1 { get; set; }
-        public DetailOwners CurrentOwner2 { get; set; }
-        public DetailOwners CurrentOwner3 { get; set; }
+        public Owners_MT CurrentOwner1 { get; set; }
+        public Owners_MT CurrentOwner2 { get; set; }
+        public Owners_MT CurrentOwner3 { get; set; }
 
 
-        public DetailOwners RealOwner1 { get; set; }
-        public DetailOwners RealOwner2 { get; set; }
-        public DetailOwners RealOwner3 { get; set; }
+        public Owners_MT RealOwner1 { get; set; }
+        public Owners_MT RealOwner2 { get; set; }
+        public Owners_MT RealOwner3 { get; set; }
 
         //public int OwnersCnt { get; set; }
 
@@ -86,13 +86,13 @@ namespace IAFollowUp
             //Owners = new List<Users>();
             Placeholders = new List<Placeholders>();
             
-            CurrentOwner1 = new DetailOwners();
-            CurrentOwner2 = new DetailOwners();
-            CurrentOwner3 = new DetailOwners();
+            CurrentOwner1 = new Owners_MT();
+            CurrentOwner2 = new Owners_MT();
+            CurrentOwner3 = new Owners_MT();
 
-            RealOwner1 = new DetailOwners();
-            RealOwner2 = new DetailOwners();
-            RealOwner3 = new DetailOwners();
+            RealOwner1 = new Owners_MT();
+            RealOwner2 = new Owners_MT();
+            RealOwner3 = new Owners_MT();
         }
 
         /*
@@ -729,26 +729,58 @@ namespace IAFollowUp
                     };
 
                     //==============================================================
-
-                    List<Users> usersList = new List<Users>();
+                    //-> Management Team Users
+                    List<Users> usersListMT = new List<Users>();
                     foreach (Placeholders ph in tmp.Placeholders)
                     {
-                        usersList.Add(DetailOwners.GetCurrentDetailOwner(ph.Id).User);
-                    }
-                                        
-                    //FIDetailOwners detailOwners = new FIDetailOwners(tmp.Owners);
-                    FIDetailOwners detailOwners = new FIDetailOwners(usersList);
+                        usersListMT.Add(Owners_MT.GetCurrentOwnerMT(ph.Id).User);
+                    }                    
+                    FIDetailOwners detailOwnersMT = new FIDetailOwners(usersListMT);
+                    //<- Management Team Users
 
+                    //-> General Managers
+                    List<Users> usersListGM = new List<Users>();
+                    foreach (Placeholders ph in tmp.Placeholders)
+                    {
+                        usersListGM.AddRange(Owners_GM.GetOwnerGMUsersList(ph.Id));
+                    }
+                    FIDetailOwners detailOwnersGM = new FIDetailOwners(usersListGM);
+                    //<- General Managers
+
+                    //a) Admin - All
                     if (UserInfo.roleDetails.IsAdmin)
                     {
                         ret.Add(tmp);
                     }
-                    //owner ή το detail να είναι published (από αυτά που επιτρέπεται να δει!)
-                    else if (detailOwners.IsUser_DetailOwner())
+                    //b) Auditor - Published
+                    else if (UserInfo.roleDetails.IsAuditor)
                     {
-                        ret.Add(tmp);
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                        }
                     }
-                    //==============================================================
+                    //c) MT (placeholder's current owner) - Published
+                    else if (detailOwnersMT.IsUser_DetailOwner())
+                    {
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                        }
+                    }
+                    //d) GM (placeholder's owner) - Published
+                    else if (detailOwnersGM.IsUser_DetailOwner())
+                    {
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                        }
+                    }
+                    //e) Delegatee 
+                    //else if()
+
+
+                        //==============================================================
 
                 }
                 reader.Close();

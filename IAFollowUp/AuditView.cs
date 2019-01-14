@@ -297,7 +297,7 @@ namespace IAFollowUp
                         List<Users> usersList = new List<Users>();
                         foreach (Placeholders ph in det.Placeholders)
                         {
-                            usersList.Add(DetailOwners.GetCurrentDetailOwner(ph.Id).User);
+                            usersList.Add(Owners_MT.GetCurrentOwnerMT(ph.Id).User);
                         }
 
                         //foreach (Users usr in det.Owners)

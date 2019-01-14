@@ -112,8 +112,15 @@ namespace IAFollowUp
                         int rowHandle1 = gridViewHeaders.GetRowHandle(index1);
                         gridViewHeaders.FocusedRowHandle = rowHandle1;
 
-                        gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails); //DataSource
-                        //thisAudit.FIHeaders.Where(i => i.Id == Id).First()
+                        if (thisAudit.FIHeaders.Exists(i => i.Id == Id))
+                        {
+                            gridControlDetails.DataSource = new BindingList<FIDetail>(thisAudit.FIHeaders.Where(i => i.Id == Id).First().FIDetails); //DataSource
+                        }
+                        else
+                        {
+                            gridControlDetails.DataSource = new BindingList<FIDetail>(); //DataSource
+                        }
+
                     }
                     else
                     {

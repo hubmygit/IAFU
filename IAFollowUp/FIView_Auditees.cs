@@ -16,6 +16,17 @@ namespace IAFollowUp
             InitializeComponent();
 
             List<FIDetail> detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
+
+            //UserInfo.userDetails.Id
+
+            //a) Admin
+            //   Όλα
+            //b) Auditor
+            //   Όλα τα published
+            //c) MT
+            //d) GM
+            //e) Delegatee 
+
             List<FIHeader> headerList = FIHeader.Select(UserInfo.roleDetails.IsAdmin, detailList);
             List<Audit> auditList = Audit.Select(UserInfo.roleDetails.IsAdmin, headerList);
             
@@ -23,6 +34,10 @@ namespace IAFollowUp
             gridControl1.DataSource = fiDHABList;
 
             //gridView1.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
+
+
+
+            gridControlFI.DataSource = new BindingList<Audit>(auditList);
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace IAFollowUp
 {
-    public class DetailOwners
+    public class Owners_MT
     {
         public int Id { get; set; }
         public Placeholders Placeholder { get; set; }
@@ -15,15 +15,15 @@ namespace IAFollowUp
         public DateTime InsDt { get; set; }
         public bool IsCurrent { get; set; }
 
-        public DetailOwners()
+        public Owners_MT()
         {
         }
 
-        public DetailOwners(int givenId)
+        public Owners_MT(int givenId)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
-                              "FROM [dbo].[Owners] " +
+                              "FROM [dbo].[Owners_MT] " +
                               "WHERE Id = " + givenId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -47,13 +47,13 @@ namespace IAFollowUp
             }
         }
 
-        public static List<DetailOwners> GetSqlDetailOwnersList()
+        public static List<Owners_MT> GetSqlDetailOwnersList()
         {
-            List<DetailOwners> ret = new List<DetailOwners>();
+            List<Owners_MT> ret = new List<Owners_MT>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
-                              "FROM [dbo].[Owners] ";
+                              "FROM [dbo].[Owners_MT] ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
@@ -61,7 +61,7 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new DetailOwners()
+                    ret.Add(new Owners_MT()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
                         Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),
@@ -81,13 +81,13 @@ namespace IAFollowUp
             return ret;
         }
 
-        public static List<DetailOwners> GetCurrentDetailOwnersList(int givenPlaceholderId)
+        public static List<Owners_MT> GetCurrentDetailOwnersList(int givenPlaceholderId)
         {
-            List<DetailOwners> ret = new List<DetailOwners>();
+            List<Owners_MT> ret = new List<Owners_MT>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
-                              "FROM [dbo].[Owners] " +
+                              "FROM [dbo].[Owners_MT] " +
                               "WHERE IsCurrent = 'TRUE' and PlaceholderId = " + givenPlaceholderId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -96,7 +96,7 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new DetailOwners()
+                    ret.Add(new Owners_MT()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
                         Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),
@@ -116,13 +116,13 @@ namespace IAFollowUp
             return ret;
         }
 
-        public static DetailOwners GetCurrentDetailOwner(int givenPlaceholderId)
+        public static Owners_MT GetCurrentOwnerMT(int givenPlaceholderId)
         {
-            DetailOwners ret = new DetailOwners();
+            Owners_MT ret = new Owners_MT();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
-                              "FROM [dbo].[Owners] " +
+                              "FROM [dbo].[Owners_MT] " +
                               "WHERE IsCurrent = 'TRUE' and PlaceholderId = " + givenPlaceholderId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -131,7 +131,7 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret = new DetailOwners()
+                    ret = new Owners_MT()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
                         Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),
@@ -153,13 +153,13 @@ namespace IAFollowUp
 
         
 
-        public static List<DetailOwners> GetCurrentDetailOwnersListPerCompany(int givenCompanyId)
+        public static List<Owners_MT> GetCurrentDetailOwnersListPerCompany(int givenCompanyId)
         {
-            List<DetailOwners> ret = new List<DetailOwners>();
+            List<Owners_MT> ret = new List<Owners_MT>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
-                              "FROM [dbo].[Owners] " +
+                              "FROM [dbo].[Owners_MT] " +
                               "WHERE IsCurrent = 'TRUE' and PlaceholderId in (SELECT id FROM [dbo].[Placeholders] WHERE CompanyId = " + givenCompanyId.ToString() + " ) " ;
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -168,7 +168,7 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new DetailOwners()
+                    ret.Add(new Owners_MT()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
                         Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),

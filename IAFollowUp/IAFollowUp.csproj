@@ -178,7 +178,8 @@
     <Compile Include="ModelsLib\ComboboxItem.cs" />
     <Compile Include="ModelsLib\Companies.cs" />
     <Compile Include="ModelsLib\Departments.cs" />
-    <Compile Include="ModelsLib\DetailOwners.cs" />
+    <Compile Include="ModelsLib\Owners_GM.cs" />
+    <Compile Include="ModelsLib\Owners_MT.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
     <Compile Include="ModelsLib\Email.cs" />
     <Compile Include="ModelsLib\EmailParams.cs" />
