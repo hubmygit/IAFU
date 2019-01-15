@@ -32,7 +32,8 @@ namespace IAFollowUp
         //auditors<-----
 
         //auditees----->
-        FI_View
+        FI_View,
+        FI_Activity_View
         //auditees<-----
     }
 
@@ -725,6 +726,13 @@ namespace IAFollowUp
                     {
 
                         //checking auditees(detail owners) into select function (detail/header/audit infos)
+                        ret = true;
+                        break;
+                    }
+
+                case Action.FI_Activity_View:
+                    {
+
                         ret = true;
                         break;
                     }

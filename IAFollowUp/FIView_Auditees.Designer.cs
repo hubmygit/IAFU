@@ -31,34 +31,34 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FIView_Auditees));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.cmsDHA = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MIactivity = new System.Windows.Forms.ToolStripMenuItem();
             this.fI_DetailHeaderAuditBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAuditId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditCompany = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditYear = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditTitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditRef = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHeaderTitle = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colHeaderCategory = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHeaderFIId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colDetailActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailActionReq = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.colDetailActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.gridControlFI = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colDetailFISubId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailCurrentOwner1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailCurrentOwner2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailCurrentOwner3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlFI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -66,19 +66,29 @@
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl1.ContextMenuStrip = this.cmsDHA;
             this.gridControl1.DataSource = this.fI_DetailHeaderAuditBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 2);
+            this.gridControl1.Location = new System.Drawing.Point(0, 47);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemMemoEdit1,
-            this.repositoryItemMemoEdit2,
-            this.repositoryItemMemoEdit3,
-            this.repositoryItemMemoEdit4});
-            this.gridControl1.Size = new System.Drawing.Size(784, 222);
+            this.gridControl1.Size = new System.Drawing.Size(1184, 395);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            // 
+            // cmsDHA
+            // 
+            this.cmsDHA.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MIactivity});
+            this.cmsDHA.Name = "cmsHeader";
+            this.cmsDHA.Size = new System.Drawing.Size(181, 48);
+            // 
+            // MIactivity
+            // 
+            this.MIactivity.Name = "MIactivity";
+            this.MIactivity.Size = new System.Drawing.Size(180, 22);
+            this.MIactivity.Text = "Activity";
+            this.MIactivity.Click += new System.EventHandler(this.MIactivity_Click);
             // 
             // fI_DetailHeaderAuditBindingSource
             // 
@@ -90,143 +100,174 @@
             this.colAuditId,
             this.colAuditCompany,
             this.colAuditYear,
+            this.colAuditTitle,
+            this.colAuditRef,
             this.colHeaderId,
             this.colHeaderTitle,
             this.colHeaderCategory,
+            this.colHeaderFIId,
             this.colDetailId,
             this.colDetailDescription,
             this.colDetailActionDt,
             this.colDetailActionReq,
-            this.colDetailIsFinalized});
+            this.colDetailActionCode,
+            this.colDetailIsFinalized,
+            this.colDetailFISubId,
+            this.colDetailCurrentOwner1,
+            this.colDetailCurrentOwner2,
+            this.colDetailCurrentOwner3});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.RowAutoHeight = true;
             // 
             // colAuditId
             // 
-            this.colAuditId.Caption = "Audit Id";
             this.colAuditId.FieldName = "AuditId";
             this.colAuditId.Name = "colAuditId";
+            this.colAuditId.Visible = true;
+            this.colAuditId.VisibleIndex = 0;
             // 
             // colAuditCompany
             // 
-            this.colAuditCompany.Caption = "Audit Company";
-            this.colAuditCompany.FieldName = "AuditCompany.Name";
+            this.colAuditCompany.FieldName = "AuditCompany";
             this.colAuditCompany.Name = "colAuditCompany";
             this.colAuditCompany.Visible = true;
-            this.colAuditCompany.VisibleIndex = 0;
+            this.colAuditCompany.VisibleIndex = 1;
             // 
             // colAuditYear
             // 
-            this.colAuditYear.Caption = "Audit Year";
             this.colAuditYear.FieldName = "AuditYear";
             this.colAuditYear.Name = "colAuditYear";
             this.colAuditYear.Visible = true;
-            this.colAuditYear.VisibleIndex = 1;
+            this.colAuditYear.VisibleIndex = 2;
+            // 
+            // colAuditTitle
+            // 
+            this.colAuditTitle.FieldName = "AuditTitle";
+            this.colAuditTitle.Name = "colAuditTitle";
+            this.colAuditTitle.Visible = true;
+            this.colAuditTitle.VisibleIndex = 3;
+            // 
+            // colAuditRef
+            // 
+            this.colAuditRef.FieldName = "AuditRef";
+            this.colAuditRef.Name = "colAuditRef";
+            this.colAuditRef.Visible = true;
+            this.colAuditRef.VisibleIndex = 4;
             // 
             // colHeaderId
             // 
-            this.colHeaderId.Caption = "Header Id";
             this.colHeaderId.FieldName = "HeaderId";
             this.colHeaderId.Name = "colHeaderId";
+            this.colHeaderId.Visible = true;
+            this.colHeaderId.VisibleIndex = 5;
             // 
             // colHeaderTitle
             // 
-            this.colHeaderTitle.Caption = "Header Title";
-            this.colHeaderTitle.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colHeaderTitle.FieldName = "HeaderTitle";
             this.colHeaderTitle.Name = "colHeaderTitle";
             this.colHeaderTitle.Visible = true;
-            this.colHeaderTitle.VisibleIndex = 2;
-            // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            this.colHeaderTitle.VisibleIndex = 6;
             // 
             // colHeaderCategory
             // 
-            this.colHeaderCategory.Caption = "Header Category";
-            this.colHeaderCategory.FieldName = "HeaderCategory.Name";
+            this.colHeaderCategory.FieldName = "HeaderCategory";
             this.colHeaderCategory.Name = "colHeaderCategory";
             this.colHeaderCategory.Visible = true;
-            this.colHeaderCategory.VisibleIndex = 3;
+            this.colHeaderCategory.VisibleIndex = 7;
+            // 
+            // colHeaderFIId
+            // 
+            this.colHeaderFIId.FieldName = "HeaderFIId";
+            this.colHeaderFIId.Name = "colHeaderFIId";
+            this.colHeaderFIId.Visible = true;
+            this.colHeaderFIId.VisibleIndex = 8;
             // 
             // colDetailId
             // 
-            this.colDetailId.Caption = "Detail Id";
             this.colDetailId.FieldName = "DetailId";
             this.colDetailId.Name = "colDetailId";
+            this.colDetailId.Visible = true;
+            this.colDetailId.VisibleIndex = 9;
             // 
             // colDetailDescription
             // 
-            this.colDetailDescription.Caption = "Detail Description";
-            this.colDetailDescription.ColumnEdit = this.repositoryItemMemoEdit3;
             this.colDetailDescription.FieldName = "DetailDescription";
             this.colDetailDescription.Name = "colDetailDescription";
             this.colDetailDescription.Visible = true;
-            this.colDetailDescription.VisibleIndex = 4;
-            // 
-            // repositoryItemMemoEdit3
-            // 
-            this.repositoryItemMemoEdit3.Name = "repositoryItemMemoEdit3";
+            this.colDetailDescription.VisibleIndex = 10;
             // 
             // colDetailActionDt
             // 
-            this.colDetailActionDt.Caption = "Detail Action Date";
             this.colDetailActionDt.FieldName = "DetailActionDt";
             this.colDetailActionDt.Name = "colDetailActionDt";
             this.colDetailActionDt.Visible = true;
-            this.colDetailActionDt.VisibleIndex = 5;
+            this.colDetailActionDt.VisibleIndex = 11;
             // 
             // colDetailActionReq
             // 
-            this.colDetailActionReq.Caption = "Detail Action Required";
-            this.colDetailActionReq.ColumnEdit = this.repositoryItemMemoEdit4;
             this.colDetailActionReq.FieldName = "DetailActionReq";
             this.colDetailActionReq.Name = "colDetailActionReq";
             this.colDetailActionReq.Visible = true;
-            this.colDetailActionReq.VisibleIndex = 6;
+            this.colDetailActionReq.VisibleIndex = 12;
             // 
-            // repositoryItemMemoEdit4
+            // colDetailActionCode
             // 
-            this.repositoryItemMemoEdit4.Name = "repositoryItemMemoEdit4";
+            this.colDetailActionCode.FieldName = "DetailActionCode";
+            this.colDetailActionCode.Name = "colDetailActionCode";
+            this.colDetailActionCode.Visible = true;
+            this.colDetailActionCode.VisibleIndex = 13;
             // 
             // colDetailIsFinalized
             // 
-            this.colDetailIsFinalized.Caption = "Detail Finalized";
             this.colDetailIsFinalized.FieldName = "DetailIsFinalized";
             this.colDetailIsFinalized.Name = "colDetailIsFinalized";
             this.colDetailIsFinalized.Visible = true;
-            this.colDetailIsFinalized.VisibleIndex = 7;
+            this.colDetailIsFinalized.VisibleIndex = 14;
             // 
-            // repositoryItemMemoEdit2
+            // colDetailFISubId
             // 
-            this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
+            this.colDetailFISubId.FieldName = "DetailFISubId";
+            this.colDetailFISubId.Name = "colDetailFISubId";
+            this.colDetailFISubId.Visible = true;
+            this.colDetailFISubId.VisibleIndex = 15;
             // 
-            // gridControlFI
+            // colDetailCurrentOwner1
             // 
-            this.gridControlFI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlFI.Location = new System.Drawing.Point(0, 246);
-            this.gridControlFI.MainView = this.gridView2;
-            this.gridControlFI.Name = "gridControlFI";
-            this.gridControlFI.Size = new System.Drawing.Size(784, 196);
-            this.gridControlFI.TabIndex = 1;
-            this.gridControlFI.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.colDetailCurrentOwner1.FieldName = "DetailCurrentOwner1";
+            this.colDetailCurrentOwner1.Name = "colDetailCurrentOwner1";
+            this.colDetailCurrentOwner1.Visible = true;
+            this.colDetailCurrentOwner1.VisibleIndex = 16;
             // 
-            // gridView2
+            // colDetailCurrentOwner2
             // 
-            this.gridView2.GridControl = this.gridControlFI;
-            this.gridView2.Name = "gridView2";
+            this.colDetailCurrentOwner2.FieldName = "DetailCurrentOwner2";
+            this.colDetailCurrentOwner2.Name = "colDetailCurrentOwner2";
+            this.colDetailCurrentOwner2.Visible = true;
+            this.colDetailCurrentOwner2.VisibleIndex = 17;
+            // 
+            // colDetailCurrentOwner3
+            // 
+            this.colDetailCurrentOwner3.FieldName = "DetailCurrentOwner3";
+            this.colDetailCurrentOwner3.Name = "colDetailCurrentOwner3";
+            this.colDetailCurrentOwner3.Visible = true;
+            this.colDetailCurrentOwner3.VisibleIndex = 18;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Grouping...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FIView_Auditees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 442);
-            this.Controls.Add(this.gridControlFI);
+            this.ClientSize = new System.Drawing.Size(1184, 442);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.gridControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 480);
@@ -235,38 +276,38 @@
             this.Text = "Findings and Improvements View";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            this.cmsDHA.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlFI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private System.Windows.Forms.BindingSource fI_DetailHeaderAuditBindingSource;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource fI_DetailHeaderAuditBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditId;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditCompany;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditYear;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditTitle;
+        private DevExpress.XtraGrid.Columns.GridColumn colAuditRef;
         private DevExpress.XtraGrid.Columns.GridColumn colHeaderId;
         private DevExpress.XtraGrid.Columns.GridColumn colHeaderTitle;
         private DevExpress.XtraGrid.Columns.GridColumn colHeaderCategory;
+        private DevExpress.XtraGrid.Columns.GridColumn colHeaderFIId;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailId;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailDescription;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailActionDt;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailActionReq;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailActionCode;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailIsFinalized;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit3;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit4;
-        private DevExpress.XtraGrid.GridControl gridControlFI;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailFISubId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentOwner1;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentOwner2;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentOwner3;
+        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.ContextMenuStrip cmsDHA;
+        private System.Windows.Forms.ToolStripMenuItem MIactivity;
     }
 }

@@ -109,6 +109,12 @@
     <Compile Include="ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateDepartments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateDepartments.Designer.cs">
+      <DependentUpon>CreateDepartments.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,11 +127,23 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewDepartments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDepartments.Designer.cs">
+      <DependentUpon>ViewDepartments.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmailToSend.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EmailToSend.Designer.cs">
       <DependentUpon>EmailToSend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FIActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FIActivity.Designer.cs">
+      <DependentUpon>FIActivity.cs</DependentUpon>
     </Compile>
     <Compile Include="FIDetailInsert.cs">
       <SubType>Form</SubType>
@@ -178,6 +196,7 @@
     <Compile Include="ModelsLib\ComboboxItem.cs" />
     <Compile Include="ModelsLib\Companies.cs" />
     <Compile Include="ModelsLib\Departments.cs" />
+    <Compile Include="ModelsLib\FIDetailActivity.cs" />
     <Compile Include="ModelsLib\Owners_GM.cs" />
     <Compile Include="ModelsLib\Owners_MT.cs" />
     <Compile Include="ModelsLib\dgvDictionary.cs" />
@@ -240,14 +259,23 @@
     <EmbeddedResource Include="ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateDepartments.resx">
+      <DependentUpon>CreateDepartments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateRole.resx">
       <DependentUpon>CreateRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewDepartments.resx">
+      <DependentUpon>ViewDepartments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmailToSend.resx">
       <DependentUpon>EmailToSend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FIActivity.resx">
+      <DependentUpon>FIActivity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FIDetailInsert.resx">
       <DependentUpon>FIDetailInsert.cs</DependentUpon>

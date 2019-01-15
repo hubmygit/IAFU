@@ -33,15 +33,51 @@ namespace IAFollowUp
             fiDHABList = FI_DetailHeaderAudit.AuditListToDetailList(auditList);
             gridControl1.DataSource = fiDHABList;
 
+            
             //gridView1.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
 
-
-
-            gridControlFI.DataSource = new BindingList<Audit>(auditList);
+            //gridControlFI.DataSource = new BindingList<Audit>(auditList);
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gridView1.Columns[4].Group();
+            gridView1.Columns[8].Group();
+            gridView1.Columns[15].Group();
+            gridView1.ExpandAllGroups();
+        }
+
+        private void MIactivity_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["DetailId"]).ToString());
+
+                FI_DetailHeaderAudit thisDHA = fiDHABList.Where(i => i.DetailId == Id).First();
+                
+
+                //Admin - Show All
+                //MT - Show All
+                //GM - Show All
+                //Delegatee - Show All
+                //Auditor - Show public
+
+
+                //if (!UserAction.IsLegal(Action.Audit_Edit, thisAudit))
+                //{
+                //    return;
+                //}
+
+
+
+
+
+                FIActivity frmActivity = new FIActivity();
+                frmActivity.ShowDialog();
+            }
+        }
     }
 
     public class FI_DetailHeaderAudit
@@ -50,16 +86,23 @@ namespace IAFollowUp
         public Companies AuditCompany { get; set; }
         public int AuditYear { get; set; }
         public string AuditTitle { get; set; }
+        public string AuditRef { get; set; }
         //---------------------------------//
         public int HeaderId { get; set; }
         public string HeaderTitle { get; set; }
         public FICategory HeaderCategory { get; set; }
+        public string HeaderFIId { get; set; }
         //---------------------------------//
         public int DetailId { get; set; }
         public string DetailDescription { get; set; } 
         public DateTime? DetailActionDt { get; set; } 
-        public string DetailActionReq { get; set; } 
+        public string DetailActionReq { get; set; }
+        public string DetailActionCode { get; set; }
         public bool DetailIsFinalized { get; set; }
+        public string DetailFISubId { get; set; }
+        public Owners_MT DetailCurrentOwner1 { get; set; }
+        public Owners_MT DetailCurrentOwner2 { get; set; }
+        public Owners_MT DetailCurrentOwner3 { get; set; }
 
         public FI_DetailHeaderAudit()
         {              
@@ -80,14 +123,21 @@ namespace IAFollowUp
                         fiDHA.AuditCompany = thisAudit.Company;
                         fiDHA.AuditYear = thisAudit.Year;
                         fiDHA.AuditTitle = thisAudit.Title;
+                        fiDHA.AuditRef = thisAudit.AuditRef;
                         fiDHA.HeaderId = thisHeader.Id;
                         fiDHA.HeaderTitle = thisHeader.Title;
                         fiDHA.HeaderCategory = thisHeader.FICategory;
+                        fiDHA.HeaderFIId = thisHeader.FIId;
                         fiDHA.DetailId = thisDetail.Id;
                         fiDHA.DetailDescription = thisDetail.Description;
                         fiDHA.DetailActionDt = thisDetail.ActionDt;
                         fiDHA.DetailActionReq = thisDetail.ActionReq;
+                        fiDHA.DetailActionCode = thisDetail.ActionCode;
                         fiDHA.DetailIsFinalized = thisDetail.IsFinalized;
+                        fiDHA.DetailFISubId = thisDetail.FISubId;
+                        fiDHA.DetailCurrentOwner1 = thisDetail.CurrentOwner1;
+                        fiDHA.DetailCurrentOwner2 = thisDetail.CurrentOwner2;
+                        fiDHA.DetailCurrentOwner3 = thisDetail.CurrentOwner3;
 
                         ret.Add(fiDHA);
                     }

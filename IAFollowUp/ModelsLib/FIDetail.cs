@@ -20,38 +20,7 @@ namespace IAFollowUp
         //public List<Users> Owners { get; set; } //
 
         public List<Placeholders> Placeholders { get; set; }
-
-        /*public List<Users> Owners
-        {
-            get
-            {
-                if (Owners is null)
-                {
-                    Owners = new List<Users>();
-                }
-
-                return Owners;
-            }
-            set
-            {
-                if (Owners[0] != null)
-                {
-                    Owner1 = Owners[0];
-                }
-
-                if (Owners[1] != null)
-                {
-                    Owner2 = Owners[1];
-                }
-
-                if (Owners[2] != null)
-                {
-                    Owner3 = Owners[2];
-                }
-            }
-        } //
                
-        */
 
         public Owners_MT CurrentOwner1 { get; set; }
         public Owners_MT CurrentOwner2 { get; set; }

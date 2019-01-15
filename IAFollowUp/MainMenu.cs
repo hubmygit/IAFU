@@ -75,6 +75,12 @@ namespace IAFollowUp
             ChangeLogView viewChangeLog = new ChangeLogView();
             viewChangeLog.ShowDialog();
         }
+
+        private void deptsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewDepartments frmDepts = new ViewDepartments();
+            frmDepts.ShowDialog();
+        }
         //administrator<----------
 
         //auditors---------->
@@ -107,6 +113,8 @@ namespace IAFollowUp
                 frmFIViewAuditees.ShowDialog();
             }
         }
+
+        
         //auditees<----------
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,8 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [Name] " +
-                              "FROM [dbo].[Departments] ";
+                              "FROM [dbo].[Departments] " + 
+                              "ORDER BY Name ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
@@ -81,6 +83,39 @@ namespace IAFollowUp
             return ret;
         }
 
+
+        public static bool Insert(string deptName) //INSERT [dbo].[Departments]
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[Audit] ([Name]) VALUES " +
+                           "(@Name) ";
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                
+                cmd.Parameters.AddWithValue("@Name", deptName);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
 
     }
 }

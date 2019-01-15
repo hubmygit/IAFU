@@ -202,6 +202,7 @@ namespace IAFollowUp
             //}
 
             List<Placeholders> newPlaceholders = new List<Placeholders>();
+
             for (int l = 0; l < dgvAllOwners.Rows.Count; l++)
             {
                 if (Convert.ToBoolean(dgvAllOwners.Rows[l].Cells["IsOwner"].Value.ToString()))
@@ -220,6 +221,12 @@ namespace IAFollowUp
             if (newPlaceholders.Count <= 0)
             {
                 MessageBox.Show("Please insert at least one Owner!");
+                return;
+            }
+
+            if (newPlaceholders.Count > 3)
+            {
+                MessageBox.Show("Please insert 3 Owners maximum!");
                 return;
             }
 

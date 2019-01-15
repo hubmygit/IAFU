@@ -45,6 +45,7 @@
             this.viewChangeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +96,7 @@
             // auditViewToolStripMenuItem
             // 
             this.auditViewToolStripMenuItem.Name = "auditViewToolStripMenuItem";
-            this.auditViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.auditViewToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.auditViewToolStripMenuItem.Tag = "";
             this.auditViewToolStripMenuItem.Text = "Audit View";
             this.auditViewToolStripMenuItem.Click += new System.EventHandler(this.auditViewToolStripMenuItem_Click);
@@ -103,7 +104,7 @@
             // insertNewAuditToolStripMenuItem
             // 
             this.insertNewAuditToolStripMenuItem.Name = "insertNewAuditToolStripMenuItem";
-            this.insertNewAuditToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.insertNewAuditToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.insertNewAuditToolStripMenuItem.Text = "Insert New Audit";
             this.insertNewAuditToolStripMenuItem.Click += new System.EventHandler(this.insertNewAuditToolStripMenuItem_Click);
             // 
@@ -132,7 +133,8 @@
             this.createRoleToolStripMenuItem,
             this.viewUsersToolStripMenuItem,
             this.createUserToolStripMenuItem,
-            this.viewChangeLogToolStripMenuItem});
+            this.viewChangeLogToolStripMenuItem,
+            this.deptsToolStripMenuItem});
             this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
             this.administratorToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.administratorToolStripMenuItem.Tag = "3";
@@ -189,6 +191,13 @@
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
+            // deptsToolStripMenuItem
+            // 
+            this.deptsToolStripMenuItem.Name = "deptsToolStripMenuItem";
+            this.deptsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deptsToolStripMenuItem.Text = "Departments";
+            this.deptsToolStripMenuItem.Click += new System.EventHandler(this.deptsToolStripMenuItem_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,5 +241,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewChangeLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deptsToolStripMenuItem;
     }
 }
