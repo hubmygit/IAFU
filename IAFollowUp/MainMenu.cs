@@ -101,7 +101,16 @@ namespace IAFollowUp
                 AuditInsert frmInsertNewAudit = new AuditInsert();
                 frmInsertNewAudit.ShowDialog();
             }
-        }        
+        }
+
+        private void fiAuditorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserAction.IsLegal(Action.FI_View))
+            {
+                FIView_Auditees frmFIViewAuditees = new FIView_Auditees();
+                frmFIViewAuditees.ShowDialog();
+            }
+        }
         //auditors<----------
 
         //auditees---------->
@@ -113,8 +122,6 @@ namespace IAFollowUp
                 frmFIViewAuditees.ShowDialog();
             }
         }
-
-        
         //auditees<----------
     }
 }

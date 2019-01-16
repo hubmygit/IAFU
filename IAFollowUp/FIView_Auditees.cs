@@ -24,8 +24,11 @@ namespace IAFollowUp
             //b) Auditor
             //   Όλα τα published
             //c) MT
+            //   Όλα τα published των placeholders του
             //d) GM
-            //e) Delegatee 
+            //   Όλα τα published των placeholders του
+            //e) Delegatee
+            //   Όλα τα published των placeholders του Detail του
 
             List<FIHeader> headerList = FIHeader.Select(UserInfo.roleDetails.IsAdmin, detailList);
             List<Audit> auditList = Audit.Select(UserInfo.roleDetails.IsAdmin, headerList);

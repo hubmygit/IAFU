@@ -546,17 +546,17 @@ namespace IAFollowUp
                             if (detail.Placeholders.Count >= 1 && detail.Placeholders[0] != null)
                             {
                                 //detail.CurrentOwner1 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[0].Id);
-                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[0].Id, detail.CurrentOwner1.Id);
+                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[0].Id, detail.CurrentOwner1.User.Id);
                             }
                             if (detail.Placeholders.Count >= 2 && detail.Placeholders[1] != null)
                             {
                                 //detail.CurrentOwner2 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[1].Id);
-                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[1].Id, detail.CurrentOwner2.Id);
+                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[1].Id, detail.CurrentOwner2.User.Id);
                             }
                             if (detail.Placeholders.Count >= 3 && detail.Placeholders[2] != null)
                             {
                                 //detail.CurrentOwner3 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[2].Id);
-                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[2].Id, detail.CurrentOwner3.Id);
+                                FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[2].Id, detail.CurrentOwner3.User.Id);
                             }
 
                         }
@@ -703,7 +703,7 @@ namespace IAFollowUp
                     foreach (Placeholders ph in tmp.Placeholders)
                     {
                         usersListMT.Add(Owners_MT.GetCurrentOwnerMT(ph.Id).User);
-                    }                    
+                    }
                     FIDetailOwners detailOwnersMT = new FIDetailOwners(usersListMT);
                     //<- Management Team Users
 
@@ -715,6 +715,15 @@ namespace IAFollowUp
                     }
                     FIDetailOwners detailOwnersGM = new FIDetailOwners(usersListGM);
                     //<- General Managers
+
+                    //-> Delegatees
+                    List<Users> usersListDT = new List<Users>();
+                    foreach (Placeholders ph in tmp.Placeholders)
+                    {
+                        usersListDT.AddRange(Owners_DT.GetOwnerDTUsersList(tmp.Id, ph.Id));
+                    }
+                    FIDetailOwners detailOwnersDT = new FIDetailOwners(usersListDT);
+                    //<- Delegatees
 
                     //a) Admin - All
                     if (UserInfo.roleDetails.IsAdmin)
@@ -745,11 +754,15 @@ namespace IAFollowUp
                             ret.Add(tmp);
                         }
                     }
-                    //e) Delegatee 
-                    //else if()
-
-
-                        //==============================================================
+                    //e) DT (placeholder's delegatees) - Published
+                    else if (detailOwnersDT.IsUser_DetailOwner())
+                    {
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                        }
+                    }
+                    //==============================================================
 
                 }
                 reader.Close();
