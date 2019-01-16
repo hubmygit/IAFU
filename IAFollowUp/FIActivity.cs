@@ -14,11 +14,14 @@ namespace IAFollowUp
         public FIActivity()
         {
             InitializeComponent();
-
-
         }
 
+        public FIActivity(int detailId)
+        {
+            InitializeComponent();
 
+            gridControl1.DataSource = new BindingList<FIDetailActivity>(FIDetailActivity.getDetailActivity(detailId)); 
+        }
 
     }
 }

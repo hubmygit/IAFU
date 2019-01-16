@@ -56,10 +56,10 @@ namespace IAFollowUp
         {
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
-                int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["DetailId"]).ToString());
+                int detId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["DetailId"]).ToString());
 
-                FI_DetailHeaderAudit thisDHA = fiDHABList.Where(i => i.DetailId == Id).First();
-                
+                FI_DetailHeaderAudit thisDHA = fiDHABList.Where(i => i.DetailId == detId).First();
+
 
                 //Admin - Show All
                 //MT - Show All
@@ -77,10 +77,11 @@ namespace IAFollowUp
 
 
 
-                FIActivity frmActivity = new FIActivity();
+                FIActivity frmActivity = new FIActivity(detId);
                 frmActivity.ShowDialog();
             }
         }
+
     }
 
     public class FI_DetailHeaderAudit
