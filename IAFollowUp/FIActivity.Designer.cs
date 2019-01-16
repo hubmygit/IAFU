@@ -41,6 +41,9 @@
             this.colFromUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colToUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colInsDt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.rtbComments = new System.Windows.Forms.RichTextBox();
+            this.btnMTtoIA = new System.Windows.Forms.Button();
+            this.btnFontDialog = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -52,10 +55,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.fIDetailActivityBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 231);
+            this.gridControl1.Location = new System.Drawing.Point(0, 250);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(800, 219);
+            this.gridControl1.Size = new System.Drawing.Size(800, 200);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -138,11 +141,41 @@
             this.colInsDt.Visible = true;
             this.colInsDt.VisibleIndex = 7;
             // 
+            // rtbComments
+            // 
+            this.rtbComments.Location = new System.Drawing.Point(12, 12);
+            this.rtbComments.Name = "rtbComments";
+            this.rtbComments.Size = new System.Drawing.Size(300, 100);
+            this.rtbComments.TabIndex = 1;
+            this.rtbComments.Text = "";
+            // 
+            // btnMTtoIA
+            // 
+            this.btnMTtoIA.Location = new System.Drawing.Point(318, 89);
+            this.btnMTtoIA.Name = "btnMTtoIA";
+            this.btnMTtoIA.Size = new System.Drawing.Size(75, 23);
+            this.btnMTtoIA.TabIndex = 2;
+            this.btnMTtoIA.Text = "MT to IA";
+            this.btnMTtoIA.UseVisualStyleBackColor = true;
+            this.btnMTtoIA.Click += new System.EventHandler(this.btnMTtoIA_Click);
+            // 
+            // btnFontDialog
+            // 
+            this.btnFontDialog.Location = new System.Drawing.Point(318, 12);
+            this.btnFontDialog.Name = "btnFontDialog";
+            this.btnFontDialog.Size = new System.Drawing.Size(75, 23);
+            this.btnFontDialog.TabIndex = 3;
+            this.btnFontDialog.Text = "Font Dialog";
+            this.btnFontDialog.UseVisualStyleBackColor = true;
+            // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnFontDialog);
+            this.Controls.Add(this.btnMTtoIA);
+            this.Controls.Add(this.rtbComments);
             this.Controls.Add(this.gridControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FIActivity";
@@ -168,5 +201,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colFromUser;
         private DevExpress.XtraGrid.Columns.GridColumn colToUser;
         private DevExpress.XtraGrid.Columns.GridColumn colInsDt;
+        private System.Windows.Forms.RichTextBox rtbComments;
+        private System.Windows.Forms.Button btnMTtoIA;
+        private System.Windows.Forms.Button btnFontDialog;
     }
 }

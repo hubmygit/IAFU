@@ -543,21 +543,39 @@ namespace IAFollowUp
                             ChangeLog.Insert(new FIDetail() { Id = detail.Id, IsPublished = detail.IsPublished }, new FIDetail() { Id = detail.Id, IsPublished = true }, "FIDetail");
                             ret.Add(detail);
 
+                            //1st Activity: IA Published to MT
+                            FIDetailActivity detActivity = new FIDetailActivity();
+                            detActivity.DetailId = detail.Id;
+                            detActivity.Activity = "IA Published to MT";
+
                             if (detail.Placeholders.Count >= 1 && detail.Placeholders[0] != null)
                             {
                                 //detail.CurrentOwner1 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[0].Id);
                                 FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[0].Id, detail.CurrentOwner1.User.Id);
+
+                                detActivity.ToUser = detail.CurrentOwner1.User;
+                                FIDetailActivity.Insert(detActivity);
                             }
                             if (detail.Placeholders.Count >= 2 && detail.Placeholders[1] != null)
                             {
                                 //detail.CurrentOwner2 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[1].Id);
                                 FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[1].Id, detail.CurrentOwner2.User.Id);
+
+                                detActivity.ToUser = detail.CurrentOwner2.User;
+                                FIDetailActivity.Insert(detActivity);
                             }
                             if (detail.Placeholders.Count >= 3 && detail.Placeholders[2] != null)
                             {
                                 //detail.CurrentOwner3 = DetailOwners.GetCurrentDetailOwner(detail.Placeholders[2].Id);
                                 FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[2].Id, detail.CurrentOwner3.User.Id);
+
+                                detActivity.ToUser = detail.CurrentOwner3.User;
+                                FIDetailActivity.Insert(detActivity);
                             }
+
+                           
+                            
+
 
                         }
                     }

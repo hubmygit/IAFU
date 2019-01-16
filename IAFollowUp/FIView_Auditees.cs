@@ -57,28 +57,12 @@ namespace IAFollowUp
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
                 int detId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["DetailId"]).ToString());
-
-                FI_DetailHeaderAudit thisDHA = fiDHABList.Where(i => i.DetailId == detId).First();
-
-
-                //Admin - Show All
-                //MT - Show All
-                //GM - Show All
-                //Delegatee - Show All
-                //Auditor - Show public
-
-
-                //if (!UserAction.IsLegal(Action.Audit_Edit, thisAudit))
-                //{
-                //    return;
-                //}
-
-
-
-
-
-                FIActivity frmActivity = new FIActivity(detId);
-                frmActivity.ShowDialog();
+                                
+                if (UserAction.IsLegal(Action.FI_Activity_View))
+                {
+                    FIActivity frmActivity = new FIActivity(detId);
+                    frmActivity.ShowDialog();
+                }
             }
         }
 
