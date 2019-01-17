@@ -12,7 +12,7 @@ namespace IAFollowUp
     {
         public int Id { get; set; }
         public int DetailId { get; set; }
-        public string Activity { get; set; } //todo encrypted?????
+        public string Activity { get; set; } 
         public string CommentRtf { get; set; } //todo encrypted
         public string CommentText { get; set; } //todo encrypted
         //public bool IsPublic { get; set; } //???
@@ -48,17 +48,30 @@ namespace IAFollowUp
                 {
                     FIDetailActivity tmp = new FIDetailActivity();
 
-                    tmp = new FIDetailActivity()
+                    tmp = new FIDetailActivity();
+                    
+                    tmp.Id = Convert.ToInt32(reader["Id"].ToString());
+                    tmp.DetailId = Convert.ToInt32(reader["DetailId"].ToString());
+                    tmp.Activity = reader["Activity"].ToString();
+                    if (reader["FromUserId"] == DBNull.Value)
                     {
-                        Id = Convert.ToInt32(reader["Id"].ToString()),
-                        DetailId = Convert.ToInt32(reader["DetailId"].ToString()),
-                        Activity = reader["Activity"].ToString(),
-                        FromUser = new Users(Convert.ToInt32(reader["FromUserId"].ToString())),
-                        ToUser = new Users(Convert.ToInt32(reader["ToUserId"].ToString())),
-                        InsDt = Convert.ToDateTime(reader["InsDt"].ToString())
-                    };
-
-
+                        tmp.FromUser = new Users();
+                    }
+                    else
+                    {
+                        tmp.FromUser = new Users(Convert.ToInt32(reader["FromUserId"].ToString()));
+                    }
+                    if (reader["ToUserId"] == DBNull.Value)
+                    {
+                        tmp.ToUser = new Users();
+                    }
+                    else
+                    {
+                        tmp.ToUser = new Users(Convert.ToInt32(reader["ToUserId"].ToString()));
+                    }
+                    tmp.InsDt = Convert.ToDateTime(reader["InsDt"].ToString());
+                    
+                    
 
                     //MT - Show All
                     //GM - Show All
@@ -98,8 +111,9 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [Activity], [CommentText], [CommentRtf], [FromUserId], [ToUserId], [IsPublic], [InsDt]) VALUES " +
-                           "(@DetailId, @Activity, @CommentText, @CommentRtf, @FromUserId, @ToUserId, @IsPublic, getDate())"; 
+            string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [Activity], [CommentText], [CommentRtf], " + 
+                                       "[FromUserId], [ToUserId], [IsPublic], [InsUserId], [InsDt]) VALUES " +
+                           "(@DetailId, @Activity, @CommentText, @CommentRtf, @FromUserId, @ToUserId, @IsPublic, @InsUserId, getDate())"; 
             //encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), " +
 
             try
@@ -112,7 +126,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@DetailId", fiDetailActivity.DetailId);
                 cmd.Parameters.AddWithValue("@Activity", fiDetailActivity.Activity);
 
-                if (fiDetailActivity.CommentText.Trim() == "")
+                if (fiDetailActivity.CommentText is null || fiDetailActivity.CommentText.Trim() == "")
                 {
                     cmd.Parameters.AddWithValue("@CommentText", DBNull.Value);
                     cmd.Parameters.AddWithValue("@CommentRtf", DBNull.Value);
@@ -123,9 +137,26 @@ namespace IAFollowUp
                     cmd.Parameters.AddWithValue("@CommentRtf", fiDetailActivity.CommentRtf);
                 }
 
-                cmd.Parameters.AddWithValue("@FromUserId", UserInfo.userDetails.Id);
-                cmd.Parameters.AddWithValue("@ToUserId", fiDetailActivity.ToUser.Id);
+                if (fiDetailActivity.FromUser != null && fiDetailActivity.FromUser.Id > 0)
+                {
+                    cmd.Parameters.AddWithValue("@FromUserId", fiDetailActivity.FromUser.Id); //UserInfo.userDetails.Id);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@FromUserId", DBNull.Value);
+                }
+
+                if (fiDetailActivity.ToUser != null && fiDetailActivity.ToUser.Id > 0)
+                {
+                    cmd.Parameters.AddWithValue("@ToUserId", fiDetailActivity.ToUser.Id);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@ToUserId", DBNull.Value);
+                }
+
                 cmd.Parameters.AddWithValue("@IsPublic", true);
+                cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
                 int rowsAffected = cmd.ExecuteNonQuery();

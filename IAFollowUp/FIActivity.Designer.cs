@@ -44,6 +44,12 @@
             this.rtbComments = new System.Windows.Forms.RichTextBox();
             this.btnMTtoIA = new System.Windows.Forms.Button();
             this.btnFontDialog = new System.Windows.Forms.Button();
+            this.btnMTtoDT = new System.Windows.Forms.Button();
+            this.btnDTtoMT = new System.Windows.Forms.Button();
+            this.btnIAtoMT = new System.Windows.Forms.Button();
+            this.btnMTtoIAInform = new System.Windows.Forms.Button();
+            this.btnMTtoDTDelegate = new System.Windows.Forms.Button();
+            this.btnMTtoIAExtension = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -143,36 +149,103 @@
             // 
             // rtbComments
             // 
-            this.rtbComments.Location = new System.Drawing.Point(12, 12);
+            this.rtbComments.Location = new System.Drawing.Point(138, 12);
             this.rtbComments.Name = "rtbComments";
-            this.rtbComments.Size = new System.Drawing.Size(300, 100);
+            this.rtbComments.Size = new System.Drawing.Size(300, 197);
             this.rtbComments.TabIndex = 1;
             this.rtbComments.Text = "";
             // 
             // btnMTtoIA
             // 
-            this.btnMTtoIA.Location = new System.Drawing.Point(318, 89);
+            this.btnMTtoIA.Location = new System.Drawing.Point(444, 12);
             this.btnMTtoIA.Name = "btnMTtoIA";
-            this.btnMTtoIA.Size = new System.Drawing.Size(75, 23);
+            this.btnMTtoIA.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoIA.TabIndex = 2;
-            this.btnMTtoIA.Text = "MT to IA";
+            this.btnMTtoIA.Text = "MT to IA (publish)";
             this.btnMTtoIA.UseVisualStyleBackColor = true;
             this.btnMTtoIA.Click += new System.EventHandler(this.btnMTtoIA_Click);
             // 
             // btnFontDialog
             // 
-            this.btnFontDialog.Location = new System.Drawing.Point(318, 12);
+            this.btnFontDialog.Location = new System.Drawing.Point(12, 12);
             this.btnFontDialog.Name = "btnFontDialog";
-            this.btnFontDialog.Size = new System.Drawing.Size(75, 23);
+            this.btnFontDialog.Size = new System.Drawing.Size(120, 23);
             this.btnFontDialog.TabIndex = 3;
             this.btnFontDialog.Text = "Font Dialog";
             this.btnFontDialog.UseVisualStyleBackColor = true;
+            this.btnFontDialog.Click += new System.EventHandler(this.btnFontDialog_Click);
+            // 
+            // btnMTtoDT
+            // 
+            this.btnMTtoDT.Location = new System.Drawing.Point(444, 157);
+            this.btnMTtoDT.Name = "btnMTtoDT";
+            this.btnMTtoDT.Size = new System.Drawing.Size(120, 23);
+            this.btnMTtoDT.TabIndex = 4;
+            this.btnMTtoDT.Text = "MT to DT (comment)";
+            this.btnMTtoDT.UseVisualStyleBackColor = true;
+            this.btnMTtoDT.Click += new System.EventHandler(this.btnMTtoDT_Click);
+            // 
+            // btnDTtoMT
+            // 
+            this.btnDTtoMT.Location = new System.Drawing.Point(444, 128);
+            this.btnDTtoMT.Name = "btnDTtoMT";
+            this.btnDTtoMT.Size = new System.Drawing.Size(120, 23);
+            this.btnDTtoMT.TabIndex = 5;
+            this.btnDTtoMT.Text = "DT to MT (comment)";
+            this.btnDTtoMT.UseVisualStyleBackColor = true;
+            this.btnDTtoMT.Click += new System.EventHandler(this.btnDTtoMT_Click);
+            // 
+            // btnIAtoMT
+            // 
+            this.btnIAtoMT.Location = new System.Drawing.Point(444, 41);
+            this.btnIAtoMT.Name = "btnIAtoMT";
+            this.btnIAtoMT.Size = new System.Drawing.Size(120, 23);
+            this.btnIAtoMT.TabIndex = 6;
+            this.btnIAtoMT.Text = "IA to MT (return)";
+            this.btnIAtoMT.UseVisualStyleBackColor = true;
+            this.btnIAtoMT.Click += new System.EventHandler(this.btnIAtoMT_Click);
+            // 
+            // btnMTtoIAInform
+            // 
+            this.btnMTtoIAInform.Location = new System.Drawing.Point(444, 70);
+            this.btnMTtoIAInform.Name = "btnMTtoIAInform";
+            this.btnMTtoIAInform.Size = new System.Drawing.Size(120, 23);
+            this.btnMTtoIAInform.TabIndex = 7;
+            this.btnMTtoIAInform.Text = "MT to IA (inform)";
+            this.btnMTtoIAInform.UseVisualStyleBackColor = true;
+            this.btnMTtoIAInform.Click += new System.EventHandler(this.btnMTtoIAInform_Click);
+            // 
+            // btnMTtoDTDelegate
+            // 
+            this.btnMTtoDTDelegate.Location = new System.Drawing.Point(444, 99);
+            this.btnMTtoDTDelegate.Name = "btnMTtoDTDelegate";
+            this.btnMTtoDTDelegate.Size = new System.Drawing.Size(120, 23);
+            this.btnMTtoDTDelegate.TabIndex = 8;
+            this.btnMTtoDTDelegate.Text = "MT to DT (delegate)";
+            this.btnMTtoDTDelegate.UseVisualStyleBackColor = true;
+            this.btnMTtoDTDelegate.Click += new System.EventHandler(this.btnMTtoDTDelegate_Click);
+            // 
+            // btnMTtoIAExtension
+            // 
+            this.btnMTtoIAExtension.Location = new System.Drawing.Point(444, 186);
+            this.btnMTtoIAExtension.Name = "btnMTtoIAExtension";
+            this.btnMTtoIAExtension.Size = new System.Drawing.Size(120, 23);
+            this.btnMTtoIAExtension.TabIndex = 9;
+            this.btnMTtoIAExtension.Text = "MT to IA (extension)";
+            this.btnMTtoIAExtension.UseVisualStyleBackColor = true;
+            this.btnMTtoIAExtension.Click += new System.EventHandler(this.btnMTtoIAExtension_Click);
             // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnMTtoIAExtension);
+            this.Controls.Add(this.btnMTtoDTDelegate);
+            this.Controls.Add(this.btnMTtoIAInform);
+            this.Controls.Add(this.btnIAtoMT);
+            this.Controls.Add(this.btnDTtoMT);
+            this.Controls.Add(this.btnMTtoDT);
             this.Controls.Add(this.btnFontDialog);
             this.Controls.Add(this.btnMTtoIA);
             this.Controls.Add(this.rtbComments);
@@ -204,5 +277,11 @@
         private System.Windows.Forms.RichTextBox rtbComments;
         private System.Windows.Forms.Button btnMTtoIA;
         private System.Windows.Forms.Button btnFontDialog;
+        private System.Windows.Forms.Button btnMTtoDT;
+        private System.Windows.Forms.Button btnDTtoMT;
+        private System.Windows.Forms.Button btnIAtoMT;
+        private System.Windows.Forms.Button btnMTtoIAInform;
+        private System.Windows.Forms.Button btnMTtoDTDelegate;
+        private System.Windows.Forms.Button btnMTtoIAExtension;
     }
 }

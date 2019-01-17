@@ -330,10 +330,18 @@ namespace IAFollowUp
                 int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == Id).First();
 
+                int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                int rowHandle = gridView1.GetRowHandle(index);
+
                 if (UserAction.IsLegal(Action.Header_View)) 
-                {
+                {                   
                     FIView frmFIView = new FIView(thisAudit);
                     frmFIView.ShowDialog();
+
+                    //refresh
+                    auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin); //BindingList
+                    gridControl1.DataSource = auditBList; //DataSource
+                    gridView1.FocusedRowHandle = rowHandle;
                 }
             }
         }
