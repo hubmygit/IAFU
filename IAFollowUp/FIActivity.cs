@@ -21,7 +21,7 @@ namespace IAFollowUp
             InitializeComponent();
 
             detId = detailId;
-            detailActivity = FIDetailActivity.getDetailActivity(detailId);
+            detailActivity = FIDetailActivity.Select(detailId);
 
             gridControl1.DataSource = new BindingList<FIDetailActivity>(detailActivity);
         }
@@ -50,7 +50,7 @@ namespace IAFollowUp
         {
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = detId;
-            detActivity.Activity = "MT Published to IA";
+            detActivity.ActivityDescription = new ActivityDescription(2);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id); 
@@ -62,7 +62,7 @@ namespace IAFollowUp
         {
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = detId;
-            detActivity.Activity = "MT Published to DT";
+            detActivity.ActivityDescription = new ActivityDescription(7);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
@@ -75,7 +75,7 @@ namespace IAFollowUp
         {
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = detId;
-            detActivity.Activity = "DT Published to MT";
+            detActivity.ActivityDescription = new ActivityDescription(6);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
@@ -88,7 +88,7 @@ namespace IAFollowUp
         {
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = detId;
-            detActivity.Activity = "IA Returned to MT";
+            detActivity.ActivityDescription = new ActivityDescription(3);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             //detActivity.ToUser = TODO ???????????????????????
@@ -100,7 +100,7 @@ namespace IAFollowUp
         {
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = detId;
-            detActivity.Activity = "MT Informed IA";
+            detActivity.ActivityDescription = new ActivityDescription(4);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
@@ -112,7 +112,7 @@ namespace IAFollowUp
         {
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = detId;
-            detActivity.Activity = "MT Delegated to DT";
+            detActivity.ActivityDescription = new ActivityDescription(5);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
@@ -125,7 +125,7 @@ namespace IAFollowUp
         {
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = detId;
-            detActivity.Activity = "MT requested deadline extension";
+            detActivity.ActivityDescription = new ActivityDescription(8);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);

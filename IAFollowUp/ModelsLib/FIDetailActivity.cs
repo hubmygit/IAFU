@@ -12,7 +12,7 @@ namespace IAFollowUp
     {
         public int Id { get; set; }
         public int DetailId { get; set; }
-        public string Activity { get; set; } 
+        public ActivityDescription ActivityDescription { get; set; } 
         public string CommentRtf { get; set; } //todo encrypted
         public string CommentText { get; set; } //todo encrypted
         //public bool IsPublic { get; set; } //???
@@ -26,12 +26,12 @@ namespace IAFollowUp
         {
         }
 
-        public static List<FIDetailActivity> getDetailActivity(int detailId)
+        public static List<FIDetailActivity> Select(int detailId)
         {
             List<FIDetailActivity> ret = new List<FIDetailActivity>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [DetailId], [Activity], [FromUserId], [ToUserId], [InsDt] " +
+            string SelectSt = "SELECT [Id], [DetailId], [ActivityDescriptionId], [FromUserId], [ToUserId], [InsDt] " +
                               "FROM [dbo].[FIDetail_Activity] " +
                               "WHERE DetailId = @detId " +
                               "ORDER BY InsDt Desc";
@@ -52,7 +52,7 @@ namespace IAFollowUp
                     
                     tmp.Id = Convert.ToInt32(reader["Id"].ToString());
                     tmp.DetailId = Convert.ToInt32(reader["DetailId"].ToString());
-                    tmp.Activity = reader["Activity"].ToString();
+                    tmp.ActivityDescription = new ActivityDescription(Convert.ToInt32(reader["ActivityDescriptionId"].ToString()));
                     if (reader["FromUserId"] == DBNull.Value)
                     {
                         tmp.FromUser = new Users();
@@ -70,29 +70,89 @@ namespace IAFollowUp
                         tmp.ToUser = new Users(Convert.ToInt32(reader["ToUserId"].ToString()));
                     }
                     tmp.InsDt = Convert.ToDateTime(reader["InsDt"].ToString());
-                    
-                    
 
-                    //MT - Show All
-                    //GM - Show All
-                    //Delegatee - Show All
-                    //Auditor - Show public
+                    List<Placeholders> placeholders = FIDetail.getOwners(tmp.DetailId);
+                  
+                    //==============================================================
+                    //-> Management Team Users
+                    List<Users> usersListMT = new List<Users>();
+                    foreach (Placeholders ph in placeholders)
+                    {
+                        usersListMT.Add(Owners_MT.GetCurrentOwnerMT(ph.Id).User);
+                    }
+                    FIDetailOwners detailOwnersMT = new FIDetailOwners(usersListMT);
+                    //<- Management Team Users
 
+                    //-> General Managers
+                    List<Users> usersListGM = new List<Users>();
+                    foreach (Placeholders ph in placeholders)
+                    {
+                        usersListGM.AddRange(Owners_GM.GetOwnerGMUsersList(ph.Id));
+                    }
+                    FIDetailOwners detailOwnersGM = new FIDetailOwners(usersListGM);
+                    //<- General Managers
+
+                    //-> Delegatees
+                    List<Users> usersListDT = new List<Users>();
+                    foreach (Placeholders ph in placeholders)
+                    {
+                        usersListDT.AddRange(Owners_DT.GetOwnerDTUsersList(tmp.Id, ph.Id));
+                    }
+                    FIDetailOwners detailOwnersDT = new FIDetailOwners(usersListDT);
+                    //<- Delegatees
 
                     //a) Admin - All
                     if (UserInfo.roleDetails.IsAdmin)
                     {
                         ret.Add(tmp);
                     }
-                    //b) MT - 
-                    //else if (detailOwnersMT.IsUser_DetailOwner())
-                    //{
-                    //    if (tmp.IsPublished)
-                    //    {
-                    //        ret.Add(tmp);
-                    //    }
-                    //}
+                    //b) Auditor(All) - Exists into From or To
+                    else if (UserInfo.roleDetails.IsAuditor)
+                    {
+                        if (tmp.ActivityDescription.IsIaAction) //Επειδή δεν αναφέρεται όνομα στους IA, κοιτάω αν πρόκειται για action από/προς IA..
+                        {
+                            ret.Add(tmp);
+                        }
+                    }
+                    //c) MT(placeholder's current owner) - Exists into From or To
+                    else if (detailOwnersMT.IsUser_DetailOwner())
+                    {
+                        if (UserInfo.userDetails.Id == tmp.FromUser.Id || UserInfo.userDetails.Id == tmp.ToUser.Id)
+                        {
+                            ret.Add(tmp);
+                        }
+                    }
+                    //d) GM (placeholder's owner) - Exists into From or To
+                    else if (detailOwnersGM.IsUser_DetailOwner())
+                    {
+                        //gia kathe placeholder toy detail
+                        foreach (Placeholders ph in placeholders)
+                        {
+                            //vres ton mt toy placeholder
+                            Users MTofPH = Owners_MT.GetCurrentOwnerMT(ph.Id).User;
 
+                            //an o mt einai sto from/to 
+                            if (MTofPH.Id == tmp.FromUser.Id || MTofPH.Id == tmp.ToUser.Id)
+                            {
+                                //an gia auto to placeholder anikw stoys gm toy
+                                List<Users> PhGmList = Owners_GM.GetOwnerGMUsersList(ph.Id); //poioi einai oi GmOwners tou placeholder                                
+                                FIDetailOwners PhDetailOwnersGM = new FIDetailOwners(PhGmList);
+                                if (PhDetailOwnersGM.IsUser_DetailOwner()) //anikw se autous
+                                {
+                                    ret.Add(tmp);
+                                }
+                            }
+                        }
+                    }
+                    //e) DT (placeholder's delegatees) - Exists into From or To
+                    else if (detailOwnersDT.IsUser_DetailOwner())
+                    {
+                        if (UserInfo.userDetails.Id == tmp.FromUser.Id || UserInfo.userDetails.Id == tmp.ToUser.Id)
+                        {
+                            ret.Add(tmp);
+                        }
+                    }
+                    //==============================================================
 
                 }
                 reader.Close();
@@ -111,9 +171,9 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [Activity], [CommentText], [CommentRtf], " + 
+            string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [ActivityDescriptionId], [CommentText], [CommentRtf], " + 
                                        "[FromUserId], [ToUserId], [IsPublic], [InsUserId], [InsDt]) VALUES " +
-                           "(@DetailId, @Activity, @CommentText, @CommentRtf, @FromUserId, @ToUserId, @IsPublic, @InsUserId, getDate())"; 
+                           "(@DetailId, @ActivityDescriptionId, @CommentText, @CommentRtf, @FromUserId, @ToUserId, @IsPublic, @InsUserId, getDate())"; 
             //encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), " +
 
             try
@@ -124,7 +184,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
 
                 cmd.Parameters.AddWithValue("@DetailId", fiDetailActivity.DetailId);
-                cmd.Parameters.AddWithValue("@Activity", fiDetailActivity.Activity);
+                cmd.Parameters.AddWithValue("@ActivityDescriptionId", fiDetailActivity.ActivityDescription.Id);
 
                 if (fiDetailActivity.CommentText is null || fiDetailActivity.CommentText.Trim() == "")
                 {

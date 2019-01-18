@@ -127,6 +127,7 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelsLib\ActivityDescription.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
     <Compile Include="ViewDepartments.cs">
       <SubType>Form</SubType>

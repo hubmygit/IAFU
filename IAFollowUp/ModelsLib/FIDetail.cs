@@ -546,7 +546,7 @@ namespace IAFollowUp
                             //1st Activity: IA Published to MT
                             FIDetailActivity detActivity = new FIDetailActivity();
                             detActivity.DetailId = detail.Id;
-                            detActivity.Activity = "IA Published to MT";
+                            detActivity.ActivityDescription = new ActivityDescription(1);
                             
 
                             if (detail.Placeholders.Count >= 1 && detail.Placeholders[0] != null)
