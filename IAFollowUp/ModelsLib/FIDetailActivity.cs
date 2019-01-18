@@ -31,7 +31,7 @@ namespace IAFollowUp
             List<FIDetailActivity> ret = new List<FIDetailActivity>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [DetailId], [ActivityDescriptionId], [FromUserId], [ToUserId], [InsDt] " +
+            string SelectSt = "SELECT [Id], [DetailId], [ActivityDescriptionId], [CommentRtf], [CommentText], [FromUserId], [ToUserId], [InsDt] " +
                               "FROM [dbo].[FIDetail_Activity] " +
                               "WHERE DetailId = @detId " +
                               "ORDER BY InsDt Desc";
@@ -71,6 +71,9 @@ namespace IAFollowUp
                     }
                     tmp.InsDt = Convert.ToDateTime(reader["InsDt"].ToString());
 
+                    tmp.CommentRtf = reader["CommentRtf"].ToString();
+                    tmp.CommentText = reader["CommentText"].ToString();
+
                     List<Placeholders> placeholders = FIDetail.getOwners(tmp.DetailId);
                   
                     //==============================================================
@@ -96,7 +99,7 @@ namespace IAFollowUp
                     List<Users> usersListDT = new List<Users>();
                     foreach (Placeholders ph in placeholders)
                     {
-                        usersListDT.AddRange(Owners_DT.GetOwnerDTUsersList(tmp.Id, ph.Id));
+                        usersListDT.AddRange(Owners_DT.GetOwnerDTUsersList(tmp.DetailId, ph.Id));
                     }
                     FIDetailOwners detailOwnersDT = new FIDetailOwners(usersListDT);
                     //<- Delegatees

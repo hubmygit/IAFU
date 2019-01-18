@@ -50,9 +50,11 @@
             this.btnMTtoIAInform = new System.Windows.Forms.Button();
             this.btnMTtoDTDelegate = new System.Windows.Forms.Button();
             this.btnMTtoIAExtension = new System.Windows.Forms.Button();
+            this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -64,6 +66,8 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 250);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemRichTextEdit1});
             this.gridControl1.Size = new System.Drawing.Size(800, 200);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -105,13 +109,14 @@
             // 
             // colActivity
             // 
-            this.colActivity.FieldName = "Activity";
+            this.colActivity.FieldName = "ActivityDescription.Name";
             this.colActivity.Name = "colActivity";
             this.colActivity.Visible = true;
             this.colActivity.VisibleIndex = 2;
             // 
             // colCommentRtf
             // 
+            this.colCommentRtf.ColumnEdit = this.repositoryItemRichTextEdit1;
             this.colCommentRtf.FieldName = "CommentRtf";
             this.colCommentRtf.Name = "colCommentRtf";
             this.colCommentRtf.Visible = true;
@@ -235,6 +240,11 @@
             this.btnMTtoIAExtension.UseVisualStyleBackColor = true;
             this.btnMTtoIAExtension.Click += new System.EventHandler(this.btnMTtoIAExtension_Click);
             // 
+            // repositoryItemRichTextEdit1
+            // 
+            this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
+            this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
+            // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +267,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,5 +294,6 @@
         private System.Windows.Forms.Button btnMTtoIAInform;
         private System.Windows.Forms.Button btnMTtoDTDelegate;
         private System.Windows.Forms.Button btnMTtoIAExtension;
+        private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
     }
 }
