@@ -133,8 +133,18 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelsLib\ActionSide.cs" />
     <Compile Include="ModelsLib\ActivityDescription.cs" />
+    <Compile Include="ModelsLib\AuditeesRoles.cs" />
+    <Compile Include="ModelsLib\FI_DetailHeaderAudit.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
+    <Compile Include="ModelsLib\PlaceholderRole.cs" />
+    <Compile Include="PlaceholderRoleSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaceholderRoleSelect.Designer.cs">
+      <DependentUpon>PlaceholderRoleSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewDepartments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaceholderRoleSelect.resx">
+      <DependentUpon>PlaceholderRoleSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewDepartments.resx">
       <DependentUpon>ViewDepartments.cs</DependentUpon>

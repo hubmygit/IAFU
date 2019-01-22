@@ -37,6 +37,7 @@
             this.colDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActivity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCommentRtf = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
             this.colCommentText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFromUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colToUser = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,11 +51,14 @@
             this.btnMTtoIAInform = new System.Windows.Forms.Button();
             this.btnMTtoDTDelegate = new System.Windows.Forms.Button();
             this.btnMTtoIAExtension = new System.Windows.Forms.Button();
-            this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MT_tsmiMTinformIA = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -63,12 +67,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.fIDetailActivityBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 250);
+            this.gridControl1.Location = new System.Drawing.Point(0, 289);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(800, 200);
+            this.gridControl1.Size = new System.Drawing.Size(800, 213);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -122,6 +126,11 @@
             this.colCommentRtf.Visible = true;
             this.colCommentRtf.VisibleIndex = 3;
             // 
+            // repositoryItemRichTextEdit1
+            // 
+            this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
+            this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
+            // 
             // colCommentText
             // 
             this.colCommentText.FieldName = "CommentText";
@@ -154,7 +163,7 @@
             // 
             // rtbComments
             // 
-            this.rtbComments.Location = new System.Drawing.Point(138, 12);
+            this.rtbComments.Location = new System.Drawing.Point(198, 86);
             this.rtbComments.Name = "rtbComments";
             this.rtbComments.Size = new System.Drawing.Size(300, 197);
             this.rtbComments.TabIndex = 1;
@@ -162,7 +171,7 @@
             // 
             // btnMTtoIA
             // 
-            this.btnMTtoIA.Location = new System.Drawing.Point(444, 12);
+            this.btnMTtoIA.Location = new System.Drawing.Point(504, 86);
             this.btnMTtoIA.Name = "btnMTtoIA";
             this.btnMTtoIA.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoIA.TabIndex = 2;
@@ -172,7 +181,7 @@
             // 
             // btnFontDialog
             // 
-            this.btnFontDialog.Location = new System.Drawing.Point(12, 12);
+            this.btnFontDialog.Location = new System.Drawing.Point(72, 86);
             this.btnFontDialog.Name = "btnFontDialog";
             this.btnFontDialog.Size = new System.Drawing.Size(120, 23);
             this.btnFontDialog.TabIndex = 3;
@@ -182,7 +191,7 @@
             // 
             // btnMTtoDT
             // 
-            this.btnMTtoDT.Location = new System.Drawing.Point(444, 157);
+            this.btnMTtoDT.Location = new System.Drawing.Point(504, 231);
             this.btnMTtoDT.Name = "btnMTtoDT";
             this.btnMTtoDT.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoDT.TabIndex = 4;
@@ -192,7 +201,7 @@
             // 
             // btnDTtoMT
             // 
-            this.btnDTtoMT.Location = new System.Drawing.Point(444, 128);
+            this.btnDTtoMT.Location = new System.Drawing.Point(504, 202);
             this.btnDTtoMT.Name = "btnDTtoMT";
             this.btnDTtoMT.Size = new System.Drawing.Size(120, 23);
             this.btnDTtoMT.TabIndex = 5;
@@ -202,7 +211,7 @@
             // 
             // btnIAtoMT
             // 
-            this.btnIAtoMT.Location = new System.Drawing.Point(444, 41);
+            this.btnIAtoMT.Location = new System.Drawing.Point(504, 115);
             this.btnIAtoMT.Name = "btnIAtoMT";
             this.btnIAtoMT.Size = new System.Drawing.Size(120, 23);
             this.btnIAtoMT.TabIndex = 6;
@@ -212,7 +221,7 @@
             // 
             // btnMTtoIAInform
             // 
-            this.btnMTtoIAInform.Location = new System.Drawing.Point(444, 70);
+            this.btnMTtoIAInform.Location = new System.Drawing.Point(504, 144);
             this.btnMTtoIAInform.Name = "btnMTtoIAInform";
             this.btnMTtoIAInform.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoIAInform.TabIndex = 7;
@@ -222,7 +231,7 @@
             // 
             // btnMTtoDTDelegate
             // 
-            this.btnMTtoDTDelegate.Location = new System.Drawing.Point(444, 99);
+            this.btnMTtoDTDelegate.Location = new System.Drawing.Point(504, 173);
             this.btnMTtoDTDelegate.Name = "btnMTtoDTDelegate";
             this.btnMTtoDTDelegate.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoDTDelegate.TabIndex = 8;
@@ -232,7 +241,7 @@
             // 
             // btnMTtoIAExtension
             // 
-            this.btnMTtoIAExtension.Location = new System.Drawing.Point(444, 186);
+            this.btnMTtoIAExtension.Location = new System.Drawing.Point(504, 260);
             this.btnMTtoIAExtension.Name = "btnMTtoIAExtension";
             this.btnMTtoIAExtension.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoIAExtension.TabIndex = 9;
@@ -240,16 +249,37 @@
             this.btnMTtoIAExtension.UseVisualStyleBackColor = true;
             this.btnMTtoIAExtension.Click += new System.EventHandler(this.btnMTtoIAExtension_Click);
             // 
-            // repositoryItemRichTextEdit1
+            // menuStrip1
             // 
-            this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
-            this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.actionsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // actionsToolStripMenuItem
+            // 
+            this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MT_tsmiMTinformIA});
+            this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.actionsToolStripMenuItem.Text = "Actions";
+            // 
+            // MT_tsmiMTinformIA
+            // 
+            this.MT_tsmiMTinformIA.Name = "MT_tsmiMTinformIA";
+            this.MT_tsmiMTinformIA.Size = new System.Drawing.Size(234, 22);
+            this.MT_tsmiMTinformIA.Tag = "2";
+            this.MT_tsmiMTinformIA.Text = "Inform IA for Work In Progress";
+            this.MT_tsmiMTinformIA.Click += new System.EventHandler(this.MT_tsmiMTinformIA_Click);
             // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 502);
             this.Controls.Add(this.btnMTtoIAExtension);
             this.Controls.Add(this.btnMTtoDTDelegate);
             this.Controls.Add(this.btnMTtoIAInform);
@@ -260,7 +290,9 @@
             this.Controls.Add(this.btnMTtoIA);
             this.Controls.Add(this.rtbComments);
             this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FIActivity";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Findings and Improvements Activity";
@@ -268,7 +300,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -295,5 +330,8 @@
         private System.Windows.Forms.Button btnMTtoDTDelegate;
         private System.Windows.Forms.Button btnMTtoIAExtension;
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTinformIA;
     }
 }

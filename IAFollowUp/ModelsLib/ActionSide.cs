@@ -7,20 +7,21 @@ using System.Windows.Forms;
 
 namespace IAFollowUp
 {
-    public class ActivityDescription
+
+    public class ActionSide
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool IsIaAction { get; set; }
-        public ActionSide ActionSide { get; set; }
-        public ActivityDescription()
+
+        public ActionSide()
         {
         }
-        public ActivityDescription(int givenId)
+
+        public ActionSide(int givenId)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name], [IsIaAction], [ActionSideId] " +
-                              "FROM [dbo].[Activity_Descriptions] " +
+            string SelectSt = "SELECT [Id], [Name] " +
+                              "FROM [dbo].[Action_Side] " +
                               "WHERE Id = " + givenId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -31,8 +32,6 @@ namespace IAFollowUp
                 {
                     Id = Convert.ToInt32(reader["Id"].ToString());
                     Name = reader["Name"].ToString();
-                    IsIaAction = Convert.ToBoolean(reader["IsIaAction"].ToString());
-                    ActionSide = new ActionSide(Convert.ToInt32(reader["ActionSideId"].ToString()));
                 }
                 reader.Close();
                 sqlConn.Close();
@@ -43,14 +42,13 @@ namespace IAFollowUp
             }
         }
 
-        public static List<ActivityDescription> GetSqlActivityDescriptionList()
+        public static List<ActionSide> GetSqlCompaniesList()
         {
-            List<ActivityDescription> ret = new List<ActivityDescription>();
+            List<ActionSide> ret = new List<ActionSide>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name], [IsIaAction], [ActionSideId] " +
-                              "FROM [dbo].[Activity_Descriptions] ";
-
+            string SelectSt = "SELECT [Id], [Name] " +
+                              "FROM [dbo].[Action_Side] ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
@@ -58,13 +56,7 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new ActivityDescription()
-                    {
-                        Id = Convert.ToInt32(reader["Id"].ToString()),
-                        Name = reader["Name"].ToString(),
-                        IsIaAction = Convert.ToBoolean(reader["IsIaAction"].ToString()),
-                        ActionSide = new ActionSide(Convert.ToInt32(reader["ActionSideId"].ToString()))
-                    });
+                    ret.Add(new ActionSide() { Id = Convert.ToInt32(reader["Id"].ToString()), Name = reader["Name"].ToString() });
                 }
                 reader.Close();
                 sqlConn.Close();
@@ -76,7 +68,15 @@ namespace IAFollowUp
 
             return ret;
         }
-
-        
     }
+
+
+    //public enum ActionSide
+    //{
+    //    Auditors = 1,
+    //    Auditees = 2,
+    //    None = 3
+    //}
+
+
 }

@@ -555,6 +555,7 @@ namespace IAFollowUp
                                 FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[0].Id, detail.CurrentOwner1.User.Id);
 
                                 detActivity.ToUser = detail.CurrentOwner1.User;
+                                detActivity.Placeholders = detail.Placeholders[0];
                                 FIDetailActivity.Insert(detActivity);
                             }
                             if (detail.Placeholders.Count >= 2 && detail.Placeholders[1] != null)
@@ -563,6 +564,7 @@ namespace IAFollowUp
                                 FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[1].Id, detail.CurrentOwner2.User.Id);
 
                                 detActivity.ToUser = detail.CurrentOwner2.User;
+                                detActivity.Placeholders = detail.Placeholders[1];
                                 FIDetailActivity.Insert(detActivity);
                             }
                             if (detail.Placeholders.Count >= 3 && detail.Placeholders[2] != null)
@@ -571,6 +573,7 @@ namespace IAFollowUp
                                 FIDetail.Update_FIDetailPlaceholders_RealOwner(detail.Id, detail.Placeholders[2].Id, detail.CurrentOwner3.User.Id);
 
                                 detActivity.ToUser = detail.CurrentOwner3.User;
+                                detActivity.Placeholders = detail.Placeholders[2];
                                 FIDetailActivity.Insert(detActivity);
                             }
 
@@ -748,37 +751,46 @@ namespace IAFollowUp
                     if (UserInfo.roleDetails.IsAdmin)
                     {
                         ret.Add(tmp);
+                        continue;
                     }
+
                     //b) Auditor - Published
-                    else if (UserInfo.roleDetails.IsAuditor)
+                    if (UserInfo.roleDetails.IsAuditor)
                     {
                         if (tmp.IsPublished)
                         {
                             ret.Add(tmp);
+                            continue;
                         }
                     }
+
                     //c) MT (placeholder's current owner) - Published
-                    else if (detailOwnersMT.IsUser_DetailOwner())
+                    if (detailOwnersMT.IsUser_DetailOwner())
                     {
                         if (tmp.IsPublished)
                         {
                             ret.Add(tmp);
+                            continue;
                         }
                     }
+
                     //d) GM (placeholder's owner) - Published
-                    else if (detailOwnersGM.IsUser_DetailOwner())
+                    if (detailOwnersGM.IsUser_DetailOwner())
                     {
                         if (tmp.IsPublished)
                         {
                             ret.Add(tmp);
+                            continue;
                         }
                     }
+
                     //e) DT (placeholder's delegatees) - Published
-                    else if (detailOwnersDT.IsUser_DetailOwner())
+                    if (detailOwnersDT.IsUser_DetailOwner())
                     {
                         if (tmp.IsPublished)
                         {
                             ret.Add(tmp);
+                            continue;
                         }
                     }
                     //==============================================================

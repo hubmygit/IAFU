@@ -33,7 +33,8 @@ namespace IAFollowUp
 
         //auditees----->
         FI_View,
-        FI_Activity_View
+        Activity_View,
+        Activity_MTinformIA
         //FI_xxxxx
         //FI_yyyyy
         //auditees<-----
@@ -723,7 +724,7 @@ namespace IAFollowUp
                     }
                 //<---------- Detail ----------
 
-                //---------- FI ---------->
+                //---------- FI / Activity ---------->
                 case Action.FI_View:
                     {
                         //checking what users see, into select function
@@ -731,13 +732,63 @@ namespace IAFollowUp
                         break;
                     }
 
-                case Action.FI_Activity_View:
+                case Action.Activity_View:
                     {
                         //checking what users see, into select function
                         ret = true;
                         break;
                     }
-                //<---------- FI ----------
+
+                case Action.Activity_MTinformIA:
+                    {
+                        //am i detail owner??
+                        Placeholders ownerPh = new Placeholders();
+                        Users ownerMt = new Users();
+                        //List<Users> usersListMT = new List<Users>();
+                        foreach (Placeholders ph in detail.Placeholders)
+                        {
+                            //usersListMT.Add(Owners_MT.GetCurrentOwnerMT(ph.Id).User);
+
+                            ownerMt = Owners_MT.GetCurrentOwnerMT(ph.Id).User;
+                            if (ownerMt.Id == UserInfo.userDetails.Id)
+                            {
+                                ownerPh = ph;
+                                break; //found something
+                            }
+                        }
+                        //FIDetailOwners detailOwnersMT = new FIDetailOwners(usersListMT);
+
+                        //if (detailOwnersMT.IsUser_DetailOwner())
+
+                        if(ownerPh != null && ownerPh.Id > 0)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+
+                        //!!!!!!!!!!!!!! For this placeholder !!!!!!!!!!!!!!
+                        //where is the ball??
+                        ActionSide actionSide = FIDetailActivity.IsActionOnMySide_asAuditee(detail.Id);
+                        if (actionSide.Id == 2) //auditee for this placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on Auditees side.");
+                            break;
+                        }
+                        
+                        break;
+                    }
+                //<---------- FI / Activity ----------
 
                 default:
                     {

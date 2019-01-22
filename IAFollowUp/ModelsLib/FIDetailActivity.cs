@@ -22,16 +22,21 @@ namespace IAFollowUp
         public Users ToUser { get; set; } 
         public DateTime InsDt { get; set; }
 
+        public Placeholders Placeholders { get; set; }
+
         public FIDetailActivity()
         {
         }
 
-        public static List<FIDetailActivity> Select(int detailId)
+        public static List<FIDetailActivity> Select(int detailId, int auditeePlaceholder = 0, int auditeeRole = 0)
         {
             List<FIDetailActivity> ret = new List<FIDetailActivity>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [DetailId], [ActivityDescriptionId], [CommentRtf], [CommentText], [FromUserId], [ToUserId], [InsDt] " +
+            string SelectSt = "SELECT [Id], [DetailId], [ActivityDescriptionId], " +
+                "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [CommentRtf])) as CommentRtf, " +
+                "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [CommentText])) as CommentText, " + 
+                "[FromUserId], [ToUserId], [InsDt], [PlaceholderId] " +
                               "FROM [dbo].[FIDetail_Activity] " +
                               "WHERE DetailId = @detId " +
                               "ORDER BY InsDt Desc";
@@ -40,6 +45,8 @@ namespace IAFollowUp
             try
             {
                 sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
 
                 cmd.Parameters.AddWithValue("@detId", detailId);
 
@@ -70,6 +77,15 @@ namespace IAFollowUp
                         tmp.ToUser = new Users(Convert.ToInt32(reader["ToUserId"].ToString()));
                     }
                     tmp.InsDt = Convert.ToDateTime(reader["InsDt"].ToString());
+
+                    if (reader["PlaceholderId"] == DBNull.Value)
+                    {
+                        tmp.Placeholders = new Placeholders();
+                    }
+                    else
+                    {
+                        tmp.Placeholders = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString()));
+                    }
 
                     tmp.CommentRtf = reader["CommentRtf"].ToString();
                     tmp.CommentText = reader["CommentText"].ToString();
@@ -108,15 +124,38 @@ namespace IAFollowUp
                     if (UserInfo.roleDetails.IsAdmin)
                     {
                         ret.Add(tmp);
+                        continue;
                     }
+
                     //b) Auditor(All) - Exists into From or To
-                    else if (UserInfo.roleDetails.IsAuditor)
+                    if (UserInfo.roleDetails.IsAuditor)
                     {
                         if (tmp.ActivityDescription.IsIaAction) //Επειδή δεν αναφέρεται όνομα στους IA, κοιτάω αν πρόκειται για action από/προς IA..
                         {
                             ret.Add(tmp);
                         }
+                        continue;
                     }
+
+                    //c) MT(placeholder's current owner) - Exists into ph
+                    if (UserInfo.roleDetails.IsAuditee && auditeeRole == 2) //MT
+                    {
+                        if (tmp.Placeholders.Id == auditeePlaceholder)
+                        {
+                            ret.Add(tmp);
+                        }
+
+                    }
+
+                    //d) GM (placeholder's owner) - Exists into From or To
+                    if (UserInfo.roleDetails.IsAuditee && auditeeRole == 1)
+                    {
+                        if (tmp.Placeholders.Id == auditeePlaceholder)
+                        {
+                            ret.Add(tmp);
+                        }
+                    }
+                    /*
                     //c) MT(placeholder's current owner) - Exists into From or To
                     else if (detailOwnersMT.IsUser_DetailOwner())
                     {
@@ -155,6 +194,7 @@ namespace IAFollowUp
                             ret.Add(tmp);
                         }
                     }
+                    */
                     //==============================================================
 
                 }
@@ -175,9 +215,11 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [ActivityDescriptionId], [CommentText], [CommentRtf], " + 
-                                       "[FromUserId], [ToUserId], [IsPublic], [InsUserId], [InsDt]) VALUES " +
-                           "(@DetailId, @ActivityDescriptionId, @CommentText, @CommentRtf, @FromUserId, @ToUserId, @IsPublic, @InsUserId, getDate())"; 
-            //encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), " +
+                                       "[FromUserId], [ToUserId], [IsPublic], [PlaceholderId], [InsUserId], [InsDt]) VALUES " +
+                           "(@DetailId, @ActivityDescriptionId, " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " + 
+                           "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @InsUserId, getDate())"; 
 
             try
             {
@@ -219,6 +261,16 @@ namespace IAFollowUp
                 }
 
                 cmd.Parameters.AddWithValue("@IsPublic", true);
+
+                if (fiDetailActivity.Placeholders != null && fiDetailActivity.Placeholders.Id > 0)
+                {
+                    cmd.Parameters.AddWithValue("@PlaceholderId", fiDetailActivity.Placeholders.Id);
+                }
+                else
+                {
+                     cmd.Parameters.AddWithValue("@PlaceholderId", DBNull.Value);
+                }
+
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
@@ -235,6 +287,41 @@ namespace IAFollowUp
 
             }
             sqlConn.Close();
+
+            return ret;
+        }
+
+        //public static ActionSide whichSideAreYouOnNow(int detailId)
+        public static ActionSide IsActionOnMySide_asAuditee(int detailId)
+        {
+            ActionSide ret = new ActionSide();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT top (1) D.[ActionSideId] " +
+                              "FROM [dbo].[FIDetail_Activity] A left outer join [dbo].[Activity_Descriptions] D on A.ActivityDescriptionId = D.Id " +
+                              "WHERE A.DetailId = @detId AND D.ActionSideId <> 3 AND (A.FromUserId = @userId OR A.ToUserId = @userId) " +
+                              "ORDER BY A.InsDt Desc";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detId", detailId);
+                cmd.Parameters.AddWithValue("@userId", UserInfo.userDetails.Id);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = new ActionSide(Convert.ToInt32(reader["ActionSideId"].ToString()));
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
 
             return ret;
         }

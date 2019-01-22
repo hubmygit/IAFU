@@ -15,7 +15,7 @@ namespace IAFollowUp
         {
             InitializeComponent();
 
-            List<FIDetail> detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
+            detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
 
             //UserInfo.userDetails.Id
 
@@ -43,6 +43,7 @@ namespace IAFollowUp
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();
+        public List<FIDetail> detailList = new List<FIDetail>();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -57,10 +58,74 @@ namespace IAFollowUp
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
                 int detId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["DetailId"]).ToString());
-                                
-                if (UserAction.IsLegal(Action.FI_Activity_View))
+                FIDetail det = detailList.Where(i => i.Id == detId).First();
+
+                int auditeePh = 0;
+                int auditeeRole = 0;
+
+                if (UserInfo.roleDetails.IsAuditee) //check for multiple placeholders
                 {
-                    FIActivity frmActivity = new FIActivity(detId);
+                    List<PlaceholderRole> phRole = new List<PlaceholderRole>();
+                     
+                    foreach (Placeholders ph in det.Placeholders)
+                    {
+                        if (Owners_MT.GetCurrentOwnerMT(ph.Id).User.Id == UserInfo.userDetails.Id)
+                        {
+                            phRole.Add(new PlaceholderRole() { Placeholder = ph, Role = new AuditeesRoles(2) });
+                        }
+
+                        foreach (Users userGm in Owners_GM.GetOwnerGMUsersList(ph.Id))
+                        {
+                            if (userGm.Id == UserInfo.userDetails.Id)
+                            {
+                                phRole.Add(new PlaceholderRole() { Placeholder = ph, Role = new AuditeesRoles(1) });
+                            }
+                        }
+
+                        foreach (Users userDt in Owners_DT.GetOwnerDTUsersList(det.Id, ph.Id))
+                        {
+                            if (userDt.Id == UserInfo.userDetails.Id)
+                            {
+                                phRole.Add(new PlaceholderRole() { Placeholder = ph, Role = new AuditeesRoles(3) });
+                            }
+                        }
+                    }
+
+                    //if (phRole.Count > 1 && phRole.Exists(i=>i.Role.Id == 2)) //more than 1 role & at least one MT
+                    if ((phRole.Count(i => i.Role.Id == 2) + phRole.Count(i => i.Role.Id == 3)) > 1) //Mts + Dts > 1
+                    {
+                        MessageBox.Show("You have multiple Roles in this Detail! Please select one of the following roles.");
+                        PlaceholderRoleSelect frmPlaceholderRole = new PlaceholderRoleSelect(phRole);
+                        if (frmPlaceholderRole.ShowDialog() != DialogResult.OK)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            auditeePh = frmPlaceholderRole.placeholderId;
+                            auditeeRole = frmPlaceholderRole.roleId;
+                        }
+                    }
+                    else if (phRole.Count(i => i.Role.Id == 2) == 1) //just 1 MT role
+                    {
+                        auditeePh = phRole[0].Placeholder.Id;
+                        auditeeRole = phRole[0].Role.Id;
+                    }
+                    else if (phRole.Count(i => i.Role.Id == 3) == 1) //just 1 DT role
+                    {
+                        auditeePh = phRole[0].Placeholder.Id;
+                        auditeeRole = phRole[0].Role.Id;
+                    }
+                    //else //Only GM
+                    //{
+                    //    auditeeRole = 1;
+                    //}
+
+                }
+
+                if (UserAction.IsLegal(Action.Activity_View))
+                {
+                    FIActivity frmActivity = new FIActivity(det, auditeePh, auditeeRole);
                     frmActivity.ShowDialog();
                 }
             }
@@ -68,72 +133,6 @@ namespace IAFollowUp
 
     }
 
-    public class FI_DetailHeaderAudit
-    {
-        public int AuditId { get; set; }
-        public Companies AuditCompany { get; set; }
-        public int AuditYear { get; set; }
-        public string AuditTitle { get; set; }
-        public string AuditRef { get; set; }
-        //---------------------------------//
-        public int HeaderId { get; set; }
-        public string HeaderTitle { get; set; }
-        public FICategory HeaderCategory { get; set; }
-        public string HeaderFIId { get; set; }
-        //---------------------------------//
-        public int DetailId { get; set; }
-        public string DetailDescription { get; set; } 
-        public DateTime? DetailActionDt { get; set; } 
-        public string DetailActionReq { get; set; }
-        public string DetailActionCode { get; set; }
-        public bool DetailIsFinalized { get; set; }
-        public string DetailFISubId { get; set; }
-        public Owners_MT DetailCurrentOwner1 { get; set; }
-        public Owners_MT DetailCurrentOwner2 { get; set; }
-        public Owners_MT DetailCurrentOwner3 { get; set; }
-
-        public FI_DetailHeaderAudit()
-        {              
-        }
-
-        public static BindingList<FI_DetailHeaderAudit>  AuditListToDetailList(List<Audit> auditList)
-        {
-            BindingList<FI_DetailHeaderAudit> ret = new BindingList<FI_DetailHeaderAudit>();
-
-            foreach (Audit thisAudit in auditList) //per audit
-            {
-                foreach (FIHeader thisHeader in thisAudit.FIHeaders) //per header
-                {
-                    foreach (FIDetail thisDetail in thisHeader.FIDetails) //per detail
-                    {
-                        FI_DetailHeaderAudit fiDHA = new FI_DetailHeaderAudit();
-                        fiDHA.AuditId = thisAudit.Id;
-                        fiDHA.AuditCompany = thisAudit.Company;
-                        fiDHA.AuditYear = thisAudit.Year;
-                        fiDHA.AuditTitle = thisAudit.Title;
-                        fiDHA.AuditRef = thisAudit.AuditRef;
-                        fiDHA.HeaderId = thisHeader.Id;
-                        fiDHA.HeaderTitle = thisHeader.Title;
-                        fiDHA.HeaderCategory = thisHeader.FICategory;
-                        fiDHA.HeaderFIId = thisHeader.FIId;
-                        fiDHA.DetailId = thisDetail.Id;
-                        fiDHA.DetailDescription = thisDetail.Description;
-                        fiDHA.DetailActionDt = thisDetail.ActionDt;
-                        fiDHA.DetailActionReq = thisDetail.ActionReq;
-                        fiDHA.DetailActionCode = thisDetail.ActionCode;
-                        fiDHA.DetailIsFinalized = thisDetail.IsFinalized;
-                        fiDHA.DetailFISubId = thisDetail.FISubId;
-                        fiDHA.DetailCurrentOwner1 = thisDetail.CurrentOwner1;
-                        fiDHA.DetailCurrentOwner2 = thisDetail.CurrentOwner2;
-                        fiDHA.DetailCurrentOwner3 = thisDetail.CurrentOwner3;
-
-                        ret.Add(fiDHA);
-                    }
-                }
-            }
-
-            return ret;
-        }
-    }
+    
 
 }
