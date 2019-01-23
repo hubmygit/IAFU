@@ -60,9 +60,10 @@
             this.IA_tsmiIAreturnMT = new System.Windows.Forms.ToolStripMenuItem();
             this.IA_tsmiIAacceptedMT = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTdelegateDT = new System.Windows.Forms.ToolStripMenuItem();
+            this.MT_tsmiMTreplyDT = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MT_tsmiMTreplyDT = new System.Windows.Forms.ToolStripMenuItem();
+            this.DT_tsmiDTreplyMT = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -296,7 +297,8 @@
             this.IA_tsmiIAreturnMT,
             this.IA_tsmiIAacceptedMT,
             this.MT_tsmiMTdelegateDT,
-            this.MT_tsmiMTreplyDT});
+            this.MT_tsmiMTreplyDT,
+            this.DT_tsmiDTreplyMT});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.actionsToolStripMenuItem.Text = "Actions";
@@ -341,6 +343,14 @@
             this.MT_tsmiMTdelegateDT.Text = "(mt) Delegate to Key Users";
             this.MT_tsmiMTdelegateDT.Click += new System.EventHandler(this.MT_tsmiMTdelegateDT_Click);
             // 
+            // MT_tsmiMTreplyDT
+            // 
+            this.MT_tsmiMTreplyDT.Name = "MT_tsmiMTreplyDT";
+            this.MT_tsmiMTreplyDT.Size = new System.Drawing.Size(260, 22);
+            this.MT_tsmiMTreplyDT.Tag = "2";
+            this.MT_tsmiMTreplyDT.Text = "(mt) Reply to Key User";
+            this.MT_tsmiMTreplyDT.Click += new System.EventHandler(this.MT_tsmiMTreplyDT_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -359,13 +369,13 @@
             this.tsStatusLblUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsStatusLblUser.Size = new System.Drawing.Size(16, 17);
             // 
-            // MT_tsmiMTreplyDT
+            // DT_tsmiDTreplyMT
             // 
-            this.MT_tsmiMTreplyDT.Name = "MT_tsmiMTreplyDT";
-            this.MT_tsmiMTreplyDT.Size = new System.Drawing.Size(260, 22);
-            this.MT_tsmiMTreplyDT.Tag = "2";
-            this.MT_tsmiMTreplyDT.Text = "(mt) Reply to Key User";
-            this.MT_tsmiMTreplyDT.Click += new System.EventHandler(this.MT_tsmiMTreplyDT_Click);
+            this.DT_tsmiDTreplyMT.Name = "DT_tsmiDTreplyMT";
+            this.DT_tsmiDTreplyMT.Size = new System.Drawing.Size(260, 22);
+            this.DT_tsmiDTreplyMT.Tag = "3";
+            this.DT_tsmiDTreplyMT.Text = "(dt) Reply to MT";
+            this.DT_tsmiDTreplyMT.Click += new System.EventHandler(this.DT_tsmiDTreplyMT_Click);
             // 
             // FIActivity
             // 
@@ -437,5 +447,6 @@
         private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAacceptedMT;
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTdelegateDT;
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTreplyDT;
+        private System.Windows.Forms.ToolStripMenuItem DT_tsmiDTreplyMT;
     }
 }

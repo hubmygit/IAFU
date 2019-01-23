@@ -124,6 +124,7 @@ namespace IAFollowUp
 
         private void btnDTtoMT_Click(object sender, EventArgs e)
         {
+            /*
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = det.Id;
             detActivity.ActivityDescription = new ActivityDescription(6);
@@ -133,6 +134,7 @@ namespace IAFollowUp
             //detActivity.ToUser = TODO ???????????????????????
 
             FIDetailActivity.Insert(detActivity);
+            */
         }
 
         private void btnIAtoMT_Click(object sender, EventArgs e)
@@ -507,6 +509,40 @@ namespace IAFollowUp
                 MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void DT_tsmiDTreplyMT_Click(object sender, EventArgs e)
+        {
+            if (!UserAction.IsLegal(Action.Activity_DTreplyMT, null, null, det, AuditeeRole.Id, PHolder.Id))
+            {
+                return;
+            }
+
+            FIDetailActivity detActivity = new FIDetailActivity();
+            detActivity.DetailId = det.Id;
+            detActivity.ActivityDescription = new ActivityDescription(6);
+            detActivity.CommentRtf = rtbComments.Rtf;
+            detActivity.CommentText = rtbComments.Text;
+            detActivity.FromUser = new Users(UserInfo.userDetails.Id);
+            detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(PHolder.Id).User; //current for this pholder
+            detActivity.Placeholders = PHolder;
+
+            if (FIDetailActivity.Insert(detActivity))
+            {
+                //send email
+
+                //create alerts
+
+                //...?
+                MessageBox.Show("The Action completed!");
+                Close();
+
+                //delete comments from user's drafts
+            }
+            else
+            {
+                MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

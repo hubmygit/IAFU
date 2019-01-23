@@ -39,7 +39,8 @@ namespace IAFollowUp
         Activity_IAreturnMT,
         Activity_IAacceptMT,
         Activity_MTdelegateDT,
-        Activity_MTreplyDT
+        Activity_MTreplyDT,
+        Activity_DTreplyMT
 
 
         //FI_xxxxx
@@ -843,7 +844,7 @@ namespace IAFollowUp
 
                         //on which side is the ball!
                         ActionSide actionSide = FIDetailActivity.getActionSide_forAuditors(detail);
-                        
+
                         if (actionSide.Id == 1) //IA for all placeholders
                         {
                             ret = true;
@@ -931,7 +932,6 @@ namespace IAFollowUp
                     }
                 case Action.Activity_MTreplyDT:
                     {
-
                         if (auditeeRole == 2) //MT
                         {
                             ret = true;
@@ -969,7 +969,45 @@ namespace IAFollowUp
 
                         break;
                     }
+                case Action.Activity_DTreplyMT:
+                    {
+                        if (auditeeRole == 3) //DT
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
 
+                        if (detail.Placeholders.Exists(i => i.Id == auditeePh)) //My placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditees(detail.Id, auditeePh);
+                        if (actionSide.Id == 2) //auditee for this placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        break;
+                    }
 
                 //<---------- FI / Activity ----------
 
