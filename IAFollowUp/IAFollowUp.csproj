@@ -133,9 +133,16 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="DelegateesSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelegateesSelect.Designer.cs">
+      <DependentUpon>DelegateesSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelsLib\ActionSide.cs" />
     <Compile Include="ModelsLib\ActivityDescription.cs" />
     <Compile Include="ModelsLib\AuditeesRoles.cs" />
+    <Compile Include="ModelsLib\Delegatees.cs" />
     <Compile Include="ModelsLib\FI_DetailHeaderAudit.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
     <Compile Include="ModelsLib\PlaceholderRole.cs" />
@@ -285,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelegateesSelect.resx">
+      <DependentUpon>DelegateesSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlaceholderRoleSelect.resx">
       <DependentUpon>PlaceholderRoleSelect.cs</DependentUpon>

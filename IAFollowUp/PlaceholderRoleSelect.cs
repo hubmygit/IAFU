@@ -20,7 +20,7 @@ namespace IAFollowUp
         {
             InitializeComponent();
 
-            gridControl1.DataSource = new BindingList<PlaceholderRole>(phRoles);
+            gridControl1.DataSource = new BindingList<PlaceholderRole>(phRoles.OrderBy(i => i.Role.Id).ToList());
         }
 
         public int placeholderId = 0;
@@ -33,8 +33,8 @@ namespace IAFollowUp
             DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo info = view.CalcHitInfo(ea.Location);
             if (info.InRowCell)
             {
-                int phId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Placeholder.Id"]).ToString());
-                int rId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Role.Id"]).ToString());
+                placeholderId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Placeholder.Id"]).ToString());
+                roleId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Role.Id"]).ToString());
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

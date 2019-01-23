@@ -42,6 +42,8 @@
             this.colFromUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colToUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colInsDt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPlaceholders = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActivityDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rtbComments = new System.Windows.Forms.RichTextBox();
             this.btnMTtoIA = new System.Windows.Forms.Button();
             this.btnFontDialog = new System.Windows.Forms.Button();
@@ -54,11 +56,19 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTinformIA = new System.Windows.Forms.ToolStripMenuItem();
+            this.MT_tsmiMTreplyIA = new System.Windows.Forms.ToolStripMenuItem();
+            this.IA_tsmiIAreturnMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.IA_tsmiIAacceptedMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.MT_tsmiMTdelegateDT = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MT_tsmiMTreplyDT = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -67,12 +77,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.fIDetailActivityBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 289);
+            this.gridControl1.Location = new System.Drawing.Point(0, 251);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(800, 213);
+            this.gridControl1.Size = new System.Drawing.Size(800, 226);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -91,7 +101,9 @@
             this.colCommentText,
             this.colFromUser,
             this.colToUser,
-            this.colInsDt});
+            this.colInsDt,
+            this.colPlaceholders,
+            this.colActivityDescription});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -156,14 +168,31 @@
             // 
             // colInsDt
             // 
+            this.colInsDt.Caption = "Insert Date";
             this.colInsDt.FieldName = "InsDt";
             this.colInsDt.Name = "colInsDt";
             this.colInsDt.Visible = true;
             this.colInsDt.VisibleIndex = 7;
             // 
+            // colPlaceholders
+            // 
+            this.colPlaceholders.Caption = "Department";
+            this.colPlaceholders.FieldName = "Placeholders.Department.Name";
+            this.colPlaceholders.Name = "colPlaceholders";
+            this.colPlaceholders.Visible = true;
+            this.colPlaceholders.VisibleIndex = 8;
+            // 
+            // colActivityDescription
+            // 
+            this.colActivityDescription.Caption = "Side";
+            this.colActivityDescription.FieldName = "ActivityDescription.ActionSide.Name";
+            this.colActivityDescription.Name = "colActivityDescription";
+            this.colActivityDescription.Visible = true;
+            this.colActivityDescription.VisibleIndex = 9;
+            // 
             // rtbComments
             // 
-            this.rtbComments.Location = new System.Drawing.Point(198, 86);
+            this.rtbComments.Location = new System.Drawing.Point(229, 27);
             this.rtbComments.Name = "rtbComments";
             this.rtbComments.Size = new System.Drawing.Size(300, 197);
             this.rtbComments.TabIndex = 1;
@@ -171,7 +200,7 @@
             // 
             // btnMTtoIA
             // 
-            this.btnMTtoIA.Location = new System.Drawing.Point(504, 86);
+            this.btnMTtoIA.Location = new System.Drawing.Point(535, 27);
             this.btnMTtoIA.Name = "btnMTtoIA";
             this.btnMTtoIA.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoIA.TabIndex = 2;
@@ -181,7 +210,7 @@
             // 
             // btnFontDialog
             // 
-            this.btnFontDialog.Location = new System.Drawing.Point(72, 86);
+            this.btnFontDialog.Location = new System.Drawing.Point(103, 27);
             this.btnFontDialog.Name = "btnFontDialog";
             this.btnFontDialog.Size = new System.Drawing.Size(120, 23);
             this.btnFontDialog.TabIndex = 3;
@@ -191,7 +220,7 @@
             // 
             // btnMTtoDT
             // 
-            this.btnMTtoDT.Location = new System.Drawing.Point(504, 231);
+            this.btnMTtoDT.Location = new System.Drawing.Point(535, 172);
             this.btnMTtoDT.Name = "btnMTtoDT";
             this.btnMTtoDT.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoDT.TabIndex = 4;
@@ -201,7 +230,7 @@
             // 
             // btnDTtoMT
             // 
-            this.btnDTtoMT.Location = new System.Drawing.Point(504, 202);
+            this.btnDTtoMT.Location = new System.Drawing.Point(535, 143);
             this.btnDTtoMT.Name = "btnDTtoMT";
             this.btnDTtoMT.Size = new System.Drawing.Size(120, 23);
             this.btnDTtoMT.TabIndex = 5;
@@ -211,7 +240,7 @@
             // 
             // btnIAtoMT
             // 
-            this.btnIAtoMT.Location = new System.Drawing.Point(504, 115);
+            this.btnIAtoMT.Location = new System.Drawing.Point(535, 56);
             this.btnIAtoMT.Name = "btnIAtoMT";
             this.btnIAtoMT.Size = new System.Drawing.Size(120, 23);
             this.btnIAtoMT.TabIndex = 6;
@@ -221,7 +250,7 @@
             // 
             // btnMTtoIAInform
             // 
-            this.btnMTtoIAInform.Location = new System.Drawing.Point(504, 144);
+            this.btnMTtoIAInform.Location = new System.Drawing.Point(535, 85);
             this.btnMTtoIAInform.Name = "btnMTtoIAInform";
             this.btnMTtoIAInform.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoIAInform.TabIndex = 7;
@@ -231,7 +260,7 @@
             // 
             // btnMTtoDTDelegate
             // 
-            this.btnMTtoDTDelegate.Location = new System.Drawing.Point(504, 173);
+            this.btnMTtoDTDelegate.Location = new System.Drawing.Point(535, 114);
             this.btnMTtoDTDelegate.Name = "btnMTtoDTDelegate";
             this.btnMTtoDTDelegate.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoDTDelegate.TabIndex = 8;
@@ -241,7 +270,7 @@
             // 
             // btnMTtoIAExtension
             // 
-            this.btnMTtoIAExtension.Location = new System.Drawing.Point(504, 260);
+            this.btnMTtoIAExtension.Location = new System.Drawing.Point(535, 201);
             this.btnMTtoIAExtension.Name = "btnMTtoIAExtension";
             this.btnMTtoIAExtension.Size = new System.Drawing.Size(120, 23);
             this.btnMTtoIAExtension.TabIndex = 9;
@@ -262,7 +291,12 @@
             // actionsToolStripMenuItem
             // 
             this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MT_tsmiMTinformIA});
+            this.MT_tsmiMTinformIA,
+            this.MT_tsmiMTreplyIA,
+            this.IA_tsmiIAreturnMT,
+            this.IA_tsmiIAacceptedMT,
+            this.MT_tsmiMTdelegateDT,
+            this.MT_tsmiMTreplyDT});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.actionsToolStripMenuItem.Text = "Actions";
@@ -270,16 +304,75 @@
             // MT_tsmiMTinformIA
             // 
             this.MT_tsmiMTinformIA.Name = "MT_tsmiMTinformIA";
-            this.MT_tsmiMTinformIA.Size = new System.Drawing.Size(234, 22);
+            this.MT_tsmiMTinformIA.Size = new System.Drawing.Size(260, 22);
             this.MT_tsmiMTinformIA.Tag = "2";
-            this.MT_tsmiMTinformIA.Text = "Inform IA for Work In Progress";
+            this.MT_tsmiMTinformIA.Text = "(mt) Inform IA for Work In Progress";
             this.MT_tsmiMTinformIA.Click += new System.EventHandler(this.MT_tsmiMTinformIA_Click);
+            // 
+            // MT_tsmiMTreplyIA
+            // 
+            this.MT_tsmiMTreplyIA.Name = "MT_tsmiMTreplyIA";
+            this.MT_tsmiMTreplyIA.Size = new System.Drawing.Size(260, 22);
+            this.MT_tsmiMTreplyIA.Tag = "2";
+            this.MT_tsmiMTreplyIA.Text = "(mt) Publish Actions to IA";
+            this.MT_tsmiMTreplyIA.Click += new System.EventHandler(this.MT_tsmiMTreplyIA_Click);
+            // 
+            // IA_tsmiIAreturnMT
+            // 
+            this.IA_tsmiIAreturnMT.Name = "IA_tsmiIAreturnMT";
+            this.IA_tsmiIAreturnMT.Size = new System.Drawing.Size(260, 22);
+            this.IA_tsmiIAreturnMT.Tag = "1";
+            this.IA_tsmiIAreturnMT.Text = "(ia) Return to MTs";
+            this.IA_tsmiIAreturnMT.Click += new System.EventHandler(this.IA_tsmiIAreturnMT_Click);
+            // 
+            // IA_tsmiIAacceptedMT
+            // 
+            this.IA_tsmiIAacceptedMT.Name = "IA_tsmiIAacceptedMT";
+            this.IA_tsmiIAacceptedMT.Size = new System.Drawing.Size(260, 22);
+            this.IA_tsmiIAacceptedMT.Tag = "1";
+            this.IA_tsmiIAacceptedMT.Text = "(ia) Accepted Actions";
+            this.IA_tsmiIAacceptedMT.Click += new System.EventHandler(this.IA_tsmiIAacceptedMT_Click);
+            // 
+            // MT_tsmiMTdelegateDT
+            // 
+            this.MT_tsmiMTdelegateDT.Name = "MT_tsmiMTdelegateDT";
+            this.MT_tsmiMTdelegateDT.Size = new System.Drawing.Size(260, 22);
+            this.MT_tsmiMTdelegateDT.Tag = "2";
+            this.MT_tsmiMTdelegateDT.Text = "(mt) Delegate to Key Users";
+            this.MT_tsmiMTdelegateDT.Click += new System.EventHandler(this.MT_tsmiMTdelegateDT_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsStatusLblUser});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 480);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsStatusLblUser
+            // 
+            this.tsStatusLblUser.BackColor = System.Drawing.SystemColors.Control;
+            this.tsStatusLblUser.Image = global::IAFollowUp.Properties.Resources.User_16x;
+            this.tsStatusLblUser.Name = "tsStatusLblUser";
+            this.tsStatusLblUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsStatusLblUser.Size = new System.Drawing.Size(16, 17);
+            // 
+            // MT_tsmiMTreplyDT
+            // 
+            this.MT_tsmiMTreplyDT.Name = "MT_tsmiMTreplyDT";
+            this.MT_tsmiMTreplyDT.Size = new System.Drawing.Size(260, 22);
+            this.MT_tsmiMTreplyDT.Tag = "2";
+            this.MT_tsmiMTreplyDT.Text = "(mt) Reply to Key User";
+            this.MT_tsmiMTreplyDT.Click += new System.EventHandler(this.MT_tsmiMTreplyDT_Click);
             // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 502);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnMTtoIAExtension);
             this.Controls.Add(this.btnMTtoDTDelegate);
             this.Controls.Add(this.btnMTtoIAInform);
@@ -302,6 +395,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,5 +428,14 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTinformIA;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        public System.Windows.Forms.ToolStripStatusLabel tsStatusLblUser;
+        private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTreplyIA;
+        private DevExpress.XtraGrid.Columns.GridColumn colPlaceholders;
+        private DevExpress.XtraGrid.Columns.GridColumn colActivityDescription;
+        private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAreturnMT;
+        private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAacceptedMT;
+        private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTdelegateDT;
+        private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTreplyDT;
     }
 }

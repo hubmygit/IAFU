@@ -34,7 +34,14 @@ namespace IAFollowUp
         //auditees----->
         FI_View,
         Activity_View,
-        Activity_MTinformIA
+        Activity_MTinformIA,
+        Activity_MTreplyIA,
+        Activity_IAreturnMT,
+        Activity_IAacceptMT,
+        Activity_MTdelegateDT,
+        Activity_MTreplyDT
+
+
         //FI_xxxxx
         //FI_yyyyy
         //auditees<-----
@@ -42,7 +49,7 @@ namespace IAFollowUp
 
     public class UserAction
     {
-        public static bool IsLegal(Action action, Audit audit = null, FIHeader header = null, FIDetail detail = null) 
+        public static bool IsLegal(Action action, Audit audit = null, FIHeader header = null, FIDetail detail = null, int auditeeRole = 0, int auditeePh = 0)
         {
             bool ret = false;
             //bool showMessage = true;
@@ -118,14 +125,14 @@ namespace IAFollowUp
                 case Action.Audit_View:
                     {
                         //Any auditor can view audits
-                        ret = true;                                               
+                        ret = true;
                         break;
                     }
                 case Action.Audit_Edit:
                     {
                         //Only Auditor1, 2, Supervisor can edit this audit
                         //if (UserInfo.userDetails.Id == audit.Auditor1.Id || UserInfo.userDetails.Id == audit.Auditor2.Id || UserInfo.userDetails.Id == audit.Supervisor.Id)
-                        if(isUserAuditOwner)
+                        if (isUserAuditOwner)
                         {
                             ret = true;
                         }
@@ -159,7 +166,7 @@ namespace IAFollowUp
                         }
 
                         //if (audit.AreAllDetailsOfAuditPublished() == false)
-                        if(audit.FIHeaders.Exists(i=>i.FIDetails.Exists(j=>j.IsPublished == true) == true) == false) //esto kai ena na einai published apo olo to audit
+                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published apo olo to audit
                         {
                             ret = true;
                         }
@@ -221,7 +228,7 @@ namespace IAFollowUp
                         }
 
                         break;
-                    } 
+                    }
                 case Action.Audit_Delete:
                     {
                         //Only Auditor1, 2, Supervisor can delete this audit
@@ -283,7 +290,7 @@ namespace IAFollowUp
                         }
 
                         break;
-                    }                
+                    }
                 case Action.Audit_Finalize:
                     {
                         //Only Auditor1, 2, Supervisor can finalize this audit
@@ -330,7 +337,7 @@ namespace IAFollowUp
                         //checking users and isPublished into select function
                         ret = true;
                         break;
-                    }                                                                         
+                    }
                 case Action.Header_Create:
                     {
                         //Only Auditor1, 2, Supervisor can create new header referring to this audit
@@ -344,7 +351,7 @@ namespace IAFollowUp
                             MessageBox.Show("You are not authorized to perform this action!");
                             break;
                         }
-                                               
+
                         if (audit.IsCompleted == false)
                         {
                             ret = true;
@@ -382,7 +389,7 @@ namespace IAFollowUp
 
                         break;
                     }
-                case Action.Header_Edit: 
+                case Action.Header_Edit:
                     {
                         if (isUserAuditOwner)
                         {
@@ -433,8 +440,8 @@ namespace IAFollowUp
                         }
 
                         break;
-                    }                                        
-                case Action.Header_Delete: 
+                    }
+                case Action.Header_Delete:
                     {
                         if (isUserAuditOwner)
                         {
@@ -650,62 +657,62 @@ namespace IAFollowUp
 
                         break;
                     }
-                    /*
-                case Action.Detail_Publish:
+                /*
+            case Action.Detail_Publish:
+                {
+                    if (isUserAuditOwner)
                     {
-                        if (isUserAuditOwner)
-                        {
-                            ret = true;
-                        }
-                        else
-                        {
-                            ret = false;
-                            MessageBox.Show("You are not authorized to perform this action!");
-                            break;
-                        }
-
-                        if (audit.IsCompleted == true)
-                        {
-                            ret = true;
-                        }
-                        else
-                        {
-                            ret = false;
-                            MessageBox.Show("You have to finalize the Audit before publication!");
-                            break;
-                        }
-
-
-                        //## estw kai mia eggrafi published se olo to audit ##
-                        //if (detail.IsPublished == false) //checking this detail *and all* details of this header(??)
-                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
-
-                        {
-                            ret = true;
-                        }
-                        else
-                        {
-                            ret = false;
-                            MessageBox.Show("Details have been Published!");
-                            break;
-                        }
-
-                        //## estw kai mia eggrafi finalized se olo to audit ##
-                        //if (detail.IsFinalized == false) //checking this detail *and all* details of this header(??)
-                        if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
-                        {
-                            ret = true;
-                        }
-                        else
-                        {
-                            ret = false;
-                            MessageBox.Show("Details have been Finalized!");
-                            break;
-                        }
-
+                        ret = true;
+                    }
+                    else
+                    {
+                        ret = false;
+                        MessageBox.Show("You are not authorized to perform this action!");
                         break;
                     }
-                    */
+
+                    if (audit.IsCompleted == true)
+                    {
+                        ret = true;
+                    }
+                    else
+                    {
+                        ret = false;
+                        MessageBox.Show("You have to finalize the Audit before publication!");
+                        break;
+                    }
+
+
+                    //## estw kai mia eggrafi published se olo to audit ##
+                    //if (detail.IsPublished == false) //checking this detail *and all* details of this header(??)
+                    if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsPublished == true) == true) == false) //esto kai ena na einai published
+
+                    {
+                        ret = true;
+                    }
+                    else
+                    {
+                        ret = false;
+                        MessageBox.Show("Details have been Published!");
+                        break;
+                    }
+
+                    //## estw kai mia eggrafi finalized se olo to audit ##
+                    //if (detail.IsFinalized == false) //checking this detail *and all* details of this header(??)
+                    if (audit.FIHeaders.Exists(i => i.FIDetails.Exists(j => j.IsFinalized == true) == true) == false) //esto kai ena na einai finalized
+                    {
+                        ret = true;
+                    }
+                    else
+                    {
+                        ret = false;
+                        MessageBox.Show("Details have been Finalized!");
+                        break;
+                    }
+
+                    break;
+                }
+                */
                 case Action.Detail_Finalize:
                     {
                         //if (isUserAuditOwner)
@@ -741,26 +748,7 @@ namespace IAFollowUp
 
                 case Action.Activity_MTinformIA:
                     {
-                        //am i detail owner??
-                        Placeholders ownerPh = new Placeholders();
-                        Users ownerMt = new Users();
-                        //List<Users> usersListMT = new List<Users>();
-                        foreach (Placeholders ph in detail.Placeholders)
-                        {
-                            //usersListMT.Add(Owners_MT.GetCurrentOwnerMT(ph.Id).User);
-
-                            ownerMt = Owners_MT.GetCurrentOwnerMT(ph.Id).User;
-                            if (ownerMt.Id == UserInfo.userDetails.Id)
-                            {
-                                ownerPh = ph;
-                                break; //found something
-                            }
-                        }
-                        //FIDetailOwners detailOwnersMT = new FIDetailOwners(usersListMT);
-
-                        //if (detailOwnersMT.IsUser_DetailOwner())
-
-                        if(ownerPh != null && ownerPh.Id > 0)
+                        if (auditeeRole == 2) //MT
                         {
                             ret = true;
                         }
@@ -771,10 +759,19 @@ namespace IAFollowUp
                             break;
                         }
 
+                        if (detail.Placeholders.Exists(i => i.Id == auditeePh)) //My placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
 
-                        //!!!!!!!!!!!!!! For this placeholder !!!!!!!!!!!!!!
-                        //where is the ball??
-                        ActionSide actionSide = FIDetailActivity.IsActionOnMySide_asAuditee(detail.Id);
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditees(detail.Id, auditeePh);
                         if (actionSide.Id == 2) //auditee for this placeholder
                         {
                             ret = true;
@@ -782,12 +779,198 @@ namespace IAFollowUp
                         else
                         {
                             ret = false;
-                            MessageBox.Show("You can not perform this action! Actions are not currently on Auditees side.");
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
                             break;
                         }
-                        
+
                         break;
                     }
+
+                case Action.Activity_MTreplyIA:
+                    {
+                        if (auditeeRole == 2) //MT
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        if (detail.Placeholders.Exists(i => i.Id == auditeePh)) //My placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditees(detail.Id, auditeePh);
+                        if (actionSide.Id == 2) //auditee for this placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        break;
+                    }
+
+                case Action.Activity_IAreturnMT:
+                    {
+                        //on which side is the ball! for all placeholders -- all detail owners answered
+                        AuditOwners auditorOwners = FIDetail.getAuditOwners(detail.Id);
+                        if (auditorOwners.IsUser_AuditOwner())
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditors(detail);
+                        
+                        if (actionSide.Id == 1) //IA for all placeholders
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        break;
+                    }
+
+                case Action.Activity_IAacceptMT:
+                    {
+                        //on which side is the ball! for all placeholders -- all detail owners answered
+                        AuditOwners auditorOwners = FIDetail.getAuditOwners(detail.Id);
+                        if (auditorOwners.IsUser_AuditOwner())
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditors(detail);
+
+                        if (actionSide.Id == 1) //IA for all placeholders
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        break;
+                    }
+
+                case Action.Activity_MTdelegateDT:
+                    {
+                        if (auditeeRole == 2) //MT
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        if (detail.Placeholders.Exists(i => i.Id == auditeePh)) //My placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditees(detail.Id, auditeePh);
+                        if (actionSide.Id == 2) //auditee for this placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        break;
+                    }
+                case Action.Activity_MTreplyDT:
+                    {
+
+                        if (auditeeRole == 2) //MT
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        if (detail.Placeholders.Exists(i => i.Id == auditeePh)) //My placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditees(detail.Id, auditeePh);
+                        if (actionSide.Id == 2) //auditee for this placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        break;
+                    }
+
+
                 //<---------- FI / Activity ----------
 
                 default:

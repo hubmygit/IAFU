@@ -822,5 +822,62 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static AuditOwners getAuditOwners(int detailId)
+        {
+            AuditOwners ret = new AuditOwners();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT A.Auditor1ID, A.Auditor2ID, A.SupervisorID " +
+                              "FROM [dbo].[FIDetail] D left outer join " +
+                              "     [dbo].[FIHeader] H on D.FIHeaderId = H.Id left outer join " +
+                              "     [dbo].[Audit] A on H.AuditId = A.Id " +
+                              "WHERE D.Id = @detailId";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Users Auditor2_User, Supervisor_User;
+
+                    if (reader["Auditor2Id"] == System.DBNull.Value)
+                    {
+                        //Auditor2_Id = null;
+                        Auditor2_User = new Users();
+                    }
+                    else
+                    {
+                        //Auditor2_Id = Convert.ToInt32(reader["Auditor2Id"].ToString());
+                        Auditor2_User = new Users(Convert.ToInt32(reader["Auditor2Id"].ToString()));
+                    }
+                    if (reader["SupervisorId"] == System.DBNull.Value)
+                    {
+                        //Supervisor_Id = null;
+                        Supervisor_User = new Users();
+                    }
+                    else
+                    {
+                        //Supervisor_Id = Convert.ToInt32(reader["SupervisorId"].ToString());
+                        Supervisor_User = new Users(Convert.ToInt32(reader["SupervisorId"].ToString()));
+                    }
+                    
+                    ret = new AuditOwners(new Users(Convert.ToInt32(reader["Auditor1Id"].ToString())), Auditor2_User, Supervisor_User);
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+            
+            return ret;
+        }
+
     }
 }

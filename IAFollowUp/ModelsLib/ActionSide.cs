@@ -42,7 +42,7 @@ namespace IAFollowUp
             }
         }
 
-        public static List<ActionSide> GetSqlCompaniesList()
+        public static List<ActionSide> GetSqlActionSideList()
         {
             List<ActionSide> ret = new List<ActionSide>();
 

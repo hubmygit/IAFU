@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -91,6 +92,74 @@ namespace IAFollowUp
 
             return ret;
         }
+
+        public static bool IsUserDelegatee(int givenDetailId, int givenPlaceholderId, int givenUserId)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT [UserId] " +
+                              "FROM [dbo].[Owners_DT] " +
+                              "WHERE IsActive = 'TRUE' AND DetailId = @detId AND PlaceholderId = @phId AND UserId = @usrId ";
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detId", givenDetailId);
+                cmd.Parameters.AddWithValue("@phId", givenPlaceholderId);
+                cmd.Parameters.AddWithValue("@usrId", givenUserId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = true;
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
+        public static bool Insert(int givenDetailId, int givenPlaceholderId, int givenUserId) //INSERT [dbo].[Owners_DT]
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[Owners_DT] ([DetailId], [PlaceholderId], [UserId], [InsDt], [IsActive]) VALUES " +
+                           "(@DetailId, @PlaceholderId, @UserId, getDate(), 'TRUE') ";
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@DetailId", givenDetailId);
+                cmd.Parameters.AddWithValue("@PlaceholderId", givenPlaceholderId);
+                cmd.Parameters.AddWithValue("@UserId", givenUserId);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
 
     }
 }

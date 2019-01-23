@@ -78,7 +78,10 @@ namespace IAFollowUp
                         {
                             if (userGm.Id == UserInfo.userDetails.Id)
                             {
-                                phRole.Add(new PlaceholderRole() { Placeholder = ph, Role = new AuditeesRoles(1) });
+                                if (phRole.Count(i => i.Role.Id == 1) < 1) //if contains 1, don't add other records (1 gm record is enough!)
+                                {
+                                    phRole.Add(new PlaceholderRole() { Placeholder = new Placeholders() { Id = 0, Company = ph.Company }, Role = new AuditeesRoles(1) });
+                                }
                             }
                         }
 
@@ -91,8 +94,7 @@ namespace IAFollowUp
                         }
                     }
 
-                    //if (phRole.Count > 1 && phRole.Exists(i=>i.Role.Id == 2)) //more than 1 role & at least one MT
-                    if ((phRole.Count(i => i.Role.Id == 2) + phRole.Count(i => i.Role.Id == 3)) > 1) //Mts + Dts > 1
+                    if (phRole.Count > 1) 
                     {
                         MessageBox.Show("You have multiple Roles in this Detail! Please select one of the following roles.");
                         PlaceholderRoleSelect frmPlaceholderRole = new PlaceholderRoleSelect(phRole);
@@ -106,21 +108,15 @@ namespace IAFollowUp
                             auditeeRole = frmPlaceholderRole.roleId;
                         }
                     }
-                    else if (phRole.Count(i => i.Role.Id == 2) == 1) //just 1 MT role
+                    else if(phRole.Count == 1) //just 1 role
                     {
                         auditeePh = phRole[0].Placeholder.Id;
                         auditeeRole = phRole[0].Role.Id;
                     }
-                    else if (phRole.Count(i => i.Role.Id == 3) == 1) //just 1 DT role
-                    {
-                        auditeePh = phRole[0].Placeholder.Id;
-                        auditeeRole = phRole[0].Role.Id;
-                    }
-                    //else //Only GM
+                    //else //error - no role
                     //{
-                    //    auditeeRole = 1;
+                    //    return;
                     //}
-
                 }
 
                 if (UserAction.IsLegal(Action.Activity_View))

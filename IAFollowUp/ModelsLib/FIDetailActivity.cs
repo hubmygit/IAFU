@@ -28,7 +28,7 @@ namespace IAFollowUp
         {
         }
 
-        public static List<FIDetailActivity> Select(int detailId, int auditeePlaceholder = 0, int auditeeRole = 0)
+        public static List<FIDetailActivity> Select(int detailId, int auditeePlaceholder, int auditeeRole)
         {
             List<FIDetailActivity> ret = new List<FIDetailActivity>();
 
@@ -124,37 +124,58 @@ namespace IAFollowUp
                     if (UserInfo.roleDetails.IsAdmin)
                     {
                         ret.Add(tmp);
-                        continue;
                     }
 
                     //b) Auditor(All) - Exists into From or To
-                    if (UserInfo.roleDetails.IsAuditor)
+                    else if (UserInfo.roleDetails.IsAuditor)
                     {
                         if (tmp.ActivityDescription.IsIaAction) //Επειδή δεν αναφέρεται όνομα στους IA, κοιτάω αν πρόκειται για action από/προς IA..
                         {
                             ret.Add(tmp);
                         }
-                        continue;
                     }
 
                     //c) MT(placeholder's current owner) - Exists into ph
-                    if (UserInfo.roleDetails.IsAuditee && auditeeRole == 2) //MT
+                    else if (UserInfo.roleDetails.IsAuditee && auditeeRole == 2) //MT
                     {
                         if (tmp.Placeholders.Id == auditeePlaceholder)
                         {
                             ret.Add(tmp);
                         }
-
                     }
 
                     //d) GM (placeholder's owner) - Exists into From or To
-                    if (UserInfo.roleDetails.IsAuditee && auditeeRole == 1)
+                    else if (UserInfo.roleDetails.IsAuditee && auditeeRole == 1 && detailOwnersGM.IsUser_DetailOwner()) //GM
+                    {
+                        //gia kathe placeholder toy detail
+                        foreach (Placeholders ph in placeholders)
+                        {
+                            //vres ton mt toy placeholder
+                            Users MTofPH = Owners_MT.GetCurrentOwnerMT(ph.Id).User;
+
+                            //an o mt einai sto from/to 
+                            if (MTofPH.Id == tmp.FromUser.Id || MTofPH.Id == tmp.ToUser.Id)
+                            {
+                                //an gia auto to placeholder anikw stoys gm toy
+                                List<Users> PhGmList = Owners_GM.GetOwnerGMUsersList(ph.Id); //poioi einai oi GmOwners tou placeholder                                
+                                FIDetailOwners PhDetailOwnersGM = new FIDetailOwners(PhGmList);
+                                if (PhDetailOwnersGM.IsUser_DetailOwner()) //anikw se autous
+                                {
+                                    ret.Add(tmp);
+                                }
+                            }
+                        }
+                    }
+
+                    //e) DT (placeholder's delegatees) - Exists into From or To
+                    else if (UserInfo.roleDetails.IsAuditee && auditeeRole == 3) //DT
                     {
                         if (tmp.Placeholders.Id == auditeePlaceholder)
                         {
                             ret.Add(tmp);
                         }
                     }
+                    
                     /*
                     //c) MT(placeholder's current owner) - Exists into From or To
                     else if (detailOwnersMT.IsUser_DetailOwner())
@@ -291,15 +312,14 @@ namespace IAFollowUp
             return ret;
         }
 
-        //public static ActionSide whichSideAreYouOnNow(int detailId)
-        public static ActionSide IsActionOnMySide_asAuditee(int detailId)
+        public static ActionSide getActionSide_forAuditees(int detailId, int placeholderId)
         {
             ActionSide ret = new ActionSide();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT top (1) D.[ActionSideId] " +
                               "FROM [dbo].[FIDetail_Activity] A left outer join [dbo].[Activity_Descriptions] D on A.ActivityDescriptionId = D.Id " +
-                              "WHERE A.DetailId = @detId AND D.ActionSideId <> 3 AND (A.FromUserId = @userId OR A.ToUserId = @userId) " +
+                              "WHERE A.DetailId = @detId AND A.Placeholder = @phId AND D.ActionSideId <> 3 " +
                               "ORDER BY A.InsDt Desc";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -308,7 +328,7 @@ namespace IAFollowUp
                 sqlConn.Open();
 
                 cmd.Parameters.AddWithValue("@detId", detailId);
-                cmd.Parameters.AddWithValue("@userId", UserInfo.userDetails.Id);
+                cmd.Parameters.AddWithValue("@phId", placeholderId);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -323,6 +343,21 @@ namespace IAFollowUp
                 MessageBox.Show("The following error occurred: " + ex.Message);
             }
 
+            return ret;
+        }
+
+        public static ActionSide getActionSide_forAuditors(FIDetail detail)
+        {
+            ActionSide ret = new ActionSide(1); //Auditors
+
+            foreach (Placeholders ph in detail.Placeholders)
+            {
+                if (getActionSide_forAuditees(detail.Id, ph.Id).Id == 2)
+                {
+                    ret = new ActionSide(2); //Auditees
+                }
+            }
+            
             return ret;
         }
 

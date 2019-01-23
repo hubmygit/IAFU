@@ -63,9 +63,9 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPlaceholder2,
             this.colPlaceholder,
-            this.colPlaceholder1,
+            this.colRole1,
             this.colRole,
-            this.colRole1});
+            this.colPlaceholder1});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -92,7 +92,7 @@
             this.colPlaceholder1.FieldName = "Placeholder.Department.Name";
             this.colPlaceholder1.Name = "colPlaceholder1";
             this.colPlaceholder1.Visible = true;
-            this.colPlaceholder1.VisibleIndex = 1;
+            this.colPlaceholder1.VisibleIndex = 2;
             // 
             // colRole
             // 
@@ -106,7 +106,7 @@
             this.colRole1.FieldName = "Role.Name";
             this.colRole1.Name = "colRole1";
             this.colRole1.Visible = true;
-            this.colRole1.VisibleIndex = 2;
+            this.colRole1.VisibleIndex = 1;
             // 
             // PlaceholderRoleSelect
             // 
