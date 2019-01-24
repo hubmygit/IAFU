@@ -924,7 +924,7 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[FIDetail] SET [ActionDt] = '@actionDt', [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
+            string InsSt = "UPDATE [dbo].[FIDetail] SET [ActionDt] = @actionDt, [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                 "WHERE Id = @detailId ";
             try
             {

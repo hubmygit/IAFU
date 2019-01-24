@@ -479,6 +479,7 @@ namespace IAFollowUp
             if (OwnersDT.Count > 1)
             {
                 //if more than one dt - select one key user from list 
+                MessageBox.Show("There are more than one Key Users. Please select a key user to reply.");
                 if (frmDTselector.ShowDialog() != DialogResult.OK)
                 {
                     return;
@@ -567,7 +568,7 @@ namespace IAFollowUp
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
             detActivity.Placeholders = PHolder;
-            detActivity.ActionDt= frmDeadlineExtension.newActionDate;
+            detActivity.ActionDt = frmDeadlineExtension.newActionDate;
 
             if (FIDetailActivity.Insert(detActivity))
             {

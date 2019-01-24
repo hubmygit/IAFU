@@ -44,6 +44,7 @@
             this.colInsDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPlaceholders = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActivityDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rtbComments = new System.Windows.Forms.RichTextBox();
             this.btnMTtoIA = new System.Windows.Forms.Button();
             this.btnFontDialog = new System.Windows.Forms.Button();
@@ -68,7 +69,6 @@
             this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.dtpDetail_ActionDate = new System.Windows.Forms.DateTimePicker();
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
-            this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -115,6 +115,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.RowAutoHeight = true;
             // 
             // colId
             // 
@@ -196,6 +197,14 @@
             this.colActivityDescription.Name = "colActivityDescription";
             this.colActivityDescription.Visible = true;
             this.colActivityDescription.VisibleIndex = 9;
+            // 
+            // colActionDt
+            // 
+            this.colActionDt.Caption = "Deadline";
+            this.colActionDt.FieldName = "ActionDt";
+            this.colActionDt.Name = "colActionDt";
+            this.colActionDt.Visible = true;
+            this.colActionDt.VisibleIndex = 10;
             // 
             // rtbComments
             // 
@@ -340,7 +349,7 @@
             this.IA_tsmiIAacceptedMT.Name = "IA_tsmiIAacceptedMT";
             this.IA_tsmiIAacceptedMT.Size = new System.Drawing.Size(260, 22);
             this.IA_tsmiIAacceptedMT.Tag = "1";
-            this.IA_tsmiIAacceptedMT.Text = "(ia) Accepted Actions";
+            this.IA_tsmiIAacceptedMT.Text = "(ia) Accept Actions";
             this.IA_tsmiIAacceptedMT.Click += new System.EventHandler(this.IA_tsmiIAacceptedMT_Click);
             // 
             // MT_tsmiMTdelegateDT
@@ -421,14 +430,6 @@
             this.lblDetail_ActionDate.Size = new System.Drawing.Size(93, 20);
             this.lblDetail_ActionDate.TabIndex = 12;
             this.lblDetail_ActionDate.Text = "Action Date";
-            // 
-            // colActionDt
-            // 
-            this.colActionDt.Caption = "Deadline";
-            this.colActionDt.FieldName = "ActionDt";
-            this.colActionDt.Name = "colActionDt";
-            this.colActionDt.Visible = true;
-            this.colActionDt.VisibleIndex = 10;
             // 
             // FIActivity
             // 

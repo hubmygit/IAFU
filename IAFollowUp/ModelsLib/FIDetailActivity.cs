@@ -171,7 +171,8 @@ namespace IAFollowUp
                     //e) DT (placeholder's delegatees) - Exists into From or To
                     else if (UserInfo.roleDetails.IsAuditee && auditeeRole == 3) //DT
                     {
-                        if (tmp.Placeholders.Id == auditeePlaceholder)
+                        if (tmp.Placeholders.Id == auditeePlaceholder && 
+                            (UserInfo.userDetails.Id == tmp.FromUser.Id || UserInfo.userDetails.Id == tmp.ToUser.Id))
                         {
                             ret.Add(tmp);
                         }
@@ -236,9 +237,9 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [ActivityDescriptionId], [CommentText], [CommentRtf], " + 
+            string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [ActivityDescriptionId], [ActionDt], [CommentText], [CommentRtf], " + 
                                        "[FromUserId], [ToUserId], [IsPublic], [PlaceholderId], [InsUserId], [InsDt]) VALUES " +
-                           "(@DetailId, @ActivityDescriptionId, " +
+                           "(@DetailId, @ActivityDescriptionId, @ActionDt, " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " + 
                            "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @InsUserId, getDate())"; 
@@ -252,6 +253,15 @@ namespace IAFollowUp
 
                 cmd.Parameters.AddWithValue("@DetailId", fiDetailActivity.DetailId);
                 cmd.Parameters.AddWithValue("@ActivityDescriptionId", fiDetailActivity.ActivityDescription.Id);
+
+                if (fiDetailActivity.ActionDt == null)
+                {
+                    cmd.Parameters.AddWithValue("@ActionDt", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@ActionDt", fiDetailActivity.ActionDt);
+                }
 
                 if (fiDetailActivity.CommentText is null || fiDetailActivity.CommentText.Trim() == "")
                 {
@@ -320,7 +330,7 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT top (1) D.[ActionSideId] " +
                               "FROM [dbo].[FIDetail_Activity] A left outer join [dbo].[Activity_Descriptions] D on A.ActivityDescriptionId = D.Id " +
-                              "WHERE A.DetailId = @detId AND A.Placeholder = @phId AND D.ActionSideId <> 3 " +
+                              "WHERE A.DetailId = @detId AND A.PlaceholderId = @phId AND D.ActionSideId <> 3 " +
                               "ORDER BY A.InsDt Desc";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
