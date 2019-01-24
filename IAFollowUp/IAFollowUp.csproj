@@ -133,6 +133,12 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeadlineExtension.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeadlineExtension.Designer.cs">
+      <DependentUpon>DeadlineExtension.cs</DependentUpon>
+    </Compile>
     <Compile Include="DelegateesSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeadlineExtension.resx">
+      <DependentUpon>DeadlineExtension.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DelegateesSelect.resx">
       <DependentUpon>DelegateesSelect.cs</DependentUpon>

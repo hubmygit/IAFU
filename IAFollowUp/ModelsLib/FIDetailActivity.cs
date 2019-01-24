@@ -12,6 +12,7 @@ namespace IAFollowUp
     {
         public int Id { get; set; }
         public int DetailId { get; set; }
+        public DateTime? ActionDt { get; set; }
         public ActivityDescription ActivityDescription { get; set; } 
         public string CommentRtf { get; set; } //todo encrypted
         public string CommentText { get; set; } //todo encrypted

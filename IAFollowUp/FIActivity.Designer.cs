@@ -61,9 +61,14 @@
             this.IA_tsmiIAacceptedMT = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTdelegateDT = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTreplyDT = new System.Windows.Forms.ToolStripMenuItem();
+            this.DT_tsmiDTreplyMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.MT_tsmiMTextendIA = new System.Windows.Forms.ToolStripMenuItem();
+            this.IA_tsmiIAextendMT = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
-            this.DT_tsmiDTreplyMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.dtpDetail_ActionDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDetail_ActionDate = new System.Windows.Forms.Label();
+            this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -104,7 +109,8 @@
             this.colToUser,
             this.colInsDt,
             this.colPlaceholders,
-            this.colActivityDescription});
+            this.colActivityDescription,
+            this.colActionDt});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -298,7 +304,9 @@
             this.IA_tsmiIAacceptedMT,
             this.MT_tsmiMTdelegateDT,
             this.MT_tsmiMTreplyDT,
-            this.DT_tsmiDTreplyMT});
+            this.DT_tsmiDTreplyMT,
+            this.MT_tsmiMTextendIA,
+            this.IA_tsmiIAextendMT});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.actionsToolStripMenuItem.Text = "Actions";
@@ -324,7 +332,7 @@
             this.IA_tsmiIAreturnMT.Name = "IA_tsmiIAreturnMT";
             this.IA_tsmiIAreturnMT.Size = new System.Drawing.Size(260, 22);
             this.IA_tsmiIAreturnMT.Tag = "1";
-            this.IA_tsmiIAreturnMT.Text = "(ia) Return to MTs";
+            this.IA_tsmiIAreturnMT.Text = "(ia) Return to MT";
             this.IA_tsmiIAreturnMT.Click += new System.EventHandler(this.IA_tsmiIAreturnMT_Click);
             // 
             // IA_tsmiIAacceptedMT
@@ -351,6 +359,30 @@
             this.MT_tsmiMTreplyDT.Text = "(mt) Reply to Key User";
             this.MT_tsmiMTreplyDT.Click += new System.EventHandler(this.MT_tsmiMTreplyDT_Click);
             // 
+            // DT_tsmiDTreplyMT
+            // 
+            this.DT_tsmiDTreplyMT.Name = "DT_tsmiDTreplyMT";
+            this.DT_tsmiDTreplyMT.Size = new System.Drawing.Size(260, 22);
+            this.DT_tsmiDTreplyMT.Tag = "3";
+            this.DT_tsmiDTreplyMT.Text = "(dt) Reply to MT";
+            this.DT_tsmiDTreplyMT.Click += new System.EventHandler(this.DT_tsmiDTreplyMT_Click);
+            // 
+            // MT_tsmiMTextendIA
+            // 
+            this.MT_tsmiMTextendIA.Name = "MT_tsmiMTextendIA";
+            this.MT_tsmiMTextendIA.Size = new System.Drawing.Size(260, 22);
+            this.MT_tsmiMTextendIA.Tag = "2";
+            this.MT_tsmiMTextendIA.Text = "(mt) Request Deadline Extension";
+            this.MT_tsmiMTextendIA.Click += new System.EventHandler(this.MT_tsmiMTextendIA_Click);
+            // 
+            // IA_tsmiIAextendMT
+            // 
+            this.IA_tsmiIAextendMT.Name = "IA_tsmiIAextendMT";
+            this.IA_tsmiIAextendMT.Size = new System.Drawing.Size(260, 22);
+            this.IA_tsmiIAextendMT.Tag = "1";
+            this.IA_tsmiIAextendMT.Text = "(ia) Extend Deadline";
+            this.IA_tsmiIAextendMT.Click += new System.EventHandler(this.IA_tsmiIAextendMT_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -369,19 +401,42 @@
             this.tsStatusLblUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsStatusLblUser.Size = new System.Drawing.Size(16, 17);
             // 
-            // DT_tsmiDTreplyMT
+            // dtpDetail_ActionDate
             // 
-            this.DT_tsmiDTreplyMT.Name = "DT_tsmiDTreplyMT";
-            this.DT_tsmiDTreplyMT.Size = new System.Drawing.Size(260, 22);
-            this.DT_tsmiDTreplyMT.Tag = "3";
-            this.DT_tsmiDTreplyMT.Text = "(dt) Reply to MT";
-            this.DT_tsmiDTreplyMT.Click += new System.EventHandler(this.DT_tsmiDTreplyMT_Click);
+            this.dtpDetail_ActionDate.CustomFormat = " ";
+            this.dtpDetail_ActionDate.Enabled = false;
+            this.dtpDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.dtpDetail_ActionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDetail_ActionDate.Location = new System.Drawing.Point(12, 144);
+            this.dtpDetail_ActionDate.Name = "dtpDetail_ActionDate";
+            this.dtpDetail_ActionDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpDetail_ActionDate.TabIndex = 13;
+            // 
+            // lblDetail_ActionDate
+            // 
+            this.lblDetail_ActionDate.AutoSize = true;
+            this.lblDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblDetail_ActionDate.Location = new System.Drawing.Point(65, 117);
+            this.lblDetail_ActionDate.Name = "lblDetail_ActionDate";
+            this.lblDetail_ActionDate.Size = new System.Drawing.Size(93, 20);
+            this.lblDetail_ActionDate.TabIndex = 12;
+            this.lblDetail_ActionDate.Text = "Action Date";
+            // 
+            // colActionDt
+            // 
+            this.colActionDt.Caption = "Deadline";
+            this.colActionDt.FieldName = "ActionDt";
+            this.colActionDt.Name = "colActionDt";
+            this.colActionDt.Visible = true;
+            this.colActionDt.VisibleIndex = 10;
             // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 502);
+            this.Controls.Add(this.dtpDetail_ActionDate);
+            this.Controls.Add(this.lblDetail_ActionDate);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnMTtoIAExtension);
             this.Controls.Add(this.btnMTtoDTDelegate);
@@ -448,5 +503,10 @@
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTdelegateDT;
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTreplyDT;
         private System.Windows.Forms.ToolStripMenuItem DT_tsmiDTreplyMT;
+        private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTextendIA;
+        private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAextendMT;
+        private System.Windows.Forms.DateTimePicker dtpDetail_ActionDate;
+        private System.Windows.Forms.Label lblDetail_ActionDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
     }
 }

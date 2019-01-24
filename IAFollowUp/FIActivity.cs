@@ -182,6 +182,7 @@ namespace IAFollowUp
 
         private void btnMTtoIAExtension_Click(object sender, EventArgs e)
         {
+            /*
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = det.Id;
             detActivity.ActivityDescription = new ActivityDescription(8);
@@ -190,6 +191,7 @@ namespace IAFollowUp
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
 
             FIDetailActivity.Insert(detActivity);
+            */
         }
 
         //============================================================
@@ -217,7 +219,7 @@ namespace IAFollowUp
 
                 //...?
                 MessageBox.Show("The Action completed!");
-                Close();
+                Close(); //or stay and refresh
 
                 //delete comments from user's drafts
             }
@@ -250,7 +252,7 @@ namespace IAFollowUp
 
                 //...?
                 MessageBox.Show("The Action completed!");
-                Close();
+                Close(); //or stay and refresh
 
                 //delete comments from user's drafts
             }
@@ -330,7 +332,7 @@ namespace IAFollowUp
             if (success)
             {
                 MessageBox.Show("The Action completed successfully!");
-                Close();
+                Close(); //or stay and refresh
 
                 //delete comments from user's drafts
             }
@@ -401,7 +403,7 @@ namespace IAFollowUp
             if (success)
             {
                 MessageBox.Show("The Action completed successfully!");
-                Close();
+                Close(); //or stay and refresh
 
                 //delete comments from user's drafts
             }
@@ -446,7 +448,7 @@ namespace IAFollowUp
 
                 //...?
                 MessageBox.Show("The Action completed!");
-                Close();
+                Close(); //or stay and refresh
 
                 //delete comments from user's drafts
             }
@@ -500,7 +502,7 @@ namespace IAFollowUp
 
                 //...?
                 MessageBox.Show("The Action completed!");
-                Close();
+                Close(); //or stay and refresh
 
                 //delete comments from user's drafts
             }
@@ -535,13 +537,149 @@ namespace IAFollowUp
 
                 //...?
                 MessageBox.Show("The Action completed!");
-                Close();
+                Close(); //or stay and refresh
 
                 //delete comments from user's drafts
             }
             else
             {
                 MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MT_tsmiMTextendIA_Click(object sender, EventArgs e)
+        {
+            if (!UserAction.IsLegal(Action.Activity_MTextendIA, null, null, det, AuditeeRole.Id, PHolder.Id))
+            {
+                return;
+            }
+
+            DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt);
+            if (frmDeadlineExtension.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }                       
+
+            FIDetailActivity detActivity = new FIDetailActivity();
+            detActivity.DetailId = det.Id;
+            detActivity.ActivityDescription = new ActivityDescription(8);
+            detActivity.CommentRtf = rtbComments.Rtf;
+            detActivity.CommentText = rtbComments.Text;
+            detActivity.FromUser = new Users(UserInfo.userDetails.Id);
+            detActivity.Placeholders = PHolder;
+            detActivity.ActionDt= frmDeadlineExtension.newActionDate;
+
+            if (FIDetailActivity.Insert(detActivity))
+            {
+                //send email
+
+                //create alerts
+
+                //...?
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh
+
+                //delete comments from user's drafts
+            }
+            else
+            {
+                MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void IA_tsmiIAextendMT_Click(object sender, EventArgs e)
+        {
+            if (!UserAction.IsLegal(Action.Activity_IAextendMT, null, null, det))
+            {
+                return;
+            }
+            
+            DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt);
+            if(frmDeadlineExtension.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            if (FIDetail.UpdateActionDate(det.Id, frmDeadlineExtension.newActionDate) == false)
+            {
+                MessageBox.Show("Update of Action Date was not successful!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                ChangeLog.Insert(new FIDetail() { Id =det.Id, ActionDt = det.ActionDt }, new FIDetail() { Id = det.Id, ActionDt = frmDeadlineExtension.newActionDate }, "FIDetail");
+            }
+
+            dtpDetail_ActionDate.Value = frmDeadlineExtension.newActionDate;
+
+            FIDetailActivity detActivity = new FIDetailActivity();
+            detActivity.DetailId = det.Id;
+            detActivity.ActivityDescription = new ActivityDescription(10);
+            detActivity.CommentRtf = rtbComments.Rtf;
+            detActivity.CommentText = rtbComments.Text;
+            detActivity.ActionDt = frmDeadlineExtension.newActionDate;
+
+            bool success = true;
+
+            if (det.Placeholders.Count >= 1 && det.Placeholders[0] != null)
+            {
+                detActivity.ToUser = det.CurrentOwner1.User;
+                detActivity.Placeholders = det.Placeholders[0];
+
+                if (FIDetailActivity.Insert(detActivity))
+                {
+                    //send email
+
+                    //create alerts
+                }
+                else
+                {
+                    success = false;
+                    MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivity.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            if (det.Placeholders.Count >= 2 && det.Placeholders[1] != null)
+            {
+                detActivity.ToUser = det.CurrentOwner2.User;
+                detActivity.Placeholders = det.Placeholders[1];
+
+                if (FIDetailActivity.Insert(detActivity))
+                {
+                    //send email
+
+                    //create alerts
+                }
+                else
+                {
+                    success = false;
+                    MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivity.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            if (det.Placeholders.Count >= 3 && det.Placeholders[2] != null)
+            {
+                detActivity.ToUser = det.CurrentOwner3.User;
+                detActivity.Placeholders = det.Placeholders[2];
+
+                if (FIDetailActivity.Insert(detActivity))
+                {
+                    //send email
+
+                    //create alerts
+                }
+                else
+                {
+                    success = false;
+                    MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivity.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            if (success)
+            {
+                MessageBox.Show("The Action completed successfully!");
+                Close(); //or stay and refresh
+
+                //delete comments from user's drafts
             }
         }
     }

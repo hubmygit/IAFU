@@ -547,6 +547,7 @@ namespace IAFollowUp
                             FIDetailActivity detActivity = new FIDetailActivity();
                             detActivity.DetailId = detail.Id;
                             detActivity.ActivityDescription = new ActivityDescription(1);
+                            detActivity.ActionDt = FIDetail.getActionDate(detail.Id);
                             
 
                             if (detail.Placeholders.Count >= 1 && detail.Placeholders[0] != null)
@@ -876,6 +877,79 @@ namespace IAFollowUp
                 MessageBox.Show("The following error occurred: " + ex.Message);
             }
             
+            return ret;
+        }
+
+        public static DateTime? getActionDate(int detailId)
+        {
+            DateTime? ret = null;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT ActionDt " +
+                              "FROM [dbo].[FIDetail] " +
+                              "WHERE Id = @detailId";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (reader["ActionDt"] == System.DBNull.Value)
+                    {
+                        ret = null;
+                    }
+                    else
+                    {
+                        ret = Convert.ToDateTime(reader["ActionDt"].ToString());
+                    }
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
+        public static bool UpdateActionDate(int detailId, DateTime newActionDate)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIDetail] SET [ActionDt] = '@actionDt', [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
+                "WHERE Id = @detailId ";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+                cmd.Parameters.AddWithValue("@actionDt", newActionDate);
+                cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+            sqlConn.Close();
+
             return ret;
         }
 

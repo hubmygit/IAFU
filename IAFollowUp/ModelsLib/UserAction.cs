@@ -40,11 +40,10 @@ namespace IAFollowUp
         Activity_IAacceptMT,
         Activity_MTdelegateDT,
         Activity_MTreplyDT,
-        Activity_DTreplyMT
+        Activity_DTreplyMT,
+        Activity_MTextendIA,
+        Activity_IAextendMT
 
-
-        //FI_xxxxx
-        //FI_yyyyy
         //auditees<-----
     }
 
@@ -1005,6 +1004,61 @@ namespace IAFollowUp
                             MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
                             break;
                         }
+
+                        break;
+                    }
+                case Action.Activity_MTextendIA:
+                    {
+                        if (auditeeRole == 2) //MT
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        if (detail.Placeholders.Exists(i => i.Id == auditeePh)) //My placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditees(detail.Id, auditeePh);
+                        if (actionSide.Id == 2) //auditee for this placeholder
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        break;
+                    }
+                case Action.Activity_IAextendMT:
+                    {
+                        AuditOwners auditorOwners = FIDetail.getAuditOwners(detail.Id);
+                        if (auditorOwners.IsUser_AuditOwner())
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }                     
 
                         break;
                     }
