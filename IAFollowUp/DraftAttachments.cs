@@ -11,20 +11,24 @@ using System.Windows.Forms;
 
 namespace IAFollowUp
 {
-    public partial class AuditAttachments : Form
+    public partial class DraftAttachments : Form
     {
-        public AuditAttachments() 
+        public DraftAttachments()
         {
             InitializeComponent();
         }
 
-        public AuditAttachments(int givenId) 
+        public DraftAttachments(int detailId, int placeholderId, int userId)
         {
             InitializeComponent();
 
-            AuditId = givenId;
-            string[] fileNames = getSavedAttachments(AuditId);
-           
+            //DraftId = givenId;
+            DetailId = detailId;
+            PlaceholderId = placeholderId;
+            UserId = userId;
+
+            string[] fileNames = getSavedAttachments(DetailId, PlaceholderId, UserId);
+
             foreach (string thisFileName in fileNames)
             {
                 lvAttachedFiles.Items.Add(new ListViewItem(thisFileName));
@@ -32,7 +36,12 @@ namespace IAFollowUp
             AttCnt = fileNames.Length;
         }
 
-        int AuditId;
+        //int DraftId;
+
+        int DetailId;
+        int PlaceholderId;
+        int UserId;
+
         public int AttCnt;
         public bool success = false;
 
@@ -44,17 +53,22 @@ namespace IAFollowUp
             btnSave.Enabled = false;
         }
 
-        public string[] getSavedAttachments(int tableId)
+        public string[] getSavedAttachments(int tableDetId, int tablePhId, int tableUsrId)
         {
             List<string> ret = new List<string>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT Name FROM [dbo].[Audit_Attachments] WHERE AuditId = " + tableId.ToString();
-            
+            string SelectSt = "SELECT Name FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND PlaceholderId = @phId AND UserId = @usrId ";
+
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
                 sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detId", tableDetId);
+                cmd.Parameters.AddWithValue("@phId", tablePhId);
+                cmd.Parameters.AddWithValue("@usrId", tableUsrId);
+
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -144,14 +158,16 @@ namespace IAFollowUp
 
                     SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
 
-                    string SelectSt = "SELECT [FileContents] FROM [dbo].[Audit_Attachments] WHERE AuditId = @AuditId AND Name = @Filename";
+                    string SelectSt = "SELECT [FileContents] FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND PlaceholderId = @phId AND UserId = @usrId AND Name = @Filename";
 
                     SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
                     try
                     {
                         sqlConn.Open();
 
-                        cmd.Parameters.AddWithValue("@AuditId", AuditId);                        
+                        cmd.Parameters.AddWithValue("@detId", DetailId);
+                        cmd.Parameters.AddWithValue("@phId", PlaceholderId);
+                        cmd.Parameters.AddWithValue("@usrId", UserId);
                         cmd.Parameters.AddWithValue("@Filename", lvAttachedFiles.SelectedItems[0].SubItems[0].Text);
 
                         SqlDataReader reader = cmd.ExecuteReader();
@@ -197,7 +213,7 @@ namespace IAFollowUp
             lvAttachedFiles.Items.Clear();
         }
 
-        LvFileInfo saveAttachmentLocally(int Id, string Filename)
+        LvFileInfo saveAttachmentLocally(int detId, int phId, int usrId, string Filename)
         {
             LvFileInfo ret = new LvFileInfo();
             string tempPath = Path.GetTempPath(); //C:\Users\hkylidis\AppData\Local\Temp\
@@ -215,13 +231,17 @@ namespace IAFollowUp
             }
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Name], [FileContents] FROM [dbo].[Audit_Attachments] WHERE AuditId = @Id and Name = @Filename ";
-            
+            string SelectSt = "SELECT [Name], [FileContents] FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND PlaceholderId = @phId AND UserId = @usrId and Name = @Filename ";
+
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
                 sqlConn.Open();
-                cmd.Parameters.AddWithValue("@Id", Id);
+
+                cmd.Parameters.AddWithValue("@detId", detId);
+                cmd.Parameters.AddWithValue("@phId", phId);
+                cmd.Parameters.AddWithValue("@usrId", usrId);
+
                 cmd.Parameters.AddWithValue("@Filename", Filename);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -272,16 +292,16 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool InertIntoTable_AttachedFiles(int Id, string fileName, byte[] fileBytes) //INSERT [dbo].[Audit_Attachments]
+        private bool InertIntoTable_AttachedFiles(int Id, string fileName, byte[] fileBytes) //INSERT [dbo].[FIDetail_Activity_Attachments]
         {
             bool ret = false;
 
             if (Id > 0 && fileName.Trim().Length > 0)
             {
                 SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-                string InsSt = "INSERT INTO [dbo].[Audit_Attachments] (Name, FileContents, AuditId, UsersId, InsDate) VALUES " +
+                string InsSt = "INSERT INTO [dbo].[Activity_AttachmentsDrafts] (Name, FileContents, DraftId, UsersId, InsDate) VALUES " +
                      "(@Filename, @FileCont, @Id, @UsersId, getdate() ) ";
-                
+
                 try
                 {
                     sqlConn.Open();
@@ -317,86 +337,19 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool InertIntoTable_AttachedFiles_Log(int givenAuditId) //INSERT [dbo].[Audit_Attachments_Log]
-        {
-            bool ret = false;
-            
-            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[Audit_Attachments_Log] (Name, FileContents, AuditId, UsersId, InsDate)  " +
-                 "SELECT Name, FileContents, AuditId, UsersId, InsDate FROM [dbo].[Audit_Attachments] WHERE AuditId = @Id ";
-
-            try
-            {
-                sqlConn.Open();
-                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
-                cmd.Parameters.AddWithValue("@Id", givenAuditId);
-                
-                cmd.CommandType = CommandType.Text;
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
-                {
-                    ret = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The following error occurred: " + ex.Message);
-            }
-
-
-            return ret;
-        }
-
-        private bool UpdateAuditOnAttSave(int id)
+        private bool Delete_SampleFiles(int given_DraftId)
         {
             bool ret = false;
 
-            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[Audit] SET [UpdUserID] = @UpdUserID, [UpdDt] = getDate() " +
-                "WHERE id=@id";
-            
-            try
-            {
-                sqlConn.Open();
-
-                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
-
-                cmd.Parameters.AddWithValue("@id", id);
-
-                cmd.Parameters.AddWithValue("@UpdUserID", UserInfo.userDetails.Id);
-
-                cmd.CommandType = CommandType.Text;
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
-                {
-                    ret = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The following error occurred: " + ex.Message);
-
-            }
-            sqlConn.Close();
-
-            return ret;
-        }
-
-        private bool Delete_SampleFiles(int given_AuditId)
-        {
-            bool ret = false;
-
-            if (given_AuditId > 0)
+            if (given_DraftId > 0)
             {
                 SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-                string InsSt = "DELETE FROM [dbo].[Audit_Attachments] WHERE AuditId = @Id ";
+                string InsSt = "DELETE FROM [dbo].[Activity_AttachmentsDrafts] WHERE DraftId = @Id ";
                 try
                 {
                     sqlConn.Open();
                     SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
-                    cmd.Parameters.AddWithValue("@Id", given_AuditId);
+                    cmd.Parameters.AddWithValue("@Id", given_DraftId);
                     cmd.CommandType = CommandType.Text;
                     //int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -416,7 +369,15 @@ namespace IAFollowUp
             return ret;
         }
 
+
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            success = true;    
+        }
+
+
+        public void Save() //....
         {
             if (AttCnt == 0 && lvAttachedFiles.Items.Count == 0)
             {
@@ -424,23 +385,18 @@ namespace IAFollowUp
                 return;
             }
 
-            int Id = AuditId;
+            //int Id = DraftId;
+            int detId = DetailId;
+            int phId = PlaceholderId;
+            int usrId = UserId;
 
-            //if (UpdateAuditOnAttSave(Id) == false)
-            //{
-            //    MessageBox.Show("Error: No files attached!");
-            //    return;
-            //}
-
-            //if (lvAttachedFiles.Items.Count > 0)
-            //{
             List<ListViewItem> newLvItems = new List<ListViewItem>();
 
             foreach (ListViewItem lvi in lvAttachedFiles.Items)
             {
                 if (lvi.SubItems.Count == 1) //only filename into lv -> from db
                 {
-                    LvFileInfo lvfi = saveAttachmentLocally(Id, lvi.SubItems[0].Text);
+                    LvFileInfo lvfi = saveAttachmentLocally(DetailId, PlaceholderId, UserId, lvi.SubItems[0].Text);
 
                     newLvItems.Add(new ListViewItem(new string[] { lvfi.FileName, lvfi.FilePath }));
                 }
@@ -450,12 +406,9 @@ namespace IAFollowUp
                 }
             }
 
-            //insert files into Log
-            InertIntoTable_AttachedFiles_Log(Id);
-
             //delete sample files
             Delete_SampleFiles(Id); //delete from db
-                        
+
             //update old records
             //insert attachments into db - IsCurrent = 1
             foreach (ListViewItem lvi in newLvItems)
@@ -468,15 +421,6 @@ namespace IAFollowUp
                 }
             }
 
-            ChangeLog.Insert_Attachments(Id);
-
-            //}
-            //else
-            //{
-            //update old records
-            //UpdateAttachments_IsCurrent(Id, RevNo);
-            //}
-
             success = true;
 
             AttCnt = lvAttachedFiles.Items.Count;
@@ -487,6 +431,6 @@ namespace IAFollowUp
 
             Close();
         }
-    }
 
+    }
 }

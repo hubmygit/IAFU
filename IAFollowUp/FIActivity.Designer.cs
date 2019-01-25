@@ -65,6 +65,7 @@
             this.dtpDetail_ActionDate = new System.Windows.Forms.DateTimePicker();
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
             this.btnSaveDraft = new System.Windows.Forms.Button();
+            this.btnAttachment = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -228,7 +229,7 @@
             // 
             // btnFontDialog
             // 
-            this.btnFontDialog.Location = new System.Drawing.Point(103, 27);
+            this.btnFontDialog.Location = new System.Drawing.Point(535, 27);
             this.btnFontDialog.Name = "btnFontDialog";
             this.btnFontDialog.Size = new System.Drawing.Size(120, 23);
             this.btnFontDialog.TabIndex = 3;
@@ -358,7 +359,7 @@
             this.dtpDetail_ActionDate.Enabled = false;
             this.dtpDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dtpDetail_ActionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDetail_ActionDate.Location = new System.Drawing.Point(12, 144);
+            this.dtpDetail_ActionDate.Location = new System.Drawing.Point(23, 67);
             this.dtpDetail_ActionDate.Name = "dtpDetail_ActionDate";
             this.dtpDetail_ActionDate.Size = new System.Drawing.Size(200, 22);
             this.dtpDetail_ActionDate.TabIndex = 13;
@@ -367,7 +368,7 @@
             // 
             this.lblDetail_ActionDate.AutoSize = true;
             this.lblDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblDetail_ActionDate.Location = new System.Drawing.Point(65, 117);
+            this.lblDetail_ActionDate.Location = new System.Drawing.Point(76, 40);
             this.lblDetail_ActionDate.Name = "lblDetail_ActionDate";
             this.lblDetail_ActionDate.Size = new System.Drawing.Size(93, 20);
             this.lblDetail_ActionDate.TabIndex = 12;
@@ -375,7 +376,7 @@
             // 
             // btnSaveDraft
             // 
-            this.btnSaveDraft.Location = new System.Drawing.Point(103, 74);
+            this.btnSaveDraft.Location = new System.Drawing.Point(535, 114);
             this.btnSaveDraft.Name = "btnSaveDraft";
             this.btnSaveDraft.Size = new System.Drawing.Size(120, 23);
             this.btnSaveDraft.TabIndex = 14;
@@ -383,11 +384,22 @@
             this.btnSaveDraft.UseVisualStyleBackColor = true;
             this.btnSaveDraft.Click += new System.EventHandler(this.btnSaveDraft_Click);
             // 
+            // btnAttachment
+            // 
+            this.btnAttachment.Location = new System.Drawing.Point(535, 69);
+            this.btnAttachment.Name = "btnAttachment";
+            this.btnAttachment.Size = new System.Drawing.Size(120, 23);
+            this.btnAttachment.TabIndex = 15;
+            this.btnAttachment.Text = "Attachment(s)";
+            this.btnAttachment.UseVisualStyleBackColor = true;
+            this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
+            // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 502);
+            this.Controls.Add(this.btnAttachment);
             this.Controls.Add(this.btnSaveDraft);
             this.Controls.Add(this.dtpDetail_ActionDate);
             this.Controls.Add(this.lblDetail_ActionDate);
@@ -453,5 +465,6 @@
         public System.Windows.Forms.ContextMenuStrip cmsActivity;
         private System.Windows.Forms.ToolStripMenuItem MIcopy;
         private System.Windows.Forms.Button btnSaveDraft;
+        private System.Windows.Forms.Button btnAttachment;
     }
 }

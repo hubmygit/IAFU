@@ -79,6 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityAttachments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivityAttachments.Designer.cs">
+      <DependentUpon>ActivityAttachments.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuditAttachments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,11 +151,18 @@
     <Compile Include="DelegateesSelect.Designer.cs">
       <DependentUpon>DelegateesSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="DraftAttachments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DraftAttachments.Designer.cs">
+      <DependentUpon>DraftAttachments.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelsLib\ActionSide.cs" />
     <Compile Include="ModelsLib\ActivityDescription.cs" />
     <Compile Include="ModelsLib\AuditeesRoles.cs" />
     <Compile Include="ModelsLib\Delegatees.cs" />
     <Compile Include="ModelsLib\FI_DetailHeaderAudit.cs" />
+    <Compile Include="ModelsLib\LvFileInfo.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
     <Compile Include="ModelsLib\PlaceholderRole.cs" />
     <Compile Include="PlaceholderRoleSelect.cs">
@@ -272,6 +285,9 @@
     <Compile Include="ViewUser.Designer.cs">
       <DependentUpon>ViewUser.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ActivityAttachments.resx">
+      <DependentUpon>ActivityAttachments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuditAttachments.resx">
       <DependentUpon>AuditAttachments.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DelegateesSelect.resx">
       <DependentUpon>DelegateesSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DraftAttachments.resx">
+      <DependentUpon>DraftAttachments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlaceholderRoleSelect.resx">
       <DependentUpon>PlaceholderRoleSelect.cs</DependentUpon>

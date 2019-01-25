@@ -650,5 +650,33 @@ namespace IAFollowUp
             }
 
         }
+
+        private void btnAttachment_Click(object sender, EventArgs e)
+        {
+            //int Id = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+
+            //int draftId = FIDetailActivity.getDraftId(det.Id, PHolder.Id, UserInfo.userDetails.Id);
+
+            DraftAttachments attachedFiles = new DraftAttachments(det.Id, PHolder.Id, UserInfo.userDetails.Id);
+
+            //if (!UserAction.IsLegal(Action.Activity_Attach, thisAudit))
+            //{
+            //    attachedFiles.makeReadOnly();
+            //}
+
+            attachedFiles.ShowDialog();
+
+            //if (attachedFiles.success)
+            //{
+                ////refresh
+                //int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                //auditBList = Audit.Select(UserInfo.roleDetails.IsAdmin); //BindingList
+                //gridControl1.DataSource = auditBList; //DataSource
+                //int rowHandle = gridView1.GetRowHandle(index);
+                //gridView1.FocusedRowHandle = rowHandle;
+            //}
+
+
+        }
     }
 }
