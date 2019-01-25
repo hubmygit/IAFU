@@ -66,6 +66,9 @@ namespace IAFollowUp
             detailActivity = FIDetailActivity.Select(givenDetail.Id, givenPlaceholderId, givenAuditeeRole);
 
             gridControl1.DataSource = new BindingList<FIDetailActivity>(detailActivity);
+
+            //get draft
+            rtbComments.Rtf = FIDetailActivity.getDraftRtf(givenDetail.Id, givenPlaceholderId, UserInfo.userDetails.Id);
         }
 
         //public int detId;
@@ -222,6 +225,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
             else
             {
@@ -255,6 +259,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
             else
             {
@@ -335,6 +340,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
 
         }
@@ -406,6 +412,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
 
         }
@@ -451,6 +458,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
             else
             {
@@ -506,6 +514,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
             else
             {
@@ -541,6 +550,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
             else
             {
@@ -581,6 +591,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
             else
             {
@@ -681,6 +692,7 @@ namespace IAFollowUp
                 Close(); //or stay and refresh
 
                 //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
             }
         }
 
@@ -705,6 +717,29 @@ namespace IAFollowUp
                 //rtbComments.Text = commText;
                 rtbComments.Rtf = commRtf; //send fonts with text 
             }
+        }
+
+        private void btnSaveDraft_Click(object sender, EventArgs e)
+        {
+            FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id); //delete old
+            FIDetailActivity.saveDraftRtf(det.Id, PHolder.Id, rtbComments.Rtf, rtbComments.Text); //insert new
+        }
+
+        private void FIActivity_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (rtbComments.Rtf != FIDetailActivity.getDraftRtf(det.Id, PHolder.Id, UserInfo.userDetails.Id))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to save changes on comments to Drafts?", "Save comments", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id); //delete old
+                    if (rtbComments.Text.Trim() != "")
+                    {
+                        FIDetailActivity.saveDraftRtf(det.Id, PHolder.Id, rtbComments.Rtf, rtbComments.Text); //insert new
+                    }
+                }
+            }
+
         }
     }
 }

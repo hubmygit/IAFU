@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FIActivity));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.cmsActivity = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MIcopy = new System.Windows.Forms.ToolStripMenuItem();
             this.fIDetailActivityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -69,15 +71,14 @@
             this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.dtpDetail_ActionDate = new System.Windows.Forms.DateTimePicker();
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
-            this.cmsActivity = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MIcopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSaveDraft = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.cmsActivity.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -96,6 +97,20 @@
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            // 
+            // cmsActivity
+            // 
+            this.cmsActivity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MIcopy});
+            this.cmsActivity.Name = "cmsHeader";
+            this.cmsActivity.Size = new System.Drawing.Size(165, 26);
+            // 
+            // MIcopy
+            // 
+            this.MIcopy.Name = "MIcopy";
+            this.MIcopy.Size = new System.Drawing.Size(164, 22);
+            this.MIcopy.Text = "Copy Comments";
+            this.MIcopy.Click += new System.EventHandler(this.MIcopy_Click);
             // 
             // fIDetailActivityBindingSource
             // 
@@ -435,25 +450,22 @@
             this.lblDetail_ActionDate.TabIndex = 12;
             this.lblDetail_ActionDate.Text = "Action Date";
             // 
-            // cmsActivity
+            // btnSaveDraft
             // 
-            this.cmsActivity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MIcopy});
-            this.cmsActivity.Name = "cmsHeader";
-            this.cmsActivity.Size = new System.Drawing.Size(165, 26);
-            // 
-            // MIcopy
-            // 
-            this.MIcopy.Name = "MIcopy";
-            this.MIcopy.Size = new System.Drawing.Size(164, 22);
-            this.MIcopy.Text = "Copy Comments";
-            this.MIcopy.Click += new System.EventHandler(this.MIcopy_Click);
+            this.btnSaveDraft.Location = new System.Drawing.Point(103, 74);
+            this.btnSaveDraft.Name = "btnSaveDraft";
+            this.btnSaveDraft.Size = new System.Drawing.Size(120, 23);
+            this.btnSaveDraft.TabIndex = 14;
+            this.btnSaveDraft.Text = "Save Draft";
+            this.btnSaveDraft.UseVisualStyleBackColor = true;
+            this.btnSaveDraft.Click += new System.EventHandler(this.btnSaveDraft_Click);
             // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 502);
+            this.Controls.Add(this.btnSaveDraft);
             this.Controls.Add(this.dtpDetail_ActionDate);
             this.Controls.Add(this.lblDetail_ActionDate);
             this.Controls.Add(this.statusStrip1);
@@ -473,7 +485,9 @@
             this.Name = "FIActivity";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Findings and Improvements Activity";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FIActivity_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            this.cmsActivity.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
@@ -481,7 +495,6 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.cmsActivity.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -530,5 +543,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
         public System.Windows.Forms.ContextMenuStrip cmsActivity;
         private System.Windows.Forms.ToolStripMenuItem MIcopy;
+        private System.Windows.Forms.Button btnSaveDraft;
     }
 }

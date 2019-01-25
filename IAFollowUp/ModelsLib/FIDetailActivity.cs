@@ -372,5 +372,137 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static string getDraftRtf(int detailId, int placeholderId, int userId)
+        {
+            string ret = "";
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase, CommentRtf)) as CommentRtf " +
+                              "FROM [dbo].[Activity_CommentsDrafts] " +
+                              "WHERE DetailId = @detailId AND isnull(PlaceholderId, 0) = @placeholderId AND UserId = @userId ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+                cmd.Parameters.AddWithValue("@placeholderId", placeholderId);
+                //placeholder=null for auditors
+                cmd.Parameters.AddWithValue("@userId", userId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = reader["CommentRtf"].ToString();
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
+        public static bool deleteDraftRtf(int detailId, int placeholderId) //[dbo].[Activity_CommentsDrafts]
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "DELETE FROM [dbo].[Activity_CommentsDrafts] " + 
+                           "WHERE [DetailId] = @DetailId AND isnull([PlaceholderId], 0) = @PlaceholderId AND [UserId] = @UserId ";
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+                
+                cmd.Parameters.AddWithValue("@DetailId", detailId);
+                cmd.Parameters.AddWithValue("@PlaceholderId", placeholderId);
+                cmd.Parameters.AddWithValue("@UserId", UserInfo.userDetails.Id);
+                
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        public static bool saveDraftRtf(int detailId, int placeholderId, string commRtf, string commText) //INSERT [dbo].[Activity_CommentsDrafts]
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[Activity_CommentsDrafts] " + 
+                            "([DetailId], [PlaceholderId], [UserId], [CommentRtf], [CommentText], [InsDt]) VALUES " +
+                           "(@DetailId, @PlaceholderId, @UserId, " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
+                           "getDate()) ";
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@DetailId", detailId);
+                if (placeholderId > 0)
+                {
+                    cmd.Parameters.AddWithValue("@PlaceholderId", placeholderId);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@PlaceholderId", DBNull.Value);
+                }
+                cmd.Parameters.AddWithValue("@UserId", UserInfo.userDetails.Id);
+                if (commText.Trim() == "")
+                {
+                    cmd.Parameters.AddWithValue("@CommentText", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@CommentRtf", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@CommentText", commText);
+                    cmd.Parameters.AddWithValue("@CommentRtf", commRtf);
+                }
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+
+
     }
 }
