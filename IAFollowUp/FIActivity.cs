@@ -228,6 +228,7 @@ namespace IAFollowUp
 
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh                
@@ -261,6 +262,7 @@ namespace IAFollowUp
 
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -342,6 +344,7 @@ namespace IAFollowUp
             {
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -414,6 +417,7 @@ namespace IAFollowUp
             {
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -459,6 +463,7 @@ namespace IAFollowUp
 
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -514,6 +519,7 @@ namespace IAFollowUp
 
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -549,6 +555,7 @@ namespace IAFollowUp
 
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -589,6 +596,7 @@ namespace IAFollowUp
 
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -690,6 +698,7 @@ namespace IAFollowUp
             {
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -727,7 +736,8 @@ namespace IAFollowUp
 
         private void FIActivity_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (rtbComments.Rtf != FIDetailActivity.getDraftRtf(det.Id, PHolder.Id, UserInfo.userDetails.Id))
+            //if (rtbComments.Rtf != FIDetailActivity.getDraftRtf(det.Id, PHolder.Id, UserInfo.userDetails.Id))
+            if (rtbComments.Text != FIDetailActivity.getDraftText(det.Id, PHolder.Id, UserInfo.userDetails.Id))
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to save changes on comments to Drafts?", "Save comments", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)

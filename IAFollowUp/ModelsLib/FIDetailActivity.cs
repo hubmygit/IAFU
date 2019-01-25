@@ -409,6 +409,43 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static string getDraftText(int detailId, int placeholderId, int userId)
+        {
+            string ret = "";
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase, CommentText)) as CommentText " +
+                              "FROM [dbo].[Activity_CommentsDrafts] " +
+                              "WHERE DetailId = @detailId AND isnull(PlaceholderId, 0) = @placeholderId AND UserId = @userId ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+                cmd.Parameters.AddWithValue("@placeholderId", placeholderId);
+                //placeholder=null for auditors
+                cmd.Parameters.AddWithValue("@userId", userId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = reader["CommentText"].ToString();
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
         public static bool deleteDraftRtf(int detailId, int placeholderId) //[dbo].[Activity_CommentsDrafts]
         {
             bool ret = false;
