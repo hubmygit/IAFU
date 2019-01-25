@@ -69,12 +69,15 @@
             this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.dtpDetail_ActionDate = new System.Windows.Forms.DateTimePicker();
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
+            this.cmsActivity = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MIcopy = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.cmsActivity.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -82,6 +85,7 @@
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl1.ContextMenuStrip = this.cmsActivity;
             this.gridControl1.DataSource = this.fIDetailActivityBindingSource;
             this.gridControl1.Location = new System.Drawing.Point(0, 251);
             this.gridControl1.MainView = this.gridView1;
@@ -431,6 +435,20 @@
             this.lblDetail_ActionDate.TabIndex = 12;
             this.lblDetail_ActionDate.Text = "Action Date";
             // 
+            // cmsActivity
+            // 
+            this.cmsActivity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MIcopy});
+            this.cmsActivity.Name = "cmsHeader";
+            this.cmsActivity.Size = new System.Drawing.Size(165, 26);
+            // 
+            // MIcopy
+            // 
+            this.MIcopy.Name = "MIcopy";
+            this.MIcopy.Size = new System.Drawing.Size(164, 22);
+            this.MIcopy.Text = "Copy Comments";
+            this.MIcopy.Click += new System.EventHandler(this.MIcopy_Click);
+            // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,6 +481,7 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.cmsActivity.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -509,5 +528,7 @@
         private System.Windows.Forms.DateTimePicker dtpDetail_ActionDate;
         private System.Windows.Forms.Label lblDetail_ActionDate;
         private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
+        public System.Windows.Forms.ContextMenuStrip cmsActivity;
+        private System.Windows.Forms.ToolStripMenuItem MIcopy;
     }
 }

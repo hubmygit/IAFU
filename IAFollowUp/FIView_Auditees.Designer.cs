@@ -81,12 +81,12 @@
             this.cmsDHA.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MIactivity});
             this.cmsDHA.Name = "cmsHeader";
-            this.cmsDHA.Size = new System.Drawing.Size(181, 48);
+            this.cmsDHA.Size = new System.Drawing.Size(115, 26);
             // 
             // MIactivity
             // 
             this.MIactivity.Name = "MIactivity";
-            this.MIactivity.Size = new System.Drawing.Size(180, 22);
+            this.MIactivity.Size = new System.Drawing.Size(114, 22);
             this.MIactivity.Text = "Activity";
             this.MIactivity.Click += new System.EventHandler(this.MIactivity_Click);
             // 
@@ -233,21 +233,21 @@
             // 
             // colDetailCurrentOwner1
             // 
-            this.colDetailCurrentOwner1.FieldName = "DetailCurrentOwner1";
+            this.colDetailCurrentOwner1.FieldName = "DetailCurrentOwner1.User.FullName";
             this.colDetailCurrentOwner1.Name = "colDetailCurrentOwner1";
             this.colDetailCurrentOwner1.Visible = true;
             this.colDetailCurrentOwner1.VisibleIndex = 16;
             // 
             // colDetailCurrentOwner2
             // 
-            this.colDetailCurrentOwner2.FieldName = "DetailCurrentOwner2";
+            this.colDetailCurrentOwner2.FieldName = "DetailCurrentOwner2.User.FullName";
             this.colDetailCurrentOwner2.Name = "colDetailCurrentOwner2";
             this.colDetailCurrentOwner2.Visible = true;
             this.colDetailCurrentOwner2.VisibleIndex = 17;
             // 
             // colDetailCurrentOwner3
             // 
-            this.colDetailCurrentOwner3.FieldName = "DetailCurrentOwner3";
+            this.colDetailCurrentOwner3.FieldName = "DetailCurrentOwner3.User.FullName";
             this.colDetailCurrentOwner3.Name = "colDetailCurrentOwner3";
             this.colDetailCurrentOwner3.Visible = true;
             this.colDetailCurrentOwner3.VisibleIndex = 18;

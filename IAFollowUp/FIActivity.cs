@@ -683,5 +683,28 @@ namespace IAFollowUp
                 //delete comments from user's drafts
             }
         }
+
+        private void MIcopy_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                if (rtbComments.Text.Trim() != "")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to replace your comments with selected record's comments?", "Copy comments", MessageBoxButtons.YesNo);
+                    if (dialogResult != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
+
+                //int activityId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+
+                //string commText = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["CommentText"]).ToString();
+                string commRtf = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["CommentRtf"]).ToString();
+
+                //rtbComments.Text = commText;
+                rtbComments.Rtf = commRtf; //send fonts with text 
+            }
+        }
     }
 }
