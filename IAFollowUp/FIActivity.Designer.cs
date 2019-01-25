@@ -48,14 +48,7 @@
             this.colActivityDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rtbComments = new System.Windows.Forms.RichTextBox();
-            this.btnMTtoIA = new System.Windows.Forms.Button();
             this.btnFontDialog = new System.Windows.Forms.Button();
-            this.btnMTtoDT = new System.Windows.Forms.Button();
-            this.btnDTtoMT = new System.Windows.Forms.Button();
-            this.btnIAtoMT = new System.Windows.Forms.Button();
-            this.btnMTtoIAInform = new System.Windows.Forms.Button();
-            this.btnMTtoDTDelegate = new System.Windows.Forms.Button();
-            this.btnMTtoIAExtension = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTinformIA = new System.Windows.Forms.ToolStripMenuItem();
@@ -233,16 +226,6 @@
             this.rtbComments.TabIndex = 1;
             this.rtbComments.Text = "";
             // 
-            // btnMTtoIA
-            // 
-            this.btnMTtoIA.Location = new System.Drawing.Point(535, 27);
-            this.btnMTtoIA.Name = "btnMTtoIA";
-            this.btnMTtoIA.Size = new System.Drawing.Size(120, 23);
-            this.btnMTtoIA.TabIndex = 2;
-            this.btnMTtoIA.Text = "MT to IA (publish)";
-            this.btnMTtoIA.UseVisualStyleBackColor = true;
-            this.btnMTtoIA.Click += new System.EventHandler(this.btnMTtoIA_Click);
-            // 
             // btnFontDialog
             // 
             this.btnFontDialog.Location = new System.Drawing.Point(103, 27);
@@ -252,66 +235,6 @@
             this.btnFontDialog.Text = "Font Dialog";
             this.btnFontDialog.UseVisualStyleBackColor = true;
             this.btnFontDialog.Click += new System.EventHandler(this.btnFontDialog_Click);
-            // 
-            // btnMTtoDT
-            // 
-            this.btnMTtoDT.Location = new System.Drawing.Point(535, 172);
-            this.btnMTtoDT.Name = "btnMTtoDT";
-            this.btnMTtoDT.Size = new System.Drawing.Size(120, 23);
-            this.btnMTtoDT.TabIndex = 4;
-            this.btnMTtoDT.Text = "MT to DT (comment)";
-            this.btnMTtoDT.UseVisualStyleBackColor = true;
-            this.btnMTtoDT.Click += new System.EventHandler(this.btnMTtoDT_Click);
-            // 
-            // btnDTtoMT
-            // 
-            this.btnDTtoMT.Location = new System.Drawing.Point(535, 143);
-            this.btnDTtoMT.Name = "btnDTtoMT";
-            this.btnDTtoMT.Size = new System.Drawing.Size(120, 23);
-            this.btnDTtoMT.TabIndex = 5;
-            this.btnDTtoMT.Text = "DT to MT (comment)";
-            this.btnDTtoMT.UseVisualStyleBackColor = true;
-            this.btnDTtoMT.Click += new System.EventHandler(this.btnDTtoMT_Click);
-            // 
-            // btnIAtoMT
-            // 
-            this.btnIAtoMT.Location = new System.Drawing.Point(535, 56);
-            this.btnIAtoMT.Name = "btnIAtoMT";
-            this.btnIAtoMT.Size = new System.Drawing.Size(120, 23);
-            this.btnIAtoMT.TabIndex = 6;
-            this.btnIAtoMT.Text = "IA to MT (return)";
-            this.btnIAtoMT.UseVisualStyleBackColor = true;
-            this.btnIAtoMT.Click += new System.EventHandler(this.btnIAtoMT_Click);
-            // 
-            // btnMTtoIAInform
-            // 
-            this.btnMTtoIAInform.Location = new System.Drawing.Point(535, 85);
-            this.btnMTtoIAInform.Name = "btnMTtoIAInform";
-            this.btnMTtoIAInform.Size = new System.Drawing.Size(120, 23);
-            this.btnMTtoIAInform.TabIndex = 7;
-            this.btnMTtoIAInform.Text = "MT to IA (inform)";
-            this.btnMTtoIAInform.UseVisualStyleBackColor = true;
-            this.btnMTtoIAInform.Click += new System.EventHandler(this.btnMTtoIAInform_Click);
-            // 
-            // btnMTtoDTDelegate
-            // 
-            this.btnMTtoDTDelegate.Location = new System.Drawing.Point(535, 114);
-            this.btnMTtoDTDelegate.Name = "btnMTtoDTDelegate";
-            this.btnMTtoDTDelegate.Size = new System.Drawing.Size(120, 23);
-            this.btnMTtoDTDelegate.TabIndex = 8;
-            this.btnMTtoDTDelegate.Text = "MT to DT (delegate)";
-            this.btnMTtoDTDelegate.UseVisualStyleBackColor = true;
-            this.btnMTtoDTDelegate.Click += new System.EventHandler(this.btnMTtoDTDelegate_Click);
-            // 
-            // btnMTtoIAExtension
-            // 
-            this.btnMTtoIAExtension.Location = new System.Drawing.Point(535, 201);
-            this.btnMTtoIAExtension.Name = "btnMTtoIAExtension";
-            this.btnMTtoIAExtension.Size = new System.Drawing.Size(120, 23);
-            this.btnMTtoIAExtension.TabIndex = 9;
-            this.btnMTtoIAExtension.Text = "MT to IA (extension)";
-            this.btnMTtoIAExtension.UseVisualStyleBackColor = true;
-            this.btnMTtoIAExtension.Click += new System.EventHandler(this.btnMTtoIAExtension_Click);
             // 
             // menuStrip1
             // 
@@ -469,14 +392,7 @@
             this.Controls.Add(this.dtpDetail_ActionDate);
             this.Controls.Add(this.lblDetail_ActionDate);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnMTtoIAExtension);
-            this.Controls.Add(this.btnMTtoDTDelegate);
-            this.Controls.Add(this.btnMTtoIAInform);
-            this.Controls.Add(this.btnIAtoMT);
-            this.Controls.Add(this.btnDTtoMT);
-            this.Controls.Add(this.btnMTtoDT);
             this.Controls.Add(this.btnFontDialog);
-            this.Controls.Add(this.btnMTtoIA);
             this.Controls.Add(this.rtbComments);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.menuStrip1);
@@ -514,14 +430,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colToUser;
         private DevExpress.XtraGrid.Columns.GridColumn colInsDt;
         private System.Windows.Forms.RichTextBox rtbComments;
-        private System.Windows.Forms.Button btnMTtoIA;
         private System.Windows.Forms.Button btnFontDialog;
-        private System.Windows.Forms.Button btnMTtoDT;
-        private System.Windows.Forms.Button btnDTtoMT;
-        private System.Windows.Forms.Button btnIAtoMT;
-        private System.Windows.Forms.Button btnMTtoIAInform;
-        private System.Windows.Forms.Button btnMTtoDTDelegate;
-        private System.Windows.Forms.Button btnMTtoIAExtension;
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;

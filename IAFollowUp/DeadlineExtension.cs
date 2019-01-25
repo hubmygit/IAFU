@@ -22,6 +22,7 @@ namespace IAFollowUp
 
             if (ActionDate != null)
             {
+                dtpCurrentActionDate.CustomFormat = "dd.MM.yyyy";
                 dtpCurrentActionDate.Value = (DateTime)ActionDate;
             }
 

@@ -69,6 +69,12 @@ namespace IAFollowUp
 
             //get draft
             rtbComments.Rtf = FIDetailActivity.getDraftRtf(givenDetail.Id, givenPlaceholderId, UserInfo.userDetails.Id);
+
+            if (givenDetail.ActionDt != null)
+            {
+                dtpDetail_ActionDate.CustomFormat = "dd.MM.yyyy";
+                dtpDetail_ActionDate.Value = (DateTime)givenDetail.ActionDt;
+            }
         }
 
         //public int detId;
@@ -220,12 +226,11 @@ namespace IAFollowUp
 
                 //create alerts
 
-                //...?
-                MessageBox.Show("The Action completed!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh                
             }
             else
             {
@@ -254,12 +259,11 @@ namespace IAFollowUp
 
                 //create alerts
 
-                //...?
-                MessageBox.Show("The Action completed!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
             else
             {
@@ -284,7 +288,7 @@ namespace IAFollowUp
 
             if (det.Placeholders.Count >= 1 && det.Placeholders[0] != null)
             {
-                detActivity.ToUser = det.CurrentOwner1.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
                 detActivity.Placeholders = det.Placeholders[0];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -301,7 +305,7 @@ namespace IAFollowUp
             }
             if (det.Placeholders.Count >= 2 && det.Placeholders[1] != null)
             {
-                detActivity.ToUser = det.CurrentOwner2.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
                 detActivity.Placeholders = det.Placeholders[1];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -318,7 +322,7 @@ namespace IAFollowUp
             }
             if (det.Placeholders.Count >= 3 && det.Placeholders[2] != null)
             {
-                detActivity.ToUser = det.CurrentOwner3.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
                 detActivity.Placeholders = det.Placeholders[2];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -336,11 +340,11 @@ namespace IAFollowUp
             
             if (success)
             {
-                MessageBox.Show("The Action completed successfully!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
 
         }
@@ -362,7 +366,7 @@ namespace IAFollowUp
 
             if (det.Placeholders.Count >= 1 && det.Placeholders[0] != null)
             {
-                detActivity.ToUser = det.CurrentOwner1.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
                 detActivity.Placeholders = det.Placeholders[0];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -377,7 +381,7 @@ namespace IAFollowUp
             }
             if (det.Placeholders.Count >= 2 && det.Placeholders[1] != null)
             {
-                detActivity.ToUser = det.CurrentOwner2.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
                 detActivity.Placeholders = det.Placeholders[1];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -392,7 +396,7 @@ namespace IAFollowUp
             }
             if (det.Placeholders.Count >= 3 && det.Placeholders[2] != null)
             {
-                detActivity.ToUser = det.CurrentOwner3.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
                 detActivity.Placeholders = det.Placeholders[2];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -408,11 +412,11 @@ namespace IAFollowUp
 
             if (success)
             {
-                MessageBox.Show("The Action completed successfully!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
 
         }
@@ -453,12 +457,11 @@ namespace IAFollowUp
 
                 //create alerts
 
-                //...?
-                MessageBox.Show("The Action completed!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
             else
             {
@@ -509,12 +512,11 @@ namespace IAFollowUp
 
                 //create alerts
 
-                //...?
-                MessageBox.Show("The Action completed!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
             else
             {
@@ -545,12 +547,11 @@ namespace IAFollowUp
 
                 //create alerts
 
-                //...?
-                MessageBox.Show("The Action completed!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
             else
             {
@@ -586,12 +587,11 @@ namespace IAFollowUp
 
                 //create alerts
 
-                //...?
-                MessageBox.Show("The Action completed!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
             else
             {
@@ -636,7 +636,7 @@ namespace IAFollowUp
 
             if (det.Placeholders.Count >= 1 && det.Placeholders[0] != null)
             {
-                detActivity.ToUser = det.CurrentOwner1.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
                 detActivity.Placeholders = det.Placeholders[0];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -653,7 +653,7 @@ namespace IAFollowUp
             }
             if (det.Placeholders.Count >= 2 && det.Placeholders[1] != null)
             {
-                detActivity.ToUser = det.CurrentOwner2.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
                 detActivity.Placeholders = det.Placeholders[1];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -670,7 +670,7 @@ namespace IAFollowUp
             }
             if (det.Placeholders.Count >= 3 && det.Placeholders[2] != null)
             {
-                detActivity.ToUser = det.CurrentOwner3.User;
+                detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
                 detActivity.Placeholders = det.Placeholders[2];
 
                 if (FIDetailActivity.Insert(detActivity))
@@ -688,11 +688,11 @@ namespace IAFollowUp
 
             if (success)
             {
-                MessageBox.Show("The Action completed successfully!");
-                Close(); //or stay and refresh
-
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+
+                MessageBox.Show("The Action completed!");
+                Close(); //or stay and refresh   
             }
         }
 
