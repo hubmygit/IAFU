@@ -502,7 +502,37 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static List<DateTime> getDeadlineExtensions(int detailId)
+        {
+            List<DateTime> ret = new List<DateTime>();
 
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT distinct [ActionDt] " +
+                              "FROM [dbo].[FIDetail_Activity] " +
+                              "WHERE ActivityDescriptionId = 10 AND detailId = @detailId ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret.Add(Convert.ToDateTime(reader["ActionDt"].ToString()));
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
 
     }
 }

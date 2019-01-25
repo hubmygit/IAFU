@@ -565,7 +565,7 @@ namespace IAFollowUp
                 return;
             }
 
-            DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt);
+            DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt, det.Id);
             if (frmDeadlineExtension.ShowDialog() != DialogResult.OK)
             {
                 return;
@@ -607,7 +607,7 @@ namespace IAFollowUp
                 return;
             }
             
-            DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt);
+            DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt, det.Id);
             if(frmDeadlineExtension.ShowDialog() != DialogResult.OK)
             {
                 return;

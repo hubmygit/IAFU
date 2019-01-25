@@ -16,7 +16,7 @@ namespace IAFollowUp
             InitializeComponent();
         }
 
-        public DeadlineExtension(DateTime? ActionDate)
+        public DeadlineExtension(DateTime? ActionDate, int detailId = 0)
         {
             InitializeComponent();
 
@@ -24,6 +24,9 @@ namespace IAFollowUp
             {
                 dtpCurrentActionDate.Value = (DateTime)ActionDate;
             }
+
+            //"Deadline Extension(s): "
+            lblDeadlineExtensions.Text += FIDetailActivity.getDeadlineExtensions(detailId).Count.ToString();
         }
 
         public DateTime newActionDate;

@@ -34,6 +34,7 @@
             this.dtpNewActionDate = new System.Windows.Forms.DateTimePicker();
             this.lblNewActionDate = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lblDeadlineExtensions = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dtpCurrentActionDate
@@ -94,11 +95,22 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // lblDeadlineExtensions
+            // 
+            this.lblDeadlineExtensions.AutoSize = true;
+            this.lblDeadlineExtensions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblDeadlineExtensions.Location = new System.Drawing.Point(274, 74);
+            this.lblDeadlineExtensions.Name = "lblDeadlineExtensions";
+            this.lblDeadlineExtensions.Size = new System.Drawing.Size(145, 16);
+            this.lblDeadlineExtensions.TabIndex = 9;
+            this.lblDeadlineExtensions.Text = "Deadline Extension(s): ";
+            // 
             // DeadlineExtension
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 282);
+            this.Controls.Add(this.lblDeadlineExtensions);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dtpNewActionDate);
             this.Controls.Add(this.lblNewActionDate);
@@ -122,5 +134,6 @@
         private System.Windows.Forms.DateTimePicker dtpNewActionDate;
         private System.Windows.Forms.Label lblNewActionDate;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblDeadlineExtensions;
     }
 }
