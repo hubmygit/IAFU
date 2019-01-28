@@ -44,6 +44,7 @@
             this.colFromUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colToUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colInsDt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPlaceholdersId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPlaceholders = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActivityDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,7 +67,7 @@
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
             this.btnSaveDraft = new System.Windows.Forms.Button();
             this.btnAttachment = new System.Windows.Forms.Button();
-            this.colPlaceholdersId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -96,14 +97,15 @@
             // cmsActivity
             // 
             this.cmsActivity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MIattachments,
             this.MIcopy});
             this.cmsActivity.Name = "cmsHeader";
-            this.cmsActivity.Size = new System.Drawing.Size(165, 26);
+            this.cmsActivity.Size = new System.Drawing.Size(181, 70);
             // 
             // MIcopy
             // 
             this.MIcopy.Name = "MIcopy";
-            this.MIcopy.Size = new System.Drawing.Size(164, 22);
+            this.MIcopy.Size = new System.Drawing.Size(180, 22);
             this.MIcopy.Text = "Copy Comments";
             this.MIcopy.Click += new System.EventHandler(this.MIcopy_Click);
             // 
@@ -196,6 +198,14 @@
             this.colInsDt.Name = "colInsDt";
             this.colInsDt.Visible = true;
             this.colInsDt.VisibleIndex = 7;
+            // 
+            // colPlaceholdersId
+            // 
+            this.colPlaceholdersId.Caption = "phId";
+            this.colPlaceholdersId.FieldName = "Placeholders.Id";
+            this.colPlaceholdersId.Name = "colPlaceholdersId";
+            this.colPlaceholdersId.Visible = true;
+            this.colPlaceholdersId.VisibleIndex = 11;
             // 
             // colPlaceholders
             // 
@@ -396,13 +406,12 @@
             this.btnAttachment.UseVisualStyleBackColor = true;
             this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
             // 
-            // colPlaceholdersId
+            // MIattachments
             // 
-            this.colPlaceholdersId.Caption = "phId";
-            this.colPlaceholdersId.FieldName = "Placeholders.Id";
-            this.colPlaceholdersId.Name = "colPlaceholdersId";
-            this.colPlaceholdersId.Visible = true;
-            this.colPlaceholdersId.VisibleIndex = 11;
+            this.MIattachments.Name = "MIattachments";
+            this.MIattachments.Size = new System.Drawing.Size(180, 22);
+            this.MIattachments.Text = "Attachments";
+            this.MIattachments.Click += new System.EventHandler(this.MIattachments_Click);
             // 
             // FIActivity
             // 
@@ -477,5 +486,6 @@
         private System.Windows.Forms.Button btnSaveDraft;
         private System.Windows.Forms.Button btnAttachment;
         private DevExpress.XtraGrid.Columns.GridColumn colPlaceholdersId;
+        private System.Windows.Forms.ToolStripMenuItem MIattachments;
     }
 }

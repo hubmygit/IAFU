@@ -272,7 +272,7 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool InertIntoTable_AttachedFiles(int Id, string fileName, byte[] fileBytes) //INSERT [dbo].[Audit_Attachments]
+        private bool InsertIntoTable_AttachedFiles(int Id, string fileName, byte[] fileBytes) //INSERT [dbo].[Audit_Attachments]
         {
             bool ret = false;
 
@@ -317,7 +317,7 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool InertIntoTable_AttachedFiles_Log(int givenAuditId) //INSERT [dbo].[Audit_Attachments_Log]
+        private bool InsertIntoTable_AttachedFiles_Log(int givenAuditId) //INSERT [dbo].[Audit_Attachments_Log]
         {
             bool ret = false;
             
@@ -451,20 +451,26 @@ namespace IAFollowUp
             }
 
             //insert files into Log
-            InertIntoTable_AttachedFiles_Log(Id);
+            InsertIntoTable_AttachedFiles_Log(Id);
 
             //delete sample files
             Delete_SampleFiles(Id); //delete from db
-                        
+
+            bool IsOk = false;
+
             //update old records
             //insert attachments into db - IsCurrent = 1
             foreach (ListViewItem lvi in newLvItems)
             {
                 byte[] attFileBytes = File.ReadAllBytes(lvi.SubItems[1].Text);
 
-                if (!InertIntoTable_AttachedFiles(Id, lvi.SubItems[0].Text, attFileBytes))
+                if (!InsertIntoTable_AttachedFiles(Id, lvi.SubItems[0].Text, attFileBytes))
                 {
                     MessageBox.Show("File save failed: " + lvi.SubItems[0].Text);
+                }
+                else
+                {
+                    IsOk = true;
                 }
             }
 
@@ -480,7 +486,7 @@ namespace IAFollowUp
             success = true;
 
             AttCnt = lvAttachedFiles.Items.Count;
-            if (AttCnt > 0)
+            if (AttCnt > 0 && IsOk)
             {
                 MessageBox.Show("File(s) attached successfully!");
             }

@@ -35,16 +35,8 @@ namespace IAFollowUp
         int ActivityId;
         public int AttCnt;
         public bool success = false;
-
-        public void makeReadOnly()
-        {
-            btnAddFiles.Enabled = false;
-            btnRemoveAll.Enabled = false;
-            btnRemoveFile.Enabled = false;
-            btnSave.Enabled = false;
-        }
-
-        public string[] getSavedAttachments(int tableId)
+                
+        public static string[] getSavedAttachments(int tableId)
         {
             List<string> ret = new List<string>();
 
@@ -104,17 +96,6 @@ namespace IAFollowUp
                 ListViewItem lvItem = new ListViewItem(new string[] { newFile.Name, newFile.FullName });
                 myListView.Items.Add(lvItem);
             }
-        }
-
-        private void btnAddFiles_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Add Files";
-            ofd.Multiselect = true; //array of files
-            ofd.ShowDialog();
-
-            //Add Files into listView...
-            addFilesIntoListView(lvAttachedFiles, ofd.FileNames);
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -183,20 +164,7 @@ namespace IAFollowUp
                 System.Diagnostics.Process.Start(lvPath);
             }
         }
-
-        private void btnRemoveFile_Click(object sender, EventArgs e)
-        {
-            if (lvAttachedFiles.SelectedItems.Count > 0)
-            {
-                lvAttachedFiles.SelectedItems[0].Remove();
-            }
-        }
-
-        private void btnRemoveAll_Click(object sender, EventArgs e)
-        {
-            lvAttachedFiles.Items.Clear();
-        }
-
+        
         LvFileInfo saveAttachmentLocally(int Id, string Filename)
         {
             LvFileInfo ret = new LvFileInfo();
@@ -272,7 +240,7 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool InertIntoTable_AttachedFiles(int Id, string fileName, byte[] fileBytes) //INSERT [dbo].[FIDetail_Activity_Attachments]
+        private bool InsertIntoTable_AttachedFiles(int Id, string fileName, byte[] fileBytes) //INSERT [dbo].[FIDetail_Activity_Attachments]
         {
             bool ret = false;
 
@@ -317,7 +285,73 @@ namespace IAFollowUp
             return ret;
         }
 
-        //To be continued...
+        public static bool InsertActivityAttachedFilesFromDrafts(int actId, int detId, int phId) //INSERT [dbo].[FIDetail_Activity_Attachments]
+        {
+            bool ret = false;
+
+            if (actId > 0 && detId > 0)
+            {
+                SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+                string InsSt = "INSERT INTO [dbo].[FIDetail_Activity_Attachments] (ActivityId, Name, FileContents, UsersId, InsDate) " +
+                     "SELECT @actId as ActivityId, [Name], [FileContents], @usrId as UsersId, getdate() as InsDate " + 
+                     "FROM [dbo].[Activity_AttachmentsDrafts] WHERE detailId = @detId and isnull(placeholderId, 0) = @phId and userId = @usrId ";
+
+                try
+                {
+                    sqlConn.Open();
+                    SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+                    cmd.Parameters.AddWithValue("@actId", actId);
+                    cmd.Parameters.AddWithValue("@usrId", UserInfo.userDetails.Id);
+                    cmd.Parameters.AddWithValue("@detId", detId);
+                    cmd.Parameters.AddWithValue("@phId", phId);
+                    
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        ret = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("The following error occurred: " + ex.Message);
+                }
+            }
+
+            return ret;
+        }
+
+        private bool Delete_SampleFiles(int given_ActivityId)
+        {
+            bool ret = false;
+
+            if (given_ActivityId > 0)
+            {
+                SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+                string InsSt = "DELETE FROM [dbo].[FIDetail_Activity_Attachments] WHERE ActivityId = @Id ";
+                try
+                {
+                    sqlConn.Open();
+                    SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+                    cmd.Parameters.AddWithValue("@Id", given_ActivityId);
+                    cmd.CommandType = CommandType.Text;
+                    //int rowsAffected = cmd.ExecuteNonQuery();
+
+                    cmd.ExecuteNonQuery();
+
+                    //if (rowsAffected > 0)
+                    //{
+                    ret = true;
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("The following error occurred: " + ex.Message);
+                }
+            }
+
+            return ret;
+        }
 
 
     }

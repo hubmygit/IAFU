@@ -119,8 +119,25 @@ namespace IAFollowUp
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
             detActivity.Placeholders = this.PHolder;
 
-            if (FIDetailActivity.Insert(detActivity))
+            int newActivityId = FIDetailActivity.Insert(detActivity);
+
+            if (newActivityId > -1)
             {
+                //insert attachments
+                string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                if (fileNames.Length > 0)
+                {
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                    {
+                        //delete drafts
+                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
                 //send email
 
                 //create alerts
@@ -153,8 +170,25 @@ namespace IAFollowUp
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
             detActivity.Placeholders = this.PHolder;
 
-            if (FIDetailActivity.Insert(detActivity))
+            int newActivityId = FIDetailActivity.Insert(detActivity);
+
+            if (newActivityId > -1)
             {
+                //insert attachments
+                string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                if (fileNames.Length > 0)
+                {
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                    {
+                        //delete drafts
+                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
                 //send email
 
                 //create alerts
@@ -192,8 +226,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
                 detActivity.Placeholders = det.Placeholders[0];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email
 
                     //create alerts
@@ -209,8 +260,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
                 detActivity.Placeholders = det.Placeholders[1];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email
 
                     //create alerts
@@ -226,8 +294,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
                 detActivity.Placeholders = det.Placeholders[2];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email
 
                     //create alerts
@@ -271,8 +356,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
                 detActivity.Placeholders = det.Placeholders[0];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email ??
                 }
                 else
@@ -286,8 +388,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
                 detActivity.Placeholders = det.Placeholders[1];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email ??
                 }
                 else
@@ -301,8 +420,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
                 detActivity.Placeholders = det.Placeholders[2];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email ??
                 }
                 else
@@ -354,8 +490,25 @@ namespace IAFollowUp
             detActivity.ToUser = new Users(frmDTselector.usrId);
             detActivity.Placeholders = PHolder;
 
-            if (FIDetailActivity.Insert(detActivity))
+            int newActivityId = FIDetailActivity.Insert(detActivity);
+
+            if (newActivityId > -1)
             {
+                //insert attachments
+                string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                if (fileNames.Length > 0)
+                {
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                    {
+                        //delete drafts
+                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
                 //send email
 
                 //create alerts
@@ -410,8 +563,25 @@ namespace IAFollowUp
             detActivity.ToUser = new Users(frmDTselector.usrId);
             detActivity.Placeholders = PHolder;
 
-            if (FIDetailActivity.Insert(detActivity))
+            int newActivityId = FIDetailActivity.Insert(detActivity);
+
+            if (newActivityId > -1)
             {
+                //insert attachments
+                string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                if (fileNames.Length > 0)
+                {
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                    {
+                        //delete drafts
+                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
                 //send email
 
                 //create alerts
@@ -446,8 +616,25 @@ namespace IAFollowUp
             detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(PHolder.Id).User; //current for this pholder
             detActivity.Placeholders = PHolder;
 
-            if (FIDetailActivity.Insert(detActivity))
+            int newActivityId = FIDetailActivity.Insert(detActivity);
+
+            if (newActivityId > -1)
             {
+                //insert attachments
+                string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                if (fileNames.Length > 0)
+                {
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                    {
+                        //delete drafts
+                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
                 //send email
 
                 //create alerts
@@ -487,8 +674,25 @@ namespace IAFollowUp
             detActivity.Placeholders = PHolder;
             detActivity.ActionDt = frmDeadlineExtension.newActionDate;
 
-            if (FIDetailActivity.Insert(detActivity))
+            int newActivityId = FIDetailActivity.Insert(detActivity);
+
+            if (newActivityId > -1)
             {
+                //insert attachments
+                string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                if (fileNames.Length > 0)
+                {
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                    {
+                        //delete drafts
+                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
                 //send email
 
                 //create alerts
@@ -546,8 +750,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
                 detActivity.Placeholders = det.Placeholders[0];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email
 
                     //create alerts
@@ -563,8 +784,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
                 detActivity.Placeholders = det.Placeholders[1];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email
 
                     //create alerts
@@ -580,8 +818,25 @@ namespace IAFollowUp
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
                 detActivity.Placeholders = det.Placeholders[2];
 
-                if (FIDetailActivity.Insert(detActivity))
+                int newActivityId = FIDetailActivity.Insert(detActivity);
+
+                if (newActivityId > -1)
                 {
+                    //insert attachments
+                    string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    if (fileNames.Length > 0)
+                    {
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                        {
+                            //delete drafts
+                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     //send email
 
                     //create alerts
@@ -608,28 +863,34 @@ namespace IAFollowUp
         {
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
-                //int pHolderId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Placeholders.Id"]).ToString());
-                //DraftAttachments draftsAtt = new DraftAttachments(detailId, pHolderId, ) //copy From Info
 
-                //copy from: [Activity_AttachmentsDrafts]
-                //paste to: [FIDetail_Activity_Attachments]
-
-                if (rtbComments.Text.Trim() != "")
+                //if (rtbComments.Text.Trim() != "")   //|| attFNames.Length > 0
+                //{
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to replace your comments and attached files with selected record's comments and files?", "Copy comments and attachend files", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to replace your comments with selected record's comments?", "Copy comments", MessageBoxButtons.YesNo);
-                    if (dialogResult != DialogResult.Yes)
-                    {
-                        return;
-                    }
+                    return;
                 }
-
-                //int activityId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                //}
 
                 //string commText = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["CommentText"]).ToString();
                 string commRtf = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["CommentRtf"]).ToString();
 
                 //rtbComments.Text = commText;
                 rtbComments.Rtf = commRtf; //send fonts with text 
+
+                //------------------
+
+                int activityId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                string[] attFNames = ActivityAttachments.getSavedAttachments(activityId);
+
+                if (attFNames.Length > 0)
+                {
+                    if (DraftAttachments.InsertDraftsAttachedFilesFromActivity(activityId, det.Id, this.PHolder.Id) == false)
+                    {
+                        MessageBox.Show("Attached files have not been copied!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -682,6 +943,15 @@ namespace IAFollowUp
                 //gridView1.FocusedRowHandle = rowHandle;
             //}
 
+
+        }
+
+        private void MIattachments_Click(object sender, EventArgs e)
+        {
+            int ActivityId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+
+            ActivityAttachments attachedFiles = new ActivityAttachments(ActivityId);
+            attachedFiles.ShowDialog();
 
         }
     }

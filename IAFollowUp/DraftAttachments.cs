@@ -53,7 +53,7 @@ namespace IAFollowUp
             btnSave.Enabled = false;
         }
 
-        public string[] getSavedAttachments(int tableDetId, int tablePhId, int tableUsrId)
+        public static string[] getSavedAttachments(int tableDetId, int tablePhId, int tableUsrId)
         {
             List<string> ret = new List<string>();
 
@@ -292,7 +292,7 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool InertIntoTable_AttachedFiles(int dId, int pId, string fileName, byte[] fileBytes) //INSERT [dbo].[Activity_AttachmentsDrafts]
+        private bool InsertIntoTable_AttachedFiles(int dId, int pId, string fileName, byte[] fileBytes) //INSERT [dbo].[Activity_AttachmentsDrafts]
         {
             bool ret = false;
 
@@ -347,7 +347,54 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool Delete_SampleFiles(int given_dId, int given_pId, int given_uId)
+        public static bool InsertDraftsAttachedFilesFromActivity(int aId, int dId, int pId) //INSERT [dbo].[Activity_AttachmentsDrafts]
+        {
+            bool ret = false;
+
+            if (aId > 0 && dId > 0)
+            {
+                SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+                string InsSt = "INSERT INTO [dbo].[Activity_AttachmentsDrafts] (DetailId, PlaceholderId, UserId, Name, FileContents, InsDate) " +
+                     "SELECT @dId, @pId, @uId, Name, FileContents, getdate() as InsDate FROM [dbo].[FIDetail_Activity_Attachments] WHERE ActivityId = @aId";
+
+                try
+                {
+                    sqlConn.Open();
+                    SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                    cmd.Parameters.AddWithValue("@aId", aId);
+
+                    cmd.Parameters.AddWithValue("@dId", dId);
+
+                    if (pId > 0)
+                    {
+                        cmd.Parameters.AddWithValue("@pId", pId);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@pId", DBNull.Value);
+                    }
+
+                    cmd.Parameters.AddWithValue("@uId", UserInfo.userDetails.Id);
+                    
+                    cmd.CommandType = CommandType.Text;
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        ret = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("The following error occurred: " + ex.Message);
+                }
+            }
+
+            return ret;
+        }
+
+        public static bool Delete_SampleFiles(int given_dId, int given_pId, int given_uId)
         {
             bool ret = false;
 
@@ -431,7 +478,7 @@ namespace IAFollowUp
             {
                 byte[] attFileBytes = File.ReadAllBytes(lvi.SubItems[1].Text);
 
-                if (!InertIntoTable_AttachedFiles(detId, phId, lvi.SubItems[0].Text, attFileBytes))
+                if (!InsertIntoTable_AttachedFiles(detId, phId, lvi.SubItems[0].Text, attFileBytes))
                 {
                     MessageBox.Show("File save failed: " + lvi.SubItems[0].Text);
                 }

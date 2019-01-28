@@ -232,13 +232,15 @@ namespace IAFollowUp
             return ret;
         }
 
-        public static bool Insert(FIDetailActivity fiDetailActivity) //INSERT [dbo].[FIDetail_Activity]
+        public static int Insert(FIDetailActivity fiDetailActivity) //INSERT [dbo].[FIDetail_Activity]
         {
-            bool ret = false;
+            int ret = -1;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [ActivityDescriptionId], [ActionDt], [CommentText], [CommentRtf], " + 
-                                       "[FromUserId], [ToUserId], [IsPublic], [PlaceholderId], [InsUserId], [InsDt]) VALUES " +
+                                       "[FromUserId], [ToUserId], [IsPublic], [PlaceholderId], [InsUserId], [InsDt]) " +
+                           "OUTPUT INSERTED.Id " +
+                           "VALUES " +
                            "(@DetailId, @ActivityDescriptionId, @ActionDt, " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " + 
@@ -306,12 +308,18 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
+                //int rowsAffected = cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
                 {
-                    ret = true;
+                    ret = Convert.ToInt32(reader["Id"].ToString());
                 }
+                reader.Close();
+
+                //if (rowsAffected > 0)
+                //{
+                //    ret = true;
+                //}
             }
             catch (Exception ex)
             {
