@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FIActivity));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.cmsActivity = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MIcopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
             this.fIDetailActivityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -67,7 +67,8 @@
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
             this.btnSaveDraft = new System.Windows.Forms.Button();
             this.btnAttachment = new System.Windows.Forms.Button();
-            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIcopyComments = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIcopyAttachments = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -98,16 +99,17 @@
             // 
             this.cmsActivity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MIattachments,
-            this.MIcopy});
+            this.MIcopyComments,
+            this.MIcopyAttachments});
             this.cmsActivity.Name = "cmsHeader";
-            this.cmsActivity.Size = new System.Drawing.Size(181, 70);
+            this.cmsActivity.Size = new System.Drawing.Size(174, 70);
             // 
-            // MIcopy
+            // MIattachments
             // 
-            this.MIcopy.Name = "MIcopy";
-            this.MIcopy.Size = new System.Drawing.Size(180, 22);
-            this.MIcopy.Text = "Copy Comments";
-            this.MIcopy.Click += new System.EventHandler(this.MIcopy_Click);
+            this.MIattachments.Name = "MIattachments";
+            this.MIattachments.Size = new System.Drawing.Size(173, 22);
+            this.MIattachments.Text = "Attachments";
+            this.MIattachments.Click += new System.EventHandler(this.MIattachments_Click);
             // 
             // fIDetailActivityBindingSource
             // 
@@ -406,12 +408,19 @@
             this.btnAttachment.UseVisualStyleBackColor = true;
             this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
             // 
-            // MIattachments
+            // MIcopyComments
             // 
-            this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(180, 22);
-            this.MIattachments.Text = "Attachments";
-            this.MIattachments.Click += new System.EventHandler(this.MIattachments_Click);
+            this.MIcopyComments.Name = "MIcopyComments";
+            this.MIcopyComments.Size = new System.Drawing.Size(173, 22);
+            this.MIcopyComments.Text = "Copy Comments";
+            this.MIcopyComments.Click += new System.EventHandler(this.MIcopyComments_Click);
+            // 
+            // MIcopyAttachments
+            // 
+            this.MIcopyAttachments.Name = "MIcopyAttachments";
+            this.MIcopyAttachments.Size = new System.Drawing.Size(173, 22);
+            this.MIcopyAttachments.Text = "Copy Attachments";
+            this.MIcopyAttachments.Click += new System.EventHandler(this.MIcopyAttachments_Click);
             // 
             // FIActivity
             // 
@@ -482,10 +491,11 @@
         private System.Windows.Forms.Label lblDetail_ActionDate;
         private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
         public System.Windows.Forms.ContextMenuStrip cmsActivity;
-        private System.Windows.Forms.ToolStripMenuItem MIcopy;
         private System.Windows.Forms.Button btnSaveDraft;
         private System.Windows.Forms.Button btnAttachment;
         private DevExpress.XtraGrid.Columns.GridColumn colPlaceholdersId;
         private System.Windows.Forms.ToolStripMenuItem MIattachments;
+        private System.Windows.Forms.ToolStripMenuItem MIcopyComments;
+        private System.Windows.Forms.ToolStripMenuItem MIcopyAttachments;
     }
 }

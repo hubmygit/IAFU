@@ -614,5 +614,38 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static int howManyPublishesFromMTtoIA(int detailId, int placeholderId)
+        {
+            int ret = 0;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT count(*) as cnt " +
+                              "FROM [dbo].[FIDetail_Activity] " +
+                              "WHERE ActivityDescriptionId = 2 AND DetailId = @detailId AND isnull(PlaceholderId, 0) = @placeholderId  ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+                cmd.Parameters.AddWithValue("@placeholderId", placeholderId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = Convert.ToInt32(reader["cnt"].ToString());
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
     }
 }

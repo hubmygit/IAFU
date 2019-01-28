@@ -12,6 +12,7 @@ namespace IAFollowUp
         public int Id { get; set; }
         public string Name { get; set; }
         public bool NeedsApproval { get; set; }
+        public bool NeedsAttachment { get; set; }
 
         public FICategory()
         {
@@ -21,7 +22,7 @@ namespace IAFollowUp
         public FICategory(int givenId)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name], [NeedsApproval] " +
+            string SelectSt = "SELECT [Id], [Name], [NeedsApproval], [NeedsAttachment] " +
                               "FROM [dbo].[FICategory] " +
                               "WHERE Id = " + givenId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -34,6 +35,7 @@ namespace IAFollowUp
                     Id = Convert.ToInt32(reader["Id"].ToString());
                     Name = reader["Name"].ToString();
                     NeedsApproval = Convert.ToBoolean(reader["NeedsApproval"].ToString());
+                    NeedsAttachment = Convert.ToBoolean(reader["NeedsAttachment"].ToString());
                 }
                 reader.Close();
                 sqlConn.Close();
@@ -64,7 +66,7 @@ namespace IAFollowUp
             List<FICategory> ret = new List<FICategory>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name], [NeedsApproval] " +
+            string SelectSt = "SELECT [Id], [Name], [NeedsApproval], [NeedsAttachment] " +
                               "FROM [dbo].[FICategory] ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -73,7 +75,11 @@ namespace IAFollowUp
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new FICategory() { Id = Convert.ToInt32(reader["Id"].ToString()), Name = reader["Name"].ToString(), NeedsApproval = Convert.ToBoolean(reader["NeedsApproval"].ToString()) });
+                    ret.Add(new FICategory() {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        Name = reader["Name"].ToString(),
+                        NeedsApproval = Convert.ToBoolean(reader["NeedsApproval"].ToString()),
+                        NeedsAttachment = Convert.ToBoolean(reader["NeedsAttachment"].ToString()) });
                 }
                 reader.Close();
                 sqlConn.Close();

@@ -162,6 +162,19 @@ namespace IAFollowUp
                 return;
             }
 
+            string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+            FIHeader header = FIHeader.Select(false, new List<FIDetail>() { det }).First();
+            int MTtoIA_counter = FIDetailActivity.howManyPublishesFromMTtoIA(det.Id, this.PHolder.Id);
+
+            if (header.FICategory.NeedsAttachment && MTtoIA_counter < 1) //K.E. 1, 2 - NeedsAttachment && first publication
+            {                
+                if (fileNames.Length < 1)
+                {
+                    MessageBox.Show("Please attach a file first! \r\nHeader category: [" + header.FICategory.Name + "] !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = det.Id;
             detActivity.ActivityDescription = new ActivityDescription(2);
@@ -174,8 +187,7 @@ namespace IAFollowUp
 
             if (newActivityId > -1)
             {
-                //insert attachments
-                string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                //insert attachments                
                 if (fileNames.Length > 0)
                 {
                     if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
@@ -861,6 +873,7 @@ namespace IAFollowUp
 
         private void MIcopy_Click(object sender, EventArgs e)
         {
+            /*
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
 
@@ -892,6 +905,7 @@ namespace IAFollowUp
                     }
                 }
             }
+            */
         }
 
         private void btnSaveDraft_Click(object sender, EventArgs e)
@@ -953,6 +967,46 @@ namespace IAFollowUp
             ActivityAttachments attachedFiles = new ActivityAttachments(ActivityId);
             attachedFiles.ShowDialog();
 
+        }
+
+        private void MIcopyComments_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                //if (rtbComments.Text.Trim() != "")   
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to replace your comments with selected record's comments?", "Copy comments", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                string commRtf = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["CommentRtf"]).ToString();
+                rtbComments.Rtf = commRtf; //send fonts with text                 
+            }
+        }
+
+        private void MIcopyAttachments_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                //if (rtbComments.Text.Trim() != "")   //|| attFNames.Length > 0
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to replace your attached files with selected record's files?", "Copy attached files", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                int activityId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                string[] attFNames = ActivityAttachments.getSavedAttachments(activityId);
+
+                if (attFNames.Length > 0)
+                {
+                    if (DraftAttachments.InsertDraftsAttachedFilesFromActivity(activityId, det.Id, this.PHolder.Id) == false)
+                    {
+                        MessageBox.Show("Attached files have not been copied!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }
