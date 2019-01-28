@@ -608,6 +608,12 @@ namespace IAFollowUp
         {
             if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
             {
+                //int pHolderId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Placeholders.Id"]).ToString());
+                //DraftAttachments draftsAtt = new DraftAttachments(detailId, pHolderId, ) //copy From Info
+
+                //copy from: [Activity_AttachmentsDrafts]
+                //paste to: [FIDetail_Activity_Attachments]
+
                 if (rtbComments.Text.Trim() != "")
                 {
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to replace your comments with selected record's comments?", "Copy comments", MessageBoxButtons.YesNo);

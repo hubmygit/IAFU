@@ -66,6 +66,7 @@
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
             this.btnSaveDraft = new System.Windows.Forms.Button();
             this.btnAttachment = new System.Windows.Forms.Button();
+            this.colPlaceholdersId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -121,6 +122,7 @@
             this.colFromUser,
             this.colToUser,
             this.colInsDt,
+            this.colPlaceholdersId,
             this.colPlaceholders,
             this.colActivityDescription,
             this.colActionDt});
@@ -394,6 +396,14 @@
             this.btnAttachment.UseVisualStyleBackColor = true;
             this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
             // 
+            // colPlaceholdersId
+            // 
+            this.colPlaceholdersId.Caption = "phId";
+            this.colPlaceholdersId.FieldName = "Placeholders.Id";
+            this.colPlaceholdersId.Name = "colPlaceholdersId";
+            this.colPlaceholdersId.Visible = true;
+            this.colPlaceholdersId.VisibleIndex = 11;
+            // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,5 +476,6 @@
         private System.Windows.Forms.ToolStripMenuItem MIcopy;
         private System.Windows.Forms.Button btnSaveDraft;
         private System.Windows.Forms.Button btnAttachment;
+        private DevExpress.XtraGrid.Columns.GridColumn colPlaceholdersId;
     }
 }

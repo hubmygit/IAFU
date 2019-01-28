@@ -58,7 +58,7 @@ namespace IAFollowUp
             List<string> ret = new List<string>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT Name FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND PlaceholderId = @phId AND UserId = @usrId ";
+            string SelectSt = "SELECT Name FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND isnull(PlaceholderId, 0) = @phId AND UserId = @usrId ";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -158,7 +158,7 @@ namespace IAFollowUp
 
                     SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
 
-                    string SelectSt = "SELECT [FileContents] FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND PlaceholderId = @phId AND UserId = @usrId AND Name = @Filename";
+                    string SelectSt = "SELECT [FileContents] FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND isnull(PlaceholderId, 0) = @phId AND UserId = @usrId AND Name = @Filename";
 
                     SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
                     try
@@ -231,7 +231,7 @@ namespace IAFollowUp
             }
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Name], [FileContents] FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND PlaceholderId = @phId AND UserId = @usrId and Name = @Filename ";
+            string SelectSt = "SELECT [Name], [FileContents] FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @detId AND isnull(PlaceholderId, 0) = @phId AND UserId = @usrId and Name = @Filename ";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -292,22 +292,32 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool InertIntoTable_AttachedFiles(int Id, string fileName, byte[] fileBytes) //INSERT [dbo].[FIDetail_Activity_Attachments]
+        private bool InertIntoTable_AttachedFiles(int dId, int pId, string fileName, byte[] fileBytes) //INSERT [dbo].[Activity_AttachmentsDrafts]
         {
             bool ret = false;
 
-            if (Id > 0 && fileName.Trim().Length > 0)
+            if (dId > 0 && fileName.Trim().Length > 0)
             {
                 SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-                string InsSt = "INSERT INTO [dbo].[Activity_AttachmentsDrafts] (Name, FileContents, DraftId, UsersId, InsDate) VALUES " +
-                     "(@Filename, @FileCont, @Id, @UsersId, getdate() ) ";
+                string InsSt = "INSERT INTO [dbo].[Activity_AttachmentsDrafts] (Name, FileContents, DetailId, PlaceholderId, UserId, InsDate) VALUES " +
+                     "(@Filename, @FileCont, @dId, @pId, @uId, getdate() ) ";
 
                 try
                 {
                     sqlConn.Open();
                     SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
-                    cmd.Parameters.AddWithValue("@Id", Id);
-                    cmd.Parameters.AddWithValue("@UsersId", UserInfo.userDetails.Id);
+                    cmd.Parameters.AddWithValue("@dId", dId);
+
+                    if (pId > 0)
+                    {
+                        cmd.Parameters.AddWithValue("@pId", pId);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@pId", DBNull.Value);
+                    }
+
+                    cmd.Parameters.AddWithValue("@uId", UserInfo.userDetails.Id);
                     cmd.Parameters.AddWithValue("@Filename", fileName);
 
                     //encrypt files
@@ -337,19 +347,21 @@ namespace IAFollowUp
             return ret;
         }
 
-        private bool Delete_SampleFiles(int given_DraftId)
+        private bool Delete_SampleFiles(int given_dId, int given_pId, int given_uId)
         {
             bool ret = false;
 
-            if (given_DraftId > 0)
+            if (given_dId > 0 && given_uId > 0)
             {
                 SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-                string InsSt = "DELETE FROM [dbo].[Activity_AttachmentsDrafts] WHERE DraftId = @Id ";
+                string InsSt = "DELETE FROM [dbo].[Activity_AttachmentsDrafts] WHERE DetailId = @dId AND isnull(PlaceholderId, 0) = @pId AND UserId = @uId ";
                 try
                 {
                     sqlConn.Open();
                     SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
-                    cmd.Parameters.AddWithValue("@Id", given_DraftId);
+                    cmd.Parameters.AddWithValue("@dId", given_dId);
+                    cmd.Parameters.AddWithValue("@pId", given_pId);
+                    cmd.Parameters.AddWithValue("@uId", given_uId);
                     cmd.CommandType = CommandType.Text;
                     //int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -372,8 +384,10 @@ namespace IAFollowUp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            success = true;    
+            //DialogResult = DialogResult.OK;
+            //success = true;    
+
+            Save();
         }
 
 
@@ -407,7 +421,9 @@ namespace IAFollowUp
             }
 
             //delete sample files
-            Delete_SampleFiles(Id); //delete from db
+            Delete_SampleFiles(detId, phId, usrId); //delete from db
+
+            bool IsOk = false;
 
             //update old records
             //insert attachments into db - IsCurrent = 1
@@ -415,16 +431,20 @@ namespace IAFollowUp
             {
                 byte[] attFileBytes = File.ReadAllBytes(lvi.SubItems[1].Text);
 
-                if (!InertIntoTable_AttachedFiles(Id, lvi.SubItems[0].Text, attFileBytes))
+                if (!InertIntoTable_AttachedFiles(detId, phId, lvi.SubItems[0].Text, attFileBytes))
                 {
                     MessageBox.Show("File save failed: " + lvi.SubItems[0].Text);
+                }
+                else
+                {
+                    IsOk = true;
                 }
             }
 
             success = true;
 
             AttCnt = lvAttachedFiles.Items.Count;
-            if (AttCnt > 0)
+            if (AttCnt > 0 && IsOk)
             {
                 MessageBox.Show("File(s) attached successfully!");
             }

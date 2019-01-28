@@ -84,6 +84,7 @@
             this.btnOpenFile.Text = "Open File";
             this.btnOpenFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpenFile.UseVisualStyleBackColor = true;
+            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
             // btnRemoveAll
             // 
@@ -97,6 +98,7 @@
             this.btnRemoveAll.Text = "Remove All";
             this.btnRemoveAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveAll.UseVisualStyleBackColor = true;
+            this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
             // 
             // btnRemoveFile
             // 
@@ -110,6 +112,7 @@
             this.btnRemoveFile.Text = "Remove File";
             this.btnRemoveFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveFile.UseVisualStyleBackColor = true;
+            this.btnRemoveFile.Click += new System.EventHandler(this.btnRemoveFile_Click);
             // 
             // btnAddFiles
             // 
@@ -123,6 +126,7 @@
             this.btnAddFiles.Text = "Add File(s)";
             this.btnAddFiles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddFiles.UseVisualStyleBackColor = true;
+            this.btnAddFiles.Click += new System.EventHandler(this.btnAddFiles_Click);
             // 
             // ActivityAttachments
             // 
