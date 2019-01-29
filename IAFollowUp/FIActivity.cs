@@ -355,6 +355,16 @@ namespace IAFollowUp
                 return;
             }
 
+            if (FIDetail.Finalize(det.Id))
+            {
+                ChangeLog.Insert(new FIDetail() { Id = det.Id, IsFinalized = det.IsFinalized }, new FIDetail() { Id = det.Id, IsFinalized = true }, "FIDetail");
+            }
+            else
+            {
+                MessageBox.Show("The Finalization was not successful!");
+                return;
+            }
+
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = det.Id;
             detActivity.ActivityDescription = new ActivityDescription(12);
@@ -395,6 +405,7 @@ namespace IAFollowUp
                     MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivity.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
             if (det.Placeholders.Count >= 2 && det.Placeholders[1] != null)
             {
                 detActivity.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;

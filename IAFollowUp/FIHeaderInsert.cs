@@ -120,5 +120,23 @@ namespace IAFollowUp
                 }
             }
         }
+
+        //private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+            /*
+            FICategory fiCat = LibFunctions.getComboboxItem<FICategory>(cbCategory);
+
+            if (fiCat.NeedsAttachment)
+            {
+                chbNeedAttachment.Enabled = true;
+                chbNeedAttachment.Checked = true;
+            }
+            else
+            {
+                chbNeedAttachment.Enabled = false;
+                chbNeedAttachment.Checked = false;
+            }
+            */
+        //}
     }
 }

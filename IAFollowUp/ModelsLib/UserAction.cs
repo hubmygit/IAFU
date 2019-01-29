@@ -855,6 +855,17 @@ namespace IAFollowUp
                             break;
                         }
 
+                        if (detail.IsFinalized == false)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Detail is finalized.");
+                            break;
+                        }
+
                         break;
                     }
 
@@ -884,6 +895,17 @@ namespace IAFollowUp
                         {
                             ret = false;
                             MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        if (detail.IsFinalized == false)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Detail is finalized.");
                             break;
                         }
 
@@ -1058,7 +1080,18 @@ namespace IAFollowUp
                             ret = false;
                             MessageBox.Show("You are not authorized to perform this action!");
                             break;
-                        }                     
+                        }
+
+                        if (detail.IsFinalized == false)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Detail is finalized.");
+                            break;
+                        }
 
                         break;
                     }

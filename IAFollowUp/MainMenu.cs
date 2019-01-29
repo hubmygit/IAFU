@@ -81,6 +81,15 @@ namespace IAFollowUp
             ViewDepartments frmDepts = new ViewDepartments();
             frmDepts.ShowDialog();
         }
+
+        private void manageAuditOwnersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //show all audits/headers/details
+
+            //
+
+            //
+        }
         //administrator<----------
 
         //auditors---------->
@@ -122,6 +131,7 @@ namespace IAFollowUp
                 frmFIViewAuditees.ShowDialog();
             }
         }
+                
         //auditees<----------
     }
 }

@@ -28,6 +28,8 @@ namespace IAFollowUp
 
         public string FIId { get; set; }
 
+        //public bool NeedsAttachment { get; set; }
+
         public FIHeader()
         {
         }
