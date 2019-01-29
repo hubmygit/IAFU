@@ -33,6 +33,8 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.cmsActivity = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIcopyComments = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIcopyAttachments = new System.Windows.Forms.ToolStripMenuItem();
             this.fIDetailActivityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -67,8 +69,7 @@
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
             this.btnSaveDraft = new System.Windows.Forms.Button();
             this.btnAttachment = new System.Windows.Forms.Button();
-            this.MIcopyComments = new System.Windows.Forms.ToolStripMenuItem();
-            this.MIcopyAttachments = new System.Windows.Forms.ToolStripMenuItem();
+            this.IA_tsmiIAjudgeMT = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -111,6 +112,20 @@
             this.MIattachments.Text = "Attachments";
             this.MIattachments.Click += new System.EventHandler(this.MIattachments_Click);
             // 
+            // MIcopyComments
+            // 
+            this.MIcopyComments.Name = "MIcopyComments";
+            this.MIcopyComments.Size = new System.Drawing.Size(173, 22);
+            this.MIcopyComments.Text = "Copy Comments";
+            this.MIcopyComments.Click += new System.EventHandler(this.MIcopyComments_Click);
+            // 
+            // MIcopyAttachments
+            // 
+            this.MIcopyAttachments.Name = "MIcopyAttachments";
+            this.MIcopyAttachments.Size = new System.Drawing.Size(173, 22);
+            this.MIcopyAttachments.Text = "Copy Attachments";
+            this.MIcopyAttachments.Click += new System.EventHandler(this.MIcopyAttachments_Click);
+            // 
             // fIDetailActivityBindingSource
             // 
             this.fIDetailActivityBindingSource.DataSource = typeof(IAFollowUp.FIDetailActivity);
@@ -140,30 +155,28 @@
             // 
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
-            this.colId.Visible = true;
-            this.colId.VisibleIndex = 0;
             // 
             // colDetailId
             // 
             this.colDetailId.FieldName = "DetailId";
             this.colDetailId.Name = "colDetailId";
-            this.colDetailId.Visible = true;
-            this.colDetailId.VisibleIndex = 1;
             // 
             // colActivity
             // 
+            this.colActivity.Caption = "Activity";
             this.colActivity.FieldName = "ActivityDescription.Name";
             this.colActivity.Name = "colActivity";
             this.colActivity.Visible = true;
-            this.colActivity.VisibleIndex = 2;
+            this.colActivity.VisibleIndex = 0;
             // 
             // colCommentRtf
             // 
+            this.colCommentRtf.Caption = "Comment";
             this.colCommentRtf.ColumnEdit = this.repositoryItemRichTextEdit1;
             this.colCommentRtf.FieldName = "CommentRtf";
             this.colCommentRtf.Name = "colCommentRtf";
             this.colCommentRtf.Visible = true;
-            this.colCommentRtf.VisibleIndex = 3;
+            this.colCommentRtf.VisibleIndex = 1;
             // 
             // repositoryItemRichTextEdit1
             // 
@@ -174,8 +187,6 @@
             // 
             this.colCommentText.FieldName = "CommentText";
             this.colCommentText.Name = "colCommentText";
-            this.colCommentText.Visible = true;
-            this.colCommentText.VisibleIndex = 4;
             // 
             // colFromUser
             // 
@@ -183,7 +194,7 @@
             this.colFromUser.FieldName = "FromUser.FullName";
             this.colFromUser.Name = "colFromUser";
             this.colFromUser.Visible = true;
-            this.colFromUser.VisibleIndex = 5;
+            this.colFromUser.VisibleIndex = 2;
             // 
             // colToUser
             // 
@@ -191,7 +202,7 @@
             this.colToUser.FieldName = "ToUser.FullName";
             this.colToUser.Name = "colToUser";
             this.colToUser.Visible = true;
-            this.colToUser.VisibleIndex = 6;
+            this.colToUser.VisibleIndex = 3;
             // 
             // colInsDt
             // 
@@ -199,15 +210,13 @@
             this.colInsDt.FieldName = "InsDt";
             this.colInsDt.Name = "colInsDt";
             this.colInsDt.Visible = true;
-            this.colInsDt.VisibleIndex = 7;
+            this.colInsDt.VisibleIndex = 4;
             // 
             // colPlaceholdersId
             // 
             this.colPlaceholdersId.Caption = "phId";
             this.colPlaceholdersId.FieldName = "Placeholders.Id";
             this.colPlaceholdersId.Name = "colPlaceholdersId";
-            this.colPlaceholdersId.Visible = true;
-            this.colPlaceholdersId.VisibleIndex = 11;
             // 
             // colPlaceholders
             // 
@@ -215,15 +224,13 @@
             this.colPlaceholders.FieldName = "Placeholders.Department.Name";
             this.colPlaceholders.Name = "colPlaceholders";
             this.colPlaceholders.Visible = true;
-            this.colPlaceholders.VisibleIndex = 8;
+            this.colPlaceholders.VisibleIndex = 5;
             // 
             // colActivityDescription
             // 
             this.colActivityDescription.Caption = "Side";
             this.colActivityDescription.FieldName = "ActivityDescription.ActionSide.Name";
             this.colActivityDescription.Name = "colActivityDescription";
-            this.colActivityDescription.Visible = true;
-            this.colActivityDescription.VisibleIndex = 9;
             // 
             // colActionDt
             // 
@@ -231,7 +238,7 @@
             this.colActionDt.FieldName = "ActionDt";
             this.colActionDt.Name = "colActionDt";
             this.colActionDt.Visible = true;
-            this.colActionDt.VisibleIndex = 10;
+            this.colActionDt.VisibleIndex = 6;
             // 
             // rtbComments
             // 
@@ -272,7 +279,8 @@
             this.MT_tsmiMTreplyDT,
             this.DT_tsmiDTreplyMT,
             this.MT_tsmiMTextendIA,
-            this.IA_tsmiIAextendMT});
+            this.IA_tsmiIAextendMT,
+            this.IA_tsmiIAjudgeMT});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.actionsToolStripMenuItem.Text = "Actions";
@@ -408,19 +416,13 @@
             this.btnAttachment.UseVisualStyleBackColor = true;
             this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
             // 
-            // MIcopyComments
+            // IA_tsmiIAjudgeMT
             // 
-            this.MIcopyComments.Name = "MIcopyComments";
-            this.MIcopyComments.Size = new System.Drawing.Size(173, 22);
-            this.MIcopyComments.Text = "Copy Comments";
-            this.MIcopyComments.Click += new System.EventHandler(this.MIcopyComments_Click);
-            // 
-            // MIcopyAttachments
-            // 
-            this.MIcopyAttachments.Name = "MIcopyAttachments";
-            this.MIcopyAttachments.Size = new System.Drawing.Size(173, 22);
-            this.MIcopyAttachments.Text = "Copy Attachments";
-            this.MIcopyAttachments.Click += new System.EventHandler(this.MIcopyAttachments_Click);
+            this.IA_tsmiIAjudgeMT.Name = "IA_tsmiIAjudgeMT";
+            this.IA_tsmiIAjudgeMT.Size = new System.Drawing.Size(260, 22);
+            this.IA_tsmiIAjudgeMT.Tag = "1";
+            this.IA_tsmiIAjudgeMT.Text = "(ia) Judge Actions";
+            this.IA_tsmiIAjudgeMT.Click += new System.EventHandler(this.IA_tsmiIAjudgeMT_Click);
             // 
             // FIActivity
             // 
@@ -489,7 +491,6 @@
         private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAextendMT;
         private System.Windows.Forms.DateTimePicker dtpDetail_ActionDate;
         private System.Windows.Forms.Label lblDetail_ActionDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
         public System.Windows.Forms.ContextMenuStrip cmsActivity;
         private System.Windows.Forms.Button btnSaveDraft;
         private System.Windows.Forms.Button btnAttachment;
@@ -497,5 +498,7 @@
         private System.Windows.Forms.ToolStripMenuItem MIattachments;
         private System.Windows.Forms.ToolStripMenuItem MIcopyComments;
         private System.Windows.Forms.ToolStripMenuItem MIcopyAttachments;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
+        private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAjudgeMT;
     }
 }

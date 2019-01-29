@@ -42,7 +42,8 @@ namespace IAFollowUp
         Activity_MTreplyDT,
         Activity_DTreplyMT,
         Activity_MTextendIA,
-        Activity_IAextendMT
+        Activity_IAextendMT,
+        Activity_IAjudgeMT
 
         //auditees<-----
     }
@@ -870,6 +871,49 @@ namespace IAFollowUp
                     }
 
                 case Action.Activity_IAacceptMT:
+                    {
+                        //on which side is the ball! for all placeholders -- all detail owners answered
+                        AuditOwners auditorOwners = FIDetail.getAuditOwners(detail.Id);
+                        if (auditorOwners.IsUser_AuditOwner())
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You are not authorized to perform this action!");
+                            break;
+                        }
+
+                        //on which side is the ball!
+                        ActionSide actionSide = FIDetailActivity.getActionSide_forAuditors(detail);
+
+                        if (actionSide.Id == 1) //IA for all placeholders
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Actions are not currently on your side.");
+                            break;
+                        }
+
+                        if (detail.IsFinalized == false)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Detail is finalized.");
+                            break;
+                        }
+
+                        break;
+                    }
+
+                case Action.Activity_IAjudgeMT:
                     {
                         //on which side is the ball! for all placeholders -- all detail owners answered
                         AuditOwners auditorOwners = FIDetail.getAuditOwners(detail.Id);

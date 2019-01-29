@@ -219,9 +219,11 @@
             // 
             this.colFISubId.Caption = "FI SubId";
             this.colFISubId.FieldName = "FISubId";
+            this.colFISubId.MaxWidth = 70;
             this.colFISubId.Name = "colFISubId";
             this.colFISubId.Visible = true;
             this.colFISubId.VisibleIndex = 0;
+            this.colFISubId.Width = 60;
             // 
             // colDescription
             // 
@@ -231,6 +233,7 @@
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 1;
+            this.colDescription.Width = 64;
             // 
             // repositoryItemMemoEdit3
             // 
@@ -240,9 +243,11 @@
             // 
             this.colActionDt.Caption = "Action Date";
             this.colActionDt.FieldName = "ActionDt";
+            this.colActionDt.MaxWidth = 90;
             this.colActionDt.Name = "colActionDt";
             this.colActionDt.Visible = true;
             this.colActionDt.VisibleIndex = 2;
+            this.colActionDt.Width = 90;
             // 
             // colActionReq
             // 
@@ -252,6 +257,7 @@
             this.colActionReq.Name = "colActionReq";
             this.colActionReq.Visible = true;
             this.colActionReq.VisibleIndex = 3;
+            this.colActionReq.Width = 61;
             // 
             // repositoryItemMemoEdit2
             // 
@@ -261,41 +267,51 @@
             // 
             this.colActionCode.Caption = "Action Code";
             this.colActionCode.FieldName = "ActionCode";
+            this.colActionCode.MaxWidth = 70;
             this.colActionCode.Name = "colActionCode";
             this.colActionCode.Visible = true;
             this.colActionCode.VisibleIndex = 4;
+            this.colActionCode.Width = 70;
             // 
             // colIsClosed
             // 
             this.colIsClosed.Caption = "Closed";
             this.colIsClosed.FieldName = "IsClosed";
+            this.colIsClosed.MaxWidth = 50;
             this.colIsClosed.Name = "colIsClosed";
             this.colIsClosed.Visible = true;
             this.colIsClosed.VisibleIndex = 5;
+            this.colIsClosed.Width = 50;
             // 
             // colIsPublished
             // 
             this.colIsPublished.Caption = "Published";
             this.colIsPublished.FieldName = "IsPublished";
+            this.colIsPublished.MaxWidth = 60;
             this.colIsPublished.Name = "colIsPublished";
             this.colIsPublished.Visible = true;
             this.colIsPublished.VisibleIndex = 6;
+            this.colIsPublished.Width = 60;
             // 
             // colIsFinalized
             // 
             this.colIsFinalized.Caption = "Finalized";
             this.colIsFinalized.FieldName = "IsFinalized";
+            this.colIsFinalized.MaxWidth = 60;
             this.colIsFinalized.Name = "colIsFinalized";
             this.colIsFinalized.Visible = true;
             this.colIsFinalized.VisibleIndex = 7;
+            this.colIsFinalized.Width = 60;
             // 
             // colDetailIsDeleted
             // 
             this.colDetailIsDeleted.Caption = "Deleted";
             this.colDetailIsDeleted.FieldName = "IsDeleted";
+            this.colDetailIsDeleted.MaxWidth = 60;
             this.colDetailIsDeleted.Name = "colDetailIsDeleted";
             this.colDetailIsDeleted.Visible = true;
             this.colDetailIsDeleted.VisibleIndex = 8;
+            this.colDetailIsDeleted.Width = 60;
             // 
             // colCurrentDept1
             // 
@@ -304,6 +320,7 @@
             this.colCurrentDept1.Name = "colCurrentDept1";
             this.colCurrentDept1.Visible = true;
             this.colCurrentDept1.VisibleIndex = 9;
+            this.colCurrentDept1.Width = 60;
             // 
             // colCurrentUser1
             // 
@@ -312,6 +329,7 @@
             this.colCurrentUser1.Name = "colCurrentUser1";
             this.colCurrentUser1.Visible = true;
             this.colCurrentUser1.VisibleIndex = 10;
+            this.colCurrentUser1.Width = 60;
             // 
             // colCurrentDept2
             // 
@@ -320,6 +338,7 @@
             this.colCurrentDept2.Name = "colCurrentDept2";
             this.colCurrentDept2.Visible = true;
             this.colCurrentDept2.VisibleIndex = 11;
+            this.colCurrentDept2.Width = 60;
             // 
             // colCurrentUser2
             // 
@@ -328,6 +347,7 @@
             this.colCurrentUser2.Name = "colCurrentUser2";
             this.colCurrentUser2.Visible = true;
             this.colCurrentUser2.VisibleIndex = 12;
+            this.colCurrentUser2.Width = 60;
             // 
             // colCurrentDept3
             // 
@@ -336,6 +356,7 @@
             this.colCurrentDept3.Name = "colCurrentDept3";
             this.colCurrentDept3.Visible = true;
             this.colCurrentDept3.VisibleIndex = 13;
+            this.colCurrentDept3.Width = 60;
             // 
             // colCurrentUser3
             // 
@@ -344,6 +365,7 @@
             this.colCurrentUser3.Name = "colCurrentUser3";
             this.colCurrentUser3.Visible = true;
             this.colCurrentUser3.VisibleIndex = 14;
+            this.colCurrentUser3.Width = 81;
             // 
             // btnCreateNewHeader
             // 
@@ -508,9 +530,11 @@
             // 
             this.colFIId.Caption = "FI Id";
             this.colFIId.FieldName = "FIId";
+            this.colFIId.MaxWidth = 50;
             this.colFIId.Name = "colFIId";
             this.colFIId.Visible = true;
             this.colFIId.VisibleIndex = 0;
+            this.colFIId.Width = 50;
             // 
             // colTitle
             // 
@@ -521,7 +545,7 @@
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
             this.colTitle.VisibleIndex = 1;
-            this.colTitle.Width = 220;
+            this.colTitle.Width = 389;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -531,7 +555,7 @@
             // 
             this.colFICategory.Caption = "Category";
             this.colFICategory.FieldName = "FICategory.Name";
-            this.colFICategory.MinWidth = 200;
+            this.colFICategory.MaxWidth = 200;
             this.colFICategory.Name = "colFICategory";
             this.colFICategory.Visible = true;
             this.colFICategory.VisibleIndex = 2;
@@ -541,6 +565,7 @@
             // 
             this.colIsDeleted.Caption = "Deleted";
             this.colIsDeleted.FieldName = "IsDeleted";
+            this.colIsDeleted.MaxWidth = 75;
             this.colIsDeleted.Name = "colIsDeleted";
             this.colIsDeleted.Visible = true;
             this.colIsDeleted.VisibleIndex = 3;

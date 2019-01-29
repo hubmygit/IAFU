@@ -882,6 +882,16 @@ namespace IAFollowUp
             }
         }
 
+        private void IA_tsmiIAjudgeMT_Click(object sender, EventArgs e)
+        {
+            if (!UserAction.IsLegal(Action.Activity_IAjudgeMT, null, null, det))
+            {
+                return;
+            }
+
+            //
+        }
+
         private void MIcopy_Click(object sender, EventArgs e)
         {
             /*
@@ -1019,5 +1029,7 @@ namespace IAFollowUp
                 }
             }
         }
+
+        
     }
 }

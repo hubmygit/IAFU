@@ -75,22 +75,20 @@
             // 
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
-            this.colId.Visible = true;
-            this.colId.VisibleIndex = 0;
             // 
             // colFullName
             // 
             this.colFullName.FieldName = "FullName";
             this.colFullName.Name = "colFullName";
             this.colFullName.Visible = true;
-            this.colFullName.VisibleIndex = 1;
+            this.colFullName.VisibleIndex = 0;
             // 
             // colRoleName
             // 
             this.colRoleName.FieldName = "RoleName";
             this.colRoleName.Name = "colRoleName";
             this.colRoleName.Visible = true;
-            this.colRoleName.VisibleIndex = 2;
+            this.colRoleName.VisibleIndex = 1;
             // 
             // DelegateesSelect
             // 

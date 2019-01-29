@@ -36,8 +36,8 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [DetailId], [ActivityDescriptionId], " +
                 "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [CommentRtf])) as CommentRtf, " +
-                "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [CommentText])) as CommentText, " + 
-                "[FromUserId], [ToUserId], [InsDt], [PlaceholderId] " +
+                "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [CommentText])) as CommentText, " +
+                "[FromUserId], [ToUserId], [InsDt], [PlaceholderId], [ActionDt] " +
                               "FROM [dbo].[FIDetail_Activity] " +
                               "WHERE DetailId = @detId " +
                               "ORDER BY InsDt Desc";
@@ -90,6 +90,15 @@ namespace IAFollowUp
 
                     tmp.CommentRtf = reader["CommentRtf"].ToString();
                     tmp.CommentText = reader["CommentText"].ToString();
+
+                    if (reader["ActionDt"] == DBNull.Value)
+                    {
+                        tmp.ActionDt = null;
+                    }
+                    else
+                    {
+                        tmp.ActionDt = Convert.ToDateTime(reader["ActionDt"].ToString());
+                    }
 
                     List<Placeholders> placeholders = FIDetail.getOwners(tmp.DetailId);
                   

@@ -42,6 +42,7 @@
             this.auditBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditRef = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colYear = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCompany = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditNumber = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -57,7 +58,6 @@
             this.colIsCompleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCreateNewAudit = new System.Windows.Forms.Button();
-            this.colAuditRef = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.auditBindingSource)).BeginInit();
@@ -175,13 +175,23 @@
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
             // 
+            // colAuditRef
+            // 
+            this.colAuditRef.FieldName = "AuditRef";
+            this.colAuditRef.Name = "colAuditRef";
+            this.colAuditRef.Visible = true;
+            this.colAuditRef.VisibleIndex = 0;
+            this.colAuditRef.Width = 69;
+            // 
             // colYear
             // 
             this.colYear.Caption = "Year";
             this.colYear.FieldName = "Year";
+            this.colYear.MaxWidth = 50;
             this.colYear.Name = "colYear";
             this.colYear.Visible = true;
             this.colYear.VisibleIndex = 1;
+            this.colYear.Width = 50;
             // 
             // colCompany
             // 
@@ -190,6 +200,7 @@
             this.colCompany.Name = "colCompany";
             this.colCompany.Visible = true;
             this.colCompany.VisibleIndex = 2;
+            this.colCompany.Width = 66;
             // 
             // colAuditNumber
             // 
@@ -198,6 +209,7 @@
             this.colAuditNumber.Name = "colAuditNumber";
             this.colAuditNumber.Visible = true;
             this.colAuditNumber.VisibleIndex = 3;
+            this.colAuditNumber.Width = 66;
             // 
             // colAuditType
             // 
@@ -206,6 +218,7 @@
             this.colAuditType.Name = "colAuditType";
             this.colAuditType.Visible = true;
             this.colAuditType.VisibleIndex = 4;
+            this.colAuditType.Width = 66;
             // 
             // colIASentNumber
             // 
@@ -214,6 +227,7 @@
             this.colIASentNumber.Name = "colIASentNumber";
             this.colIASentNumber.Visible = true;
             this.colIASentNumber.VisibleIndex = 5;
+            this.colIASentNumber.Width = 66;
             // 
             // colTitle
             // 
@@ -223,6 +237,7 @@
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
             this.colTitle.VisibleIndex = 6;
+            this.colTitle.Width = 66;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -235,6 +250,7 @@
             this.colAuditRating.Name = "colAuditRating";
             this.colAuditRating.Visible = true;
             this.colAuditRating.VisibleIndex = 7;
+            this.colAuditRating.Width = 66;
             // 
             // colReportDt
             // 
@@ -243,6 +259,7 @@
             this.colReportDt.Name = "colReportDt";
             this.colReportDt.Visible = true;
             this.colReportDt.VisibleIndex = 8;
+            this.colReportDt.Width = 66;
             // 
             // colAuditor1
             // 
@@ -251,6 +268,7 @@
             this.colAuditor1.Name = "colAuditor1";
             this.colAuditor1.Visible = true;
             this.colAuditor1.VisibleIndex = 9;
+            this.colAuditor1.Width = 66;
             // 
             // colAuditor2
             // 
@@ -259,6 +277,7 @@
             this.colAuditor2.Name = "colAuditor2";
             this.colAuditor2.Visible = true;
             this.colAuditor2.VisibleIndex = 10;
+            this.colAuditor2.Width = 66;
             // 
             // colSupervisor
             // 
@@ -267,6 +286,7 @@
             this.colSupervisor.Name = "colSupervisor";
             this.colSupervisor.Visible = true;
             this.colSupervisor.VisibleIndex = 11;
+            this.colSupervisor.Width = 66;
             // 
             // colIsCompleted
             // 
@@ -275,6 +295,7 @@
             this.colIsCompleted.Name = "colIsCompleted";
             this.colIsCompleted.Visible = true;
             this.colIsCompleted.VisibleIndex = 12;
+            this.colIsCompleted.Width = 66;
             // 
             // colIsDeleted
             // 
@@ -283,6 +304,7 @@
             this.colIsDeleted.Name = "colIsDeleted";
             this.colIsDeleted.Visible = true;
             this.colIsDeleted.VisibleIndex = 13;
+            this.colIsDeleted.Width = 96;
             // 
             // btnCreateNewAudit
             // 
@@ -296,13 +318,6 @@
             this.btnCreateNewAudit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateNewAudit.UseVisualStyleBackColor = true;
             this.btnCreateNewAudit.Click += new System.EventHandler(this.btnCreateNewAudit_Click);
-            // 
-            // colAuditRef
-            // 
-            this.colAuditRef.FieldName = "AuditRef";
-            this.colAuditRef.Name = "colAuditRef";
-            this.colAuditRef.Visible = true;
-            this.colAuditRef.VisibleIndex = 0;
             // 
             // AuditView
             // 

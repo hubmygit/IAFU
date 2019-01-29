@@ -84,7 +84,7 @@ namespace IAFollowUp
 
         private void manageAuditOwnersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //show all audits/headers/details
+            //show all audits/headers/details where 
 
             //
 
