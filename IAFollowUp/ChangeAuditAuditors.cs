@@ -31,6 +31,12 @@ namespace IAFollowUp
                 int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
                 int rowHandle = gridView1.GetRowHandle(index);
 
+                if (thisAudit.Auditor1.Id > 0 && thisAudit.Auditor2.Id > 0)
+                {
+                    MessageBox.Show("There is no empty position to add an auditor!");
+                    return;
+                }
+
                 UserSelector frmUserSel = new UserSelector(Users.getAuditors());
                 if (frmUserSel.ShowDialog() != DialogResult.OK)
                 {
@@ -51,6 +57,7 @@ namespace IAFollowUp
                     if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id))
                     {
                         ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                        MessageBox.Show("Auditors changes on Audit was successful!");
                     }
                 }
                 else if (thisAudit.Auditor2.Id <= 0)
@@ -58,13 +65,10 @@ namespace IAFollowUp
                     if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, newUser.Id))
                     {
                         ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = newUser }, "Audit");
+                        MessageBox.Show("Auditors changes on Audit was successful!");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("There is no empty position to add an auditor!");
-                }
-
+                
                 //refresh
                 auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
                 gridControl1.DataSource = auditBList; //DataSource
@@ -81,6 +85,11 @@ namespace IAFollowUp
 
                 int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
                 int rowHandle = gridView1.GetRowHandle(index);
+
+                if (thisAudit.Supervisor.Id > 0)
+                {
+                    MessageBox.Show("There is no empty position to add a supervisor!");
+                }
 
                 UserSelector frmUserSel = new UserSelector(Users.getAuditors());
                 if (frmUserSel.ShowDialog() != DialogResult.OK)
@@ -102,13 +111,10 @@ namespace IAFollowUp
                     if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, newUser.Id))
                     {
                         ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = newUser }, "Audit");
+                        MessageBox.Show("Auditors changes on Audit was successful!");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("There is no empty position to add a supervisor!");
-                }
-
+                
                 //refresh
                 auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
                 gridControl1.DataSource = auditBList; //DataSource
@@ -140,15 +146,27 @@ namespace IAFollowUp
                     //-----------------------------                    
                     if (remUser.Id == thisAudit.Auditor1.Id) //1st
                     {
+                        bool success = true;
                         //update set 1st = 2nd
                         if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, 0))
                         {
                             ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = null }, "Audit");
                         }
-
+                        else
+                        {
+                            success = false;
+                        }
                         if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, thisAudit.Auditor2.Id))
                         {
                             ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor2 }, "Audit");
+                        }
+                        else
+                        {
+                            success = false;
+                        }
+                        if (success)
+                        {
+                            MessageBox.Show("Auditors changes on Audit was successful!");
                         }
                         //ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor2, Auditor2 = null }, "Audit");
                     }
@@ -158,6 +176,7 @@ namespace IAFollowUp
                         if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, 0))
                         {
                             ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = null }, "Audit");
+                            MessageBox.Show("Auditors changes on Audit was successful!");
                         }
                     }
                 }
@@ -188,6 +207,7 @@ namespace IAFollowUp
                     if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, 0))
                     {
                         ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = null }, "Audit");
+                        MessageBox.Show("Auditors changes on Audit was successful!");
                     }
                 }
                 else
@@ -244,6 +264,7 @@ namespace IAFollowUp
                         if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id))
                         {
                             ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                            MessageBox.Show("Auditors changes on Audit was successful!");
                         }
                     }
                     else if (remUser.Id == thisAudit.Auditor2.Id)
@@ -251,6 +272,7 @@ namespace IAFollowUp
                         if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, newUser.Id))
                         {
                             ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = newUser }, "Audit");
+                            MessageBox.Show("Auditors changes on Audit was successful!");
                         }
                     }
                 }
@@ -259,6 +281,7 @@ namespace IAFollowUp
                     if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id))
                     {
                         ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                        MessageBox.Show("Auditors changes on Audit was successful!");
                     }
                 }
 
@@ -298,6 +321,7 @@ namespace IAFollowUp
                 if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, newUser.Id))
                 {
                     ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = newUser }, "Audit");
+                    MessageBox.Show("Auditors changes on Audit was successful!");
                 }
 
                 //refresh

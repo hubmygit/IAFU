@@ -1095,7 +1095,7 @@ namespace IAFollowUp
             }
             else if (auditor == AuditOwnerUser.Supervisor)
             {
-                InsSt += "SET [Supervisor] = @AuditorId, ";
+                InsSt += "SET [SupervisorId] = @AuditorId, ";
             }
             InsSt += "[UpdUserId] = @UpdUserId, [UpdDt] = getDate() WHERE Id = @auditId ";
 

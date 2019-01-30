@@ -87,7 +87,7 @@
             this.MIchangeOwner,
             this.MIchangeSupervisor});
             this.cmsOwners.Name = "cmsHeader";
-            this.cmsOwners.Size = new System.Drawing.Size(207, 158);
+            this.cmsOwners.Size = new System.Drawing.Size(207, 136);
             // 
             // MIaddOwner
             // 
@@ -200,21 +200,21 @@
             // 
             // colAuditor1
             // 
-            this.colAuditor1.FieldName = "Auditor1";
+            this.colAuditor1.FieldName = "Auditor1.FullName";
             this.colAuditor1.Name = "colAuditor1";
             this.colAuditor1.Visible = true;
             this.colAuditor1.VisibleIndex = 6;
             // 
             // colAuditor2
             // 
-            this.colAuditor2.FieldName = "Auditor2";
+            this.colAuditor2.FieldName = "Auditor2.FullName";
             this.colAuditor2.Name = "colAuditor2";
             this.colAuditor2.Visible = true;
             this.colAuditor2.VisibleIndex = 7;
             // 
             // colSupervisor
             // 
-            this.colSupervisor.FieldName = "Supervisor";
+            this.colSupervisor.FieldName = "Supervisor.FullName";
             this.colSupervisor.Name = "colSupervisor";
             this.colSupervisor.Visible = true;
             this.colSupervisor.VisibleIndex = 8;
