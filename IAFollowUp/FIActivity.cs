@@ -139,6 +139,13 @@ namespace IAFollowUp
                 }
 
                 //send email
+                //----->
+                EmailProperties emailProp = new EmailProperties();
+                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                emailProp.Recipients = iaOwners.getRecipients();
+                emailProp.Subject = "";
+                emailProp.Body = "";
+                //<-----
 
                 //create alerts
 

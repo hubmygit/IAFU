@@ -33,5 +33,41 @@ namespace IAFollowUp
             
             return ret;
         }
+
+        public List<Recipient> getRecipients()
+        {
+            List<Recipient> ret = new List<Recipient>();
+
+            if (Auditor1.Id > 0)
+            {
+                Recipient thisRecipient = new Recipient() { FullName = Auditor1.FullName, Email = Auditor1.getEmail() };
+                ret.Add(thisRecipient);
+            }
+
+            if (Auditor2.Id > 0)
+            {
+                Recipient thisRecipient = new Recipient() { FullName = Auditor2.FullName, Email = Auditor2.getEmail() };
+                ret.Add(thisRecipient);
+            }
+
+            if (Supervisor.Id > 0)
+            {
+                Recipient thisRecipient = new Recipient() { FullName = Supervisor.FullName, Email = Supervisor.getEmail() };
+                ret.Add(thisRecipient);
+            }
+
+            //foreach (Users usr in usersList)
+            //{
+            //    Recipient thisRecipient = new Recipient() { FullName = usr.FullName, Email = usr.getEmail() };
+            //    if (distinctRecipients.Exists(i => i.Email == thisRecipient.Email) == false || distinctRecipients.Exists(i => i.FullName == thisRecipient.FullName) == false)
+            //    {
+            //        distinctRecipients.Add(thisRecipient);
+            //    }
+            //}
+
+
+
+            return ret;
+        }
     }
 }
