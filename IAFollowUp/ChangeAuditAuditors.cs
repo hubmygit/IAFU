@@ -27,7 +27,10 @@ namespace IAFollowUp
             {
                 int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
-                                
+
+                int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                int rowHandle = gridView1.GetRowHandle(index);
+
                 UserSelector frmUserSel = new UserSelector(Users.getAuditors());
                 if (frmUserSel.ShowDialog() != DialogResult.OK)
                 {
@@ -45,18 +48,27 @@ namespace IAFollowUp
 
                 if (thisAudit.Auditor1.Id <= 0) //almost never...
                 {
-                    Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id);
-                    ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                    if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id))
+                    {
+                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                    }
                 }
                 else if (thisAudit.Auditor2.Id <= 0)
                 {
-                    Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, newUser.Id);
-                    ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = newUser }, "Audit");
+                    if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, newUser.Id))
+                    {
+                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = newUser }, "Audit");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("There is no empty position to add an auditor!");
                 }
+
+                //refresh
+                auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
+                gridControl1.DataSource = auditBList; //DataSource
+                gridView1.FocusedRowHandle = rowHandle;
             }
         }
 
@@ -66,6 +78,9 @@ namespace IAFollowUp
             {
                 int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
+
+                int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                int rowHandle = gridView1.GetRowHandle(index);
 
                 UserSelector frmUserSel = new UserSelector(Users.getAuditors());
                 if (frmUserSel.ShowDialog() != DialogResult.OK)
@@ -84,13 +99,20 @@ namespace IAFollowUp
 
                 if (thisAudit.Supervisor.Id <= 0) 
                 {
-                    Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, newUser.Id);
-                    ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = newUser }, "Audit");
+                    if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, newUser.Id))
+                    {
+                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = newUser }, "Audit");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("There is no empty position to add a supervisor!");
                 }
+
+                //refresh
+                auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
+                gridControl1.DataSource = auditBList; //DataSource
+                gridView1.FocusedRowHandle = rowHandle;
             }
         }
 
@@ -100,6 +122,9 @@ namespace IAFollowUp
             {
                 int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
+
+                int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                int rowHandle = gridView1.GetRowHandle(index);
 
                 if (thisAudit.Auditor1.Id > 0 && thisAudit.Auditor2.Id > 0)
                 {
@@ -116,15 +141,24 @@ namespace IAFollowUp
                     if (remUser.Id == thisAudit.Auditor1.Id) //1st
                     {
                         //update set 1st = 2nd
-                        Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, 0);
-                        Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, thisAudit.Auditor2.Id);
-                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor2, Auditor2 = null }, "Audit");
+                        if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, 0))
+                        {
+                            ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = null }, "Audit");
+                        }
+
+                        if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, thisAudit.Auditor2.Id))
+                        {
+                            ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor2 }, "Audit");
+                        }
+                        //ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor2, Auditor2 = null }, "Audit");
                     }
                     else if (remUser.Id == thisAudit.Auditor2.Id) //2nd
                     {
                         //update set 2nd = NULL
-                        Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, 0);
-                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = null }, "Audit");
+                        if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, 0))
+                        {
+                            ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = null }, "Audit");
+                        }
                     }
                 }
                 else
@@ -132,6 +166,10 @@ namespace IAFollowUp
                     MessageBox.Show("You cannot remove Auditor1! Try 'Change' function instead to update user.");
                 }
 
+                //refresh
+                auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
+                gridControl1.DataSource = auditBList; //DataSource
+                gridView1.FocusedRowHandle = rowHandle;
             }
         }
 
@@ -142,15 +180,25 @@ namespace IAFollowUp
                 int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
 
+                int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                int rowHandle = gridView1.GetRowHandle(index);
+
                 if (thisAudit.Supervisor.Id > 0)
                 {
-                    Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, 0);
-                    ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = null }, "Audit");
+                    if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, 0))
+                    {
+                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = null }, "Audit");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("This record has no supervisor to remove!");
                 }
+
+                //refresh
+                auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
+                gridControl1.DataSource = auditBList; //DataSource
+                gridView1.FocusedRowHandle = rowHandle;
             }
         }
 
@@ -160,6 +208,9 @@ namespace IAFollowUp
             {
                 int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
+
+                int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                int rowHandle = gridView1.GetRowHandle(index);
 
                 MessageBox.Show("Please select the new auditor to be added.");
                 UserSelector frmUserSel = new UserSelector(Users.getAuditors());
@@ -190,21 +241,31 @@ namespace IAFollowUp
 
                     if (remUser.Id == thisAudit.Auditor1.Id)
                     {
-                        Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id);
-                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                        if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id))
+                        {
+                            ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                        }
                     }
                     else if (remUser.Id == thisAudit.Auditor2.Id)
                     {
-                        Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, newUser.Id);
-                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = newUser }, "Audit");
+                        if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor2, newUser.Id))
+                        {
+                            ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor2 = thisAudit.Auditor2 }, new Audit() { Id = thisAudit.Id, Auditor2 = newUser }, "Audit");
+                        }
                     }
                 }
                 else //auditor1
                 {
-                    Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id);
-                    ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                    if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Auditor1, newUser.Id))
+                    {
+                        ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Auditor1 = thisAudit.Auditor1 }, new Audit() { Id = thisAudit.Id, Auditor1 = newUser }, "Audit");
+                    }
                 }
 
+                //refresh
+                auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
+                gridControl1.DataSource = auditBList; //DataSource
+                gridView1.FocusedRowHandle = rowHandle;
             }
         }
 
@@ -214,6 +275,9 @@ namespace IAFollowUp
             {
                 int AuditId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
                 Audit thisAudit = auditBList.Where(i => i.Id == AuditId).First();
+
+                int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);
+                int rowHandle = gridView1.GetRowHandle(index);
 
                 MessageBox.Show("Please select the new auditor (supervisor) to be added.");
                 UserSelector frmUserSel = new UserSelector(Users.getAuditors());
@@ -231,8 +295,15 @@ namespace IAFollowUp
 
                 Users newUser = frmUserSel.usr;
 
-                Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, newUser.Id);
-                ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = newUser }, "Audit");
+                if (Audit.UpdateAuditor(thisAudit.Id, Audit.AuditOwnerUser.Supervisor, newUser.Id))
+                {
+                    ChangeLog.Insert(new Audit() { Id = thisAudit.Id, Supervisor = thisAudit.Supervisor }, new Audit() { Id = thisAudit.Id, Supervisor = newUser }, "Audit");
+                }
+
+                //refresh
+                auditBList = Audit.SelectPending_ToChangeAuditors(); //BindingList
+                gridControl1.DataSource = auditBList; //DataSource
+                gridView1.FocusedRowHandle = rowHandle;
             }
         }
     }
