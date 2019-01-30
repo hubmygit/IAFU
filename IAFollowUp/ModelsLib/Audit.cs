@@ -580,7 +580,7 @@ namespace IAFollowUp
                     };
 
 
-                    if(tmp.Placeholders.Count >= 1 && tmp.Placeholders[0] != null)
+                    if (tmp.Placeholders.Count >= 1 && tmp.Placeholders[0] != null)
                     {
                         tmp.CurrentOwner1 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[0].Id);
                     }
@@ -621,7 +621,7 @@ namespace IAFollowUp
         public static List<FIHeader> getFIHeaders(int AuditId, bool showDeleted, AuditOwners auditOwners)
         {
             List<FIHeader> ret = new List<FIHeader>();
-            
+
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
                               "H.[FICategoryId], H.[FIId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
@@ -679,7 +679,7 @@ namespace IAFollowUp
                     }
                     //owner ή έστω και ένα detail published (από αυτά που επιτρέπεται να δει!)
                     //αν ενα header δεν έχει details, οι υπόλοιποι auditors δεν θα δουν τίποτα...
-                    else if (auditOwners.IsUser_AuditOwner() || tmp.FIDetails.Exists(i => i.IsPublished == true)) 
+                    else if (auditOwners.IsUser_AuditOwner() || tmp.FIDetails.Exists(i => i.IsPublished == true))
                     {
                         ret.Add(tmp);
                     }
@@ -687,7 +687,7 @@ namespace IAFollowUp
 
                 }
                 reader.Close();
-                sqlConn.Close();                
+                sqlConn.Close();
             }
             catch (Exception ex)
             {
@@ -881,7 +881,7 @@ namespace IAFollowUp
                     return false;
                 }
             }
-                                             
+
             return ret;
         }
 
@@ -945,12 +945,12 @@ namespace IAFollowUp
             return ret;
         }
 
-    public static bool UpdateProtocolNums(Audit givenAudit)
-    {
+        public static bool UpdateProtocolNums(Audit givenAudit)
+        {
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[Audit] SET [AuditNumber] = @AuditNumber, [IASentNumber] = @IASentNumber, [ReportDt] = @ReportDt, [AuditRef] = @AuditRef, " + 
+            string InsSt = "UPDATE [dbo].[Audit] SET [AuditNumber] = @AuditNumber, [IASentNumber] = @IASentNumber, [ReportDt] = @ReportDt, [AuditRef] = @AuditRef, " +
                 "[UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                 "WHERE Id = @auditId ";
             try
@@ -964,6 +964,156 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@IASentNumber", givenAudit.IASentNumber);
                 cmd.Parameters.AddWithValue("@ReportDt", givenAudit.ReportDt.Date);
                 cmd.Parameters.AddWithValue("@AuditRef", givenAudit.AuditRef);
+                cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        public static BindingList<Audit> SelectPending_ToChangeAuditors()
+        {
+            BindingList<Audit> ret = new BindingList<Audit>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "A.[ReportDt], " +
+                              "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
+                              "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
+                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted, A.[AuditRef] " +
+                              "FROM [dbo].[Audit] A WHERE A.id in " +
+            "( select A.Id " +
+            "FROM [Audit] A left outer join [FIHeader] H on A.Id = H.AuditId left outer join [FIDetail] D on H.Id = D.FIHeaderId " +
+            "WHERE isnull(A.IsDeleted, 0) = 0 and isnull(H.IsDeleted, 0) = 0 and isnull(D.IsDeleted, 0) = 0 " +
+            "GROUP BY A.Id HAVING count(D.IsFinalized) < count(*) "+ 
+            ") ORDER BY A.Id "; 
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    AuditRating AuditRating_rating;
+                    Users Auditor2_User, Supervisor_User;
+
+                    if (reader["Auditor2Id"] == System.DBNull.Value)
+                    {
+                        Auditor2_User = new Users();
+                    }
+                    else
+                    {
+                        Auditor2_User = new Users(Convert.ToInt32(reader["Auditor2Id"].ToString()));
+                    }
+                    if (reader["SupervisorId"] == System.DBNull.Value)
+                    {
+                        Supervisor_User = new Users();
+                    }
+                    else
+                    {
+                        Supervisor_User = new Users(Convert.ToInt32(reader["SupervisorId"].ToString()));
+                    }
+                    if (reader["AuditRatingId"] == System.DBNull.Value)
+                    {
+                        AuditRating_rating = new AuditRating();
+                    }
+                    else
+                    {
+                        AuditRating_rating = new AuditRating(Convert.ToInt32(reader["AuditRatingId"].ToString()));
+                    }
+
+                    AuditOwners auditOwners = new AuditOwners(new Users(Convert.ToInt32(reader["Auditor1Id"].ToString())), Auditor2_User, Supervisor_User);
+
+                    ret.Add(new Audit()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        Year = Convert.ToInt32(reader["Year"].ToString()),
+                        Company = new Companies(Convert.ToInt32(reader["CompanyId"].ToString())),
+                        AuditType = new AuditTypes(Convert.ToInt32(reader["AuditTypeId"].ToString())),
+                        Title = reader["Title"].ToString(),
+                        ReportDt = Convert.ToDateTime(reader["ReportDt"].ToString()),
+                        Auditor1 = new Users(Convert.ToInt32(reader["Auditor1Id"].ToString())),
+                        Auditor2 = Auditor2_User, //new Users(Convert.ToInt32(reader["Auditor2Id"].ToString())),
+                        Supervisor = Supervisor_User, //new Users(Convert.ToInt32(reader["SupervisorId"].ToString())),
+                        IsCompleted = Convert.ToBoolean(reader["IsCompleted"].ToString()),
+                        AuditNumber = reader["AuditNumber"].ToString(),
+                        IASentNumber = reader["IASentNumber"].ToString(),
+                        AuditRating = AuditRating_rating,
+                        AuditRef = reader["AuditRef"].ToString(),
+                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
+                        FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()), false, auditOwners)
+                    });
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
+        public enum AuditOwnerUser
+        {
+            Auditor1,
+            Auditor2,
+            Supervisor
+        }
+
+        public static bool UpdateAuditor(int auditId, AuditOwnerUser auditor, int userId)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+
+            string InsSt = "UPDATE [dbo].[Audit] ";
+            if (auditor == AuditOwnerUser.Auditor1)
+            {
+                InsSt += "SET [Auditor1Id] = @AuditorId, ";
+            }
+            else if (auditor == AuditOwnerUser.Auditor2)
+            {
+                InsSt += "SET [Auditor2Id] = @AuditorId, ";
+            }
+            else if (auditor == AuditOwnerUser.Supervisor)
+            {
+                InsSt += "SET [Supervisor] = @AuditorId, ";
+            }
+            InsSt += "[UpdUserId] = @UpdUserId, [UpdDt] = getDate() WHERE Id = @auditId ";
+
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@auditId", auditId);
+                if (userId > 0)
+                {
+                    cmd.Parameters.AddWithValue("@AuditorId", userId);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@AuditorId", DBNull.Value);
+                }
                 cmd.Parameters.AddWithValue("@UpdUserId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;

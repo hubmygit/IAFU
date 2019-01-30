@@ -188,5 +188,41 @@ namespace IAFollowUp
 
             return ret;
         }
+
+        public static List<Users> getAuditors()
+        {
+            List<Users> ret = new List<Users>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT U.[Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
+                              "FROM [dbo].[Roles] R, [dbo].[Users] U " +
+                              "WHERE R.Id = U.RolesId AND R.Id = 3 ";
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret.Add(new Users()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        FullName = reader["FullName"].ToString(),
+                        RoleName = reader["RoleName"].ToString()
+                    });
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
     }
 }

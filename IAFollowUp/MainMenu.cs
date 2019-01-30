@@ -84,11 +84,8 @@ namespace IAFollowUp
 
         private void manageAuditOwnersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //show all audits/headers/details where 
-
-            //
-
-            //
+            ChangeAuditAuditors frmChangeAuditors = new ChangeAuditAuditors();
+            frmChangeAuditors.ShowDialog();
         }
         //administrator<----------
 

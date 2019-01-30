@@ -109,6 +109,12 @@
     <Compile Include="AuditView.Designer.cs">
       <DependentUpon>AuditView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeAuditAuditors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeAuditAuditors.Designer.cs">
+      <DependentUpon>ChangeAuditAuditors.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangeLogView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,12 @@
     </Compile>
     <Compile Include="PlaceholderRoleSelect.Designer.cs">
       <DependentUpon>PlaceholderRoleSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserSelector.Designer.cs">
+      <DependentUpon>UserSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewDepartments.cs">
       <SubType>Form</SubType>
@@ -300,6 +312,9 @@
     <EmbeddedResource Include="AuditView.resx">
       <DependentUpon>AuditView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChangeAuditAuditors.resx">
+      <DependentUpon>ChangeAuditAuditors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangeLogView.resx">
       <DependentUpon>ChangeLogView.cs</DependentUpon>
     </EmbeddedResource>
@@ -326,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlaceholderRoleSelect.resx">
       <DependentUpon>PlaceholderRoleSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserSelector.resx">
+      <DependentUpon>UserSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewDepartments.resx">
       <DependentUpon>ViewDepartments.cs</DependentUpon>
