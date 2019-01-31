@@ -153,14 +153,14 @@ namespace IAFollowUp
                 emailProps.Recipients = iaOwners.getRecipients();
                 emailProps.Subject = "";
                 emailProps.Body = "";
-                if (Email.SendBcc(emailProps))
-                {
-                    MessageBox.Show("Email(s) sent!");
-                }
-                else
-                {
-                    MessageBox.Show("Emails have not been sent!");
-                }
+                //if (Email.SendBcc(emailProps))
+                //{
+                //    MessageBox.Show("Email(s) sent!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Emails have not been sent!");
+                //}
                 //<-----
 
                 Close(); //or stay and refresh                
@@ -232,14 +232,14 @@ namespace IAFollowUp
                 emailProps.Recipients = iaOwners.getRecipients();
                 emailProps.Subject = "";
                 emailProps.Body = "";
-                if (Email.SendBcc(emailProps))
-                {
-                    MessageBox.Show("Email(s) sent!");
-                }
-                else
-                {
-                    MessageBox.Show("Emails have not been sent!");
-                }
+                //if (Email.SendBcc(emailProps))
+                //{
+                //    MessageBox.Show("Email(s) sent!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Emails have not been sent!");
+                //}
                 //<-----
 
                 Close(); //or stay and refresh   
@@ -295,14 +295,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
 
                     //create alerts
@@ -343,14 +343,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
 
                     //create alerts
@@ -391,14 +391,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
 
                     //create alerts
@@ -477,14 +477,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
                 }
                 else
@@ -524,14 +524,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
                 }
                 else
@@ -570,14 +570,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
                 }
                 else
@@ -662,14 +662,14 @@ namespace IAFollowUp
                 emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                 emailProps.Subject = "";
                 emailProps.Body = "";
-                if (Email.SendBcc(emailProps))
-                {
-                    MessageBox.Show("Email(s) sent!");
-                }
-                else
-                {
-                    MessageBox.Show("Emails have not been sent!");
-                }
+                //if (Email.SendBcc(emailProps))
+                //{
+                //    MessageBox.Show("Email(s) sent!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Emails have not been sent!");
+                //}
                 //<-----
 
                 Close(); //or stay and refresh   
@@ -750,14 +750,14 @@ namespace IAFollowUp
                 emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                 emailProps.Subject = "";
                 emailProps.Body = "";
-                if (Email.SendBcc(emailProps))
-                {
-                    MessageBox.Show("Email(s) sent!");
-                }
-                else
-                {
-                    MessageBox.Show("Emails have not been sent!");
-                }
+                //if (Email.SendBcc(emailProps))
+                //{
+                //    MessageBox.Show("Email(s) sent!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Emails have not been sent!");
+                //}
                 //<-----
 
                 Close(); //or stay and refresh   
@@ -818,14 +818,14 @@ namespace IAFollowUp
                 emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                 emailProps.Subject = "";
                 emailProps.Body = "";
-                if (Email.SendBcc(emailProps))
-                {
-                    MessageBox.Show("Email(s) sent!");
-                }
-                else
-                {
-                    MessageBox.Show("Emails have not been sent!");
-                }
+                //if (Email.SendBcc(emailProps))
+                //{
+                //    MessageBox.Show("Email(s) sent!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Emails have not been sent!");
+                //}
                 //<-----
 
                 Close(); //or stay and refresh   
@@ -892,14 +892,14 @@ namespace IAFollowUp
                 emailProps.Recipients = iaOwners.getRecipients();
                 emailProps.Subject = "";
                 emailProps.Body = "";
-                if (Email.SendBcc(emailProps))
-                {
-                    MessageBox.Show("Email(s) sent!");
-                }
-                else
-                {
-                    MessageBox.Show("Emails have not been sent!");
-                }
+                //if (Email.SendBcc(emailProps))
+                //{
+                //    MessageBox.Show("Email(s) sent!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Emails have not been sent!");
+                //}
                 //<-----
 
                 Close(); //or stay and refresh   
@@ -975,14 +975,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
 
                     //create alerts
@@ -1023,14 +1023,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
 
                     //create alerts
@@ -1071,14 +1071,14 @@ namespace IAFollowUp
                     emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
-                    if (Email.SendBcc(emailProps))
-                    {
-                        MessageBox.Show("Email(s) sent!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Emails have not been sent!");
-                    }
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
                     //<-----
 
                     //create alerts

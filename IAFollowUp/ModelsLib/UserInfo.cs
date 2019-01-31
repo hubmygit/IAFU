@@ -212,7 +212,31 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static DateTime getSqlDatetimeNow()
+        {
+            DateTime ret = DateTime.Now;
 
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT getdate() as sqldt ";
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = Convert.ToDateTime(reader["sqldt"].ToString());
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
 
         public static bool IsPasswordExpired() //(DateTime PassUpdDate, int PasswordPeriod)
         {
@@ -220,7 +244,8 @@ namespace IAFollowUp
 
             DateTime expirationDate = passUpdDate.AddDays(roleDetails.PasswordPeriod);
 
-            if (expirationDate < DateTime.Now) // ToDo:  PcTime! -> we need to check server (SQL) time
+            //if (expirationDate < DateTime.Now) 
+            if(expirationDate < getSqlDatetimeNow()) //PcTime -> server (SQL) time
             {
                 ret = true;
             }
