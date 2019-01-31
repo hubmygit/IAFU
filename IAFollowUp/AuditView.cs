@@ -289,8 +289,12 @@ namespace IAFollowUp
                 if (detailsToSendEmail.Count > 0) //(detailsPublished - Closed) > 0 then send email
                 {
                     EmailProperties emailProp = new EmailProperties();
-                    emailProp.Subject = "ΕΣΩΤΕΡΙΚΟΣ ΕΛΕΓΧΟΣ: " + thisAudit.Title;
-                    emailProp.Body = "Σας ενημερώνουμε ότι έχουν καταχωρηθεί στην εφαρμογή του Εσωτερικού Ελέγχου ευρήματα / ενέργειες της περιοχής ευθύνης σας. Παρακαλούμε για τις ενέργειές σας.";
+                    //emailProp.Subject = "ΕΣΩΤΕΡΙΚΟΣ ΕΛΕΓΧΟΣ: " + thisAudit.Title;
+                    //emailProp.Body = "Σας ενημερώνουμε ότι έχουν καταχωρηθεί στην εφαρμογή του Εσωτερικού Ελέγχου ευρήματα / ενέργειες της περιοχής ευθύνης σας. Παρακαλούμε για τις ενέργειές σας.";
+                    ActivityDescription actDescr = new ActivityDescription(1);
+                    emailProp.Subject = actDescr.EmailSubject;
+                    emailProp.Body = actDescr.EmailBody.Replace("@", thisAudit.Title);
+
                     List<Recipient> distinctRecipients = new List<Recipient>();
                     foreach (FIDetail det in detailsToSendEmail)
                     {

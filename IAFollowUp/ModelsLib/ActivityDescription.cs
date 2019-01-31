@@ -13,13 +13,17 @@ namespace IAFollowUp
         public string Name { get; set; }
         public bool IsIaAction { get; set; }
         public ActionSide ActionSide { get; set; }
+        public string EmailSubject { get; set; }
+        public string EmailBody { get; set; }
+
+
         public ActivityDescription()
         {
         }
         public ActivityDescription(int givenId)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name], [IsIaAction], [ActionSideId] " +
+            string SelectSt = "SELECT [Id], [Name], [IsIaAction], [ActionSideId], [EmailSubject], [EmailBody] " +
                               "FROM [dbo].[Activity_Descriptions] " +
                               "WHERE Id = " + givenId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -33,6 +37,8 @@ namespace IAFollowUp
                     Name = reader["Name"].ToString();
                     IsIaAction = Convert.ToBoolean(reader["IsIaAction"].ToString());
                     ActionSide = new ActionSide(Convert.ToInt32(reader["ActionSideId"].ToString()));
+                    EmailSubject = reader["EmailSubject"].ToString();
+                    EmailBody = reader["EmailBody"].ToString();
                 }
                 reader.Close();
                 sqlConn.Close();
@@ -48,7 +54,7 @@ namespace IAFollowUp
             List<ActivityDescription> ret = new List<ActivityDescription>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name], [IsIaAction], [ActionSideId] " +
+            string SelectSt = "SELECT [Id], [Name], [IsIaAction], [ActionSideId], [EmailSubject], [EmailBody] " +
                               "FROM [dbo].[Activity_Descriptions] ";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -63,7 +69,9 @@ namespace IAFollowUp
                         Id = Convert.ToInt32(reader["Id"].ToString()),
                         Name = reader["Name"].ToString(),
                         IsIaAction = Convert.ToBoolean(reader["IsIaAction"].ToString()),
-                        ActionSide = new ActionSide(Convert.ToInt32(reader["ActionSideId"].ToString()))
+                        ActionSide = new ActionSide(Convert.ToInt32(reader["ActionSideId"].ToString())),
+                        EmailSubject = reader["EmailSubject"].ToString(),
+                        EmailBody = reader["EmailBody"].ToString()
                     });
                 }
                 reader.Close();

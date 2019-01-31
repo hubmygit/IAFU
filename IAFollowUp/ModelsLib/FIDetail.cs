@@ -953,5 +953,41 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static string getEmailMessageInfo(int detailId)
+        {
+            string ret = "";
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) + ' (' + H.FIId + '/' + D.FISubId + '/' + D.ActionCode + ')' as EmailMessage " +
+                              "FROM [dbo].[FIDetail] D left outer join " +
+                              "     [dbo].[FIHeader] H on D.FIHeaderId = H.Id left outer join " +
+                              "     [dbo].[Audit] A on H.AuditId = A.Id " +
+                              "WHERE D.Id = @detailId";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = reader["EmailMessage"].ToString();
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
+
     }
 }
