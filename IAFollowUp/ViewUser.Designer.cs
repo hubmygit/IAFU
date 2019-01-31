@@ -46,6 +46,7 @@
             this.MIinitPass = new System.Windows.Forms.ToolStripMenuItem();
             this.MIdisable = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNew = new System.Windows.Forms.Button();
+            this.MIenable = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserView)).BeginInit();
             this.cmsOnGrid.SuspendLayout();
             this.SuspendLayout();
@@ -157,28 +158,29 @@
             this.cmsOnGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MIupdate,
             this.MIinitPass,
-            this.MIdisable});
+            this.MIdisable,
+            this.MIenable});
             this.cmsOnGrid.Name = "cmsOnGrid";
-            this.cmsOnGrid.Size = new System.Drawing.Size(171, 70);
+            this.cmsOnGrid.Size = new System.Drawing.Size(195, 114);
             // 
             // MIupdate
             // 
             this.MIupdate.Name = "MIupdate";
-            this.MIupdate.Size = new System.Drawing.Size(170, 22);
+            this.MIupdate.Size = new System.Drawing.Size(194, 22);
             this.MIupdate.Text = "Edit";
             this.MIupdate.Click += new System.EventHandler(this.MIupdate_Click);
             // 
             // MIinitPass
             // 
             this.MIinitPass.Name = "MIinitPass";
-            this.MIinitPass.Size = new System.Drawing.Size(170, 22);
+            this.MIinitPass.Size = new System.Drawing.Size(194, 22);
             this.MIinitPass.Text = "Initialize Password";
             this.MIinitPass.Click += new System.EventHandler(this.MIinitPass_Click);
             // 
             // MIdisable
             // 
             this.MIdisable.Name = "MIdisable";
-            this.MIdisable.Size = new System.Drawing.Size(170, 22);
+            this.MIdisable.Size = new System.Drawing.Size(194, 22);
             this.MIdisable.Text = "Disable";
             this.MIdisable.Click += new System.EventHandler(this.MIdisable_Click);
             // 
@@ -192,6 +194,13 @@
             this.btnNew.Text = "New User";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // MIenable
+            // 
+            this.MIenable.Name = "MIenable";
+            this.MIenable.Size = new System.Drawing.Size(194, 22);
+            this.MIenable.Text = "Enable (Last password)";
+            this.MIenable.Click += new System.EventHandler(this.MIenable_Click);
             // 
             // ViewUser
             // 
@@ -227,5 +236,6 @@
         private System.Windows.Forms.ToolStripMenuItem MIinitPass;
         private System.Windows.Forms.ToolStripMenuItem MIdisable;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.ToolStripMenuItem MIenable;
     }
 }

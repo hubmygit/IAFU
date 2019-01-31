@@ -159,6 +159,71 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static bool update_PasswordHistory_EnableLatsPassPerUser(int UsersId)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+
+            //string UpdSt = "UPDATE [dbo].[PasswordHistory] SET IsCurrent = 'True' WHERE UsersId = @UsersId ORDER BY ";
+            //SELECT Id FROM [dbo].[PasswordHistory] where usersId = 4 order by PassUpdDate desc
+
+            string UpdSt = "UPDATE [dbo].[PasswordHistory] SET IsCurrent = 'True' WHERE Id in ( " +
+                " SELECT top (1) Id FROM [dbo].[PasswordHistory] WHERE UsersId = @UsersId ORDER BY PassUpdDate DESC " + ")";
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(UpdSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@UsersId", UsersId);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+
+                ret = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            sqlConn.Close();
+
+            return ret;
+        }
+
+        public static bool init_insertInto_PasswordHistory_Table(int UserId, byte[] hashPass)//string Password)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+
+            string UpdSt = "INSERT INTO [dbo].[PasswordHistory] ([UsersId], [Password], [PassUpdDate], [IsCurrent]) VALUES (@UsersId, @Password, '2000-01-01 01:00:00', 1)";
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(UpdSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@UsersId", UserId);
+                cmd.Parameters.AddWithValue("@Password", hashPass);//Password);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+
+                ret = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            sqlConn.Close();
+
+            return ret;
+        }
+
         public static bool insertInto_PasswordHistory_Table(int UserId, byte[] hashPass)//string Password)
         {
             bool ret = false;

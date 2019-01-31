@@ -212,6 +212,40 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static int getUserId(string GivenUserName)
+        {
+            int ret = 0;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT U.Id " +
+                              "FROM [dbo].[Users] U " +
+                              "WHERE CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase,  U.UserName)) = '" + GivenUserName + "'";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.Add("@passPhrase", SqlDbType.VarChar);
+                cmd.Parameters["@passPhrase"].Value = SqlDBInfo.passPhrase;
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = Convert.ToInt32(reader["Id"].ToString());
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
         public static DateTime getSqlDatetimeNow()
         {
             DateTime ret = DateTime.Now;

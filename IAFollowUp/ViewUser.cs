@@ -157,7 +157,7 @@ namespace IAFollowUp
 
                 if (ChangePassword.update_PasswordHistory_TableAllRecsPerUser(thisId, false))
                 {
-                    if (ChangePassword.insertInto_PasswordHistory_Table(thisId, HashPass))
+                    if (ChangePassword.init_insertInto_PasswordHistory_Table(thisId, HashPass))
                     {
                         MessageBox.Show("Password Initialized successfully!");
 
@@ -207,5 +207,30 @@ namespace IAFollowUp
             }
         }
 
+        private void MIenable_Click(object sender, EventArgs e)
+        {
+            if (dgvUserView.SelectedRows.Count > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to Enable (Unblock) this User with his last password?", "Unblock User", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                int thisId = Convert.ToInt32(dgvUserView.SelectedRows[0].Cells["Id"].Value.ToString());
+
+                if (ChangePassword.update_PasswordHistory_EnableLatsPassPerUser(thisId))
+                {
+                    MessageBox.Show("User enabled (unblocked) successfully!");
+
+                    userList = SelectedUser();
+                    FillDataGridView(dgvUserView, userList);
+                }
+                else
+                {
+                    MessageBox.Show("An error occured while unblocking user!");
+                }
+            }
+        }
     }
 }

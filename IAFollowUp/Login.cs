@@ -71,7 +71,14 @@ namespace IAFollowUp
                 {
                     MessageBox.Show("You reached the maximum number of failed attempts to log in!");
 
-                    //disable User - functions to enable User
+                    //disable User (if exists)
+                    //---------------------
+                    int usrId = UserInfo.getUserId(txtUserName.Text);
+                    if (usrId > 0)
+                    {
+                        ChangePassword.update_PasswordHistory_TableAllRecsPerUser(usrId, false);
+                    }
+                    //---------------------
 
                     Close();
                 }

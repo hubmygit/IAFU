@@ -93,7 +93,7 @@ namespace IAFollowUp
 
                     byte[] HashPass = ChangePassword.Encrypt(initPass);
 
-                    if (ChangePassword.insertInto_PasswordHistory_Table(NewUserId, HashPass))
+                    if (ChangePassword.init_insertInto_PasswordHistory_Table(NewUserId, HashPass))
                     {
                         NewPassword frmNewPass = new NewPassword(initPass);
                         frmNewPass.ShowDialog();
