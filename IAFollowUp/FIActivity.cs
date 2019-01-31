@@ -138,15 +138,6 @@ namespace IAFollowUp
                     }
                 }
 
-                //send email
-                //----->
-                EmailProperties emailProp = new EmailProperties();
-                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                emailProp.Recipients = iaOwners.getRecipients();
-                emailProp.Subject = "";
-                emailProp.Body = "";
-                //<-----
-
                 //create alerts
 
                 //delete comments from user's drafts
@@ -154,6 +145,24 @@ namespace IAFollowUp
                 rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
+
+                //send email
+                //----->
+                EmailProperties emailProps = new EmailProperties();
+                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Subject = "";
+                emailProps.Body = "";
+                if (Email.SendBcc(emailProps))
+                {
+                    MessageBox.Show("Email(s) sent!");
+                }
+                else
+                {
+                    MessageBox.Show("Emails have not been sent!");
+                }
+                //<-----
+
                 Close(); //or stay and refresh                
             }
             else
@@ -208,8 +217,6 @@ namespace IAFollowUp
                     }
                 }
 
-                //send email
-
                 //create alerts
 
                 //delete comments from user's drafts
@@ -217,6 +224,24 @@ namespace IAFollowUp
                 rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
+
+                //send email
+                //----->
+                EmailProperties emailProps = new EmailProperties();
+                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Subject = "";
+                emailProps.Body = "";
+                if (Email.SendBcc(emailProps))
+                {
+                    MessageBox.Show("Email(s) sent!");
+                }
+                else
+                {
+                    MessageBox.Show("Emails have not been sent!");
+                }
+                //<-----
+
                 Close(); //or stay and refresh   
             }
             else
@@ -265,6 +290,21 @@ namespace IAFollowUp
                     }
 
                     //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
 
                     //create alerts
                 }
@@ -299,6 +339,21 @@ namespace IAFollowUp
                     }
 
                     //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
 
                     //create alerts
                 }
@@ -333,6 +388,21 @@ namespace IAFollowUp
                     }
 
                     //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
 
                     //create alerts
                 }
@@ -404,7 +474,22 @@ namespace IAFollowUp
                         }
                     }
 
-                    //send email ??
+                    //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
                 }
                 else
                 {
@@ -437,7 +522,22 @@ namespace IAFollowUp
                         }
                     }
 
-                    //send email ??
+                    //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
                 }
                 else
                 {
@@ -469,7 +569,22 @@ namespace IAFollowUp
                         }
                     }
 
-                    //send email ??
+                    //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
                 }
                 else
                 {
@@ -539,8 +654,6 @@ namespace IAFollowUp
                     }
                 }
 
-                //send email
-
                 //create alerts
 
                 //delete comments from user's drafts
@@ -548,6 +661,24 @@ namespace IAFollowUp
                 rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
+
+                //send email
+                //----->
+                EmailProperties emailProps = new EmailProperties();
+                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Subject = "";
+                emailProps.Body = "";
+                if (Email.SendBcc(emailProps))
+                {
+                    MessageBox.Show("Email(s) sent!");
+                }
+                else
+                {
+                    MessageBox.Show("Emails have not been sent!");
+                }
+                //<-----
+
                 Close(); //or stay and refresh   
             }
             else
@@ -612,8 +743,6 @@ namespace IAFollowUp
                     }
                 }
 
-                //send email
-
                 //create alerts
 
                 //delete comments from user's drafts
@@ -621,6 +750,24 @@ namespace IAFollowUp
                 rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
+
+                //send email
+                //----->
+                EmailProperties emailProps = new EmailProperties();
+                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Subject = "";
+                emailProps.Body = "";
+                if (Email.SendBcc(emailProps))
+                {
+                    MessageBox.Show("Email(s) sent!");
+                }
+                else
+                {
+                    MessageBox.Show("Emails have not been sent!");
+                }
+                //<-----
+
                 Close(); //or stay and refresh   
             }
             else
@@ -665,8 +812,6 @@ namespace IAFollowUp
                     }
                 }
 
-                //send email
-
                 //create alerts
 
                 //delete comments from user's drafts
@@ -674,6 +819,24 @@ namespace IAFollowUp
                 rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
+
+                //send email
+                //----->
+                EmailProperties emailProps = new EmailProperties();
+                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Subject = "";
+                emailProps.Body = "";
+                if (Email.SendBcc(emailProps))
+                {
+                    MessageBox.Show("Email(s) sent!");
+                }
+                else
+                {
+                    MessageBox.Show("Emails have not been sent!");
+                }
+                //<-----
+
                 Close(); //or stay and refresh   
             }
             else
@@ -723,8 +886,6 @@ namespace IAFollowUp
                     }
                 }
 
-                //send email
-
                 //create alerts
 
                 //delete comments from user's drafts
@@ -732,6 +893,24 @@ namespace IAFollowUp
                 rtbComments.Clear();
 
                 MessageBox.Show("The Action completed!");
+
+                //send email
+                //----->
+                EmailProperties emailProps = new EmailProperties();
+                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Subject = "";
+                emailProps.Body = "";
+                if (Email.SendBcc(emailProps))
+                {
+                    MessageBox.Show("Email(s) sent!");
+                }
+                else
+                {
+                    MessageBox.Show("Emails have not been sent!");
+                }
+                //<-----
+
                 Close(); //or stay and refresh   
             }
             else
@@ -800,6 +979,21 @@ namespace IAFollowUp
                     }
 
                     //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
 
                     //create alerts
                 }
@@ -834,6 +1028,21 @@ namespace IAFollowUp
                     }
 
                     //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
 
                     //create alerts
                 }
@@ -868,6 +1077,21 @@ namespace IAFollowUp
                     }
 
                     //send email
+                    //----->
+                    EmailProperties emailProps = new EmailProperties();
+                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Subject = "";
+                    emailProps.Body = "";
+                    if (Email.SendBcc(emailProps))
+                    {
+                        MessageBox.Show("Email(s) sent!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emails have not been sent!");
+                    }
+                    //<-----
 
                     //create alerts
                 }
