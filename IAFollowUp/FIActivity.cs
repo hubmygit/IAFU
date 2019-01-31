@@ -292,8 +292,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -341,8 +340,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -390,8 +388,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -477,8 +474,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -525,8 +521,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -572,8 +567,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -665,8 +659,7 @@ namespace IAFollowUp
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
-                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                 emailProps.Subject = "";
                 emailProps.Body = "";
                 if (Email.SendBcc(emailProps))
@@ -754,8 +747,7 @@ namespace IAFollowUp
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
-                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                 emailProps.Subject = "";
                 emailProps.Body = "";
                 if (Email.SendBcc(emailProps))
@@ -823,8 +815,7 @@ namespace IAFollowUp
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
-                AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                 emailProps.Subject = "";
                 emailProps.Body = "";
                 if (Email.SendBcc(emailProps))
@@ -981,8 +972,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -1030,8 +1020,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
@@ -1079,8 +1068,7 @@ namespace IAFollowUp
                     //send email
                     //----->
                     EmailProperties emailProps = new EmailProperties();
-                    AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                    emailProps.Recipients = iaOwners.getRecipients();
+                    emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivity.ToUser.FullName, Email = detActivity.ToUser.getEmail() } };
                     emailProps.Subject = "";
                     emailProps.Body = "";
                     if (Email.SendBcc(emailProps))
