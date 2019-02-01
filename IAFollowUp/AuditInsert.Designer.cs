@@ -57,6 +57,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblAuditRef = new System.Windows.Forms.Label();
             this.txtAuditRef = new System.Windows.Forms.TextBox();
+            this.ratingControl1 = new DevExpress.XtraEditors.RatingControl();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControl1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEraseRating
@@ -387,11 +390,35 @@
             this.txtAuditRef.Size = new System.Drawing.Size(569, 22);
             this.txtAuditRef.TabIndex = 17;
             // 
+            // ratingControl1
+            // 
+            this.ratingControl1.Location = new System.Drawing.Point(522, 421);
+            this.ratingControl1.Name = "ratingControl1";
+            this.ratingControl1.Rating = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ratingControl1.Size = new System.Drawing.Size(87, 16);
+            this.ratingControl1.TabIndex = 18;
+            this.ratingControl1.Text = "ratingControl1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(615, 424);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "ratingControl1.Rating.ToString";
+            // 
             // AuditInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 491);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ratingControl1);
             this.Controls.Add(this.txtAuditRef);
             this.Controls.Add(this.lblAuditRef);
             this.Controls.Add(this.btnEraseRating);
@@ -426,6 +453,7 @@
             this.Name = "AuditInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Audit";
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControl1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,5 +489,7 @@
         private System.Windows.Forms.Label lblYear;
         private System.Windows.Forms.Label lblAuditRef;
         private System.Windows.Forms.TextBox txtAuditRef;
+        private DevExpress.XtraEditors.RatingControl ratingControl1;
+        private System.Windows.Forms.Label label1;
     }
 }
