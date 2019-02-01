@@ -70,6 +70,24 @@ namespace IAFollowUp
             //get draft
             rtbComments.Rtf = FIDetailActivity.getDraftRtf(givenDetail.Id, givenPlaceholderId, UserInfo.userDetails.Id);
 
+            //---------------------
+            completeAudit = Audit.SelectAuditHeaderDetailFromDetailId(givenDetail.Id).First();
+
+            txtCompany.Text = completeAudit.Company.Name;
+            txtAuditRef.Text = completeAudit.AuditRef;
+            txtFIId.Text = completeAudit.FIHeaders[0].FIId;
+            txtFISubId.Text = givenDetail.FISubId; //completeAudit.FIHeaders[0].FIDetails[0].FISubId; //
+            txtActionCode.Text = givenDetail.ActionCode;
+            txtCategory.Text = completeAudit.FIHeaders[0].FICategory.Name;
+            txtAuditTitle.Text = completeAudit.Title;
+            txtHeaderTitle.Text = completeAudit.FIHeaders[0].Title;
+            txtDescription.Text = givenDetail.Description;
+            txtActionReq.Text = givenDetail.ActionReq;
+            //---------------------
+
+
+
+
             if (givenDetail.ActionDt != null)
             {
                 dtpDetail_ActionDate.CustomFormat = "dd.MM.yyyy";
@@ -84,7 +102,8 @@ namespace IAFollowUp
         public Placeholders PHolder = new Placeholders();
         public AuditeesRoles AuditeeRole = new AuditeesRoles();
 
-        public string choosenRole; 
+        public string choosenRole;
+        public Audit completeAudit = new Audit();
 
         private void btnFontDialog_Click(object sender, EventArgs e)
         {

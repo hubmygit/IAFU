@@ -50,6 +50,7 @@
             this.colPlaceholders = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActivityDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHasAttachments = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rtbComments = new System.Windows.Forms.RichTextBox();
             this.btnFontDialog = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -70,7 +71,26 @@
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
             this.btnSaveDraft = new System.Windows.Forms.Button();
             this.btnAttachment = new System.Windows.Forms.Button();
-            this.colHasAttachments = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtCompany = new System.Windows.Forms.TextBox();
+            this.lblCompany = new System.Windows.Forms.Label();
+            this.txtAuditRef = new System.Windows.Forms.TextBox();
+            this.lblAuditRef = new System.Windows.Forms.Label();
+            this.lblFIId = new System.Windows.Forms.Label();
+            this.txtFIId = new System.Windows.Forms.TextBox();
+            this.lblFISubId = new System.Windows.Forms.Label();
+            this.txtFISubId = new System.Windows.Forms.TextBox();
+            this.txtActionCode = new System.Windows.Forms.TextBox();
+            this.lblActionCode = new System.Windows.Forms.Label();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.txtAuditTitle = new System.Windows.Forms.TextBox();
+            this.lblAuditTitle = new System.Windows.Forms.Label();
+            this.lblHeaderTitle = new System.Windows.Forms.Label();
+            this.txtHeaderTitle = new System.Windows.Forms.TextBox();
+            this.lblDetailDescription = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtActionReq = new System.Windows.Forms.TextBox();
+            this.lblActionReq = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -87,12 +107,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.ContextMenuStrip = this.cmsActivity;
             this.gridControl1.DataSource = this.fIDetailActivityBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 251);
+            this.gridControl1.Location = new System.Drawing.Point(0, 482);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(800, 226);
+            this.gridControl1.Size = new System.Drawing.Size(800, 176);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -209,6 +229,8 @@
             // colInsDt
             // 
             this.colInsDt.Caption = "Insert Date";
+            this.colInsDt.DisplayFormat.FormatString = "dd.MM.yyyy HH:mm:ss";
+            this.colInsDt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colInsDt.FieldName = "InsDt";
             this.colInsDt.Name = "colInsDt";
             this.colInsDt.Visible = true;
@@ -241,6 +263,14 @@
             this.colActionDt.Name = "colActionDt";
             this.colActionDt.Visible = true;
             this.colActionDt.VisibleIndex = 6;
+            // 
+            // colHasAttachments
+            // 
+            this.colHasAttachments.Caption = "Attachments";
+            this.colHasAttachments.FieldName = "HasAttachments";
+            this.colHasAttachments.Name = "colHasAttachments";
+            this.colHasAttachments.Visible = true;
+            this.colHasAttachments.VisibleIndex = 7;
             // 
             // rtbComments
             // 
@@ -371,7 +401,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsStatusLblUser});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 480);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 659);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 11;
@@ -408,7 +438,7 @@
             // 
             // btnSaveDraft
             // 
-            this.btnSaveDraft.Location = new System.Drawing.Point(535, 114);
+            this.btnSaveDraft.Location = new System.Drawing.Point(535, 56);
             this.btnSaveDraft.Name = "btnSaveDraft";
             this.btnSaveDraft.Size = new System.Drawing.Size(120, 23);
             this.btnSaveDraft.TabIndex = 14;
@@ -418,7 +448,7 @@
             // 
             // btnAttachment
             // 
-            this.btnAttachment.Location = new System.Drawing.Point(535, 69);
+            this.btnAttachment.Location = new System.Drawing.Point(661, 56);
             this.btnAttachment.Name = "btnAttachment";
             this.btnAttachment.Size = new System.Drawing.Size(120, 23);
             this.btnAttachment.TabIndex = 15;
@@ -426,19 +456,242 @@
             this.btnAttachment.UseVisualStyleBackColor = true;
             this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
             // 
-            // colHasAttachments
+            // txtCompany
             // 
-            this.colHasAttachments.Caption = "Attachments";
-            this.colHasAttachments.FieldName = "HasAttachments";
-            this.colHasAttachments.Name = "colHasAttachments";
-            this.colHasAttachments.Visible = true;
-            this.colHasAttachments.VisibleIndex = 7;
+            this.txtCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtCompany.Location = new System.Drawing.Point(23, 111);
+            this.txtCompany.MaxLength = 3;
+            this.txtCompany.Name = "txtCompany";
+            this.txtCompany.ReadOnly = true;
+            this.txtCompany.Size = new System.Drawing.Size(200, 22);
+            this.txtCompany.TabIndex = 16;
+            // 
+            // lblCompany
+            // 
+            this.lblCompany.AutoSize = true;
+            this.lblCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblCompany.Location = new System.Drawing.Point(77, 92);
+            this.lblCompany.Name = "lblCompany";
+            this.lblCompany.Size = new System.Drawing.Size(66, 16);
+            this.lblCompany.TabIndex = 17;
+            this.lblCompany.Text = "Company";
+            // 
+            // txtAuditRef
+            // 
+            this.txtAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtAuditRef.Location = new System.Drawing.Point(23, 203);
+            this.txtAuditRef.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
+            this.txtAuditRef.MaxLength = 50;
+            this.txtAuditRef.Name = "txtAuditRef";
+            this.txtAuditRef.ReadOnly = true;
+            this.txtAuditRef.Size = new System.Drawing.Size(200, 22);
+            this.txtAuditRef.TabIndex = 19;
+            // 
+            // lblAuditRef
+            // 
+            this.lblAuditRef.AutoSize = true;
+            this.lblAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblAuditRef.Location = new System.Drawing.Point(81, 184);
+            this.lblAuditRef.Name = "lblAuditRef";
+            this.lblAuditRef.Size = new System.Drawing.Size(62, 16);
+            this.lblAuditRef.TabIndex = 18;
+            this.lblAuditRef.Text = "Audit Ref";
+            // 
+            // lblFIId
+            // 
+            this.lblFIId.AutoSize = true;
+            this.lblFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFIId.Location = new System.Drawing.Point(80, 136);
+            this.lblFIId.Name = "lblFIId";
+            this.lblFIId.Size = new System.Drawing.Size(46, 20);
+            this.lblFIId.TabIndex = 63;
+            this.lblFIId.Text = "F/I Id";
+            // 
+            // txtFIId
+            // 
+            this.txtFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtFIId.Location = new System.Drawing.Point(23, 159);
+            this.txtFIId.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
+            this.txtFIId.MaxLength = 50;
+            this.txtFIId.Name = "txtFIId";
+            this.txtFIId.ReadOnly = true;
+            this.txtFIId.Size = new System.Drawing.Size(200, 22);
+            this.txtFIId.TabIndex = 62;
+            // 
+            // lblFISubId
+            // 
+            this.lblFISubId.AutoSize = true;
+            this.lblFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFISubId.Location = new System.Drawing.Point(535, 82);
+            this.lblFISubId.Name = "lblFISubId";
+            this.lblFISubId.Size = new System.Drawing.Size(75, 20);
+            this.lblFISubId.TabIndex = 65;
+            this.lblFISubId.Text = "F/I SubId";
+            // 
+            // txtFISubId
+            // 
+            this.txtFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtFISubId.Location = new System.Drawing.Point(535, 105);
+            this.txtFISubId.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
+            this.txtFISubId.MaxLength = 50;
+            this.txtFISubId.Name = "txtFISubId";
+            this.txtFISubId.ReadOnly = true;
+            this.txtFISubId.Size = new System.Drawing.Size(200, 22);
+            this.txtFISubId.TabIndex = 64;
+            // 
+            // txtActionCode
+            // 
+            this.txtActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtActionCode.Location = new System.Drawing.Point(535, 153);
+            this.txtActionCode.MaxLength = 3;
+            this.txtActionCode.Name = "txtActionCode";
+            this.txtActionCode.ReadOnly = true;
+            this.txtActionCode.Size = new System.Drawing.Size(200, 22);
+            this.txtActionCode.TabIndex = 67;
+            // 
+            // lblActionCode
+            // 
+            this.lblActionCode.AutoSize = true;
+            this.lblActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblActionCode.Location = new System.Drawing.Point(535, 130);
+            this.lblActionCode.Name = "lblActionCode";
+            this.lblActionCode.Size = new System.Drawing.Size(96, 20);
+            this.lblActionCode.TabIndex = 66;
+            this.lblActionCode.Text = "Action Code";
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblCategory.Location = new System.Drawing.Point(536, 178);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(157, 16);
+            this.lblCategory.TabIndex = 68;
+            this.lblCategory.Text = "Category (per FI Header)";
+            // 
+            // txtCategory
+            // 
+            this.txtCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtCategory.Location = new System.Drawing.Point(535, 197);
+            this.txtCategory.MaxLength = 3;
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.ReadOnly = true;
+            this.txtCategory.Size = new System.Drawing.Size(200, 22);
+            this.txtCategory.TabIndex = 69;
+            // 
+            // txtAuditTitle
+            // 
+            this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtAuditTitle.Location = new System.Drawing.Point(114, 231);
+            this.txtAuditTitle.MaxLength = 500;
+            this.txtAuditTitle.Multiline = true;
+            this.txtAuditTitle.Name = "txtAuditTitle";
+            this.txtAuditTitle.ReadOnly = true;
+            this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtAuditTitle.Size = new System.Drawing.Size(667, 50);
+            this.txtAuditTitle.TabIndex = 70;
+            // 
+            // lblAuditTitle
+            // 
+            this.lblAuditTitle.AutoSize = true;
+            this.lblAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblAuditTitle.Location = new System.Drawing.Point(4, 251);
+            this.lblAuditTitle.Name = "lblAuditTitle";
+            this.lblAuditTitle.Size = new System.Drawing.Size(67, 16);
+            this.lblAuditTitle.TabIndex = 71;
+            this.lblAuditTitle.Text = "Audit Title";
+            // 
+            // lblHeaderTitle
+            // 
+            this.lblHeaderTitle.AutoSize = true;
+            this.lblHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblHeaderTitle.Location = new System.Drawing.Point(4, 304);
+            this.lblHeaderTitle.Name = "lblHeaderTitle";
+            this.lblHeaderTitle.Size = new System.Drawing.Size(80, 16);
+            this.lblHeaderTitle.TabIndex = 72;
+            this.lblHeaderTitle.Text = "HeaderTitle";
+            // 
+            // txtHeaderTitle
+            // 
+            this.txtHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtHeaderTitle.Location = new System.Drawing.Point(114, 287);
+            this.txtHeaderTitle.MaxLength = 500;
+            this.txtHeaderTitle.Multiline = true;
+            this.txtHeaderTitle.Name = "txtHeaderTitle";
+            this.txtHeaderTitle.ReadOnly = true;
+            this.txtHeaderTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtHeaderTitle.Size = new System.Drawing.Size(667, 50);
+            this.txtHeaderTitle.TabIndex = 73;
+            // 
+            // lblDetailDescription
+            // 
+            this.lblDetailDescription.AutoSize = true;
+            this.lblDetailDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblDetailDescription.Location = new System.Drawing.Point(4, 363);
+            this.lblDetailDescription.Name = "lblDetailDescription";
+            this.lblDetailDescription.Size = new System.Drawing.Size(76, 16);
+            this.lblDetailDescription.TabIndex = 74;
+            this.lblDetailDescription.Text = "Description";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtDescription.Location = new System.Drawing.Point(114, 343);
+            this.txtDescription.MaxLength = 500;
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.ReadOnly = true;
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDescription.Size = new System.Drawing.Size(667, 50);
+            this.txtDescription.TabIndex = 75;
+            // 
+            // txtActionReq
+            // 
+            this.txtActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtActionReq.Location = new System.Drawing.Point(114, 399);
+            this.txtActionReq.MaxLength = 500;
+            this.txtActionReq.Multiline = true;
+            this.txtActionReq.Name = "txtActionReq";
+            this.txtActionReq.ReadOnly = true;
+            this.txtActionReq.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtActionReq.Size = new System.Drawing.Size(667, 50);
+            this.txtActionReq.TabIndex = 77;
+            // 
+            // lblActionReq
+            // 
+            this.lblActionReq.AutoSize = true;
+            this.lblActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblActionReq.Location = new System.Drawing.Point(4, 417);
+            this.lblActionReq.Name = "lblActionReq";
+            this.lblActionReq.Size = new System.Drawing.Size(104, 16);
+            this.lblActionReq.TabIndex = 76;
+            this.lblActionReq.Text = "Action Required";
             // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 502);
+            this.ClientSize = new System.Drawing.Size(800, 681);
+            this.Controls.Add(this.txtActionReq);
+            this.Controls.Add(this.lblActionReq);
+            this.Controls.Add(this.lblDetailDescription);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.lblHeaderTitle);
+            this.Controls.Add(this.txtHeaderTitle);
+            this.Controls.Add(this.txtAuditTitle);
+            this.Controls.Add(this.lblAuditTitle);
+            this.Controls.Add(this.lblCategory);
+            this.Controls.Add(this.txtCategory);
+            this.Controls.Add(this.txtActionCode);
+            this.Controls.Add(this.lblActionCode);
+            this.Controls.Add(this.lblFISubId);
+            this.Controls.Add(this.txtFISubId);
+            this.Controls.Add(this.lblFIId);
+            this.Controls.Add(this.txtFIId);
+            this.Controls.Add(this.txtAuditRef);
+            this.Controls.Add(this.lblAuditRef);
+            this.Controls.Add(this.txtCompany);
+            this.Controls.Add(this.lblCompany);
             this.Controls.Add(this.btnAttachment);
             this.Controls.Add(this.btnSaveDraft);
             this.Controls.Add(this.dtpDetail_ActionDate);
@@ -511,5 +764,25 @@
         private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
         private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAjudgeMT;
         private DevExpress.XtraGrid.Columns.GridColumn colHasAttachments;
+        private System.Windows.Forms.TextBox txtCompany;
+        private System.Windows.Forms.Label lblCompany;
+        private System.Windows.Forms.TextBox txtAuditRef;
+        private System.Windows.Forms.Label lblAuditRef;
+        private System.Windows.Forms.Label lblFIId;
+        private System.Windows.Forms.TextBox txtFIId;
+        private System.Windows.Forms.Label lblFISubId;
+        private System.Windows.Forms.TextBox txtFISubId;
+        public System.Windows.Forms.TextBox txtActionCode;
+        private System.Windows.Forms.Label lblActionCode;
+        private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.TextBox txtCategory;
+        private System.Windows.Forms.TextBox txtAuditTitle;
+        private System.Windows.Forms.Label lblAuditTitle;
+        private System.Windows.Forms.Label lblHeaderTitle;
+        private System.Windows.Forms.TextBox txtHeaderTitle;
+        private System.Windows.Forms.Label lblDetailDescription;
+        public System.Windows.Forms.TextBox txtDescription;
+        public System.Windows.Forms.TextBox txtActionReq;
+        private System.Windows.Forms.Label lblActionReq;
     }
 }
