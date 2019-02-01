@@ -150,7 +150,7 @@ namespace IAFollowUp
                 //----->
                 EmailProperties emailProps = new EmailProperties();
                 AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Recipients = iaOwners.getRecipients(false);
                 emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                 emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
                 //if (Email.SendBcc(emailProps))
@@ -229,7 +229,7 @@ namespace IAFollowUp
                 //----->
                 EmailProperties emailProps = new EmailProperties();
                 AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Recipients = iaOwners.getRecipients(false);
                 emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                 emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
                 //if (Email.SendBcc(emailProps))
@@ -847,7 +847,7 @@ namespace IAFollowUp
                 //----->
                 EmailProperties emailProps = new EmailProperties();
                 AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                emailProps.Recipients = iaOwners.getRecipients();
+                emailProps.Recipients = iaOwners.getRecipients(false);
                 emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                 emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
                 //if (Email.SendBcc(emailProps))

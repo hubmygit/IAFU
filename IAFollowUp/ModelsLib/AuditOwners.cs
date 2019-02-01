@@ -34,7 +34,7 @@ namespace IAFollowUp
             return ret;
         }
 
-        public List<Recipient> getRecipients()
+        public List<Recipient> getRecipients(bool includeSupervisor)
         {
             List<Recipient> ret = new List<Recipient>();
 
@@ -50,7 +50,7 @@ namespace IAFollowUp
                 ret.Add(thisRecipient);
             }
 
-            if (Supervisor.Id > 0)
+            if (includeSupervisor == true && Supervisor.Id > 0)
             {
                 Recipient thisRecipient = new Recipient() { FullName = Supervisor.FullName, Email = Supervisor.getEmail() };
                 ret.Add(thisRecipient);
