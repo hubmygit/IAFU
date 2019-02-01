@@ -63,13 +63,14 @@
             this.DT_tsmiDTreplyMT = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTextendIA = new System.Windows.Forms.ToolStripMenuItem();
             this.IA_tsmiIAextendMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.IA_tsmiIAjudgeMT = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.dtpDetail_ActionDate = new System.Windows.Forms.DateTimePicker();
             this.lblDetail_ActionDate = new System.Windows.Forms.Label();
             this.btnSaveDraft = new System.Windows.Forms.Button();
             this.btnAttachment = new System.Windows.Forms.Button();
-            this.IA_tsmiIAjudgeMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.colHasAttachments = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -144,7 +145,8 @@
             this.colPlaceholdersId,
             this.colPlaceholders,
             this.colActivityDescription,
-            this.colActionDt});
+            this.colActionDt,
+            this.colHasAttachments});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -357,6 +359,14 @@
             this.IA_tsmiIAextendMT.Text = "(ia) Extend Deadline";
             this.IA_tsmiIAextendMT.Click += new System.EventHandler(this.IA_tsmiIAextendMT_Click);
             // 
+            // IA_tsmiIAjudgeMT
+            // 
+            this.IA_tsmiIAjudgeMT.Name = "IA_tsmiIAjudgeMT";
+            this.IA_tsmiIAjudgeMT.Size = new System.Drawing.Size(260, 22);
+            this.IA_tsmiIAjudgeMT.Tag = "1";
+            this.IA_tsmiIAjudgeMT.Text = "(ia) Judge Actions";
+            this.IA_tsmiIAjudgeMT.Click += new System.EventHandler(this.IA_tsmiIAjudgeMT_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -416,13 +426,13 @@
             this.btnAttachment.UseVisualStyleBackColor = true;
             this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
             // 
-            // IA_tsmiIAjudgeMT
+            // colHasAttachments
             // 
-            this.IA_tsmiIAjudgeMT.Name = "IA_tsmiIAjudgeMT";
-            this.IA_tsmiIAjudgeMT.Size = new System.Drawing.Size(260, 22);
-            this.IA_tsmiIAjudgeMT.Tag = "1";
-            this.IA_tsmiIAjudgeMT.Text = "(ia) Judge Actions";
-            this.IA_tsmiIAjudgeMT.Click += new System.EventHandler(this.IA_tsmiIAjudgeMT_Click);
+            this.colHasAttachments.Caption = "Attachments";
+            this.colHasAttachments.FieldName = "HasAttachments";
+            this.colHasAttachments.Name = "colHasAttachments";
+            this.colHasAttachments.Visible = true;
+            this.colHasAttachments.VisibleIndex = 7;
             // 
             // FIActivity
             // 
@@ -500,5 +510,6 @@
         private System.Windows.Forms.ToolStripMenuItem MIcopyAttachments;
         private DevExpress.XtraGrid.Columns.GridColumn colActionDt;
         private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAjudgeMT;
+        private DevExpress.XtraGrid.Columns.GridColumn colHasAttachments;
     }
 }

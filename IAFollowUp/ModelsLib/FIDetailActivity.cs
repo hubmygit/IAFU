@@ -25,6 +25,8 @@ namespace IAFollowUp
 
         public Placeholders Placeholders { get; set; }
 
+        public bool HasAttachments { get; set; }
+
         public FIDetailActivity()
         {
         }
@@ -98,6 +100,15 @@ namespace IAFollowUp
                     else
                     {
                         tmp.ActionDt = Convert.ToDateTime(reader["ActionDt"].ToString());
+                    }
+
+                    if (ActivityAttachments.getSavedAttachments(Convert.ToInt32(reader["Id"].ToString())).Length > 0)
+                    {
+                        tmp.HasAttachments = true;
+                    }
+                    else
+                    {
+                        tmp.HasAttachments = false;
                     }
 
                     List<Placeholders> placeholders = FIDetail.getOwners(tmp.DetailId);
