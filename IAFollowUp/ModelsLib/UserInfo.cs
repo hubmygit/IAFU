@@ -25,6 +25,7 @@ namespace IAFollowUp
 
             //DB_AppUser_Id = 0;
 
+            appLoginId = 0;
 
             try
             {
@@ -64,6 +65,8 @@ namespace IAFollowUp
         public static List<PasswordHistory> LastThreePasswords { get; set; }
 
         public static DateTime passUpdDate { get; set; }
+
+        public static int appLoginId { get; set; }
 
         public static User get_userDetails(string GivenUserName)
         {
@@ -324,7 +327,9 @@ namespace IAFollowUp
         public static void Insert_AppLogIn()
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[AppLogIn] (AppUserId, WinUser, PcName, InsDate) VALUES " + 
+            string InsSt = "INSERT INTO [dbo].[AppLogIn] (AppUserId, WinUser, PcName, InsDate) " +
+                           "OUTPUT INSERTED.Id " +
+                           "VALUES " + 
                            "(@appUserId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @winUser)), " + 
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @pcName)), getdate()) ";
 
@@ -340,11 +345,40 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@pcName", UserInfo.PcName);
 
                 cmd.CommandType = CommandType.Text;
-                cmd.ExecuteNonQuery();
+                //cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    UserInfo.appLoginId = Convert.ToInt32(reader["Id"].ToString());
+                }
+                reader.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+            sqlConn.Close();
+        }
+
+        public static void UpdateExitDt()
+        {
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[AppLogIn] SET ExitDate = getdate() WHERE Id = @id ";
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@id", UserInfo.appLoginId);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                string exMess = ex.Message;
+                //MessageBox.Show("The following error occurred: " + ex.Message);
             }
             sqlConn.Close();
         }

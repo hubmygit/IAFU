@@ -128,7 +128,12 @@ namespace IAFollowUp
                 frmFIViewAuditees.ShowDialog();
             }
         }
-                
+
         //auditees<----------
+
+        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UserInfo.UpdateExitDt();
+        }
     }
 }

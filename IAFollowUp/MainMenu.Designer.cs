@@ -45,9 +45,9 @@
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewChangeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageAuditOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageAuditOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -194,6 +194,13 @@
             this.deptsToolStripMenuItem.Text = "Departments";
             this.deptsToolStripMenuItem.Click += new System.EventHandler(this.deptsToolStripMenuItem_Click);
             // 
+            // manageAuditOwnersToolStripMenuItem
+            // 
+            this.manageAuditOwnersToolStripMenuItem.Name = "manageAuditOwnersToolStripMenuItem";
+            this.manageAuditOwnersToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.manageAuditOwnersToolStripMenuItem.Text = "Manage Audit Owners";
+            this.manageAuditOwnersToolStripMenuItem.Click += new System.EventHandler(this.manageAuditOwnersToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -208,13 +215,6 @@
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
-            // 
-            // manageAuditOwnersToolStripMenuItem
-            // 
-            this.manageAuditOwnersToolStripMenuItem.Name = "manageAuditOwnersToolStripMenuItem";
-            this.manageAuditOwnersToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.manageAuditOwnersToolStripMenuItem.Text = "Manage Audit Owners";
-            this.manageAuditOwnersToolStripMenuItem.Click += new System.EventHandler(this.manageAuditOwnersToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -232,6 +232,7 @@
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Internal Audit";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip.ResumeLayout(false);
