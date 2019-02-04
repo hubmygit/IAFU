@@ -953,6 +953,8 @@ namespace IAFollowUp
                             break;
                         }
 
+                        //check if this auditor has already answered
+
                         break;
                     }
 

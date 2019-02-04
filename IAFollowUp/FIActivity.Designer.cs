@@ -149,7 +149,7 @@
             // 
             // fIDetailActivityBindingSource
             // 
-            this.fIDetailActivityBindingSource.DataSource = typeof(IAFollowUp.FIDetailActivity);
+            //this.fIDetailActivityBindingSource.DataSource = typeof(IAFollowUp.FIDetailActivity);
             // 
             // gridView1
             // 

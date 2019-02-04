@@ -1044,6 +1044,10 @@ namespace IAFollowUp
             }
 
             //
+            FICategory fiCat = completeAudit.FIHeaders[0].FICategory;
+
+            Voting frmVoting = new Voting(det.Id, fiCat);
+            frmVoting.ShowDialog();
         }
 
         private void MIcopy_Click(object sender, EventArgs e)

@@ -166,7 +166,9 @@
     <Compile Include="ModelsLib\ActionSide.cs" />
     <Compile Include="ModelsLib\ActivityDescription.cs" />
     <Compile Include="ModelsLib\AuditeesRoles.cs" />
+    <Compile Include="ModelsLib\Classification.cs" />
     <Compile Include="ModelsLib\Delegatees.cs" />
+    <Compile Include="ModelsLib\Decision.cs" />
     <Compile Include="ModelsLib\FI_DetailHeaderAudit.cs" />
     <Compile Include="ModelsLib\LvFileInfo.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
@@ -297,6 +299,12 @@
     <Compile Include="ViewUser.Designer.cs">
       <DependentUpon>ViewUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Voting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Voting.Designer.cs">
+      <DependentUpon>Voting.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ActivityAttachments.resx">
       <DependentUpon>ActivityAttachments.cs</DependentUpon>
     </EmbeddedResource>
@@ -391,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewUser.resx">
       <DependentUpon>ViewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Voting.resx">
+      <DependentUpon>Voting.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
