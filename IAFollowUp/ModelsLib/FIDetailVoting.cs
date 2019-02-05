@@ -28,7 +28,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[FIDetail_Voting] " +
-                           "([DetailId], [UserId], [AuditorRoleId] [ClassificationId], [IsCurrent], [InsDate]) VALUES " +
+                           "([DetailId], [UserId], [AuditorRoleId], [ClassificationId], [IsCurrent], [InsDate]) VALUES " +
                            "(@detailId, @userId, @auditorRoleId, @classificationId, 'TRUE', getdate()) ";
             try
             {
@@ -162,6 +162,72 @@ namespace IAFollowUp
             {
                 MessageBox.Show("The following error occurred: " + ex.Message);
             }
+
+            return ret;
+        }
+
+        public static int getMaxPackId(int detailId)
+        {
+            int ret = 0;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT max(isnull(PackId, 0)) as PackId " + 
+                              "FROM [dbo].[FIDetail_Voting] " +
+                              "WHERE DetailId = @detId ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detId", detailId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = Convert.ToInt32(reader["PackId"].ToString());
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
+        public static bool UpdatePackAndCurrentFlags(int detailId) //UPDATE [dbo].[FIDetail_Voting]
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FIDetail_Voting] " +
+                           "SET Pack = @packId, IsCurrent = 'FALSE' " +
+                           "WHERE detailId = @detailId AND isnull([IsCurrent], 'FALSE') = 'TRUE' ";
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+                cmd.Parameters.AddWithValue("@packId", getMaxPackId(detailId) + 1);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+
+            }
+            sqlConn.Close();
 
             return ret;
         }

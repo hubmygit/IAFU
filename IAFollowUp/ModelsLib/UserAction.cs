@@ -917,7 +917,7 @@ namespace IAFollowUp
                     {
                         //on which side is the ball! for all placeholders -- all detail owners answered
                         AuditOwners auditorOwners = FIDetail.getAuditOwners(detail.Id);
-                        if (auditorOwners.IsUser_AuditOwner())
+                        if (auditorOwners.IsUser_AuditOwner() || UserInfo.roleDetails.Id == 2) //Chief
                         {
                             ret = true;
                         }

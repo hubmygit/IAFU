@@ -1065,13 +1065,13 @@ namespace IAFollowUp
                     return;
                 }
 
-                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id))
+                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
                 {
                     MessageBox.Show("You cannot decide yet! Auditor2 has to decide first.");
                     return;
                 }
 
-                if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id))
+                if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id) == false)
                 {
                     MessageBox.Show("You cannot decide yet! Supervisor has to decide first.");
                     return;
@@ -1087,7 +1087,7 @@ namespace IAFollowUp
                     return;
                 }
 
-                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id))
+                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
                 {
                     MessageBox.Show("You cannot decide yet! Auditor2 has to decide first.");
                     return;
@@ -1106,6 +1106,7 @@ namespace IAFollowUp
 
             List<FIDetailVoting> VotingList = FIDetailVoting.SelectCurrent(det.Id);
             Voting frmVoting = new Voting(VotingList, det.Id, fiCat);
+
             if (frmVoting.ShowDialog() != DialogResult.OK)
             {
                 return;
@@ -1148,7 +1149,10 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
-                //an yparxoun ki alloi, steil' tous mail....
+                bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
+
+
+                //an yparxoun ki alloi auditors, steil' tous mail....
                 //send email
                 //----->
                 //EmailProperties emailProps = new EmailProperties();
