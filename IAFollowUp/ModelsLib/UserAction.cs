@@ -928,6 +928,17 @@ namespace IAFollowUp
                             break;
                         }
 
+                        if (detail.IsFinalized == false)
+                        {
+                            ret = true;
+                        }
+                        else
+                        {
+                            ret = false;
+                            MessageBox.Show("You can not perform this action! Detail is finalized.");
+                            break;
+                        }
+                        
                         //on which side is the ball!
                         ActionSide actionSide = FIDetailActivity.getActionSide_forAuditors(detail);
 
@@ -942,19 +953,18 @@ namespace IAFollowUp
                             break;
                         }
 
-                        if (detail.IsFinalized == false)
+                        //check if this auditor has already answered
+                        if (FIDetailVoting.HasAlreadyVoted(detail.Id, UserInfo.userDetails.Id) == false)
                         {
                             ret = true;
                         }
                         else
                         {
                             ret = false;
-                            MessageBox.Show("You can not perform this action! Detail is finalized.");
+                            MessageBox.Show("You can not perform this action! You have already decided.");
                             break;
                         }
-
-                        //check if this auditor has already answered
-
+                        
                         break;
                     }
 

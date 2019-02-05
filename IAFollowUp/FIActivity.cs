@@ -153,7 +153,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -232,7 +232,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -304,7 +304,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -352,7 +352,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -400,7 +400,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -486,7 +486,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -519,7 +519,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -551,7 +551,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -621,7 +621,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -709,7 +709,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -777,7 +777,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -850,7 +850,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -942,7 +942,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -976,7 +976,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -1010,7 +1010,7 @@ namespace IAFollowUp
                         }
                         else
                         {
-                            MessageBox.Show("Attached files have not benn saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -1043,11 +1043,139 @@ namespace IAFollowUp
                 return;
             }
 
-            //
+
+            AuditOwners auditorOwners = FIDetail.getAuditOwners(det.Id);
+            int auditorRoleId = 0;
+
+            //1st Vote auditor1, 2
+            //2nd Vote supervisor
+            //3rd Vote chief
+
+            //auditor1,2 - always
+            //supervisor - only after aud1, 2 voting
+            //chief - only after aud1, 2, sup voting
+
+            if (UserInfo.roleDetails.Id == 2) //CAE
+            {
+                auditorRoleId = 4;
+
+                if (auditorOwners.Auditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false)
+                {
+                    MessageBox.Show("You cannot decide yet! Auditor1 has to decide first.");
+                    return;
+                }
+
+                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id))
+                {
+                    MessageBox.Show("You cannot decide yet! Auditor2 has to decide first.");
+                    return;
+                }
+
+                if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id))
+                {
+                    MessageBox.Show("You cannot decide yet! Supervisor has to decide first.");
+                    return;
+                }
+            }
+            else if (auditorOwners.Supervisor.Id == UserInfo.userDetails.Id) //Supervisor
+            {
+                auditorRoleId = 3;
+
+                if (auditorOwners.Auditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false) 
+                {
+                    MessageBox.Show("You cannot decide yet! Auditor1 has to decide first.");
+                    return;
+                }
+
+                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id))
+                {
+                    MessageBox.Show("You cannot decide yet! Auditor2 has to decide first.");
+                    return;
+                }               
+            }
+            else if (auditorOwners.Auditor1.Id == UserInfo.userDetails.Id) //Auditor1
+            {
+                auditorRoleId = 1;
+            }
+            else if (auditorOwners.Auditor2.Id == UserInfo.userDetails.Id) //Auditor2
+            {
+                auditorRoleId = 2;
+            }
+            
             FICategory fiCat = completeAudit.FIHeaders[0].FICategory;
 
-            Voting frmVoting = new Voting(det.Id, fiCat);
-            frmVoting.ShowDialog();
+            List<FIDetailVoting> VotingList = FIDetailVoting.SelectCurrent(det.Id);
+            Voting frmVoting = new Voting(VotingList, det.Id, fiCat);
+            if (frmVoting.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+
+            FIDetailActivity detActivity = new FIDetailActivity();
+            detActivity.DetailId = det.Id;
+            detActivity.ActivityDescription = frmVoting.act;
+            detActivity.CommentRtf = rtbComments.Rtf;
+            detActivity.CommentText = rtbComments.Text;
+            detActivity.FromUser = new Users(UserInfo.userDetails.Id);
+
+            int newActivityId = FIDetailActivity.Insert(detActivity);
+
+            if (newActivityId > -1)
+            {
+                //insert attachments                
+                if (fileNames.Length > 0)
+                {
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
+                    {
+                        //delete drafts
+                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                //create alerts
+
+                //delete comments from user's drafts
+                FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
+                rtbComments.Clear();
+
+                bool insertedSuccessfully = FIDetailVoting.Insert(det.Id, UserInfo.userDetails.Id, auditorRoleId, frmVoting.cla.Id);
+
+                MessageBox.Show("The Action completed!");
+
+                //an yparxoun ki alloi, steil' tous mail....
+                //send email
+                //----->
+                //EmailProperties emailProps = new EmailProperties();
+                //AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
+                //emailProps.Recipients = iaOwners.getRecipients(false);
+                //emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                //emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                //if (Email.SendBcc(emailProps))
+                //{
+                //    MessageBox.Show("Email(s) sent!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Emails have not been sent!");
+                //}
+                //<-----
+
+            }
+            else
+            {
+                MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+            //check all other decisions and if is the last...do something
+
         }
 
         private void MIcopy_Click(object sender, EventArgs e)

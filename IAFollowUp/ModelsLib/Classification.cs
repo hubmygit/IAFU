@@ -11,6 +11,7 @@ namespace IAFollowUp
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Decision Decision { get; set; }
 
         public Classification()
         {
@@ -20,7 +21,7 @@ namespace IAFollowUp
         public Classification(int givenId)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name] " + 
+            string SelectSt = "SELECT [Id], [Name], [DecisionId] " + 
                               "FROM [dbo].[Classification] " +
                               "WHERE Id = " + givenId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -32,6 +33,7 @@ namespace IAFollowUp
                 {
                     Id = Convert.ToInt32(reader["Id"].ToString());
                     Name = reader["Name"].ToString();
+                    Decision = new Decision(Convert.ToInt32(reader["DecisionId"].ToString()));
                 }
                 reader.Close();
                 sqlConn.Close();
@@ -47,7 +49,7 @@ namespace IAFollowUp
             List<Classification> ret = new List<Classification>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], [Name] " +
+            string SelectSt = "SELECT [Id], [Name], [DecisionId] " +
                               "FROM [dbo].[Classification] ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -59,7 +61,8 @@ namespace IAFollowUp
                     ret.Add(new Classification()
                     {
                         Id = Convert.ToInt32(reader["Id"].ToString()),
-                        Name = reader["Name"].ToString()
+                        Name = reader["Name"].ToString(),
+                        Decision = new Decision(Convert.ToInt32(reader["DecisionId"].ToString()))
                     });
                 }
                 reader.Close();

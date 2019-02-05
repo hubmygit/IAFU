@@ -166,9 +166,11 @@
     <Compile Include="ModelsLib\ActionSide.cs" />
     <Compile Include="ModelsLib\ActivityDescription.cs" />
     <Compile Include="ModelsLib\AuditeesRoles.cs" />
+    <Compile Include="ModelsLib\AuditorsRoles.cs" />
     <Compile Include="ModelsLib\Classification.cs" />
     <Compile Include="ModelsLib\Delegatees.cs" />
     <Compile Include="ModelsLib\Decision.cs" />
+    <Compile Include="ModelsLib\FIDetailVoting.cs" />
     <Compile Include="ModelsLib\FI_DetailHeaderAudit.cs" />
     <Compile Include="ModelsLib\LvFileInfo.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
