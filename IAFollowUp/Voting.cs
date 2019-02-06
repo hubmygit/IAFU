@@ -16,12 +16,14 @@ namespace IAFollowUp
             InitializeComponent();
         }
 
-        public Voting(List<FIDetailVoting> givenFIDetailVotingList, int givenDetailId, FICategory givenFICategory)
+        public Voting(List<FIDetailVoting> givenFIDetailVotingList, int givenDetailId, bool givenIsApprover) //, FICategory givenFICategory)
         {
             InitializeComponent();
 
             //fiCat = givenFICategory;
             //txtCategory.Text = fiCat.Name;
+
+            isApprover = givenIsApprover;
 
             gridControl1.DataSource = new BindingList<FIDetailVoting>(givenFIDetailVotingList);
 
@@ -52,7 +54,13 @@ namespace IAFollowUp
                 choosenRole += " (Chief Audit Executive)"; 
             }
 
-            tsStatusLblUser.Text = "Role: " + choosenRole;
+            string approver = "Not Approver";
+            if (givenIsApprover)
+            {
+                approver = "Approver";
+            }
+
+            tsStatusLblUser.Text = "Role: " + choosenRole + "/" + approver;
 
             //--------------------------------------------
 
@@ -70,12 +78,12 @@ namespace IAFollowUp
             //}
         }
 
-        FICategory fiCat = new FICategory();
+        //FICategory fiCat = new FICategory();
 
         public Decision dec = new Decision();
         public Classification cla = new Classification();
         public ActivityDescription act = new ActivityDescription();
-
+        bool isApprover = false;
         private void btnSave_Click(object sender, EventArgs e)
         {
             
@@ -110,7 +118,13 @@ namespace IAFollowUp
                 return;
             }
 
-            DialogResult dr = MessageBox.Show("Are you sure................?", "Decision", MessageBoxButtons.YesNo);
+            string mess = "Are you sure about your choise?";
+            if (isApprover)
+            {
+                mess += "\r\n Be carefoul, you are the Approver;";
+            }
+
+            DialogResult dr = MessageBox.Show(mess, "Decision", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
                 this.DialogResult = DialogResult.OK;

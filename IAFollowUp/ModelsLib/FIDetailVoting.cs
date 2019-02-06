@@ -39,7 +39,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@userId", userId);
                 cmd.Parameters.AddWithValue("@auditorRoleId", auditorRoleId);
                 cmd.Parameters.AddWithValue("@classificationId", classificationId);
-                
+
                 cmd.CommandType = CommandType.Text;
                 int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -63,7 +63,7 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT Id FROM [dbo].[FIDetail_Voting] " + 
+            string SelectSt = "SELECT Id FROM [dbo].[FIDetail_Voting] " +
                               "WHERE DetailId = @detId AND UserId = @userId AND IsCurrent = 'True' ";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -73,7 +73,7 @@ namespace IAFollowUp
 
                 cmd.Parameters.AddWithValue("@detId", detailId);
                 cmd.Parameters.AddWithValue("@userId", userId);
-                
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -171,7 +171,7 @@ namespace IAFollowUp
             int ret = 0;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT max(isnull(PackId, 0)) as PackId " + 
+            string SelectSt = "SELECT max(isnull(PackId, 0)) as PackId " +
                               "FROM [dbo].[FIDetail_Voting] " +
                               "WHERE DetailId = @detId ";
 
@@ -231,5 +231,45 @@ namespace IAFollowUp
 
             return ret;
         }
+
+
+
+        public static ChiefVoteCause doesChiefNeedsToVote(FICategory category, List<FIDetailVoting> votes)
+        {
+            ChiefVoteCause ret = ChiefVoteCause.None;
+
+            List<int> decisions = new List<int>();
+            foreach (FIDetailVoting vote in votes)
+            {
+                if (decisions.Exists(i => i == vote.Classification.Id) == false)
+                {
+                    decisions.Add(vote.Classification.Id);
+                }
+            }
+
+            if (category.NeedsApproval == true) //1, 2
+            {
+                ret = ChiefVoteCause.High_Risk;
+            }
+            else if (decisions.Count > 1)
+            {
+                ret = ChiefVoteCause.Different_Decisions;
+            }
+            else if (category.NeedsApproval == false && decisions.Count == 1 && (decisions[0] == 2 || decisions[0] == 3)) //3, 4, 5
+            {
+                ret = ChiefVoteCause.Low_Risk_AltNo;
+            }
+
+            return ret;
+        }
+
+    }
+
+    public enum ChiefVoteCause
+    {
+        None,
+        Different_Decisions,
+        High_Risk,
+        Low_Risk_AltNo
     }
 }

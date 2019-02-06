@@ -1038,26 +1038,60 @@ namespace IAFollowUp
 
         private void IA_tsmiIAjudgeMT_Click(object sender, EventArgs e)
         {
+            //1)checks that is AuditOwner or CAE
+            //2)checks that he has not voted
             if (!UserAction.IsLegal(Action.Activity_IAjudgeMT, null, null, det))
             {
                 return;
             }
 
-
+            FICategory fiCat = completeAudit.FIHeaders[0].FICategory;
+            List<FIDetailVoting> VotingList = FIDetailVoting.SelectCurrent(det.Id);
+            ChiefVoteCause voteCause = FIDetailVoting.doesChiefNeedsToVote(fiCat, VotingList);
             AuditOwners auditorOwners = FIDetail.getAuditOwners(det.Id);
             int auditorRoleId = 0;
 
-            //1st Vote auditor1, 2
-            //2nd Vote supervisor
-            //3rd Vote chief
+            //1st stage - Voting auditor1, 2
+            //2nd stage - Voting supervisor
+            //3rd stage - Voting chief
 
             //auditor1,2 - always
             //supervisor - only after aud1, 2 voting
             //chief - only after aud1, 2, sup voting
 
-            if (UserInfo.roleDetails.Id == 2) //CAE
+            if (auditorOwners.Auditor1.Id == UserInfo.userDetails.Id) //Auditor1
+            {
+                auditorRoleId = 1;
+            }
+            else if (auditorOwners.Auditor2.Id == UserInfo.userDetails.Id) //Auditor2
+            {
+                auditorRoleId = 2;
+            }
+            else if (auditorOwners.Supervisor.Id == UserInfo.userDetails.Id) //Supervisor
+            {
+                auditorRoleId = 3;
+
+                if (auditorOwners.Auditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false)
+                {
+                    MessageBox.Show("You cannot decide yet! Auditor1 has to decide first.");
+                    return;
+                }
+
+                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
+                {
+                    MessageBox.Show("You cannot decide yet! Auditor2 has to decide first.");
+                    return;
+                }
+            }
+            else if (UserInfo.roleDetails.Id == 2) //CAE
             {
                 auditorRoleId = 4;
+
+                if (voteCause == ChiefVoteCause.None)
+                {
+                    MessageBox.Show("You do not have to decide!");
+                    return;
+                }
 
                 if (auditorOwners.Auditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false)
                 {
@@ -1077,35 +1111,129 @@ namespace IAFollowUp
                     return;
                 }
             }
-            else if (auditorOwners.Supervisor.Id == UserInfo.userDetails.Id) //Supervisor
+            else //never...
             {
-                auditorRoleId = 3;
+                MessageBox.Show("You are not authorized to perform this action!");
+                return;
+            }
 
-                if (auditorOwners.Auditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false) 
+            //elegxos twn email gia na kserw an o xristis einai autos pou tha parei thn apofasi...........
+            //eimai o auditor1, gia na me afinei na psifisw: 
+            //den exei psifisei akoma o supervisor an yparxei, oute o cae an xreiazetai
+
+            bool isApprover = false;
+            bool stopSearching = false;
+
+            if (auditorRoleId == 1) //auditor1
+            {
+                if (auditorOwners.Auditor2.Id > 0)
                 {
-                    MessageBox.Show("You cannot decide yet! Auditor1 has to decide first.");
-                    return;
+                    if (FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
+                    {
+                        //send email
+                        //return;
+                        stopSearching = true;
+                    }
                 }
 
-                if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
+                if (auditorOwners.Supervisor.Id > 0 && stopSearching == false)
                 {
-                    MessageBox.Show("You cannot decide yet! Auditor2 has to decide first.");
-                    return;
-                }               
-            }
-            else if (auditorOwners.Auditor1.Id == UserInfo.userDetails.Id) //Auditor1
-            {
-                auditorRoleId = 1;
-            }
-            else if (auditorOwners.Auditor2.Id == UserInfo.userDetails.Id) //Auditor2
-            {
-                auditorRoleId = 2;
-            }
-            
-            FICategory fiCat = completeAudit.FIHeaders[0].FICategory;
+                    //send email
+                    //return;
+                    stopSearching = true;
+                }
 
-            List<FIDetailVoting> VotingList = FIDetailVoting.SelectCurrent(det.Id);
-            Voting frmVoting = new Voting(VotingList, det.Id, fiCat);
+                if (voteCause != ChiefVoteCause.None && stopSearching == false) //cae an xreiazetai
+                {
+                    //send email
+                    //return;
+                    stopSearching = true;
+                }
+
+                if (stopSearching == false)
+                {
+                    //tote eimai autos poy tha parei tin apofasi
+                    isApprover = true;
+
+                    //return =>
+
+                    //accept/forward =>
+                }
+            }
+            //eimai o auditor2, gia na me afinei na psifisw: 
+            //den exei psifisei akoma o supervisor an yparxei, oute o cae an xreiazetai
+            else if (auditorRoleId == 2) //auditor2
+            {
+                if (auditorOwners.Auditor1.Id > 0)
+                {
+                    if (FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false)
+                    {
+                        //send email
+                        //return;
+                        stopSearching = true;
+                    }
+                }
+
+                if (auditorOwners.Supervisor.Id > 0 && stopSearching == false)
+                {
+                    //send email
+                    //return;
+                    stopSearching = true;
+                }
+
+                if (voteCause != ChiefVoteCause.None && stopSearching == false) //cae an xreiazetai
+                {
+                    //send email
+                    //return;
+                    stopSearching = true;
+                }
+
+                if (stopSearching == false)
+                {
+                    //tote eimai autos poy tha parei tin apofasi
+                    isApprover = true;
+
+                    //return =>
+
+                    //accept/forward =>
+                }
+            }
+            //eimai o supervisor, gia na me afinei na psifisw: 
+            //den exei psifisei akoma o cae an xreiazetai
+            //oi auditor1,2 exoun psifisei
+            else if (auditorRoleId == 3) //supervisor
+            {
+                if (voteCause != ChiefVoteCause.None) //cae an xreiazetai
+                {
+                    //send email
+                    //return;
+                    stopSearching = true;
+                }
+
+                if (stopSearching == false)
+                {
+                    //tote eimai autos poy tha parei tin apofasi
+                    isApprover = true;
+
+                    //return =>
+
+                    //accept/forward =>
+                }
+            }
+
+            //eimai o cae, gia na me afinei na psifisw: 
+            //exoun psifisei oloi kai pairnw thn teliki apofasi
+            else if (auditorRoleId == 4) //c.a.e.
+            {
+                //tote eimai autos poy tha parei tin apofasi
+                isApprover = true;
+
+                //return =>
+
+                //accept/forward =>
+            }
+
+            Voting frmVoting = new Voting(VotingList, det.Id, isApprover); //, fiCat);
 
             if (frmVoting.ShowDialog() != DialogResult.OK)
             {
@@ -1149,8 +1277,16 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
-                bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
+                //=======================================================================
 
+                
+
+
+
+                //Αν ψήφισε ο 1 στείλε mail στον 2, αν ψήφισε ο 2 στείλε mail στον 1, 
+                //αν ψήφισαν οι 1 και 2 στείλε mail στον superv αν υπάρχει α) ψήφο β) διαφορά
+                //αν ψήφισαν οι 1 και 2 και superv στείλε mail στον CAE αν υπάρχει
+                //αν ψήφισαν οι 1 και 2 και superv και CAE εκτέλεσε forward/return action (και στείλε mail στον/στους M.T.s)
 
                 //an yparxoun ki alloi auditors, steil' tous mail....
                 //send email
@@ -1170,15 +1306,20 @@ namespace IAFollowUp
                 //}
                 //<-----
 
+
+
             }
             else
             {
                 MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            //an teleiosan
+            //bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
 
 
-            //check all other decisions and if is the last...do something
+            //check all other decisions and if is the last...Accept Or Return
 
         }
 
