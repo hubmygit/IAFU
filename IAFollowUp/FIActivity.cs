@@ -1418,16 +1418,332 @@ namespace IAFollowUp
                     //a) accept (close)
                     //b) return to MT
 
-                    
+                    Classification strongestClassification = new Classification(); // 4); //return
+                    strongestClassification = frmVoting.cla; //always last decision is the strongest!!!
 
+                    /*
+                    if (auditorRoleId == 4) //cae - his decision
+                    {
+                        strongestClassification = frmVoting.cla;
+                    }
+                    else //3,4,5 && (Completed || Return)
+                    {
+                        List<Classification> classifs = new List<Classification>();
+                        foreach (FIDetailVoting vote in VotingList)
+                        {
+                            if (classifs.Exists(i => i.Id == vote.Classification.Id) == false)
+                            {
+                                classifs.Add(vote.Classification);
+                            }
+                        }
+
+                        strongestClassification = classifs[0]; //always 1 element
+                    }
+                    */
+
+                    //1.Forward, 2.Return
+                    //if (auditorRoleId == 1) //au1
+                    //{
+                    //}
+                    //else if (auditorRoleId == 2) //au2
+                    //{
+                    //}
+                    //else if (auditorRoleId == 3) //sup
+                    //{
+                    //}
+                    //else if (auditorRoleId == 4) //cae
+                    //{                        
+                    //}
+
+                    if (strongestClassification.Decision.Id == 1) //accept
+                    {
+                        if (FIDetail.Finalize(det.Id))
+                        {
+                            ChangeLog.Insert(new FIDetail() { Id = det.Id, IsFinalized = det.IsFinalized }, new FIDetail() { Id = det.Id, IsFinalized = true }, "FIDetail");
+                        }
+                        else
+                        {
+                            MessageBox.Show("The Finalization was not successful!");
+                            return;
+                        }
+
+                        FIDetailActivity detActivityAcc = new FIDetailActivity();
+                        detActivityAcc.DetailId = det.Id;
+                        detActivityAcc.ActivityDescription = new ActivityDescription(12);
+                        detActivityAcc.CommentRtf = rtbComments.Rtf;
+                        detActivityAcc.CommentText = rtbComments.Text;
+
+                        bool success = true;
+
+                        if (det.Placeholders.Count >= 1 && det.Placeholders[0] != null)
+                        {
+                            detActivityAcc.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
+                            detActivityAcc.Placeholders = det.Placeholders[0];
+
+                            int newAccActivityId = FIDetailActivity.Insert(detActivityAcc);
+
+                            if (newAccActivityId > -1)
+                            {
+                                //insert attachments
+                                string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                if (fileNamesAcc.Length > 0)
+                                {
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id))
+                                    {
+                                        //delete drafts
+                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+
+                                //Don't send email for this action
+                            }
+                            else
+                            {
+                                success = false;
+                                MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivityAcc.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+
+                        if (det.Placeholders.Count >= 2 && det.Placeholders[1] != null)
+                        {
+                            detActivityAcc.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
+                            detActivityAcc.Placeholders = det.Placeholders[1];
+
+                            int newAccActivityId = FIDetailActivity.Insert(detActivityAcc);
+
+                            if (newAccActivityId > -1)
+                            {
+                                //insert attachments
+                                string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                if (fileNamesAcc.Length > 0)
+                                {
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id))
+                                    {
+                                        //delete drafts
+                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+
+                                //Don't send email for this action
+                            }
+                            else
+                            {
+                                success = false;
+                                MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivityAcc.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        if (det.Placeholders.Count >= 3 && det.Placeholders[2] != null)
+                        {
+                            detActivityAcc.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
+                            detActivityAcc.Placeholders = det.Placeholders[2];
+
+                            int newAccActivityId = FIDetailActivity.Insert(detActivityAcc);
+
+                            if (newAccActivityId > -1)
+                            {
+                                //insert attachments
+                                string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                if (fileNamesAcc.Length > 0)
+                                {
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id))
+                                    {
+                                        //delete drafts
+                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+
+                                //Don't send email for this action
+                            }
+                            else
+                            {
+                                success = false;
+                                MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivityAcc.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+
+                        if (success)
+                        {
+                            MessageBox.Show("The Action completed!");
+                            Close(); //or stay and refresh   
+                        }
+                    }
+                    if (strongestClassification.Decision.Id == 1) //return
+                    {
+                        FIDetailActivity detActivityRet = new FIDetailActivity();
+                        detActivityRet.DetailId = det.Id;
+                        detActivityRet.ActivityDescription = new ActivityDescription(3);
+                        detActivityRet.CommentRtf = rtbComments.Rtf;
+                        detActivityRet.CommentText = rtbComments.Text;
+
+                        bool success = true;
+
+                        if (det.Placeholders.Count >= 1 && det.Placeholders[0] != null)
+                        {
+                            detActivityRet.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[0].Id).User; //det.CurrentOwner1.User;
+                            detActivityRet.Placeholders = det.Placeholders[0];
+
+                            int newRetActivityId = FIDetailActivity.Insert(detActivityRet);
+
+                            if (newRetActivityId > -1)
+                            {
+                                //insert attachments
+                                string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                if (fileNamesRet.Length > 0)
+                                {
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id))
+                                    {
+                                        //delete drafts
+                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+
+                                //send email
+                                //----->
+                                EmailProperties emailProps = new EmailProperties();
+                                emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivityRet.ToUser.FullName, Email = detActivityRet.ToUser.getEmail() } };
+                                emailProps.Subject = detActivityRet.ActivityDescription.EmailSubject;
+                                emailProps.Body = detActivityRet.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                                //if (Email.SendBcc(emailProps))
+                                //{
+                                //    MessageBox.Show("Email(s) sent!");
+                                //}
+                                //else
+                                //{
+                                //    MessageBox.Show("Emails have not been sent!");
+                                //}
+                                //<-----
+
+                                //create alerts
+                            }
+                            else
+                            {
+                                success = false;
+                                MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivityRet.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        if (det.Placeholders.Count >= 2 && det.Placeholders[1] != null)
+                        {
+                            detActivityRet.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[1].Id).User; //det.CurrentOwner2.User;
+                            detActivityRet.Placeholders = det.Placeholders[1];
+
+                            int newRetActivityId = FIDetailActivity.Insert(detActivityRet);
+
+                            if (newRetActivityId > -1)
+                            {
+                                //insert attachments
+                                string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                if (fileNamesRet.Length > 0)
+                                {
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id))
+                                    {
+                                        //delete drafts
+                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+
+                                //send email
+                                //----->
+                                EmailProperties emailProps = new EmailProperties();
+                                emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivityRet.ToUser.FullName, Email = detActivityRet.ToUser.getEmail() } };
+                                emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                                emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                                //if (Email.SendBcc(emailProps))
+                                //{
+                                //    MessageBox.Show("Email(s) sent!");
+                                //}
+                                //else
+                                //{
+                                //    MessageBox.Show("Emails have not been sent!");
+                                //}
+                                //<-----
+
+                                //create alerts
+                            }
+                            else
+                            {
+                                success = false;
+                                MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivityRet.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        if (det.Placeholders.Count >= 3 && det.Placeholders[2] != null)
+                        {
+                            detActivityRet.ToUser = Owners_MT.GetCurrentOwnerMT(det.Placeholders[2].Id).User; //det.CurrentOwner3.User;
+                            detActivityRet.Placeholders = det.Placeholders[2];
+
+                            int newRetActivityId = FIDetailActivity.Insert(detActivityRet);
+
+                            if (newRetActivityId > -1)
+                            {
+                                //insert attachments
+                                string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                if (fileNamesRet.Length > 0)
+                                {
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id))
+                                    {
+                                        //delete drafts
+                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+
+                                //send email
+                                //----->
+                                EmailProperties emailProps = new EmailProperties();
+                                emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivityRet.ToUser.FullName, Email = detActivityRet.ToUser.getEmail() } };
+                                emailProps.Subject = detActivityRet.ActivityDescription.EmailSubject;
+                                emailProps.Body = detActivityRet.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                                //if (Email.SendBcc(emailProps))
+                                //{
+                                //    MessageBox.Show("Email(s) sent!");
+                                //}
+                                //else
+                                //{
+                                //    MessageBox.Show("Emails have not been sent!");
+                                //}
+                                //<-----
+
+                                //create alerts
+                            }
+                            else
+                            {
+                                success = false;
+                                MessageBox.Show("The Action has not been completed!" + "\r\nDept: " + detActivityRet.Placeholders.Department.Name + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+
+                        if (success)
+                        {
+                            MessageBox.Show("The Action completed!");
+                            Close(); //or stay and refresh   
+                        }
+
+                    }
 
                     //an teleiosan
-                    //bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
-
-
-                    //check all other decisions and if is the last...Accept Or Return
-
-
+                    bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
                 }
             }
             else
@@ -1575,6 +1891,5 @@ namespace IAFollowUp
             }
         }
 
-        
     }
 }

@@ -107,7 +107,7 @@ namespace IAFollowUp
             else if (rbReturn.Checked)
             {
                 dec = new Decision(2);
-                cla = new Classification(3);
+                cla = new Classification(4);
                 act = new ActivityDescription(17);
             }
             else

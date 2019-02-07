@@ -147,10 +147,6 @@
             this.MIcopyAttachments.Text = "Copy Attachments";
             this.MIcopyAttachments.Click += new System.EventHandler(this.MIcopyAttachments_Click);
             // 
-            // fIDetailActivityBindingSource
-            // 
-            //this.fIDetailActivityBindingSource.DataSource = typeof(IAFollowUp.FIDetailActivity);
-            // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
