@@ -263,6 +263,82 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static bool IsUserApprover(int auditorRoleId, AuditOwners auditorOwners, int detailId, ChiefVoteCause voteCause)
+        {
+            bool ret = false;
+
+            if (auditorRoleId == 1) //auditor1
+            {
+                if (auditorOwners.Auditor2.Id > 0)
+                {
+                    if (FIDetailVoting.HasAlreadyVoted(detailId, auditorOwners.Auditor2.Id) == false)
+                    {
+                        return ret;
+                    }
+                }
+
+                if (auditorOwners.Supervisor.Id > 0)
+                {
+                    return ret;
+                }
+
+                if (voteCause != ChiefVoteCause.None) //cae an xreiazetai
+                {
+                    return ret;
+                }
+
+                //tote eimai autos poy tha parei tin apofasi
+                ret = true;
+            }
+            //eimai o auditor2, gia na me afinei na psifisw: 
+            //den exei psifisei akoma o supervisor an yparxei, oute o cae an xreiazetai
+            else if (auditorRoleId == 2) //auditor2
+            {
+                if (auditorOwners.Auditor1.Id > 0)
+                {
+                    if (FIDetailVoting.HasAlreadyVoted(detailId, auditorOwners.Auditor1.Id) == false)
+                    {
+                        return ret;
+                    }
+                }
+
+                if (auditorOwners.Supervisor.Id > 0)
+                {
+                    return ret;
+                }
+
+                if (voteCause != ChiefVoteCause.None) //cae an xreiazetai
+                {
+                    return ret;
+                }
+
+                //tote eimai autos poy tha parei tin apofasi
+                ret = true;
+            }
+            //eimai o supervisor, gia na me afinei na psifisw: 
+            //den exei psifisei akoma o cae an xreiazetai
+            //oi auditor1,2 exoun psifisei
+            else if (auditorRoleId == 3) //supervisor
+            {
+                if (voteCause != ChiefVoteCause.None) //cae an xreiazetai
+                {
+                    return ret;
+                }
+
+                //tote eimai autos poy tha parei tin apofasi
+                ret = true;
+            }
+            //eimai o cae, gia na me afinei na psifisw: 
+            //exoun psifisei oloi kai pairnw thn teliki apofasi
+            else if (auditorRoleId == 4) //c.a.e.
+            {
+                //tote eimai autos poy tha parei tin apofasi
+                ret = true;
+            }
+
+            return ret;
+        }
+
     }
 
     public enum ChiefVoteCause

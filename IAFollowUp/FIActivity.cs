@@ -1117,10 +1117,13 @@ namespace IAFollowUp
                 return;
             }
 
-            //elegxos twn email gia na kserw an o xristis einai autos pou tha parei thn apofasi...........
+            //elegxos gia na kserw an o xristis einai autos pou tha parei thn apofasi kai pou tha steilw email
             //eimai o auditor1, gia na me afinei na psifisw: 
             //den exei psifisei akoma o supervisor an yparxei, oute o cae an xreiazetai
 
+            bool isApprover = FIDetailVoting.IsUserApprover(auditorRoleId, auditorOwners, det.Id, voteCause);
+
+            /*
             bool isApprover = false;
             bool stopSearching = false;
 
@@ -1232,6 +1235,7 @@ namespace IAFollowUp
 
                 //accept/forward =>
             }
+            */
 
             Voting frmVoting = new Voting(VotingList, det.Id, isApprover); //, fiCat);
 
@@ -1279,48 +1283,158 @@ namespace IAFollowUp
 
                 //=======================================================================
 
-                
+                VotingList = FIDetailVoting.SelectCurrent(det.Id);
+                voteCause = FIDetailVoting.doesChiefNeedsToVote(fiCat, VotingList);
+                isApprover = FIDetailVoting.IsUserApprover(auditorRoleId, auditorOwners, det.Id, voteCause);
+
+                if (isApprover == false) //send email to next auditor
+                {
+                    if (auditorRoleId == 1)
+                    {
+                        //a) Send to Auditor2
+                        if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
+                        {
+                            EmailProperties emailProps = new EmailProperties();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Auditor2.getEmail(), FullName = auditorOwners.Auditor2.FullName } }; 
+                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //if (Email.SendBcc(emailProps))
+                            //{
+                            //    MessageBox.Show("Email(s) sent!");
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("Emails have not been sent!");
+                            //}
+                        }
+                        //b) Send to Supervisor
+                        else if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id) == false)
+                        {
+                            EmailProperties emailProps = new EmailProperties();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } }; 
+                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //if (Email.SendBcc(emailProps))
+                            //{
+                            //    MessageBox.Show("Email(s) sent!");
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("Emails have not been sent!");
+                            //}
+                        }
+                        //c) send to C.A.E.
+                        else if (voteCause != ChiefVoteCause.None)
+                        {
+                            Users cae = Users.getCAE();
+                            EmailProperties emailProps = new EmailProperties();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
+                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //if (Email.SendBcc(emailProps))
+                            //{
+                            //    MessageBox.Show("Email(s) sent!");
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("Emails have not been sent!");
+                            //}
+                        }
+                    }
+                    else if (auditorRoleId == 2)
+                    {
+                        //a) Send to Auditor1 
+                        if (auditorOwners.Auditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false)
+                        {
+                            EmailProperties emailProps = new EmailProperties();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Auditor1.getEmail(), FullName = auditorOwners.Auditor1.FullName } };
+                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //if (Email.SendBcc(emailProps))
+                            //{
+                            //    MessageBox.Show("Email(s) sent!");
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("Emails have not been sent!");
+                            //}
+                        }
+                        //b) Send to Supervisor 
+                        else if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id) == false)
+                        {
+                            EmailProperties emailProps = new EmailProperties();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } };
+                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //if (Email.SendBcc(emailProps))
+                            //{
+                            //    MessageBox.Show("Email(s) sent!");
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("Emails have not been sent!");
+                            //}
+                        }
+                        //c) send to C.A.E.
+                        else if (voteCause != ChiefVoteCause.None)
+                        {
+                            Users cae = Users.getCAE();
+                            EmailProperties emailProps = new EmailProperties();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
+                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //if (Email.SendBcc(emailProps))
+                            //{
+                            //    MessageBox.Show("Email(s) sent!");
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("Emails have not been sent!");
+                            //}
+                        }
+                    }
+                    else if (auditorRoleId == 3)
+                    {
+                        //a) send to C.A.E. always (i am not approver)
+                        //voteCause
+                        Users cae = Users.getCAE();
+                        EmailProperties emailProps = new EmailProperties();
+                        emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
+                        emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
+                        emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                        //if (Email.SendBcc(emailProps))
+                        //{
+                        //    MessageBox.Show("Email(s) sent!");
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Emails have not been sent!");
+                        //}
+                    }
+                }
+                else // isApprover - actions (accept / return)
+                {
+                    //auditors, supervisor, cae possible acions: 
+                    //a) accept (close)
+                    //b) return to MT
+
+                    
 
 
-
-                //Αν ψήφισε ο 1 στείλε mail στον 2, αν ψήφισε ο 2 στείλε mail στον 1, 
-                //αν ψήφισαν οι 1 και 2 στείλε mail στον superv αν υπάρχει α) ψήφο β) διαφορά
-                //αν ψήφισαν οι 1 και 2 και superv στείλε mail στον CAE αν υπάρχει
-                //αν ψήφισαν οι 1 και 2 και superv και CAE εκτέλεσε forward/return action (και στείλε mail στον/στους M.T.s)
-
-                //an yparxoun ki alloi auditors, steil' tous mail....
-                //send email
-                //----->
-                //EmailProperties emailProps = new EmailProperties();
-                //AuditOwners iaOwners = FIDetail.getAuditOwners(det.Id);
-                //emailProps.Recipients = iaOwners.getRecipients(false);
-                //emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
-                //emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                //if (Email.SendBcc(emailProps))
-                //{
-                //    MessageBox.Show("Email(s) sent!");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Emails have not been sent!");
-                //}
-                //<-----
+                    //an teleiosan
+                    //bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
 
 
+                    //check all other decisions and if is the last...Accept Or Return
 
+
+                }
             }
             else
             {
                 MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            //an teleiosan
-            //bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
-
-
-            //check all other decisions and if is the last...Accept Or Return
-
         }
 
         private void MIcopy_Click(object sender, EventArgs e)

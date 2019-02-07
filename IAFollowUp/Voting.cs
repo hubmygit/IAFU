@@ -85,9 +85,7 @@ namespace IAFollowUp
         public ActivityDescription act = new ActivityDescription();
         bool isApprover = false;
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            
-
+        {         
             if (rbForwardCompleted.Checked)
             {
                 dec = new Decision(1);
@@ -121,7 +119,7 @@ namespace IAFollowUp
             string mess = "Are you sure about your choise?";
             if (isApprover)
             {
-                mess += "\r\n Be carefoul, you are the Approver;";
+                mess += "\r\n Be carefoul, you are the Approver. \r\nYour comments and attachments will be published to Managment Teams";
             }
 
             DialogResult dr = MessageBox.Show(mess, "Decision", MessageBoxButtons.YesNo);
