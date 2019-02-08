@@ -16,12 +16,14 @@ namespace IAFollowUp
             InitializeComponent();
         }
 
-        public Voting(List<FIDetailVoting> givenFIDetailVotingList, int givenDetailId, bool givenIsApprover) //, FICategory givenFICategory)
+        public Voting(List<FIDetailVoting> givenFIDetailVotingList, int givenDetailId, bool givenIsApprover, FICategory givenFICategory) 
         {
             InitializeComponent();
 
-            //fiCat = givenFICategory;
+            fiCat = givenFICategory;
             //txtCategory.Text = fiCat.Name;
+
+            detailVotingList = givenFIDetailVotingList;
 
             isApprover = givenIsApprover;
 
@@ -78,12 +80,12 @@ namespace IAFollowUp
             //}
         }
 
-        //FICategory fiCat = new FICategory();
-
+        FICategory fiCat = new FICategory();
         public Decision dec = new Decision();
         public Classification cla = new Classification();
         public ActivityDescription act = new ActivityDescription();
         bool isApprover = false;
+        List<FIDetailVoting> detailVotingList = new List<FIDetailVoting>();
         private void btnSave_Click(object sender, EventArgs e)
         {         
             if (rbForwardCompleted.Checked)
@@ -117,9 +119,14 @@ namespace IAFollowUp
             }
 
             string mess = "Are you sure about your choise?";
-            if (isApprover)
+
+            List<FIDetailVoting> newVotingList = detailVotingList.ToList();
+            newVotingList.Add(new FIDetailVoting() { Classification = cla });
+            ChiefVoteCause newVoteCause = FIDetailVoting.doesChiefNeedsToVote(fiCat, newVotingList);
+
+            if ((isApprover && newVoteCause == ChiefVoteCause.None) || UserInfo.roleDetails.Id == 2)
             {
-                mess += "\r\n Be carefoul, you are the Approver. \r\nYour comments and attachments will be published to Managment Teams";
+                mess += "\r\n Be carefoul, by your selection you are the Approver. \r\nYour comments and attachments will be published to Managment Teams.";
             }
 
             DialogResult dr = MessageBox.Show(mess, "Decision", MessageBoxButtons.YesNo);

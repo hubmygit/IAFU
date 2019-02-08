@@ -1067,7 +1067,7 @@ namespace IAFollowUp
 
             bool isApprover = FIDetailVoting.IsUserApprover(auditorRoleId, auditorOwners, det.Id, voteCause);           
 
-            Voting frmVoting = new Voting(VotingList, det.Id, isApprover); //, fiCat);
+            Voting frmVoting = new Voting(VotingList, det.Id, isApprover, fiCat); //, fiCat);
             if (frmVoting.ShowDialog() != DialogResult.OK)
             {
                 return;
@@ -1463,8 +1463,7 @@ namespace IAFollowUp
 
                     }
 
-                    //an teleiosan
-                    bool isDetailVotingUpdated = FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
+                    FIDetailVoting.UpdatePackAndCurrentFlags(det.Id);
                 }
             }
             else
@@ -1472,6 +1471,8 @@ namespace IAFollowUp
                 MessageBox.Show("The Action has not been completed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            Close();
         }
 
         private void MIcopy_Click(object sender, EventArgs e)

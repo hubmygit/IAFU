@@ -204,7 +204,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "UPDATE [dbo].[FIDetail_Voting] " +
-                           "SET Pack = @packId, IsCurrent = 'FALSE' " +
+                           "SET PackId = @packId, IsCurrent = 'FALSE' " +
                            "WHERE detailId = @detailId AND isnull([IsCurrent], 'FALSE') = 'TRUE' ";
             try
             {
@@ -225,7 +225,6 @@ namespace IAFollowUp
             catch (Exception ex)
             {
                 MessageBox.Show("The following error occurred: " + ex.Message);
-
             }
             sqlConn.Close();
 
