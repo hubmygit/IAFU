@@ -1089,12 +1089,7 @@ namespace IAFollowUp
                 //insert attachments                
                 if (fileNames.Length > 0)
                 {
-                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                    {
-                        //delete drafts
-                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                    }
-                    else
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                     {
                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -1105,6 +1100,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 bool insertedSuccessfully = FIDetailVoting.Insert(det.Id, UserInfo.userDetails.Id, auditorRoleId, frmVoting.cla.Id);
 
@@ -1118,159 +1116,83 @@ namespace IAFollowUp
 
                 if (isApprover == false) //send email to next auditor
                 {
+                    EmailProperties emailProps = new EmailProperties();
+
                     if (auditorRoleId == 1)
-                    {
+                    {                       
                         //a) Send to Auditor2
                         if (auditorOwners.Auditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
                         {
-                            EmailProperties emailProps = new EmailProperties();
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Auditor2.getEmail(), FullName = auditorOwners.Auditor2.FullName } }; 
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                            //if (Email.SendBcc(emailProps))
-                            //{
-                            //    MessageBox.Show("Email(s) sent!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("Emails have not been sent!");
-                            //}
                         }
                         //b) Send to Supervisor
                         else if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id) == false)
                         {
-                            EmailProperties emailProps = new EmailProperties();
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } }; 
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                            //if (Email.SendBcc(emailProps))
-                            //{
-                            //    MessageBox.Show("Email(s) sent!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("Emails have not been sent!");
-                            //}
                         }
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
                         {
                             Users cae = Users.getCAE();
-                            EmailProperties emailProps = new EmailProperties();
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                            //if (Email.SendBcc(emailProps))
-                            //{
-                            //    MessageBox.Show("Email(s) sent!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("Emails have not been sent!");
-                            //}
-                        }
+                        }                        
                     }
                     else if (auditorRoleId == 2)
                     {
                         //a) Send to Auditor1 
                         if (auditorOwners.Auditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false)
-                        {
-                            EmailProperties emailProps = new EmailProperties();
+                        {                            
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Auditor1.getEmail(), FullName = auditorOwners.Auditor1.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                            //if (Email.SendBcc(emailProps))
-                            //{
-                            //    MessageBox.Show("Email(s) sent!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("Emails have not been sent!");
-                            //}
                         }
                         //b) Send to Supervisor 
                         else if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id) == false)
                         {
-                            EmailProperties emailProps = new EmailProperties();
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                            //if (Email.SendBcc(emailProps))
-                            //{
-                            //    MessageBox.Show("Email(s) sent!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("Emails have not been sent!");
-                            //}
                         }
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
                         {
                             Users cae = Users.getCAE();
-                            EmailProperties emailProps = new EmailProperties();
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                            //if (Email.SendBcc(emailProps))
-                            //{
-                            //    MessageBox.Show("Email(s) sent!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("Emails have not been sent!");
-                            //}
                         }
                     }
                     else if (auditorRoleId == 3)
-                    {
+                    {                     
                         //a) send to C.A.E. always (i am not approver)
                         //voteCause
                         Users cae = Users.getCAE();
-                        EmailProperties emailProps = new EmailProperties();
                         emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                         emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                         emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-                        //if (Email.SendBcc(emailProps))
-                        //{
-                        //    MessageBox.Show("Email(s) sent!");
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Emails have not been sent!");
-                        //}
                     }
-                }
-                else // isApprover - actions (accept / return)
-                {
-                    //auditors, supervisor, cae possible acions: 
-                    //a) accept (close)
-                    //b) return to MT
 
+                    //if (Email.SendBcc(emailProps))
+                    //{
+                    //    MessageBox.Show("Email(s) sent!");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Emails have not been sent!");
+                    //}
+                }
+                else // isApprover - actions (accept (close)/ return to MT)
+                {
+                    //cae - his decision, au1,2, sup - 3,4,5 && (Completed || Return)
                     Classification strongestClassification = new Classification(); // 4); //return
                     strongestClassification = frmVoting.cla; //always last decision is the strongest!!!
 
-                    /*
-                    if (auditorRoleId == 4) //cae - his decision
-                    {
-                        strongestClassification = frmVoting.cla;
-                    }
-                    else //3,4,5 && (Completed || Return)
-                    {
-                        List<Classification> classifs = new List<Classification>();
-                        foreach (FIDetailVoting vote in VotingList)
-                        {
-                            if (classifs.Exists(i => i.Id == vote.Classification.Id) == false)
-                            {
-                                classifs.Add(vote.Classification);
-                            }
-                        }
-
-                        strongestClassification = classifs[0]; //always 1 element
-                    }
-                    */
-
-                    //1.Forward, 2.Return
                     //if (auditorRoleId == 1) //au1
                     //{
                     //}
@@ -1317,12 +1239,7 @@ namespace IAFollowUp
                                 string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                                 if (fileNamesAcc.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id))
-                                    {
-                                        //delete drafts
-                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                                    }
-                                    else
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id) == false)
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1350,12 +1267,7 @@ namespace IAFollowUp
                                 string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                                 if (fileNamesAcc.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id))
-                                    {
-                                        //delete drafts
-                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                                    }
-                                    else
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id) == false)
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1382,12 +1294,7 @@ namespace IAFollowUp
                                 string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                                 if (fileNamesAcc.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id))
-                                    {
-                                        //delete drafts
-                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                                    }
-                                    else
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id) == false)
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1408,7 +1315,7 @@ namespace IAFollowUp
                             Close(); //or stay and refresh   
                         }
                     }
-                    if (strongestClassification.Decision.Id == 1) //return
+                    if (strongestClassification.Decision.Id == 2) //return
                     {
                         FIDetailActivity detActivityRet = new FIDetailActivity();
                         detActivityRet.DetailId = det.Id;
@@ -1431,12 +1338,7 @@ namespace IAFollowUp
                                 string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                                 if (fileNamesRet.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id))
-                                    {
-                                        //delete drafts
-                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                                    }
-                                    else
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id) == false)
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1479,12 +1381,7 @@ namespace IAFollowUp
                                 string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                                 if (fileNamesRet.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id))
-                                    {
-                                        //delete drafts
-                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                                    }
-                                    else
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id) == false)
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1527,12 +1424,7 @@ namespace IAFollowUp
                                 string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                                 if (fileNamesRet.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id))
-                                    {
-                                        //delete drafts
-                                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                                    }
-                                    else
+                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id) == false)
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
