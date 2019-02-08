@@ -146,12 +146,7 @@ namespace IAFollowUp
                 string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                 if (fileNames.Length > 0)
                 {
-                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                    {
-                        //delete drafts
-                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                    }
-                    else
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                     {
                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -162,6 +157,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
 
@@ -225,12 +223,7 @@ namespace IAFollowUp
                 //insert attachments                
                 if (fileNames.Length > 0)
                 {
-                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                    {
-                        //delete drafts
-                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                    }
-                    else
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                     {
                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -241,6 +234,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
 
@@ -590,12 +586,7 @@ namespace IAFollowUp
                 string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                 if (fileNames.Length > 0)
                 {
-                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                    {
-                        //delete drafts
-                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                    }
-                    else
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                     {
                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -606,6 +597,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
 
@@ -678,12 +672,7 @@ namespace IAFollowUp
                 string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                 if (fileNames.Length > 0)
                 {
-                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                    {
-                        //delete drafts
-                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                    }
-                    else
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                     {
                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -694,6 +683,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
 
@@ -746,12 +738,7 @@ namespace IAFollowUp
                 string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                 if (fileNames.Length > 0)
                 {
-                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                    {
-                        //delete drafts
-                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                    }
-                    else
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                     {
                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -762,6 +749,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
 
@@ -819,12 +809,7 @@ namespace IAFollowUp
                 string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                 if (fileNames.Length > 0)
                 {
-                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                    {
-                        //delete drafts
-                        DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                    }
-                    else
+                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                     {
                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -835,6 +820,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
 
@@ -1016,12 +1004,8 @@ namespace IAFollowUp
             int auditorRoleId = 0;
 
             //1st stage - Voting auditor1, 2
-            //2nd stage - Voting supervisor
-            //3rd stage - Voting chief
-
-            //auditor1,2 - always
-            //supervisor - only after aud1, 2 voting
-            //chief - only after aud1, 2, sup voting
+            //2nd stage - Voting supervisor / only after aud1, 2
+            //3rd stage - Voting chief / only after aud1, 2, sup
 
             if (auditorOwners.Auditor1.Id == UserInfo.userDetails.Id) //Auditor1
             {
@@ -1081,128 +1065,9 @@ namespace IAFollowUp
                 return;
             }
 
-            //elegxos gia na kserw an o xristis einai autos pou tha parei thn apofasi kai pou tha steilw email
-            //eimai o auditor1, gia na me afinei na psifisw: 
-            //den exei psifisei akoma o supervisor an yparxei, oute o cae an xreiazetai
-
-            bool isApprover = FIDetailVoting.IsUserApprover(auditorRoleId, auditorOwners, det.Id, voteCause);
-
-            /*
-            bool isApprover = false;
-            bool stopSearching = false;
-
-            if (auditorRoleId == 1) //auditor1
-            {
-                if (auditorOwners.Auditor2.Id > 0)
-                {
-                    if (FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor2.Id) == false)
-                    {
-                        //send email
-                        //return;
-                        stopSearching = true;
-                    }
-                }
-
-                if (auditorOwners.Supervisor.Id > 0 && stopSearching == false)
-                {
-                    //send email
-                    //return;
-                    stopSearching = true;
-                }
-
-                if (voteCause != ChiefVoteCause.None && stopSearching == false) //cae an xreiazetai
-                {
-                    //send email
-                    //return;
-                    stopSearching = true;
-                }
-
-                if (stopSearching == false)
-                {
-                    //tote eimai autos poy tha parei tin apofasi
-                    isApprover = true;
-
-                    //return =>
-
-                    //accept/forward =>
-                }
-            }
-            //eimai o auditor2, gia na me afinei na psifisw: 
-            //den exei psifisei akoma o supervisor an yparxei, oute o cae an xreiazetai
-            else if (auditorRoleId == 2) //auditor2
-            {
-                if (auditorOwners.Auditor1.Id > 0)
-                {
-                    if (FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Auditor1.Id) == false)
-                    {
-                        //send email
-                        //return;
-                        stopSearching = true;
-                    }
-                }
-
-                if (auditorOwners.Supervisor.Id > 0 && stopSearching == false)
-                {
-                    //send email
-                    //return;
-                    stopSearching = true;
-                }
-
-                if (voteCause != ChiefVoteCause.None && stopSearching == false) //cae an xreiazetai
-                {
-                    //send email
-                    //return;
-                    stopSearching = true;
-                }
-
-                if (stopSearching == false)
-                {
-                    //tote eimai autos poy tha parei tin apofasi
-                    isApprover = true;
-
-                    //return =>
-
-                    //accept/forward =>
-                }
-            }
-            //eimai o supervisor, gia na me afinei na psifisw: 
-            //den exei psifisei akoma o cae an xreiazetai
-            //oi auditor1,2 exoun psifisei
-            else if (auditorRoleId == 3) //supervisor
-            {
-                if (voteCause != ChiefVoteCause.None) //cae an xreiazetai
-                {
-                    //send email
-                    //return;
-                    stopSearching = true;
-                }
-
-                if (stopSearching == false)
-                {
-                    //tote eimai autos poy tha parei tin apofasi
-                    isApprover = true;
-
-                    //return =>
-
-                    //accept/forward =>
-                }
-            }
-
-            //eimai o cae, gia na me afinei na psifisw: 
-            //exoun psifisei oloi kai pairnw thn teliki apofasi
-            else if (auditorRoleId == 4) //c.a.e.
-            {
-                //tote eimai autos poy tha parei tin apofasi
-                isApprover = true;
-
-                //return =>
-
-                //accept/forward =>
-            }
-            */
+            bool isApprover = FIDetailVoting.IsUserApprover(auditorRoleId, auditorOwners, det.Id, voteCause);           
 
             Voting frmVoting = new Voting(VotingList, det.Id, isApprover); //, fiCat);
-
             if (frmVoting.ShowDialog() != DialogResult.OK)
             {
                 return;
