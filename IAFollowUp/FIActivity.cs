@@ -297,12 +297,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -345,12 +340,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -393,12 +383,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -434,6 +419,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts - no need to check if there are attachments or not...
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -479,12 +467,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -512,12 +495,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -544,12 +522,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -569,6 +542,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts - no need to check if there are attachments or not...
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
@@ -935,12 +911,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -969,12 +940,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -1003,12 +969,7 @@ namespace IAFollowUp
                     string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
                     if (fileNames.Length > 0)
                     {
-                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id))
-                        {
-                            //delete drafts
-                            DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
-                        }
-                        else
+                        if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newActivityId, det.Id, this.PHolder.Id) == false)
                         {
                             MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -1030,6 +991,9 @@ namespace IAFollowUp
                 //delete comments from user's drafts
                 FIDetailActivity.deleteDraftRtf(det.Id, PHolder.Id);
                 rtbComments.Clear();
+
+                //delete attachments from user's drafts
+                DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
                 Close(); //or stay and refresh   
