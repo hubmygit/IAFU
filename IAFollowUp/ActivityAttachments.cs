@@ -321,6 +321,42 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static bool CopyActivityAttachedFiles(int fromActId, int toActId) //INSERT [dbo].[FIDetail_Activity_Attachments]
+        {
+            bool ret = false;
+
+            if (fromActId > 0 && toActId > 0)
+            {
+                SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+                string InsSt = "INSERT INTO [dbo].[FIDetail_Activity_Attachments] (ActivityId, Name, FileContents, UsersId, InsDate) " +
+                     "SELECT @toActId as ActivityId, [Name], [FileContents], @usrId as UsersId, getdate() as InsDate " +
+                     "FROM [dbo].[FIDetail_Activity_Attachments] WHERE activityId = @fromActId ";
+
+                try
+                {
+                    sqlConn.Open();
+                    SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                    cmd.Parameters.AddWithValue("@fromActId", fromActId);
+                    cmd.Parameters.AddWithValue("@toActId", toActId);
+                    cmd.Parameters.AddWithValue("@usrId", UserInfo.userDetails.Id);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        ret = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("The following error occurred: " + ex.Message);
+                }
+            }
+
+            return ret;
+        }
+
         private bool Delete_SampleFiles(int given_ActivityId)
         {
             bool ret = false;

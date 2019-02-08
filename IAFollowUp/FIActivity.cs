@@ -1221,8 +1221,8 @@ namespace IAFollowUp
                         FIDetailActivity detActivityAcc = new FIDetailActivity();
                         detActivityAcc.DetailId = det.Id;
                         detActivityAcc.ActivityDescription = new ActivityDescription(12);
-                        detActivityAcc.CommentRtf = rtbComments.Rtf;
-                        detActivityAcc.CommentText = rtbComments.Text;
+                        detActivityAcc.CommentRtf = detActivity.CommentRtf; //copy from last action
+                        detActivityAcc.CommentText = detActivity.CommentText; //copy from last action
 
                         bool success = true;
 
@@ -1235,11 +1235,11 @@ namespace IAFollowUp
 
                             if (newAccActivityId > -1)
                             {
-                                //insert attachments
-                                string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                //insert attachments //copy from last action
+                                string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId); 
                                 if (fileNamesAcc.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id) == false)
+                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1263,11 +1263,11 @@ namespace IAFollowUp
 
                             if (newAccActivityId > -1)
                             {
-                                //insert attachments
-                                string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                //insert attachments //copy from last action
+                                string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId);
                                 if (fileNamesAcc.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id) == false)
+                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1290,11 +1290,11 @@ namespace IAFollowUp
 
                             if (newAccActivityId > -1)
                             {
-                                //insert attachments
-                                string[] fileNamesAcc = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                //insert attachments //copy from last action
+                                string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId);
                                 if (fileNamesAcc.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newAccActivityId, det.Id, this.PHolder.Id) == false)
+                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1320,8 +1320,8 @@ namespace IAFollowUp
                         FIDetailActivity detActivityRet = new FIDetailActivity();
                         detActivityRet.DetailId = det.Id;
                         detActivityRet.ActivityDescription = new ActivityDescription(3);
-                        detActivityRet.CommentRtf = rtbComments.Rtf;
-                        detActivityRet.CommentText = rtbComments.Text;
+                        detActivityRet.CommentRtf = detActivity.CommentRtf; //copy from last action
+                        detActivityRet.CommentText = detActivity.CommentText; //copy from last action
 
                         bool success = true;
 
@@ -1334,11 +1334,11 @@ namespace IAFollowUp
 
                             if (newRetActivityId > -1)
                             {
-                                //insert attachments
-                                string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                //insert attachments //copy from last action
+                                string[] fileNamesRet = ActivityAttachments.getSavedAttachments(newActivityId);
                                 if (fileNamesRet.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id) == false)
+                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newRetActivityId) == false) //copy from last action
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1377,11 +1377,11 @@ namespace IAFollowUp
 
                             if (newRetActivityId > -1)
                             {
-                                //insert attachments
-                                string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                //insert attachments //copy from last action
+                                string[] fileNamesRet = ActivityAttachments.getSavedAttachments(newActivityId);
                                 if (fileNamesRet.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id) == false)
+                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newRetActivityId) == false) //copy from last action
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -1420,11 +1420,11 @@ namespace IAFollowUp
 
                             if (newRetActivityId > -1)
                             {
-                                //insert attachments
-                                string[] fileNamesRet = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
+                                //insert attachments //copy from last action
+                                string[] fileNamesRet = ActivityAttachments.getSavedAttachments(newActivityId);
                                 if (fileNamesRet.Length > 0)
                                 {
-                                    if (ActivityAttachments.InsertActivityAttachedFilesFromDrafts(newRetActivityId, det.Id, this.PHolder.Id) == false)
+                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newRetActivityId) == false) //copy from last action
                                     {
                                         MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
