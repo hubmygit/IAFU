@@ -135,5 +135,14 @@ namespace IAFollowUp
         {
             UserInfo.UpdateExitDt();
         }
+
+        //temporary to remove....
+        private void tmp1Notif_Click(object sender, EventArgs e)
+        {
+            Notifications.firstNotification();
+
+
+
+        }
     }
 }

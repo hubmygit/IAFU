@@ -173,6 +173,7 @@
     <Compile Include="ModelsLib\FIDetailVoting.cs" />
     <Compile Include="ModelsLib\FI_DetailHeaderAudit.cs" />
     <Compile Include="ModelsLib\LvFileInfo.cs" />
+    <Compile Include="ModelsLib\Notifications.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
     <Compile Include="ModelsLib\PlaceholderRole.cs" />
     <Compile Include="PlaceholderRoleSelect.cs">

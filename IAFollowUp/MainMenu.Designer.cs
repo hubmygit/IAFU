@@ -48,6 +48,7 @@
             this.manageAuditOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmp1Notif = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -145,7 +146,8 @@
             this.createUserToolStripMenuItem,
             this.viewChangeLogToolStripMenuItem,
             this.deptsToolStripMenuItem,
-            this.manageAuditOwnersToolStripMenuItem});
+            this.manageAuditOwnersToolStripMenuItem,
+            this.tmp1Notif});
             this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
             this.administratorToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.administratorToolStripMenuItem.Tag = "3";
@@ -212,9 +214,16 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
+            // tmp1Notif
+            // 
+            this.tmp1Notif.Name = "tmp1Notif";
+            this.tmp1Notif.Size = new System.Drawing.Size(192, 22);
+            this.tmp1Notif.Text = "tmp 1st Notification";
+            this.tmp1Notif.Click += new System.EventHandler(this.tmp1Notif_Click);
             // 
             // MainMenu
             // 
@@ -263,5 +272,6 @@
         private System.Windows.Forms.ToolStripMenuItem deptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fiAuditorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageAuditOwnersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tmp1Notif;
     }
 }
