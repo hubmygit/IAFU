@@ -176,6 +176,30 @@
     <Compile Include="ModelsLib\Notifications.cs" />
     <Compile Include="ModelsLib\Owners_DT.cs" />
     <Compile Include="ModelsLib\PlaceholderRole.cs" />
+    <Compile Include="NotifExpired.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifExpired.Designer.cs">
+      <DependentUpon>NotifExpired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifInactive15Days.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifInactive15Days.Designer.cs">
+      <DependentUpon>NotifInactive15Days.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifWillExpireIn15Days.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifWillExpireIn15Days.Designer.cs">
+      <DependentUpon>NotifWillExpireIn15Days.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifWillExpireThisMonth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifWillExpireThisMonth.Designer.cs">
+      <DependentUpon>NotifWillExpireThisMonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlaceholderRoleSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -349,6 +373,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DraftAttachments.resx">
       <DependentUpon>DraftAttachments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifExpired.resx">
+      <DependentUpon>NotifExpired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifInactive15Days.resx">
+      <DependentUpon>NotifInactive15Days.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifWillExpireIn15Days.resx">
+      <DependentUpon>NotifWillExpireIn15Days.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifWillExpireThisMonth.resx">
+      <DependentUpon>NotifWillExpireThisMonth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlaceholderRoleSelect.resx">
       <DependentUpon>PlaceholderRoleSelect.cs</DependentUpon>

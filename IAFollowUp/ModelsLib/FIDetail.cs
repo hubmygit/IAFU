@@ -64,6 +64,77 @@ namespace IAFollowUp
             RealOwner3 = new Owners_MT();
         }
 
+        public FIDetail (int givenId)
+        {
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "D.ActionDt, " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
+                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
+                              "FROM [dbo].[FIDetail] D " +
+                              "WHERE D.[Id] = @detId ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@detId", givenId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DateTime? DetailActionDt;
+
+                    if (reader["ActionDt"] == System.DBNull.Value)
+                    {
+                        DetailActionDt = null;
+                    }
+                    else
+                    {
+                        DetailActionDt = Convert.ToDateTime(reader["ActionDt"].ToString());
+                    }
+
+                    Id = Convert.ToInt32(reader["Id"].ToString());
+                    FIHeaderId = Convert.ToInt32(reader["FIHeaderId"].ToString());
+                    Description = reader["Description"].ToString();
+                    ActionDt = DetailActionDt;
+                    ActionReq = reader["ActionReq"].ToString();
+                    ActionCode = reader["ActionCode"].ToString();
+                    IsClosed = Convert.ToBoolean(reader["IsClosed"].ToString());
+                    IsPublished = Convert.ToBoolean(reader["IsPublished"].ToString());
+                    IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString());
+                    IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString());
+                    //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                    Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()));
+                    FISubId = reader["FISubId"].ToString();
+
+                    if (Placeholders.Count >= 1 && Placeholders[0] != null)
+                    {
+                        CurrentOwner1 = Owners_MT.GetCurrentOwnerMT(Placeholders[0].Id);
+                    }
+                    if (Placeholders.Count >= 2 && Placeholders[1] != null)
+                    {
+                        CurrentOwner2 = Owners_MT.GetCurrentOwnerMT(Placeholders[1].Id);
+                    }
+                    if (Placeholders.Count >= 3 && Placeholders[2] != null)
+                    {
+                        CurrentOwner3 = Owners_MT.GetCurrentOwnerMT(Placeholders[2].Id);
+                    }
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+        }
+
         /*
         public static bool isEqual(FIDetail x, FIDetail y)
         {
@@ -988,6 +1059,6 @@ namespace IAFollowUp
             return ret;
         }
 
-
+        
     }
 }

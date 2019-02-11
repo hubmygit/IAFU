@@ -667,5 +667,36 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static DateTime? LastPublishDateFromMTtoIA(int detailId)
+        {
+            DateTime? ret = null;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT InsDt " +
+                              "FROM [dbo].[FIDetail_Activity] " +
+                              "WHERE ActivityDescriptionId = 2 AND DetailId = @detailId ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detailId", detailId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = Convert.ToDateTime(reader["InsDt"].ToString());
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
     }
 }

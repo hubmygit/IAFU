@@ -90,6 +90,38 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static DateTime? VotingDate_ifHasAlreadyVoted(int detailId, int userId)
+        {
+            DateTime? ret = null;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT InsDate FROM [dbo].[FIDetail_Voting] " +
+                              "WHERE DetailId = @detId AND UserId = @userId AND IsCurrent = 'True' ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@detId", detailId);
+                cmd.Parameters.AddWithValue("@userId", userId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret = Convert.ToDateTime(reader["InsDate"].ToString()); ;
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
         public static List<FIDetailVoting> Select()
         {
             List<FIDetailVoting> ret = new List<FIDetailVoting>();
