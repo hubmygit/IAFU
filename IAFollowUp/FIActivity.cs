@@ -64,6 +64,12 @@ namespace IAFollowUp
             tsStatusLblUser.Text = "Role: " + choosenRole;
 
             detailActivity = FIDetailActivity.Select(givenDetail.Id, givenPlaceholderId, givenAuditeeRole);
+            
+            //Update empty cells that have no user - with IA
+            List<int> actDescrFrom = new List<int>() { 1, 3, 10, 12, 13, 14, 15, 17 };
+            detailActivity.Where(i => actDescrFrom.Contains(i.ActivityDescription.Id)).Select(i => { i.FromUser.FullName = "IA"; return i; }).ToList();
+            List<int> actDescrTo = new List<int>() { 2, 4, 8, 13, 14, 15, 17 };
+            detailActivity.Where(i => actDescrTo.Contains(i.ActivityDescription.Id)).Select(i => { i.ToUser.FullName = "IA"; return i; }).ToList();
 
             gridControl1.DataSource = new BindingList<FIDetailActivity>(detailActivity);
 
