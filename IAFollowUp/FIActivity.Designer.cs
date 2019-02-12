@@ -57,8 +57,6 @@
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTinformIA = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTreplyIA = new System.Windows.Forms.ToolStripMenuItem();
-            this.IA_tsmiIAreturnMT = new System.Windows.Forms.ToolStripMenuItem();
-            this.IA_tsmiIAacceptedMT = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTdelegateDT = new System.Windows.Forms.ToolStripMenuItem();
             this.MT_tsmiMTreplyDT = new System.Windows.Forms.ToolStripMenuItem();
             this.DT_tsmiDTreplyMT = new System.Windows.Forms.ToolStripMenuItem();
@@ -301,8 +299,6 @@
             this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MT_tsmiMTinformIA,
             this.MT_tsmiMTreplyIA,
-            this.IA_tsmiIAreturnMT,
-            this.IA_tsmiIAacceptedMT,
             this.MT_tsmiMTdelegateDT,
             this.MT_tsmiMTreplyDT,
             this.DT_tsmiDTreplyMT,
@@ -329,22 +325,6 @@
             this.MT_tsmiMTreplyIA.Text = "(mt) Publish Actions to IA";
             this.MT_tsmiMTreplyIA.Click += new System.EventHandler(this.MT_tsmiMTreplyIA_Click);
             // 
-            // IA_tsmiIAreturnMT
-            // 
-            this.IA_tsmiIAreturnMT.Name = "IA_tsmiIAreturnMT";
-            this.IA_tsmiIAreturnMT.Size = new System.Drawing.Size(260, 22);
-            this.IA_tsmiIAreturnMT.Tag = "1";
-            this.IA_tsmiIAreturnMT.Text = "(ia) Return to MT";
-            this.IA_tsmiIAreturnMT.Click += new System.EventHandler(this.IA_tsmiIAreturnMT_Click);
-            // 
-            // IA_tsmiIAacceptedMT
-            // 
-            this.IA_tsmiIAacceptedMT.Name = "IA_tsmiIAacceptedMT";
-            this.IA_tsmiIAacceptedMT.Size = new System.Drawing.Size(260, 22);
-            this.IA_tsmiIAacceptedMT.Tag = "1";
-            this.IA_tsmiIAacceptedMT.Text = "(ia) Accept Actions";
-            this.IA_tsmiIAacceptedMT.Click += new System.EventHandler(this.IA_tsmiIAacceptedMT_Click);
-            // 
             // MT_tsmiMTdelegateDT
             // 
             this.MT_tsmiMTdelegateDT.Name = "MT_tsmiMTdelegateDT";
@@ -365,7 +345,7 @@
             // 
             this.DT_tsmiDTreplyMT.Name = "DT_tsmiDTreplyMT";
             this.DT_tsmiDTreplyMT.Size = new System.Drawing.Size(260, 22);
-            this.DT_tsmiDTreplyMT.Tag = "3";
+            this.DT_tsmiDTreplyMT.Tag = "2";
             this.DT_tsmiDTreplyMT.Text = "(dt) Reply to MT";
             this.DT_tsmiDTreplyMT.Click += new System.EventHandler(this.DT_tsmiDTreplyMT_Click);
             // 
@@ -741,8 +721,6 @@
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTreplyIA;
         private DevExpress.XtraGrid.Columns.GridColumn colPlaceholders;
         private DevExpress.XtraGrid.Columns.GridColumn colActivityDescription;
-        private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAreturnMT;
-        private System.Windows.Forms.ToolStripMenuItem IA_tsmiIAacceptedMT;
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTdelegateDT;
         private System.Windows.Forms.ToolStripMenuItem MT_tsmiMTreplyDT;
         private System.Windows.Forms.ToolStripMenuItem DT_tsmiDTreplyMT;

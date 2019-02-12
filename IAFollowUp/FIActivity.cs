@@ -29,7 +29,7 @@ namespace IAFollowUp
         public FIActivity(FIDetail givenDetail, int givenPlaceholderId = 0, int givenAuditeeRole = 0)
         {
             InitializeComponent();
-
+            
             det = givenDetail;
             //detId = givendetail.Id;
 
@@ -91,14 +91,13 @@ namespace IAFollowUp
             txtActionReq.Text = givenDetail.ActionReq;
             //---------------------
 
-
-
-
+            
             if (givenDetail.ActionDt != null)
             {
                 dtpDetail_ActionDate.CustomFormat = "dd.MM.yyyy";
                 dtpDetail_ActionDate.Value = (DateTime)givenDetail.ActionDt;
             }
+
         }
 
         //public int detId;
@@ -271,6 +270,7 @@ namespace IAFollowUp
             }
         }
 
+        /*
         private void IA_tsmiIAreturnMT_Click(object sender, EventArgs e)
         {
             if (!UserAction.IsLegal(Action.Activity_IAreturnMT, null, null, det))
@@ -430,7 +430,8 @@ namespace IAFollowUp
             }
 
         }
-
+        */
+        /*
         private void IA_tsmiIAacceptedMT_Click(object sender, EventArgs e)
         {
             if (!UserAction.IsLegal(Action.Activity_IAacceptMT, null, null, det))
@@ -553,6 +554,7 @@ namespace IAFollowUp
             }
 
         }
+        */
 
         private void MT_tsmiMTdelegateDT_Click(object sender, EventArgs e)
         {
