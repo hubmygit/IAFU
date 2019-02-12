@@ -95,12 +95,14 @@
             this.rbReturn.AutoSize = true;
             this.rbReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.rbReturn.ForeColor = System.Drawing.Color.Red;
+            this.rbReturn.Image = global::IAFollowUp.Properties.Resources.Failing_16x;
             this.rbReturn.Location = new System.Drawing.Point(15, 159);
             this.rbReturn.Name = "rbReturn";
-            this.rbReturn.Size = new System.Drawing.Size(65, 20);
+            this.rbReturn.Size = new System.Drawing.Size(81, 20);
             this.rbReturn.TabIndex = 8;
             this.rbReturn.TabStop = true;
             this.rbReturn.Text = "Return";
+            this.rbReturn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.rbReturn.UseVisualStyleBackColor = true;
             // 
             // rbForwardNo
@@ -108,12 +110,14 @@
             this.rbForwardNo.AutoSize = true;
             this.rbForwardNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.rbForwardNo.ForeColor = System.Drawing.Color.Green;
+            this.rbForwardNo.Image = global::IAFollowUp.Properties.Resources.Passing_16x;
             this.rbForwardNo.Location = new System.Drawing.Point(15, 114);
             this.rbForwardNo.Name = "rbForwardNo";
-            this.rbForwardNo.Size = new System.Drawing.Size(212, 20);
+            this.rbForwardNo.Size = new System.Drawing.Size(228, 20);
             this.rbForwardNo.TabIndex = 7;
             this.rbForwardNo.TabStop = true;
             this.rbForwardNo.Text = "Forward - (Action: Business No)";
+            this.rbForwardNo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.rbForwardNo.UseVisualStyleBackColor = true;
             // 
             // rbForwardAlternative
@@ -121,12 +125,14 @@
             this.rbForwardAlternative.AutoSize = true;
             this.rbForwardAlternative.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.rbForwardAlternative.ForeColor = System.Drawing.Color.Green;
+            this.rbForwardAlternative.Image = global::IAFollowUp.Properties.Resources.Passing_16x;
             this.rbForwardAlternative.Location = new System.Drawing.Point(15, 69);
             this.rbForwardAlternative.Name = "rbForwardAlternative";
-            this.rbForwardAlternative.Size = new System.Drawing.Size(199, 20);
+            this.rbForwardAlternative.Size = new System.Drawing.Size(215, 20);
             this.rbForwardAlternative.TabIndex = 6;
             this.rbForwardAlternative.TabStop = true;
             this.rbForwardAlternative.Text = "Forward - (Action: Alternative)";
+            this.rbForwardAlternative.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.rbForwardAlternative.UseVisualStyleBackColor = true;
             // 
             // rbForwardCompleted
@@ -134,12 +140,14 @@
             this.rbForwardCompleted.AutoSize = true;
             this.rbForwardCompleted.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.rbForwardCompleted.ForeColor = System.Drawing.Color.Green;
+            this.rbForwardCompleted.Image = global::IAFollowUp.Properties.Resources.Passing_16x;
             this.rbForwardCompleted.Location = new System.Drawing.Point(15, 24);
             this.rbForwardCompleted.Name = "rbForwardCompleted";
-            this.rbForwardCompleted.Size = new System.Drawing.Size(195, 20);
+            this.rbForwardCompleted.Size = new System.Drawing.Size(211, 20);
             this.rbForwardCompleted.TabIndex = 5;
             this.rbForwardCompleted.TabStop = true;
             this.rbForwardCompleted.Text = "Forward (Action: Completed)";
+            this.rbForwardCompleted.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.rbForwardCompleted.UseVisualStyleBackColor = true;
             // 
             // btnSave

@@ -73,6 +73,36 @@ namespace IAFollowUp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Apply_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Apply_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Calendar_32x32___Copy {
+            get {
+                object obj = ResourceManager.GetObject("Calendar_32x32 - Copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Close_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Close_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Create_32x {
             get {
                 object obj = ResourceManager.GetObject("Create_32x", resourceCulture);
@@ -86,6 +116,36 @@ namespace IAFollowUp.Properties {
         internal static System.Drawing.Bitmap DeleteAttachment_16x {
             get {
                 object obj = ResourceManager.GetObject("DeleteAttachment_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DTtoMT_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("DTtoMT_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Failing_16x {
+            get {
+                object obj = ResourceManager.GetObject("Failing_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IAapprove_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("IAapprove_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +173,59 @@ namespace IAFollowUp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MTdelegateToDT_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("MTdelegateToDT_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MTtoDt_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("MTtoDt_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MTtoIA_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("MTtoIA_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MTwip_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("MTwip_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap OpenAttachment_16x {
             get {
                 object obj = ResourceManager.GetObject("OpenAttachment_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Passing_16x {
+            get {
+                object obj = ResourceManager.GetObject("Passing_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

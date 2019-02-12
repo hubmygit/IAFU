@@ -486,6 +486,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="InternalAudit.ico" />
+    <None Include="Resources\IAapprove_32x32.png" />
+    <None Include="Resources\Calendar_32x32 - Copy.png" />
+    <None Include="Resources\DTtoMT_32x32.png" />
+    <None Include="Resources\MTtoDt_32x32.png" />
+    <None Include="Resources\MTdelegateToDT_32x32.png" />
+    <None Include="Resources\MTtoIA_32x32.png" />
+    <None Include="Resources\MTwip_32x32.png" />
+    <None Include="Resources\Passing_16x.png" />
+    <None Include="Resources\Failing_16x.png" />
+    <None Include="Resources\Close_16x16.png" />
+    <None Include="Resources\Apply_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
