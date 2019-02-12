@@ -306,7 +306,7 @@
             this.tsmiIAextendMT});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1007, 55);
+            this.menuStrip1.Size = new System.Drawing.Size(1007, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -324,6 +324,7 @@
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 51);
             this.actionsToolStripMenuItem.Text = "Actions";
+            this.actionsToolStripMenuItem.Visible = false;
             // 
             // MT_tsmiMTinformIA
             // 
@@ -395,8 +396,11 @@
             this.tsmiMTinformIA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMTinformIA.Name = "tsmiMTinformIA";
             this.tsmiMTinformIA.Size = new System.Drawing.Size(111, 51);
+            this.tsmiMTinformIA.Tag = "2";
             this.tsmiMTinformIA.Text = "Inform IA for WIP";
             this.tsmiMTinformIA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiMTinformIA.Visible = false;
+            this.tsmiMTinformIA.Click += new System.EventHandler(this.MT_tsmiMTinformIA_Click);
             // 
             // tsmiMTreplyIA
             // 
@@ -404,8 +408,11 @@
             this.tsmiMTreplyIA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMTreplyIA.Name = "tsmiMTreplyIA";
             this.tsmiMTreplyIA.Size = new System.Drawing.Size(129, 51);
+            this.tsmiMTreplyIA.Tag = "2";
             this.tsmiMTreplyIA.Text = "Publish Actions to IA";
             this.tsmiMTreplyIA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiMTreplyIA.Visible = false;
+            this.tsmiMTreplyIA.Click += new System.EventHandler(this.MT_tsmiMTreplyIA_Click);
             // 
             // tsmiMTdelegateDT
             // 
@@ -413,8 +420,11 @@
             this.tsmiMTdelegateDT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMTdelegateDT.Name = "tsmiMTdelegateDT";
             this.tsmiMTdelegateDT.Size = new System.Drawing.Size(132, 51);
+            this.tsmiMTdelegateDT.Tag = "2";
             this.tsmiMTdelegateDT.Text = "Delegate to Key Users";
             this.tsmiMTdelegateDT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiMTdelegateDT.Visible = false;
+            this.tsmiMTdelegateDT.Click += new System.EventHandler(this.MT_tsmiMTdelegateDT_Click);
             // 
             // tsmiMTreplyDT
             // 
@@ -422,8 +432,11 @@
             this.tsmiMTreplyDT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMTreplyDT.Name = "tsmiMTreplyDT";
             this.tsmiMTreplyDT.Size = new System.Drawing.Size(110, 51);
+            this.tsmiMTreplyDT.Tag = "2";
             this.tsmiMTreplyDT.Text = "Reply to Key User";
             this.tsmiMTreplyDT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiMTreplyDT.Visible = false;
+            this.tsmiMTreplyDT.Click += new System.EventHandler(this.MT_tsmiMTreplyDT_Click);
             // 
             // tsmiDTreplyMT
             // 
@@ -431,8 +444,11 @@
             this.tsmiDTreplyMT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDTreplyMT.Name = "tsmiDTreplyMT";
             this.tsmiDTreplyMT.Size = new System.Drawing.Size(83, 51);
+            this.tsmiDTreplyMT.Tag = "2";
             this.tsmiDTreplyMT.Text = "Reply to MT";
             this.tsmiDTreplyMT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiDTreplyMT.Visible = false;
+            this.tsmiDTreplyMT.Click += new System.EventHandler(this.DT_tsmiDTreplyMT_Click);
             // 
             // tsmiMTextendIA
             // 
@@ -440,8 +456,11 @@
             this.tsmiMTextendIA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMTextendIA.Name = "tsmiMTextendIA";
             this.tsmiMTextendIA.Size = new System.Drawing.Size(163, 51);
+            this.tsmiMTextendIA.Tag = "2";
             this.tsmiMTextendIA.Text = "Request Deadline Extension";
             this.tsmiMTextendIA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiMTextendIA.Visible = false;
+            this.tsmiMTextendIA.Click += new System.EventHandler(this.MT_tsmiMTextendIA_Click);
             // 
             // tsmiIAextendMT
             // 
@@ -449,8 +468,11 @@
             this.tsmiIAextendMT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiIAextendMT.Name = "tsmiIAextendMT";
             this.tsmiIAextendMT.Size = new System.Drawing.Size(103, 51);
+            this.tsmiIAextendMT.Tag = "1";
             this.tsmiIAextendMT.Text = "Extend Deadline";
             this.tsmiIAextendMT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiIAextendMT.Visible = false;
+            this.tsmiIAextendMT.Click += new System.EventHandler(this.IA_tsmiIAextendMT_Click);
             // 
             // tsmiIAjudgeMT
             // 
@@ -458,8 +480,11 @@
             this.tsmiIAjudgeMT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiIAjudgeMT.Name = "tsmiIAjudgeMT";
             this.tsmiIAjudgeMT.Size = new System.Drawing.Size(55, 51);
+            this.tsmiIAjudgeMT.Tag = "1";
             this.tsmiIAjudgeMT.Text = "Decide";
             this.tsmiIAjudgeMT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiIAjudgeMT.Visible = false;
+            this.tsmiIAjudgeMT.Click += new System.EventHandler(this.IA_tsmiIAjudgeMT_Click);
             // 
             // statusStrip1
             // 

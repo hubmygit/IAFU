@@ -29,7 +29,31 @@ namespace IAFollowUp
         public FIActivity(FIDetail givenDetail, int givenPlaceholderId = 0, int givenAuditeeRole = 0)
         {
             InitializeComponent();
-            
+
+            UserAuth.ArrangeMenuItems(UserInfo.roleDetails, menuStrip1);
+
+            if (givenAuditeeRole == 1)//1.GM
+            {
+                tsmiMTinformIA.Enabled = false;
+                tsmiMTreplyIA.Enabled = false;
+                tsmiMTdelegateDT.Enabled = false;
+                tsmiMTreplyDT.Enabled = false;
+                tsmiDTreplyMT.Enabled = false;
+                tsmiMTextendIA.Enabled = false;
+            }
+            else if (givenAuditeeRole == 2)//2.MT
+            {
+                tsmiDTreplyMT.Enabled = false;
+            }
+            else if (givenAuditeeRole == 3)//3.DT
+            {
+                tsmiMTinformIA.Enabled = false;
+                tsmiMTreplyIA.Enabled = false;
+                tsmiMTdelegateDT.Enabled = false;
+                tsmiMTreplyDT.Enabled = false;
+                tsmiMTextendIA.Enabled = false;
+            }
+
             det = givenDetail;
             //detId = givendetail.Id;
 
@@ -109,6 +133,8 @@ namespace IAFollowUp
 
         public string choosenRole;
         public Audit completeAudit = new Audit();
+
+        UserAuthorization UserAuth = new UserAuthorization();
 
         private void btnFontDialog_Click(object sender, EventArgs e)
         {
