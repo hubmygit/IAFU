@@ -486,6 +486,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="InternalAudit.ico" />
+    <None Include="Resources\FontDialog_16x.png" />
+    <None Include="Resources\Attach_16x.png" />
+    <None Include="Resources\Save_16x.png" />
     <None Include="Resources\IAapprove_32x32.png" />
     <None Include="Resources\Calendar_32x32 - Copy.png" />
     <None Include="Resources\DTtoMT_32x32.png" />

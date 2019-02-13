@@ -35,9 +35,9 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPlaceholder2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPlaceholder = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPlaceholder1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colRole = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRole1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRole = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPlaceholder1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.placeholderRoleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -46,10 +46,10 @@
             // gridControl1
             // 
             this.gridControl1.DataSource = this.placeholderRoleBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(27, 61);
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(708, 304);
+            this.gridControl1.Size = new System.Drawing.Size(784, 442);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -86,20 +86,6 @@
             this.colPlaceholder.Visible = true;
             this.colPlaceholder.VisibleIndex = 0;
             // 
-            // colPlaceholder1
-            // 
-            this.colPlaceholder1.Caption = "Department";
-            this.colPlaceholder1.FieldName = "Placeholder.Department.Name";
-            this.colPlaceholder1.Name = "colPlaceholder1";
-            this.colPlaceholder1.Visible = true;
-            this.colPlaceholder1.VisibleIndex = 2;
-            // 
-            // colRole
-            // 
-            this.colRole.Caption = "Role Id";
-            this.colRole.FieldName = "Role.Id";
-            this.colRole.Name = "colRole";
-            // 
             // colRole1
             // 
             this.colRole1.Caption = "Role";
@@ -107,6 +93,20 @@
             this.colRole1.Name = "colRole1";
             this.colRole1.Visible = true;
             this.colRole1.VisibleIndex = 1;
+            // 
+            // colRole
+            // 
+            this.colRole.Caption = "Role Id";
+            this.colRole.FieldName = "Role.Id";
+            this.colRole.Name = "colRole";
+            // 
+            // colPlaceholder1
+            // 
+            this.colPlaceholder1.Caption = "Department";
+            this.colPlaceholder1.FieldName = "Placeholder.Department.Name";
+            this.colPlaceholder1.Name = "colPlaceholder1";
+            this.colPlaceholder1.Visible = true;
+            this.colPlaceholder1.VisibleIndex = 2;
             // 
             // PlaceholderRoleSelect
             // 

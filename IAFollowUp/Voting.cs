@@ -126,7 +126,7 @@ namespace IAFollowUp
 
             if ((isApprover && newVoteCause == ChiefVoteCause.None) || UserInfo.roleDetails.Id == 2)
             {
-                mess += "\r\n Be carefoul, by your selection you are the Approver. \r\nYour comments and attachments will be published to Managment Teams.";
+                mess += "\r\n Be careful, by your selection you are the Approver. \r\nYour comments and attachments will be published to Managment Teams.";
             }
 
             DialogResult dr = MessageBox.Show(mess, "Decision", MessageBoxButtons.YesNo);

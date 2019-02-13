@@ -92,7 +92,7 @@
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // DepartmentsManage
+            // ViewDepartments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +100,8 @@
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.gridControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "DepartmentsManage";
+            this.MinimumSize = new System.Drawing.Size(816, 488);
+            this.Name = "ViewDepartments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Departments Manage";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

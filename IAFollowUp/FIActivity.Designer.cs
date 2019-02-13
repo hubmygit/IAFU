@@ -69,8 +69,8 @@
             this.tsmiMTreplyDT = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDTreplyMT = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMTextendIA = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiIAextendMT = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiIAjudgeMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiIAextendMT = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatusLblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.dtpDetail_ActionDate = new System.Windows.Forms.DateTimePicker();
@@ -97,6 +97,9 @@
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtActionReq = new System.Windows.Forms.TextBox();
             this.lblActionReq = new System.Windows.Forms.Label();
+            this.gbRelInfo = new System.Windows.Forms.GroupBox();
+            this.gbActions = new System.Windows.Forms.GroupBox();
+            this.gbComments = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -104,6 +107,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.gbRelInfo.SuspendLayout();
+            this.gbActions.SuspendLayout();
+            this.gbComments.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -113,12 +119,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.ContextMenuStrip = this.cmsActivity;
             this.gridControl1.DataSource = this.fIDetailActivityBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 524);
+            this.gridControl1.Location = new System.Drawing.Point(0, 640);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(1007, 145);
+            this.gridControl1.Size = new System.Drawing.Size(1036, 200);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -276,24 +282,32 @@
             // 
             // rtbComments
             // 
-            this.rtbComments.Location = new System.Drawing.Point(229, 96);
+            this.rtbComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbComments.Location = new System.Drawing.Point(6, 59);
             this.rtbComments.Name = "rtbComments";
-            this.rtbComments.Size = new System.Drawing.Size(300, 197);
+            this.rtbComments.Size = new System.Drawing.Size(985, 125);
             this.rtbComments.TabIndex = 1;
             this.rtbComments.Text = "";
             // 
             // btnFontDialog
             // 
-            this.btnFontDialog.Location = new System.Drawing.Point(535, 96);
+            this.btnFontDialog.Image = global::IAFollowUp.Properties.Resources.FontDialog_16x;
+            this.btnFontDialog.Location = new System.Drawing.Point(6, 21);
             this.btnFontDialog.Name = "btnFontDialog";
-            this.btnFontDialog.Size = new System.Drawing.Size(120, 23);
+            this.btnFontDialog.Size = new System.Drawing.Size(125, 32);
             this.btnFontDialog.TabIndex = 3;
             this.btnFontDialog.Text = "Font Dialog";
+            this.btnFontDialog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFontDialog.UseVisualStyleBackColor = true;
             this.btnFontDialog.Click += new System.EventHandler(this.btnFontDialog_Click);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.actionsToolStripMenuItem,
             this.tsmiMTinformIA,
@@ -304,9 +318,9 @@
             this.tsmiMTextendIA,
             this.tsmiIAjudgeMT,
             this.tsmiIAextendMT});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(8, 214);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1007, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(997, 55);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -462,18 +476,6 @@
             this.tsmiMTextendIA.Visible = false;
             this.tsmiMTextendIA.Click += new System.EventHandler(this.MT_tsmiMTextendIA_Click);
             // 
-            // tsmiIAextendMT
-            // 
-            this.tsmiIAextendMT.Image = global::IAFollowUp.Properties.Resources.Calendar_32x32___Copy;
-            this.tsmiIAextendMT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmiIAextendMT.Name = "tsmiIAextendMT";
-            this.tsmiIAextendMT.Size = new System.Drawing.Size(103, 51);
-            this.tsmiIAextendMT.Tag = "1";
-            this.tsmiIAextendMT.Text = "Extend Deadline";
-            this.tsmiIAextendMT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsmiIAextendMT.Visible = false;
-            this.tsmiIAextendMT.Click += new System.EventHandler(this.IA_tsmiIAextendMT_Click);
-            // 
             // tsmiIAjudgeMT
             // 
             this.tsmiIAjudgeMT.Image = global::IAFollowUp.Properties.Resources.IAapprove_32x32;
@@ -486,13 +488,25 @@
             this.tsmiIAjudgeMT.Visible = false;
             this.tsmiIAjudgeMT.Click += new System.EventHandler(this.IA_tsmiIAjudgeMT_Click);
             // 
+            // tsmiIAextendMT
+            // 
+            this.tsmiIAextendMT.Image = global::IAFollowUp.Properties.Resources.Calendar_32x32___Copy;
+            this.tsmiIAextendMT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiIAextendMT.Name = "tsmiIAextendMT";
+            this.tsmiIAextendMT.Size = new System.Drawing.Size(103, 51);
+            this.tsmiIAextendMT.Tag = "1";
+            this.tsmiIAextendMT.Text = "Extend Deadline";
+            this.tsmiIAextendMT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmiIAextendMT.Visible = false;
+            this.tsmiIAextendMT.Click += new System.EventHandler(this.IA_tsmiIAextendMT_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsStatusLblUser});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 670);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 840);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1007, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
             this.statusStrip1.TabIndex = 11;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -510,56 +524,60 @@
             this.dtpDetail_ActionDate.Enabled = false;
             this.dtpDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dtpDetail_ActionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDetail_ActionDate.Location = new System.Drawing.Point(23, 136);
+            this.dtpDetail_ActionDate.Location = new System.Drawing.Point(786, 196);
             this.dtpDetail_ActionDate.Name = "dtpDetail_ActionDate";
-            this.dtpDetail_ActionDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpDetail_ActionDate.Size = new System.Drawing.Size(220, 22);
             this.dtpDetail_ActionDate.TabIndex = 13;
             // 
             // lblDetail_ActionDate
             // 
             this.lblDetail_ActionDate.AutoSize = true;
-            this.lblDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblDetail_ActionDate.Location = new System.Drawing.Point(76, 109);
+            this.lblDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblDetail_ActionDate.Location = new System.Drawing.Point(703, 199);
             this.lblDetail_ActionDate.Name = "lblDetail_ActionDate";
-            this.lblDetail_ActionDate.Size = new System.Drawing.Size(93, 20);
+            this.lblDetail_ActionDate.Size = new System.Drawing.Size(77, 16);
             this.lblDetail_ActionDate.TabIndex = 12;
             this.lblDetail_ActionDate.Text = "Action Date";
             // 
             // btnSaveDraft
             // 
-            this.btnSaveDraft.Location = new System.Drawing.Point(535, 125);
+            this.btnSaveDraft.Image = global::IAFollowUp.Properties.Resources.Save_16x;
+            this.btnSaveDraft.Location = new System.Drawing.Point(268, 21);
             this.btnSaveDraft.Name = "btnSaveDraft";
-            this.btnSaveDraft.Size = new System.Drawing.Size(120, 23);
+            this.btnSaveDraft.Size = new System.Drawing.Size(125, 32);
             this.btnSaveDraft.TabIndex = 14;
             this.btnSaveDraft.Text = "Save Draft";
+            this.btnSaveDraft.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSaveDraft.UseVisualStyleBackColor = true;
             this.btnSaveDraft.Click += new System.EventHandler(this.btnSaveDraft_Click);
             // 
             // btnAttachment
             // 
-            this.btnAttachment.Location = new System.Drawing.Point(661, 125);
+            this.btnAttachment.Image = global::IAFollowUp.Properties.Resources.Attach_16x;
+            this.btnAttachment.Location = new System.Drawing.Point(137, 21);
             this.btnAttachment.Name = "btnAttachment";
-            this.btnAttachment.Size = new System.Drawing.Size(120, 23);
+            this.btnAttachment.Size = new System.Drawing.Size(125, 32);
             this.btnAttachment.TabIndex = 15;
             this.btnAttachment.Text = "Attachment(s)";
+            this.btnAttachment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAttachment.UseVisualStyleBackColor = true;
             this.btnAttachment.Click += new System.EventHandler(this.btnAttachment_Click);
             // 
             // txtCompany
             // 
             this.txtCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtCompany.Location = new System.Drawing.Point(23, 180);
+            this.txtCompany.Location = new System.Drawing.Point(613, 24);
             this.txtCompany.MaxLength = 3;
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.ReadOnly = true;
-            this.txtCompany.Size = new System.Drawing.Size(200, 22);
+            this.txtCompany.Size = new System.Drawing.Size(220, 22);
             this.txtCompany.TabIndex = 16;
             // 
             // lblCompany
             // 
             this.lblCompany.AutoSize = true;
             this.lblCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblCompany.Location = new System.Drawing.Point(77, 161);
+            this.lblCompany.Location = new System.Drawing.Point(540, 27);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(66, 16);
             this.lblCompany.TabIndex = 17;
@@ -568,19 +586,19 @@
             // txtAuditRef
             // 
             this.txtAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtAuditRef.Location = new System.Drawing.Point(23, 272);
+            this.txtAuditRef.Location = new System.Drawing.Point(116, 24);
             this.txtAuditRef.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtAuditRef.MaxLength = 50;
             this.txtAuditRef.Name = "txtAuditRef";
             this.txtAuditRef.ReadOnly = true;
-            this.txtAuditRef.Size = new System.Drawing.Size(200, 22);
+            this.txtAuditRef.Size = new System.Drawing.Size(220, 22);
             this.txtAuditRef.TabIndex = 19;
             // 
             // lblAuditRef
             // 
             this.lblAuditRef.AutoSize = true;
             this.lblAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblAuditRef.Location = new System.Drawing.Point(81, 253);
+            this.lblAuditRef.Location = new System.Drawing.Point(48, 27);
             this.lblAuditRef.Name = "lblAuditRef";
             this.lblAuditRef.Size = new System.Drawing.Size(62, 16);
             this.lblAuditRef.TabIndex = 18;
@@ -589,62 +607,62 @@
             // lblFIId
             // 
             this.lblFIId.AutoSize = true;
-            this.lblFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblFIId.Location = new System.Drawing.Point(80, 205);
+            this.lblFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFIId.Location = new System.Drawing.Point(24, 113);
             this.lblFIId.Name = "lblFIId";
-            this.lblFIId.Size = new System.Drawing.Size(46, 20);
+            this.lblFIId.Size = new System.Drawing.Size(86, 16);
             this.lblFIId.TabIndex = 63;
-            this.lblFIId.Text = "F/I Id";
+            this.lblFIId.Text = "Header F/I Id";
             // 
             // txtFIId
             // 
             this.txtFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtFIId.Location = new System.Drawing.Point(23, 228);
+            this.txtFIId.Location = new System.Drawing.Point(116, 110);
             this.txtFIId.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtFIId.MaxLength = 50;
             this.txtFIId.Name = "txtFIId";
             this.txtFIId.ReadOnly = true;
-            this.txtFIId.Size = new System.Drawing.Size(200, 22);
+            this.txtFIId.Size = new System.Drawing.Size(220, 22);
             this.txtFIId.TabIndex = 62;
             // 
             // lblFISubId
             // 
             this.lblFISubId.AutoSize = true;
-            this.lblFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblFISubId.Location = new System.Drawing.Point(535, 151);
+            this.lblFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFISubId.Location = new System.Drawing.Point(14, 199);
             this.lblFISubId.Name = "lblFISubId";
-            this.lblFISubId.Size = new System.Drawing.Size(75, 20);
+            this.lblFISubId.Size = new System.Drawing.Size(96, 16);
             this.lblFISubId.TabIndex = 65;
-            this.lblFISubId.Text = "F/I SubId";
+            this.lblFISubId.Text = "DetailF/I SubId";
             // 
             // txtFISubId
             // 
             this.txtFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtFISubId.Location = new System.Drawing.Point(535, 174);
+            this.txtFISubId.Location = new System.Drawing.Point(116, 196);
             this.txtFISubId.Margin = new System.Windows.Forms.Padding(3, 3, 114, 3);
             this.txtFISubId.MaxLength = 50;
             this.txtFISubId.Name = "txtFISubId";
             this.txtFISubId.ReadOnly = true;
-            this.txtFISubId.Size = new System.Drawing.Size(200, 22);
+            this.txtFISubId.Size = new System.Drawing.Size(220, 22);
             this.txtFISubId.TabIndex = 64;
             // 
             // txtActionCode
             // 
             this.txtActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtActionCode.Location = new System.Drawing.Point(535, 222);
+            this.txtActionCode.Location = new System.Drawing.Point(457, 196);
             this.txtActionCode.MaxLength = 3;
             this.txtActionCode.Name = "txtActionCode";
             this.txtActionCode.ReadOnly = true;
-            this.txtActionCode.Size = new System.Drawing.Size(200, 22);
+            this.txtActionCode.Size = new System.Drawing.Size(220, 22);
             this.txtActionCode.TabIndex = 67;
             // 
             // lblActionCode
             // 
             this.lblActionCode.AutoSize = true;
-            this.lblActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblActionCode.Location = new System.Drawing.Point(535, 199);
+            this.lblActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblActionCode.Location = new System.Drawing.Point(369, 199);
             this.lblActionCode.Name = "lblActionCode";
-            this.lblActionCode.Size = new System.Drawing.Size(96, 20);
+            this.lblActionCode.Size = new System.Drawing.Size(81, 16);
             this.lblActionCode.TabIndex = 66;
             this.lblActionCode.Text = "Action Code";
             // 
@@ -652,39 +670,41 @@
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblCategory.Location = new System.Drawing.Point(536, 247);
+            this.lblCategory.Location = new System.Drawing.Point(476, 113);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(157, 16);
+            this.lblCategory.Size = new System.Drawing.Size(130, 16);
             this.lblCategory.TabIndex = 68;
-            this.lblCategory.Text = "Category (per FI Header)";
+            this.lblCategory.Text = "Header F/I Category";
             // 
             // txtCategory
             // 
             this.txtCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtCategory.Location = new System.Drawing.Point(535, 266);
+            this.txtCategory.Location = new System.Drawing.Point(613, 110);
             this.txtCategory.MaxLength = 3;
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.ReadOnly = true;
-            this.txtCategory.Size = new System.Drawing.Size(200, 22);
+            this.txtCategory.Size = new System.Drawing.Size(220, 22);
             this.txtCategory.TabIndex = 69;
             // 
             // txtAuditTitle
             // 
-            this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtAuditTitle.Location = new System.Drawing.Point(114, 300);
+            this.txtAuditTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtAuditTitle.Location = new System.Drawing.Point(116, 52);
             this.txtAuditTitle.MaxLength = 500;
             this.txtAuditTitle.Multiline = true;
             this.txtAuditTitle.Name = "txtAuditTitle";
             this.txtAuditTitle.ReadOnly = true;
             this.txtAuditTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtAuditTitle.Size = new System.Drawing.Size(667, 50);
+            this.txtAuditTitle.Size = new System.Drawing.Size(890, 52);
             this.txtAuditTitle.TabIndex = 70;
             // 
             // lblAuditTitle
             // 
             this.lblAuditTitle.AutoSize = true;
             this.lblAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblAuditTitle.Location = new System.Drawing.Point(4, 320);
+            this.lblAuditTitle.Location = new System.Drawing.Point(35, 69);
             this.lblAuditTitle.Name = "lblAuditTitle";
             this.lblAuditTitle.Size = new System.Drawing.Size(67, 16);
             this.lblAuditTitle.TabIndex = 71;
@@ -694,7 +714,7 @@
             // 
             this.lblHeaderTitle.AutoSize = true;
             this.lblHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblHeaderTitle.Location = new System.Drawing.Point(4, 373);
+            this.lblHeaderTitle.Location = new System.Drawing.Point(30, 155);
             this.lblHeaderTitle.Name = "lblHeaderTitle";
             this.lblHeaderTitle.Size = new System.Drawing.Size(80, 16);
             this.lblHeaderTitle.TabIndex = 72;
@@ -702,21 +722,23 @@
             // 
             // txtHeaderTitle
             // 
-            this.txtHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtHeaderTitle.Location = new System.Drawing.Point(114, 356);
+            this.txtHeaderTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtHeaderTitle.Location = new System.Drawing.Point(116, 138);
             this.txtHeaderTitle.MaxLength = 500;
             this.txtHeaderTitle.Multiline = true;
             this.txtHeaderTitle.Name = "txtHeaderTitle";
             this.txtHeaderTitle.ReadOnly = true;
             this.txtHeaderTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtHeaderTitle.Size = new System.Drawing.Size(667, 50);
+            this.txtHeaderTitle.Size = new System.Drawing.Size(890, 52);
             this.txtHeaderTitle.TabIndex = 73;
             // 
             // lblDetailDescription
             // 
             this.lblDetailDescription.AutoSize = true;
             this.lblDetailDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblDetailDescription.Location = new System.Drawing.Point(4, 432);
+            this.lblDetailDescription.Location = new System.Drawing.Point(34, 241);
             this.lblDetailDescription.Name = "lblDetailDescription";
             this.lblDetailDescription.Size = new System.Drawing.Size(76, 16);
             this.lblDetailDescription.TabIndex = 74;
@@ -724,72 +746,114 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtDescription.Location = new System.Drawing.Point(114, 412);
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtDescription.Location = new System.Drawing.Point(116, 224);
             this.txtDescription.MaxLength = 500;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDescription.Size = new System.Drawing.Size(667, 50);
+            this.txtDescription.Size = new System.Drawing.Size(890, 52);
             this.txtDescription.TabIndex = 75;
             // 
             // txtActionReq
             // 
-            this.txtActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtActionReq.Location = new System.Drawing.Point(114, 468);
+            this.txtActionReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtActionReq.Location = new System.Drawing.Point(116, 282);
             this.txtActionReq.MaxLength = 500;
             this.txtActionReq.Multiline = true;
             this.txtActionReq.Name = "txtActionReq";
             this.txtActionReq.ReadOnly = true;
             this.txtActionReq.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtActionReq.Size = new System.Drawing.Size(667, 50);
+            this.txtActionReq.Size = new System.Drawing.Size(890, 52);
             this.txtActionReq.TabIndex = 77;
             // 
             // lblActionReq
             // 
             this.lblActionReq.AutoSize = true;
             this.lblActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblActionReq.Location = new System.Drawing.Point(4, 486);
+            this.lblActionReq.Location = new System.Drawing.Point(6, 300);
             this.lblActionReq.Name = "lblActionReq";
             this.lblActionReq.Size = new System.Drawing.Size(104, 16);
             this.lblActionReq.TabIndex = 76;
             this.lblActionReq.Text = "Action Required";
             // 
+            // gbRelInfo
+            // 
+            this.gbRelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbRelInfo.Controls.Add(this.lblAuditTitle);
+            this.gbRelInfo.Controls.Add(this.txtAuditTitle);
+            this.gbRelInfo.Controls.Add(this.lblActionReq);
+            this.gbRelInfo.Controls.Add(this.txtActionReq);
+            this.gbRelInfo.Controls.Add(this.lblAuditRef);
+            this.gbRelInfo.Controls.Add(this.txtAuditRef);
+            this.gbRelInfo.Controls.Add(this.txtDescription);
+            this.gbRelInfo.Controls.Add(this.lblDetailDescription);
+            this.gbRelInfo.Controls.Add(this.lblCompany);
+            this.gbRelInfo.Controls.Add(this.txtCompany);
+            this.gbRelInfo.Controls.Add(this.txtActionCode);
+            this.gbRelInfo.Controls.Add(this.txtHeaderTitle);
+            this.gbRelInfo.Controls.Add(this.lblDetail_ActionDate);
+            this.gbRelInfo.Controls.Add(this.dtpDetail_ActionDate);
+            this.gbRelInfo.Controls.Add(this.lblActionCode);
+            this.gbRelInfo.Controls.Add(this.lblFIId);
+            this.gbRelInfo.Controls.Add(this.txtFISubId);
+            this.gbRelInfo.Controls.Add(this.lblFISubId);
+            this.gbRelInfo.Controls.Add(this.lblHeaderTitle);
+            this.gbRelInfo.Controls.Add(this.txtFIId);
+            this.gbRelInfo.Controls.Add(this.txtCategory);
+            this.gbRelInfo.Controls.Add(this.lblCategory);
+            this.gbRelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.gbRelInfo.Location = new System.Drawing.Point(12, 11);
+            this.gbRelInfo.Name = "gbRelInfo";
+            this.gbRelInfo.Size = new System.Drawing.Size(1012, 340);
+            this.gbRelInfo.TabIndex = 78;
+            this.gbRelInfo.TabStop = false;
+            this.gbRelInfo.Text = "Relevant Information";
+            // 
+            // gbActions
+            // 
+            this.gbActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbActions.Controls.Add(this.gbComments);
+            this.gbActions.Controls.Add(this.menuStrip1);
+            this.gbActions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.gbActions.Location = new System.Drawing.Point(12, 357);
+            this.gbActions.Name = "gbActions";
+            this.gbActions.Size = new System.Drawing.Size(1012, 277);
+            this.gbActions.TabIndex = 79;
+            this.gbActions.TabStop = false;
+            this.gbActions.Text = "Actions";
+            // 
+            // gbComments
+            // 
+            this.gbComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbComments.Controls.Add(this.rtbComments);
+            this.gbComments.Controls.Add(this.btnSaveDraft);
+            this.gbComments.Controls.Add(this.btnAttachment);
+            this.gbComments.Controls.Add(this.btnFontDialog);
+            this.gbComments.Location = new System.Drawing.Point(9, 21);
+            this.gbComments.Name = "gbComments";
+            this.gbComments.Size = new System.Drawing.Size(997, 190);
+            this.gbComments.TabIndex = 0;
+            this.gbComments.TabStop = false;
+            this.gbComments.Text = "Comments for Action";
+            // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 692);
-            this.Controls.Add(this.txtActionReq);
-            this.Controls.Add(this.lblActionReq);
-            this.Controls.Add(this.lblDetailDescription);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.lblHeaderTitle);
-            this.Controls.Add(this.txtHeaderTitle);
-            this.Controls.Add(this.txtAuditTitle);
-            this.Controls.Add(this.lblAuditTitle);
-            this.Controls.Add(this.lblCategory);
-            this.Controls.Add(this.txtCategory);
-            this.Controls.Add(this.txtActionCode);
-            this.Controls.Add(this.lblActionCode);
-            this.Controls.Add(this.lblFISubId);
-            this.Controls.Add(this.txtFISubId);
-            this.Controls.Add(this.lblFIId);
-            this.Controls.Add(this.txtFIId);
-            this.Controls.Add(this.txtAuditRef);
-            this.Controls.Add(this.lblAuditRef);
-            this.Controls.Add(this.txtCompany);
-            this.Controls.Add(this.lblCompany);
-            this.Controls.Add(this.btnAttachment);
-            this.Controls.Add(this.btnSaveDraft);
-            this.Controls.Add(this.dtpDetail_ActionDate);
-            this.Controls.Add(this.lblDetail_ActionDate);
+            this.ClientSize = new System.Drawing.Size(1036, 862);
+            this.Controls.Add(this.gbActions);
+            this.Controls.Add(this.gbRelInfo);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnFontDialog);
-            this.Controls.Add(this.rtbComments);
             this.Controls.Add(this.gridControl1);
-            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FIActivity";
@@ -805,6 +869,10 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.gbRelInfo.ResumeLayout(false);
+            this.gbRelInfo.PerformLayout();
+            this.gbActions.ResumeLayout(false);
+            this.gbComments.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -879,5 +947,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMTextendIA;
         private System.Windows.Forms.ToolStripMenuItem tsmiIAextendMT;
         private System.Windows.Forms.ToolStripMenuItem tsmiIAjudgeMT;
+        private System.Windows.Forms.GroupBox gbRelInfo;
+        private System.Windows.Forms.GroupBox gbActions;
+        private System.Windows.Forms.GroupBox gbComments;
     }
 }

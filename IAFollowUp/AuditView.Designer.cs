@@ -178,10 +178,11 @@
             // colAuditRef
             // 
             this.colAuditRef.FieldName = "AuditRef";
+            this.colAuditRef.MaxWidth = 140;
             this.colAuditRef.Name = "colAuditRef";
             this.colAuditRef.Visible = true;
             this.colAuditRef.VisibleIndex = 0;
-            this.colAuditRef.Width = 69;
+            this.colAuditRef.Width = 74;
             // 
             // colYear
             // 
@@ -197,37 +198,41 @@
             // 
             this.colCompany.Caption = "Company";
             this.colCompany.FieldName = "Company.Name";
+            this.colCompany.MaxWidth = 140;
             this.colCompany.Name = "colCompany";
             this.colCompany.Visible = true;
             this.colCompany.VisibleIndex = 2;
-            this.colCompany.Width = 66;
+            this.colCompany.Width = 70;
             // 
             // colAuditNumber
             // 
             this.colAuditNumber.Caption = "Audit Number";
             this.colAuditNumber.FieldName = "AuditNumber";
+            this.colAuditNumber.MaxWidth = 100;
             this.colAuditNumber.Name = "colAuditNumber";
             this.colAuditNumber.Visible = true;
             this.colAuditNumber.VisibleIndex = 3;
-            this.colAuditNumber.Width = 66;
+            this.colAuditNumber.Width = 70;
             // 
             // colAuditType
             // 
             this.colAuditType.Caption = "Audit Type";
             this.colAuditType.FieldName = "AuditType.Name";
+            this.colAuditType.MaxWidth = 100;
             this.colAuditType.Name = "colAuditType";
             this.colAuditType.Visible = true;
             this.colAuditType.VisibleIndex = 4;
-            this.colAuditType.Width = 66;
+            this.colAuditType.Width = 70;
             // 
             // colIASentNumber
             // 
             this.colIASentNumber.Caption = "IA Sent Number";
             this.colIASentNumber.FieldName = "IASentNumber";
+            this.colIASentNumber.MaxWidth = 100;
             this.colIASentNumber.Name = "colIASentNumber";
             this.colIASentNumber.Visible = true;
             this.colIASentNumber.VisibleIndex = 5;
-            this.colIASentNumber.Width = 66;
+            this.colIASentNumber.Width = 70;
             // 
             // colTitle
             // 
@@ -237,7 +242,7 @@
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
             this.colTitle.VisibleIndex = 6;
-            this.colTitle.Width = 66;
+            this.colTitle.Width = 100;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -247,64 +252,71 @@
             // 
             this.colAuditRating.Caption = "Audit Rating";
             this.colAuditRating.FieldName = "AuditRating.Name";
+            this.colAuditRating.MaxWidth = 80;
             this.colAuditRating.Name = "colAuditRating";
             this.colAuditRating.Visible = true;
             this.colAuditRating.VisibleIndex = 7;
-            this.colAuditRating.Width = 66;
+            this.colAuditRating.Width = 65;
             // 
             // colReportDt
             // 
             this.colReportDt.Caption = "Report Date";
             this.colReportDt.FieldName = "ReportDt";
+            this.colReportDt.MaxWidth = 80;
             this.colReportDt.Name = "colReportDt";
             this.colReportDt.Visible = true;
             this.colReportDt.VisibleIndex = 8;
-            this.colReportDt.Width = 66;
+            this.colReportDt.Width = 65;
             // 
             // colAuditor1
             // 
             this.colAuditor1.Caption = "Auditor1";
             this.colAuditor1.FieldName = "Auditor1.FullName";
+            this.colAuditor1.MaxWidth = 100;
             this.colAuditor1.Name = "colAuditor1";
             this.colAuditor1.Visible = true;
             this.colAuditor1.VisibleIndex = 9;
-            this.colAuditor1.Width = 66;
+            this.colAuditor1.Width = 65;
             // 
             // colAuditor2
             // 
             this.colAuditor2.Caption = "Auditor2";
             this.colAuditor2.FieldName = "Auditor2.FullName";
+            this.colAuditor2.MaxWidth = 100;
             this.colAuditor2.Name = "colAuditor2";
             this.colAuditor2.Visible = true;
             this.colAuditor2.VisibleIndex = 10;
-            this.colAuditor2.Width = 66;
+            this.colAuditor2.Width = 65;
             // 
             // colSupervisor
             // 
             this.colSupervisor.Caption = "Supervisor";
             this.colSupervisor.FieldName = "Supervisor.FullName";
+            this.colSupervisor.MaxWidth = 100;
             this.colSupervisor.Name = "colSupervisor";
             this.colSupervisor.Visible = true;
             this.colSupervisor.VisibleIndex = 11;
-            this.colSupervisor.Width = 66;
+            this.colSupervisor.Width = 65;
             // 
             // colIsCompleted
             // 
             this.colIsCompleted.Caption = "Finalized";
             this.colIsCompleted.FieldName = "IsCompleted";
+            this.colIsCompleted.MaxWidth = 60;
             this.colIsCompleted.Name = "colIsCompleted";
             this.colIsCompleted.Visible = true;
             this.colIsCompleted.VisibleIndex = 12;
-            this.colIsCompleted.Width = 66;
+            this.colIsCompleted.Width = 60;
             // 
             // colIsDeleted
             // 
             this.colIsDeleted.Caption = "Deleted";
             this.colIsDeleted.FieldName = "IsDeleted";
+            this.colIsDeleted.MaxWidth = 60;
             this.colIsDeleted.Name = "colIsDeleted";
             this.colIsDeleted.Visible = true;
             this.colIsDeleted.VisibleIndex = 13;
-            this.colIsDeleted.Width = 96;
+            this.colIsDeleted.Width = 60;
             // 
             // btnCreateNewAudit
             // 

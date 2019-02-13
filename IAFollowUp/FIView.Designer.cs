@@ -36,8 +36,6 @@
             this.MIduplicateDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.MIdeleteDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mIfinalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fIDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -122,54 +120,41 @@
             this.MIduplicateDetail,
             this.MIdeleteDetail,
             this.toolStripSeparator1,
-            this.MIattachments,
-            this.toolStripSeparator2,
             this.mIfinalizeToolStripMenuItem});
             this.cmsDetail.Name = "cmsHeader";
-            this.cmsDetail.Size = new System.Drawing.Size(143, 126);
+            this.cmsDetail.Size = new System.Drawing.Size(125, 98);
             // 
             // MIeditDetail
             // 
             this.MIeditDetail.Name = "MIeditDetail";
-            this.MIeditDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIeditDetail.Size = new System.Drawing.Size(124, 22);
             this.MIeditDetail.Text = "Edit";
             this.MIeditDetail.Click += new System.EventHandler(this.MIeditDetail_Click);
             // 
             // MIduplicateDetail
             // 
             this.MIduplicateDetail.Name = "MIduplicateDetail";
-            this.MIduplicateDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIduplicateDetail.Size = new System.Drawing.Size(124, 22);
             this.MIduplicateDetail.Text = "Duplicate";
             this.MIduplicateDetail.Click += new System.EventHandler(this.MIduplicateDetail_Click);
             // 
             // MIdeleteDetail
             // 
             this.MIdeleteDetail.Name = "MIdeleteDetail";
-            this.MIdeleteDetail.Size = new System.Drawing.Size(142, 22);
+            this.MIdeleteDetail.Size = new System.Drawing.Size(124, 22);
             this.MIdeleteDetail.Text = "Delete";
             this.MIdeleteDetail.Click += new System.EventHandler(this.MIdeleteDetail_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
-            // 
-            // MIattachments
-            // 
-            this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(142, 22);
-            this.MIattachments.Text = "Attachments";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
             // 
             // mIfinalizeToolStripMenuItem
             // 
             this.mIfinalizeToolStripMenuItem.Enabled = false;
             this.mIfinalizeToolStripMenuItem.Name = "mIfinalizeToolStripMenuItem";
-            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.mIfinalizeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.mIfinalizeToolStripMenuItem.Text = "Finalize";
             this.mIfinalizeToolStripMenuItem.Click += new System.EventHandler(this.mIfinalizeToolStripMenuItem_Click);
             // 
@@ -223,7 +208,7 @@
             this.colFISubId.Name = "colFISubId";
             this.colFISubId.Visible = true;
             this.colFISubId.VisibleIndex = 0;
-            this.colFISubId.Width = 60;
+            this.colFISubId.Width = 61;
             // 
             // colDescription
             // 
@@ -233,7 +218,7 @@
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 1;
-            this.colDescription.Width = 64;
+            this.colDescription.Width = 100;
             // 
             // repositoryItemMemoEdit3
             // 
@@ -247,7 +232,7 @@
             this.colActionDt.Name = "colActionDt";
             this.colActionDt.Visible = true;
             this.colActionDt.VisibleIndex = 2;
-            this.colActionDt.Width = 90;
+            this.colActionDt.Width = 84;
             // 
             // colActionReq
             // 
@@ -257,7 +242,7 @@
             this.colActionReq.Name = "colActionReq";
             this.colActionReq.Visible = true;
             this.colActionReq.VisibleIndex = 3;
-            this.colActionReq.Width = 61;
+            this.colActionReq.Width = 100;
             // 
             // repositoryItemMemoEdit2
             // 
@@ -271,7 +256,7 @@
             this.colActionCode.Name = "colActionCode";
             this.colActionCode.Visible = true;
             this.colActionCode.VisibleIndex = 4;
-            this.colActionCode.Width = 70;
+            this.colActionCode.Width = 60;
             // 
             // colIsClosed
             // 
@@ -281,7 +266,7 @@
             this.colIsClosed.Name = "colIsClosed";
             this.colIsClosed.Visible = true;
             this.colIsClosed.VisibleIndex = 5;
-            this.colIsClosed.Width = 50;
+            this.colIsClosed.Width = 42;
             // 
             // colIsPublished
             // 
@@ -291,7 +276,7 @@
             this.colIsPublished.Name = "colIsPublished";
             this.colIsPublished.Visible = true;
             this.colIsPublished.VisibleIndex = 6;
-            this.colIsPublished.Width = 60;
+            this.colIsPublished.Width = 51;
             // 
             // colIsFinalized
             // 
@@ -301,7 +286,7 @@
             this.colIsFinalized.Name = "colIsFinalized";
             this.colIsFinalized.Visible = true;
             this.colIsFinalized.VisibleIndex = 7;
-            this.colIsFinalized.Width = 60;
+            this.colIsFinalized.Width = 51;
             // 
             // colDetailIsDeleted
             // 
@@ -311,7 +296,7 @@
             this.colDetailIsDeleted.Name = "colDetailIsDeleted";
             this.colDetailIsDeleted.Visible = true;
             this.colDetailIsDeleted.VisibleIndex = 8;
-            this.colDetailIsDeleted.Width = 60;
+            this.colDetailIsDeleted.Width = 51;
             // 
             // colCurrentDept1
             // 
@@ -320,7 +305,7 @@
             this.colCurrentDept1.Name = "colCurrentDept1";
             this.colCurrentDept1.Visible = true;
             this.colCurrentDept1.VisibleIndex = 9;
-            this.colCurrentDept1.Width = 60;
+            this.colCurrentDept1.Width = 52;
             // 
             // colCurrentUser1
             // 
@@ -329,7 +314,7 @@
             this.colCurrentUser1.Name = "colCurrentUser1";
             this.colCurrentUser1.Visible = true;
             this.colCurrentUser1.VisibleIndex = 10;
-            this.colCurrentUser1.Width = 60;
+            this.colCurrentUser1.Width = 52;
             // 
             // colCurrentDept2
             // 
@@ -338,7 +323,7 @@
             this.colCurrentDept2.Name = "colCurrentDept2";
             this.colCurrentDept2.Visible = true;
             this.colCurrentDept2.VisibleIndex = 11;
-            this.colCurrentDept2.Width = 60;
+            this.colCurrentDept2.Width = 52;
             // 
             // colCurrentUser2
             // 
@@ -347,7 +332,7 @@
             this.colCurrentUser2.Name = "colCurrentUser2";
             this.colCurrentUser2.Visible = true;
             this.colCurrentUser2.VisibleIndex = 12;
-            this.colCurrentUser2.Width = 60;
+            this.colCurrentUser2.Width = 52;
             // 
             // colCurrentDept3
             // 
@@ -356,7 +341,7 @@
             this.colCurrentDept3.Name = "colCurrentDept3";
             this.colCurrentDept3.Visible = true;
             this.colCurrentDept3.VisibleIndex = 13;
-            this.colCurrentDept3.Width = 60;
+            this.colCurrentDept3.Width = 52;
             // 
             // colCurrentUser3
             // 
@@ -365,7 +350,7 @@
             this.colCurrentUser3.Name = "colCurrentUser3";
             this.colCurrentUser3.Visible = true;
             this.colCurrentUser3.VisibleIndex = 14;
-            this.colCurrentUser3.Width = 81;
+            this.colCurrentUser3.Width = 106;
             // 
             // btnCreateNewHeader
             // 
@@ -658,8 +643,6 @@
         public System.Windows.Forms.ContextMenuStrip cmsDetail;
         private System.Windows.Forms.ToolStripMenuItem MIeditDetail;
         private System.Windows.Forms.ToolStripMenuItem MIdeleteDetail;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem MIattachments;
         private System.Windows.Forms.BindingSource fIDetailBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailsId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;
@@ -670,7 +653,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colIsClosed;
         private DevExpress.XtraGrid.Columns.GridColumn colIsFinalized;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailIsDeleted;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem mIfinalizeToolStripMenuItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit3;

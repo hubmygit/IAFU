@@ -83,6 +83,16 @@ namespace IAFollowUp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Attach_16x {
+            get {
+                object obj = ResourceManager.GetObject("Attach_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Calendar_32x32___Copy {
             get {
                 object obj = ResourceManager.GetObject("Calendar_32x32 - Copy", resourceCulture);
@@ -136,6 +146,16 @@ namespace IAFollowUp.Properties {
         internal static System.Drawing.Bitmap Failing_16x {
             get {
                 object obj = ResourceManager.GetObject("Failing_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FontDialog_16x {
+            get {
+                object obj = ResourceManager.GetObject("FontDialog_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,6 +246,16 @@ namespace IAFollowUp.Properties {
         internal static System.Drawing.Bitmap Passing_16x {
             get {
                 object obj = ResourceManager.GetObject("Passing_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Save_16x {
+            get {
+                object obj = ResourceManager.GetObject("Save_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

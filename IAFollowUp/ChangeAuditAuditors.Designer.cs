@@ -155,6 +155,8 @@
             this.colAuditRef});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colId
             // 
@@ -172,14 +174,14 @@
             // 
             // colCompany
             // 
-            this.colCompany.FieldName = "Company";
+            this.colCompany.FieldName = "Company.Name";
             this.colCompany.Name = "colCompany";
             this.colCompany.Visible = true;
             this.colCompany.VisibleIndex = 2;
             // 
             // colAuditType
             // 
-            this.colAuditType.FieldName = "AuditType";
+            this.colAuditType.FieldName = "AuditType.Name";
             this.colAuditType.Name = "colAuditType";
             this.colAuditType.Visible = true;
             this.colAuditType.VisibleIndex = 3;
@@ -242,7 +244,7 @@
             // 
             // colAuditRating
             // 
-            this.colAuditRating.FieldName = "AuditRating";
+            this.colAuditRating.FieldName = "AuditRating.Name";
             this.colAuditRating.Name = "colAuditRating";
             this.colAuditRating.Visible = true;
             this.colAuditRating.VisibleIndex = 12;

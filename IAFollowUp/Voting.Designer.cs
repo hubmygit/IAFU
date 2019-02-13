@@ -63,9 +63,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsStatusLblUser});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 420);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 360);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(824, 22);
             this.statusStrip1.TabIndex = 72;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -83,9 +83,9 @@
             this.gbVoting.Controls.Add(this.rbForwardNo);
             this.gbVoting.Controls.Add(this.rbForwardAlternative);
             this.gbVoting.Controls.Add(this.rbForwardCompleted);
-            this.gbVoting.Location = new System.Drawing.Point(14, 83);
+            this.gbVoting.Location = new System.Drawing.Point(14, 34);
             this.gbVoting.Name = "gbVoting";
-            this.gbVoting.Size = new System.Drawing.Size(240, 193);
+            this.gbVoting.Size = new System.Drawing.Size(251, 193);
             this.gbVoting.TabIndex = 73;
             this.gbVoting.TabStop = false;
             this.gbVoting.Text = "Decision";
@@ -156,7 +156,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnSave.Image = global::IAFollowUp.Properties.Resources.Save_32x;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(332, 377);
+            this.btnSave.Location = new System.Drawing.Point(352, 317);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
             this.btnSave.TabIndex = 74;
@@ -167,11 +167,14 @@
             // 
             // gridControl1
             // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.fIDetailVotingBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(260, 83);
+            this.gridControl1.Location = new System.Drawing.Point(272, 41);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(512, 193);
+            this.gridControl1.Size = new System.Drawing.Size(540, 186);
             this.gridControl1.TabIndex = 75;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -273,14 +276,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 442);
+            this.ClientSize = new System.Drawing.Size(824, 382);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbVoting);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(800, 480);
-            this.MinimumSize = new System.Drawing.Size(800, 480);
+            this.MinimumSize = new System.Drawing.Size(840, 420);
             this.Name = "Voting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Decision";
