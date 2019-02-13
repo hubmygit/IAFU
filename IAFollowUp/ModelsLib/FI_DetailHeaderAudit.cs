@@ -13,6 +13,10 @@ namespace IAFollowUp
         public int AuditYear { get; set; }
         public string AuditTitle { get; set; }
         public string AuditRef { get; set; }
+        public Users AuditAuditor1 { get; set; }
+        public Users AuditAuditor2 { get; set; }
+        public Users AuditSupervisor { get; set; }
+
         //---------------------------------//
         public int HeaderId { get; set; }
         public string HeaderTitle { get; set; }
@@ -50,10 +54,15 @@ namespace IAFollowUp
                         fiDHA.AuditYear = thisAudit.Year;
                         fiDHA.AuditTitle = thisAudit.Title;
                         fiDHA.AuditRef = thisAudit.AuditRef;
+                        fiDHA.AuditAuditor1 = thisAudit.Auditor1;
+                        fiDHA.AuditAuditor2 = thisAudit.Auditor2;
+                        fiDHA.AuditSupervisor = thisAudit.Supervisor;
+
                         fiDHA.HeaderId = thisHeader.Id;
                         fiDHA.HeaderTitle = thisHeader.Title;
                         fiDHA.HeaderCategory = thisHeader.FICategory;
                         fiDHA.HeaderFIId = thisHeader.FIId;
+
                         fiDHA.DetailId = thisDetail.Id;
                         fiDHA.DetailDescription = thisDetail.Description;
                         fiDHA.DetailActionDt = thisDetail.ActionDt;

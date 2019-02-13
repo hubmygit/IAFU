@@ -36,23 +36,26 @@
             this.fI_DetailHeaderAuditBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAuditId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditCompany = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditYear = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAuditTitle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditRef = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHeaderFIId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailFISubId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAuditTitle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHeaderTitle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHeaderCategory = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colHeaderFIId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailActionDt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailActionReq = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailActionCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDetailFISubId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailCurrentDept1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailCurrentOwner1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailCurrentDept2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailCurrentOwner2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetailCurrentDept3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailCurrentOwner3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -98,71 +101,97 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colAuditId,
+            this.colHeaderId,
+            this.colDetailId,
             this.colAuditCompany,
             this.colAuditYear,
-            this.colAuditTitle,
             this.colAuditRef,
-            this.colHeaderId,
+            this.colHeaderFIId,
+            this.colDetailFISubId,
+            this.colAuditTitle,
             this.colHeaderTitle,
             this.colHeaderCategory,
-            this.colHeaderFIId,
-            this.colDetailId,
             this.colDetailDescription,
             this.colDetailActionDt,
             this.colDetailActionReq,
             this.colDetailActionCode,
-            this.colDetailIsFinalized,
-            this.colDetailFISubId,
+            this.colDetailCurrentDept1,
             this.colDetailCurrentOwner1,
+            this.colDetailCurrentDept2,
             this.colDetailCurrentOwner2,
-            this.colDetailCurrentOwner3});
+            this.colDetailCurrentDept3,
+            this.colDetailCurrentOwner3,
+            this.colDetailIsFinalized});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colAuditId
             // 
             this.colAuditId.FieldName = "AuditId";
             this.colAuditId.Name = "colAuditId";
-            this.colAuditId.Visible = true;
-            this.colAuditId.VisibleIndex = 0;
+            // 
+            // colHeaderId
+            // 
+            this.colHeaderId.FieldName = "HeaderId";
+            this.colHeaderId.Name = "colHeaderId";
+            // 
+            // colDetailId
+            // 
+            this.colDetailId.FieldName = "DetailId";
+            this.colDetailId.Name = "colDetailId";
             // 
             // colAuditCompany
             // 
-            this.colAuditCompany.FieldName = "AuditCompany";
+            this.colAuditCompany.Caption = "Company";
+            this.colAuditCompany.FieldName = "AuditCompany.Name";
             this.colAuditCompany.Name = "colAuditCompany";
             this.colAuditCompany.Visible = true;
-            this.colAuditCompany.VisibleIndex = 1;
+            this.colAuditCompany.VisibleIndex = 0;
             // 
             // colAuditYear
             // 
             this.colAuditYear.FieldName = "AuditYear";
             this.colAuditYear.Name = "colAuditYear";
             this.colAuditYear.Visible = true;
-            this.colAuditYear.VisibleIndex = 2;
-            // 
-            // colAuditTitle
-            // 
-            this.colAuditTitle.FieldName = "AuditTitle";
-            this.colAuditTitle.Name = "colAuditTitle";
-            this.colAuditTitle.Visible = true;
-            this.colAuditTitle.VisibleIndex = 3;
+            this.colAuditYear.VisibleIndex = 1;
             // 
             // colAuditRef
             // 
+            this.colAuditRef.Caption = "AuditRef";
             this.colAuditRef.FieldName = "AuditRef";
             this.colAuditRef.Name = "colAuditRef";
             this.colAuditRef.Visible = true;
-            this.colAuditRef.VisibleIndex = 4;
+            this.colAuditRef.VisibleIndex = 2;
             // 
-            // colHeaderId
+            // colHeaderFIId
             // 
-            this.colHeaderId.FieldName = "HeaderId";
-            this.colHeaderId.Name = "colHeaderId";
-            this.colHeaderId.Visible = true;
-            this.colHeaderId.VisibleIndex = 5;
+            this.colHeaderFIId.Caption = "FIId";
+            this.colHeaderFIId.FieldName = "HeaderFIId";
+            this.colHeaderFIId.Name = "colHeaderFIId";
+            this.colHeaderFIId.Visible = true;
+            this.colHeaderFIId.VisibleIndex = 3;
+            // 
+            // colDetailFISubId
+            // 
+            this.colDetailFISubId.Caption = "FISubId";
+            this.colDetailFISubId.FieldName = "DetailFISubId";
+            this.colDetailFISubId.Name = "colDetailFISubId";
+            this.colDetailFISubId.Visible = true;
+            this.colDetailFISubId.VisibleIndex = 4;
+            // 
+            // colAuditTitle
+            // 
+            this.colAuditTitle.Caption = "Audit Title";
+            this.colAuditTitle.FieldName = "AuditTitle";
+            this.colAuditTitle.Name = "colAuditTitle";
+            this.colAuditTitle.Visible = true;
+            this.colAuditTitle.VisibleIndex = 5;
             // 
             // colHeaderTitle
             // 
+            this.colHeaderTitle.Caption = "Header Title";
             this.colHeaderTitle.FieldName = "HeaderTitle";
             this.colHeaderTitle.Name = "colHeaderTitle";
             this.colHeaderTitle.Visible = true;
@@ -170,87 +199,99 @@
             // 
             // colHeaderCategory
             // 
+            this.colHeaderCategory.Caption = "Header Category";
             this.colHeaderCategory.FieldName = "HeaderCategory";
             this.colHeaderCategory.Name = "colHeaderCategory";
             this.colHeaderCategory.Visible = true;
             this.colHeaderCategory.VisibleIndex = 7;
             // 
-            // colHeaderFIId
-            // 
-            this.colHeaderFIId.FieldName = "HeaderFIId";
-            this.colHeaderFIId.Name = "colHeaderFIId";
-            this.colHeaderFIId.Visible = true;
-            this.colHeaderFIId.VisibleIndex = 8;
-            // 
-            // colDetailId
-            // 
-            this.colDetailId.FieldName = "DetailId";
-            this.colDetailId.Name = "colDetailId";
-            this.colDetailId.Visible = true;
-            this.colDetailId.VisibleIndex = 9;
-            // 
             // colDetailDescription
             // 
+            this.colDetailDescription.Caption = "Detail Description";
             this.colDetailDescription.FieldName = "DetailDescription";
             this.colDetailDescription.Name = "colDetailDescription";
             this.colDetailDescription.Visible = true;
-            this.colDetailDescription.VisibleIndex = 10;
+            this.colDetailDescription.VisibleIndex = 8;
             // 
             // colDetailActionDt
             // 
+            this.colDetailActionDt.Caption = "Action Date";
             this.colDetailActionDt.FieldName = "DetailActionDt";
             this.colDetailActionDt.Name = "colDetailActionDt";
             this.colDetailActionDt.Visible = true;
-            this.colDetailActionDt.VisibleIndex = 11;
+            this.colDetailActionDt.VisibleIndex = 9;
             // 
             // colDetailActionReq
             // 
+            this.colDetailActionReq.Caption = "Action Required";
             this.colDetailActionReq.FieldName = "DetailActionReq";
             this.colDetailActionReq.Name = "colDetailActionReq";
             this.colDetailActionReq.Visible = true;
-            this.colDetailActionReq.VisibleIndex = 12;
+            this.colDetailActionReq.VisibleIndex = 10;
             // 
             // colDetailActionCode
             // 
+            this.colDetailActionCode.Caption = "Action Code";
             this.colDetailActionCode.FieldName = "DetailActionCode";
             this.colDetailActionCode.Name = "colDetailActionCode";
             this.colDetailActionCode.Visible = true;
-            this.colDetailActionCode.VisibleIndex = 13;
+            this.colDetailActionCode.VisibleIndex = 11;
             // 
             // colDetailIsFinalized
             // 
+            this.colDetailIsFinalized.Caption = "Finalized";
             this.colDetailIsFinalized.FieldName = "DetailIsFinalized";
             this.colDetailIsFinalized.Name = "colDetailIsFinalized";
             this.colDetailIsFinalized.Visible = true;
-            this.colDetailIsFinalized.VisibleIndex = 14;
+            this.colDetailIsFinalized.VisibleIndex = 18;
             // 
-            // colDetailFISubId
+            // colDetailCurrentDept1
             // 
-            this.colDetailFISubId.FieldName = "DetailFISubId";
-            this.colDetailFISubId.Name = "colDetailFISubId";
-            this.colDetailFISubId.Visible = true;
-            this.colDetailFISubId.VisibleIndex = 15;
+            this.colDetailCurrentDept1.Caption = "Owner Role1";
+            this.colDetailCurrentDept1.FieldName = "DetailCurrentOwner1.Placeholder.Department.Name";
+            this.colDetailCurrentDept1.Name = "colDetailCurrentDept1";
+            this.colDetailCurrentDept1.Visible = true;
+            this.colDetailCurrentDept1.VisibleIndex = 12;
             // 
             // colDetailCurrentOwner1
             // 
+            this.colDetailCurrentOwner1.Caption = "Owner1";
             this.colDetailCurrentOwner1.FieldName = "DetailCurrentOwner1.User.FullName";
             this.colDetailCurrentOwner1.Name = "colDetailCurrentOwner1";
             this.colDetailCurrentOwner1.Visible = true;
-            this.colDetailCurrentOwner1.VisibleIndex = 16;
+            this.colDetailCurrentOwner1.VisibleIndex = 13;
+            // 
+            // colDetailCurrentDept2
+            // 
+            this.colDetailCurrentDept2.Caption = "Owner Role2";
+            this.colDetailCurrentDept2.FieldName = "DetailCurrentOwner2.Placeholder.Department.Name";
+            this.colDetailCurrentDept2.Name = "colDetailCurrentDept2";
+            this.colDetailCurrentDept2.Visible = true;
+            this.colDetailCurrentDept2.VisibleIndex = 14;
             // 
             // colDetailCurrentOwner2
             // 
+            this.colDetailCurrentOwner2.Caption = "Owner2";
             this.colDetailCurrentOwner2.FieldName = "DetailCurrentOwner2.User.FullName";
             this.colDetailCurrentOwner2.Name = "colDetailCurrentOwner2";
             this.colDetailCurrentOwner2.Visible = true;
-            this.colDetailCurrentOwner2.VisibleIndex = 17;
+            this.colDetailCurrentOwner2.VisibleIndex = 15;
+            // 
+            // colDetailCurrentDept3
+            // 
+            this.colDetailCurrentDept3.Caption = "Owner Role3";
+            this.colDetailCurrentDept3.FieldName = "DetailCurrentOwner3.Placeholder.Department.Name";
+            this.colDetailCurrentDept3.Name = "colDetailCurrentDept3";
+            this.colDetailCurrentDept3.Visible = true;
+            this.colDetailCurrentDept3.VisibleIndex = 16;
             // 
             // colDetailCurrentOwner3
             // 
+            this.colDetailCurrentOwner3.Caption = "Owner3";
             this.colDetailCurrentOwner3.FieldName = "DetailCurrentOwner3.User.FullName";
             this.colDetailCurrentOwner3.Name = "colDetailCurrentOwner3";
             this.colDetailCurrentOwner3.Visible = true;
-            this.colDetailCurrentOwner3.VisibleIndex = 18;
+            this.colDetailCurrentOwner3.VisibleIndex = 17;
             // 
             // button1
             // 
@@ -309,5 +350,8 @@
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ContextMenuStrip cmsDHA;
         private System.Windows.Forms.ToolStripMenuItem MIactivity;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentDept1;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentDept2;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentDept3;
     }
 }

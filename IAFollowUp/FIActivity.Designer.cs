@@ -292,6 +292,7 @@
             // 
             // btnFontDialog
             // 
+            this.btnFontDialog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnFontDialog.Image = global::IAFollowUp.Properties.Resources.FontDialog_16x;
             this.btnFontDialog.Location = new System.Drawing.Point(6, 21);
             this.btnFontDialog.Name = "btnFontDialog";
@@ -532,15 +533,16 @@
             // lblDetail_ActionDate
             // 
             this.lblDetail_ActionDate.AutoSize = true;
-            this.lblDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblDetail_ActionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblDetail_ActionDate.Location = new System.Drawing.Point(703, 199);
             this.lblDetail_ActionDate.Name = "lblDetail_ActionDate";
-            this.lblDetail_ActionDate.Size = new System.Drawing.Size(77, 16);
+            this.lblDetail_ActionDate.Size = new System.Drawing.Size(80, 15);
             this.lblDetail_ActionDate.TabIndex = 12;
             this.lblDetail_ActionDate.Text = "Action Date";
             // 
             // btnSaveDraft
             // 
+            this.btnSaveDraft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnSaveDraft.Image = global::IAFollowUp.Properties.Resources.Save_16x;
             this.btnSaveDraft.Location = new System.Drawing.Point(268, 21);
             this.btnSaveDraft.Name = "btnSaveDraft";
@@ -553,6 +555,7 @@
             // 
             // btnAttachment
             // 
+            this.btnAttachment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnAttachment.Image = global::IAFollowUp.Properties.Resources.Attach_16x;
             this.btnAttachment.Location = new System.Drawing.Point(137, 21);
             this.btnAttachment.Name = "btnAttachment";
@@ -576,10 +579,10 @@
             // lblCompany
             // 
             this.lblCompany.AutoSize = true;
-            this.lblCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblCompany.Location = new System.Drawing.Point(540, 27);
             this.lblCompany.Name = "lblCompany";
-            this.lblCompany.Size = new System.Drawing.Size(66, 16);
+            this.lblCompany.Size = new System.Drawing.Size(66, 15);
             this.lblCompany.TabIndex = 17;
             this.lblCompany.Text = "Company";
             // 
@@ -597,20 +600,20 @@
             // lblAuditRef
             // 
             this.lblAuditRef.AutoSize = true;
-            this.lblAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblAuditRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblAuditRef.Location = new System.Drawing.Point(48, 27);
             this.lblAuditRef.Name = "lblAuditRef";
-            this.lblAuditRef.Size = new System.Drawing.Size(62, 16);
+            this.lblAuditRef.Size = new System.Drawing.Size(65, 15);
             this.lblAuditRef.TabIndex = 18;
             this.lblAuditRef.Text = "Audit Ref";
             // 
             // lblFIId
             // 
             this.lblFIId.AutoSize = true;
-            this.lblFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblFIId.Location = new System.Drawing.Point(24, 113);
             this.lblFIId.Name = "lblFIId";
-            this.lblFIId.Size = new System.Drawing.Size(86, 16);
+            this.lblFIId.Size = new System.Drawing.Size(90, 15);
             this.lblFIId.TabIndex = 63;
             this.lblFIId.Text = "Header F/I Id";
             // 
@@ -628,10 +631,10 @@
             // lblFISubId
             // 
             this.lblFISubId.AutoSize = true;
-            this.lblFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblFISubId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblFISubId.Location = new System.Drawing.Point(14, 199);
             this.lblFISubId.Name = "lblFISubId";
-            this.lblFISubId.Size = new System.Drawing.Size(96, 16);
+            this.lblFISubId.Size = new System.Drawing.Size(102, 15);
             this.lblFISubId.TabIndex = 65;
             this.lblFISubId.Text = "DetailF/I SubId";
             // 
@@ -659,20 +662,20 @@
             // lblActionCode
             // 
             this.lblActionCode.AutoSize = true;
-            this.lblActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblActionCode.Location = new System.Drawing.Point(369, 199);
             this.lblActionCode.Name = "lblActionCode";
-            this.lblActionCode.Size = new System.Drawing.Size(81, 16);
+            this.lblActionCode.Size = new System.Drawing.Size(83, 15);
             this.lblActionCode.TabIndex = 66;
             this.lblActionCode.Text = "Action Code";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblCategory.Location = new System.Drawing.Point(476, 113);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(130, 16);
+            this.lblCategory.Size = new System.Drawing.Size(134, 15);
             this.lblCategory.TabIndex = 68;
             this.lblCategory.Text = "Header F/I Category";
             // 
@@ -703,20 +706,20 @@
             // lblAuditTitle
             // 
             this.lblAuditTitle.AutoSize = true;
-            this.lblAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblAuditTitle.Location = new System.Drawing.Point(35, 69);
             this.lblAuditTitle.Name = "lblAuditTitle";
-            this.lblAuditTitle.Size = new System.Drawing.Size(67, 16);
+            this.lblAuditTitle.Size = new System.Drawing.Size(71, 15);
             this.lblAuditTitle.TabIndex = 71;
             this.lblAuditTitle.Text = "Audit Title";
             // 
             // lblHeaderTitle
             // 
             this.lblHeaderTitle.AutoSize = true;
-            this.lblHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblHeaderTitle.Location = new System.Drawing.Point(30, 155);
             this.lblHeaderTitle.Name = "lblHeaderTitle";
-            this.lblHeaderTitle.Size = new System.Drawing.Size(80, 16);
+            this.lblHeaderTitle.Size = new System.Drawing.Size(82, 15);
             this.lblHeaderTitle.TabIndex = 72;
             this.lblHeaderTitle.Text = "HeaderTitle";
             // 
@@ -737,10 +740,10 @@
             // lblDetailDescription
             // 
             this.lblDetailDescription.AutoSize = true;
-            this.lblDetailDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblDetailDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblDetailDescription.Location = new System.Drawing.Point(34, 241);
             this.lblDetailDescription.Name = "lblDetailDescription";
-            this.lblDetailDescription.Size = new System.Drawing.Size(76, 16);
+            this.lblDetailDescription.Size = new System.Drawing.Size(80, 15);
             this.lblDetailDescription.TabIndex = 74;
             this.lblDetailDescription.Text = "Description";
             // 
@@ -775,10 +778,10 @@
             // lblActionReq
             // 
             this.lblActionReq.AutoSize = true;
-            this.lblActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblActionReq.Location = new System.Drawing.Point(6, 300);
             this.lblActionReq.Name = "lblActionReq";
-            this.lblActionReq.Size = new System.Drawing.Size(104, 16);
+            this.lblActionReq.Size = new System.Drawing.Size(109, 15);
             this.lblActionReq.TabIndex = 76;
             this.lblActionReq.Text = "Action Required";
             // 
@@ -808,7 +811,7 @@
             this.gbRelInfo.Controls.Add(this.txtFIId);
             this.gbRelInfo.Controls.Add(this.txtCategory);
             this.gbRelInfo.Controls.Add(this.lblCategory);
-            this.gbRelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.gbRelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.gbRelInfo.Location = new System.Drawing.Point(12, 11);
             this.gbRelInfo.Name = "gbRelInfo";
             this.gbRelInfo.Size = new System.Drawing.Size(1012, 340);
@@ -822,7 +825,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbActions.Controls.Add(this.gbComments);
             this.gbActions.Controls.Add(this.menuStrip1);
-            this.gbActions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.gbActions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.gbActions.Location = new System.Drawing.Point(12, 357);
             this.gbActions.Name = "gbActions";
             this.gbActions.Size = new System.Drawing.Size(1012, 277);
@@ -838,6 +841,7 @@
             this.gbComments.Controls.Add(this.btnSaveDraft);
             this.gbComments.Controls.Add(this.btnAttachment);
             this.gbComments.Controls.Add(this.btnFontDialog);
+            this.gbComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.gbComments.Location = new System.Drawing.Point(9, 21);
             this.gbComments.Name = "gbComments";
             this.gbComments.Size = new System.Drawing.Size(997, 190);
