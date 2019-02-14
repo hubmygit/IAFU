@@ -791,6 +791,19 @@ namespace IAFollowUp
                         FISubId = reader["FISubId"].ToString()
                     };
 
+                    if (tmp.Placeholders.Count >= 1 && tmp.Placeholders[0] != null)
+                    {
+                        tmp.CurrentOwner1 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[0].Id);
+                    }
+                    if (tmp.Placeholders.Count >= 2 && tmp.Placeholders[1] != null)
+                    {
+                        tmp.CurrentOwner2 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[1].Id);
+                    }
+                    if (tmp.Placeholders.Count >= 3 && tmp.Placeholders[2] != null)
+                    {
+                        tmp.CurrentOwner3 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[2].Id);
+                    }
+
                     //==============================================================
                     //-> Management Team Users
                     List<Users> usersListMT = new List<Users>();

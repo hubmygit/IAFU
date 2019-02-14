@@ -39,12 +39,13 @@
             this.txtOldPassword = new System.Windows.Forms.TextBox();
             this.lblOldPassword = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
+            this.lblPassPolicy = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnChangePassword
             // 
             this.btnChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnChangePassword.Location = new System.Drawing.Point(140, 225);
+            this.btnChangePassword.Location = new System.Drawing.Point(140, 230);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(164, 25);
             this.btnChangePassword.TabIndex = 5;
@@ -55,7 +56,7 @@
             // txtNewPassword2
             // 
             this.txtNewPassword2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtNewPassword2.Location = new System.Drawing.Point(192, 165);
+            this.txtNewPassword2.Location = new System.Drawing.Point(192, 156);
             this.txtNewPassword2.Name = "txtNewPassword2";
             this.txtNewPassword2.PasswordChar = '*';
             this.txtNewPassword2.Size = new System.Drawing.Size(164, 22);
@@ -65,16 +66,16 @@
             // 
             this.lblNewPassword2.AutoSize = true;
             this.lblNewPassword2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblNewPassword2.Location = new System.Drawing.Point(88, 168);
+            this.lblNewPassword2.Location = new System.Drawing.Point(70, 159);
             this.lblNewPassword2.Name = "lblNewPassword2";
-            this.lblNewPassword2.Size = new System.Drawing.Size(98, 16);
+            this.lblNewPassword2.Size = new System.Drawing.Size(116, 16);
             this.lblNewPassword2.TabIndex = 0;
-            this.lblNewPassword2.Text = "New Password";
+            this.lblNewPassword2.Text = "Confirm Password";
             // 
             // txtNewPassword
             // 
             this.txtNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtNewPassword.Location = new System.Drawing.Point(192, 137);
+            this.txtNewPassword.Location = new System.Drawing.Point(192, 128);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '*';
             this.txtNewPassword.Size = new System.Drawing.Size(164, 22);
@@ -84,7 +85,7 @@
             // 
             this.lblNewPassword.AutoSize = true;
             this.lblNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblNewPassword.Location = new System.Drawing.Point(88, 140);
+            this.lblNewPassword.Location = new System.Drawing.Point(88, 131);
             this.lblNewPassword.Name = "lblNewPassword";
             this.lblNewPassword.Size = new System.Drawing.Size(98, 16);
             this.lblNewPassword.TabIndex = 0;
@@ -93,7 +94,7 @@
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(189, 78);
+            this.lblFullName.Location = new System.Drawing.Point(189, 69);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(51, 13);
             this.lblFullName.TabIndex = 0;
@@ -103,7 +104,7 @@
             // 
             this.txtUserName.Enabled = false;
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtUserName.Location = new System.Drawing.Point(192, 53);
+            this.txtUserName.Location = new System.Drawing.Point(192, 44);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(164, 22);
             this.txtUserName.TabIndex = 1;
@@ -111,7 +112,7 @@
             // txtOldPassword
             // 
             this.txtOldPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtOldPassword.Location = new System.Drawing.Point(192, 109);
+            this.txtOldPassword.Location = new System.Drawing.Point(192, 100);
             this.txtOldPassword.Name = "txtOldPassword";
             this.txtOldPassword.PasswordChar = '*';
             this.txtOldPassword.Size = new System.Drawing.Size(164, 22);
@@ -121,7 +122,7 @@
             // 
             this.lblOldPassword.AutoSize = true;
             this.lblOldPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblOldPassword.Location = new System.Drawing.Point(94, 112);
+            this.lblOldPassword.Location = new System.Drawing.Point(94, 103);
             this.lblOldPassword.Name = "lblOldPassword";
             this.lblOldPassword.Size = new System.Drawing.Size(92, 16);
             this.lblOldPassword.TabIndex = 0;
@@ -131,11 +132,22 @@
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.lblUserName.Location = new System.Drawing.Point(109, 56);
+            this.lblUserName.Location = new System.Drawing.Point(109, 47);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(77, 16);
             this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "User Name";
+            // 
+            // lblPassPolicy
+            // 
+            this.lblPassPolicy.AutoSize = true;
+            this.lblPassPolicy.ForeColor = System.Drawing.Color.Blue;
+            this.lblPassPolicy.Location = new System.Drawing.Point(70, 181);
+            this.lblPassPolicy.Name = "lblPassPolicy";
+            this.lblPassPolicy.Size = new System.Drawing.Size(313, 26);
+            this.lblPassPolicy.TabIndex = 6;
+            this.lblPassPolicy.Text = "Password must contain an uppercase letter, a digit and a special \r\ncharacter and " +
+    "must meet the minimum of 8 characters length!";
             // 
             // ChangePassword
             // 
@@ -143,6 +155,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 302);
+            this.Controls.Add(this.lblPassPolicy);
             this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.txtNewPassword2);
             this.Controls.Add(this.lblNewPassword2);
@@ -176,5 +189,6 @@
         private System.Windows.Forms.TextBox txtOldPassword;
         private System.Windows.Forms.Label lblOldPassword;
         private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Label lblPassPolicy;
     }
 }

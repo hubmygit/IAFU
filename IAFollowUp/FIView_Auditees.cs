@@ -11,7 +11,7 @@ namespace IAFollowUp
 {
     public partial class FIView_Auditees : Form
     {
-        public FIView_Auditees(bool showAuditors)
+        public FIView_Auditees() //(bool showAuditors)
         {
             InitializeComponent();
 
@@ -42,12 +42,12 @@ namespace IAFollowUp
             //gridControlFI.DataSource = new BindingList<Audit>(auditList);
 
 
-            if (showAuditors == false)
-            {
-                gridView1.Columns["AuditAuditor1.FullName"].Visible = false;
-                gridView1.Columns["AuditAuditor2.FullName"].Visible = false;
-                gridView1.Columns["AuditSupervisor.FullName"].Visible = false;
-            }
+            //if (showAuditors == false)
+            //{
+            //    gridView1.Columns["AuditAuditor1.FullName"].Visible = false;
+            //    gridView1.Columns["AuditAuditor2.FullName"].Visible = false;
+            //    gridView1.Columns["AuditSupervisor.FullName"].Visible = false;
+            //}
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();

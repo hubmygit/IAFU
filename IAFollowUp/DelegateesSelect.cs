@@ -16,7 +16,7 @@ namespace IAFollowUp
             InitializeComponent();
         }
 
-        public DelegateesSelect(int detailId, int placeholderId)
+        public DelegateesSelect(int detailId, int placeholderId) //MT delegate DT
         {
             InitializeComponent();
             OnComment = false;
@@ -27,9 +27,19 @@ namespace IAFollowUp
             List<Users> phDelegatees = Delegatees.GetDelegateesUsersList(placeholderId);
 
             gridControl1.DataSource = new BindingList<Users>(phDelegatees);
+
+            //for (int i = 0; i < gridView1.RowCount; i++)
+            //{                
+            //    int thisUserId = Convert.ToInt32(gridView1.GetRowCellValue(i, gridView1.Columns["Id"]));
+            //    if (Owners_DT.IsUserDelegatee(detId, phId, thisUserId))
+            //    {
+            //        int aaaa = 0;
+            //    }
+            //}
+
         }
 
-        public DelegateesSelect(List<Users> delegatees)
+        public DelegateesSelect(List<Users> delegatees) //MT reply to DT
         {
             InitializeComponent();
             OnComment = true;
@@ -71,5 +81,6 @@ namespace IAFollowUp
             }
 
         }
+
     }
 }
