@@ -1145,7 +1145,7 @@ namespace IAFollowUp
                               "A.[ReportDt], " +
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
-                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted, A.[AuditRef] " +
+                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted, A.[AuditRef], H.Id as HeaderId " +
                               "FROM [dbo].[FIDetail] D left outer join " +
                               "     [dbo].[FIHeader] H on D.FIHeaderId = H.Id left outer join " +
                               "     [dbo].[Audit] A on H.AuditId = A.Id " +
@@ -1230,7 +1230,8 @@ namespace IAFollowUp
                         AuditRef = reader["AuditRef"].ToString(),
                         IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
 
-                        FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()), true, auditOwners)
+                        //FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()), true, auditOwners)
+                        FIHeaders = new List<FIHeader>() { FIHeader.getFIHeaderbyDetailId(Convert.ToInt32(reader["HeaderId"].ToString()), true, auditOwners, detailId) }
                     });
                 }
                 reader.Close();

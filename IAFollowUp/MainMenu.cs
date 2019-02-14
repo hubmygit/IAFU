@@ -113,7 +113,7 @@ namespace IAFollowUp
         {
             if (UserAction.IsLegal(Action.FI_View))
             {
-                FIView_Auditees frmFIViewAuditees = new FIView_Auditees();
+                FIView_Auditees frmFIViewAuditees = new FIView_Auditees(true);
                 frmFIViewAuditees.ShowDialog();
             }
         }
@@ -124,7 +124,7 @@ namespace IAFollowUp
         {
             if (UserAction.IsLegal(Action.FI_View))
             {
-                FIView_Auditees frmFIViewAuditees = new FIView_Auditees();
+                FIView_Auditees frmFIViewAuditees = new FIView_Auditees(false);
                 frmFIViewAuditees.ShowDialog();
             }
         }

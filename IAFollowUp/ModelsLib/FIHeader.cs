@@ -229,5 +229,84 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static FIHeader getFIHeaderbyDetailId(int headerId, bool showDeleted, AuditOwners auditOwners, int detailId)
+        {
+            FIHeader ret = new FIHeader();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
+                              "H.[FICategoryId], H.[FIId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
+                              "FROM [dbo].[FIHeader] H " +
+                              "WHERE H.[Id] = @HeaderId ";
+
+            if (!showDeleted)
+            {
+                SelectSt += "AND isnull(H.[IsDeleted], 'FALSE') = 'FALSE' ";
+            }
+
+            SelectSt += "ORDER BY H.Id "; //ToDo
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@HeaderId", headerId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    FIHeader tmp = new FIHeader();
+                    FICategory fiCat;
+
+                    if (reader["FICategoryId"] == System.DBNull.Value)
+                    {
+                        fiCat = new FICategory();
+                    }
+                    else
+                    {
+                        fiCat = new FICategory(Convert.ToInt32(reader["FICategoryId"].ToString()));
+                    }
+
+                    tmp = new FIHeader()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        AuditId = Convert.ToInt32(reader["AuditId"].ToString()),
+                        Title = reader["Title"].ToString(),
+
+                        FICategory = fiCat,
+                        FIId = reader["FIId"].ToString(),
+                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
+
+                        //FIDetails = Audit.getFIDetails(Convert.ToInt32(reader["Id"].ToString()), showDeleted, auditOwners)
+                        FIDetails = new List<FIDetail>() { new FIDetail(detailId) }
+                    };
+
+                    //==============================================================
+                    if (UserInfo.roleDetails.IsAdmin)
+                    {
+                        ret = tmp;
+                    }
+                    //owner ή έστω και ένα detail published (από αυτά που επιτρέπεται να δει!)
+                    //αν ενα header δεν έχει details, οι υπόλοιποι auditors δεν θα δουν τίποτα...
+                    else if (auditOwners.IsUser_AuditOwner() || tmp.FIDetails.Exists(i => i.IsPublished == true))
+                    {
+                        ret = tmp;
+                    }
+                    //==============================================================
+
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
     }
 }

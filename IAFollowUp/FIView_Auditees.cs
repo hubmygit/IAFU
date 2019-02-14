@@ -11,7 +11,7 @@ namespace IAFollowUp
 {
     public partial class FIView_Auditees : Form
     {
-        public FIView_Auditees()
+        public FIView_Auditees(bool showAuditors)
         {
             InitializeComponent();
 
@@ -36,22 +36,30 @@ namespace IAFollowUp
             fiDHABList = FI_DetailHeaderAudit.AuditListToDetailList(auditList);
             gridControl1.DataSource = fiDHABList;
 
-            
+
             //gridView1.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
 
             //gridControlFI.DataSource = new BindingList<Audit>(auditList);
+
+
+            if (showAuditors == false)
+            {
+                gridView1.Columns["AuditAuditor1.FullName"].Visible = false;
+                gridView1.Columns["AuditAuditor2.FullName"].Visible = false;
+                gridView1.Columns["AuditSupervisor.FullName"].Visible = false;
+            }
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();
         public List<FIDetail> detailList = new List<FIDetail>();
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            gridView1.Columns[4].Group();
-            gridView1.Columns[8].Group();
-            gridView1.Columns[15].Group();
-            gridView1.ExpandAllGroups();
-        }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    gridView1.Columns[4].Group();
+        //    gridView1.Columns[8].Group();
+        //    gridView1.Columns[15].Group();
+        //    gridView1.ExpandAllGroups();
+        //}
 
         private void MIactivity_Click(object sender, EventArgs e)
         {

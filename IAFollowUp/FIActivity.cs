@@ -1167,6 +1167,11 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } }; 
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+
+                            FIDetailActivity detFSActivity = new FIDetailActivity();
+                            detFSActivity.DetailId = det.Id;
+                            detFSActivity.ActivityDescription = new ActivityDescription(18);
+                            FIDetailActivity.Insert(detFSActivity);
                         }
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
@@ -1175,6 +1180,11 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+
+                            FIDetailActivity detFCActivity = new FIDetailActivity();
+                            detFCActivity.DetailId = det.Id;
+                            detFCActivity.ActivityDescription = new ActivityDescription(19);
+                            FIDetailActivity.Insert(detFCActivity);
                         }                        
                     }
                     else if (auditorRoleId == 2)
@@ -1192,6 +1202,11 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+
+                            FIDetailActivity detFSActivity = new FIDetailActivity();
+                            detFSActivity.DetailId = det.Id;
+                            detFSActivity.ActivityDescription = new ActivityDescription(18);
+                            FIDetailActivity.Insert(detFSActivity);
                         }
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
@@ -1200,6 +1215,11 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+
+                            FIDetailActivity detFCActivity = new FIDetailActivity();
+                            detFCActivity.DetailId = det.Id;
+                            detFCActivity.ActivityDescription = new ActivityDescription(19);
+                            FIDetailActivity.Insert(detFCActivity);
                         }
                     }
                     else if (auditorRoleId == 3)
@@ -1210,6 +1230,11 @@ namespace IAFollowUp
                         emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                         emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                         emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+
+                        FIDetailActivity detFCActivity = new FIDetailActivity();
+                        detFCActivity.DetailId = det.Id;
+                        detFCActivity.ActivityDescription = new ActivityDescription(19);
+                        FIDetailActivity.Insert(detFCActivity);
                     }
 
                     //if (Email.SendBcc(emailProps))
