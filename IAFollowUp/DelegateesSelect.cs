@@ -28,14 +28,17 @@ namespace IAFollowUp
 
             gridControl1.DataSource = new BindingList<Users>(phDelegatees);
 
-            for (int i = 0; i < gridView1.RowCount; i++)
-            {                
-                int thisUserId = Convert.ToInt32(gridView1.GetRowCellValue(i, gridView1.Columns["Id"]));
+            gridView1.RowStyle += (sender, e) =>
+            {
+                int thisUserId = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, gridView1.Columns["Id"]));
                 if (Owners_DT.IsUserDelegatee(detId, phId, thisUserId))
                 {
-                    int aaaa = 0;
-                }
-            }
+                    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Italic);
+                    e.Appearance.BackColor = Color.LightGray;
+                    e.HighPriority = true;
+                }                      
+            };
+
 
         }
 
