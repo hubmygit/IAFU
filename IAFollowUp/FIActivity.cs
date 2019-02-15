@@ -1264,6 +1264,7 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Auditor2.getEmail(), FullName = auditorOwners.Auditor2.FullName } }; 
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //13, 14, 15, 17
                         }
                         //b) Send to Supervisor
                         else if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id) == false)
@@ -1271,6 +1272,7 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } }; 
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //13, 14, 15, 17
 
                             FIDetailActivity detFSActivity = new FIDetailActivity();
                             detFSActivity.DetailId = det.Id;
@@ -1280,15 +1282,28 @@ namespace IAFollowUp
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
                         {
-                            Users cae = Users.getCAE();
-                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
-                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
-                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-
                             FIDetailActivity detFCActivity = new FIDetailActivity();
                             detFCActivity.DetailId = det.Id;
-                            detFCActivity.ActivityDescription = new ActivityDescription(19);
+                            //detFCActivity.ActivityDescription = new ActivityDescription(19);
+                            if (voteCause == ChiefVoteCause.High_Risk)
+                            {
+                                detFCActivity.ActivityDescription = new ActivityDescription(23);
+                            }
+                            else if (voteCause == ChiefVoteCause.Low_Risk_AltNo)
+                            {
+                                detFCActivity.ActivityDescription = new ActivityDescription(24);
+                            }
+                            else if(voteCause == ChiefVoteCause.Different_Decisions)
+                            {
+                                detFCActivity.ActivityDescription = new ActivityDescription(25);
+                            }
                             FIDetailActivity.Insert(detFCActivity);
+
+                            Users cae = Users.getCAE();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
+                            emailProps.Subject = detFCActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detFCActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //23 High, 24 Low, 25 Diff                            
                         }                        
                     }
                     else if (auditorRoleId == 2)
@@ -1299,6 +1314,7 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Auditor1.getEmail(), FullName = auditorOwners.Auditor1.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //13, 14, 15, 17
                         }
                         //b) Send to Supervisor 
                         else if (auditorOwners.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(det.Id, auditorOwners.Supervisor.Id) == false)
@@ -1306,6 +1322,7 @@ namespace IAFollowUp
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = auditorOwners.Supervisor.getEmail(), FullName = auditorOwners.Supervisor.FullName } };
                             emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //13, 14, 15, 17
 
                             FIDetailActivity detFSActivity = new FIDetailActivity();
                             detFSActivity.DetailId = det.Id;
@@ -1315,30 +1332,56 @@ namespace IAFollowUp
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
                         {
-                            Users cae = Users.getCAE();
-                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
-                            emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
-                            emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-
                             FIDetailActivity detFCActivity = new FIDetailActivity();
                             detFCActivity.DetailId = det.Id;
-                            detFCActivity.ActivityDescription = new ActivityDescription(19);
+                            //detFCActivity.ActivityDescription = new ActivityDescription(19);
+                            if (voteCause == ChiefVoteCause.High_Risk)
+                            {
+                                detFCActivity.ActivityDescription = new ActivityDescription(23);
+                            }
+                            else if (voteCause == ChiefVoteCause.Low_Risk_AltNo)
+                            {
+                                detFCActivity.ActivityDescription = new ActivityDescription(24);
+                            }
+                            else if (voteCause == ChiefVoteCause.Different_Decisions)
+                            {
+                                detFCActivity.ActivityDescription = new ActivityDescription(25);
+                            }
                             FIDetailActivity.Insert(detFCActivity);
+
+                            Users cae = Users.getCAE();
+                            emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
+                            emailProps.Subject = detFCActivity.ActivityDescription.EmailSubject;
+                            emailProps.Body = detFCActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                            //23, 24, 25                            
                         }
                     }
                     else if (auditorRoleId == 3)
-                    {                     
+                    {
+                        FIDetailActivity detFCActivity = new FIDetailActivity();
+                        detFCActivity.DetailId = det.Id;
+                        //detFCActivity.ActivityDescription = new ActivityDescription(19);
+                        if (voteCause == ChiefVoteCause.High_Risk)
+                        {
+                            detFCActivity.ActivityDescription = new ActivityDescription(23);
+                        }
+                        else if (voteCause == ChiefVoteCause.Low_Risk_AltNo)
+                        {
+                            detFCActivity.ActivityDescription = new ActivityDescription(24);
+                        }
+                        else if (voteCause == ChiefVoteCause.Different_Decisions)
+                        {
+                            detFCActivity.ActivityDescription = new ActivityDescription(25);
+                        }
+                        FIDetailActivity.Insert(detFCActivity);
+
                         //a) send to C.A.E. always (i am not approver)
                         //voteCause
                         Users cae = Users.getCAE();
                         emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
-                        emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
-                        emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
-
-                        FIDetailActivity detFCActivity = new FIDetailActivity();
-                        detFCActivity.DetailId = det.Id;
-                        detFCActivity.ActivityDescription = new ActivityDescription(19);
-                        FIDetailActivity.Insert(detFCActivity);
+                        emailProps.Subject = detFCActivity.ActivityDescription.EmailSubject;
+                        emailProps.Body = detFCActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                        //23, 24, 25                        
                     }
 
                     //if (Email.SendBcc(emailProps))
@@ -1568,8 +1611,8 @@ namespace IAFollowUp
                                 //----->
                                 EmailProperties emailProps = new EmailProperties();
                                 emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivityRet.ToUser.FullName, Email = detActivityRet.ToUser.getEmail() } };
-                                emailProps.Subject = detActivity.ActivityDescription.EmailSubject;
-                                emailProps.Body = detActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
+                                emailProps.Subject = detActivityRet.ActivityDescription.EmailSubject;
+                                emailProps.Body = detActivityRet.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
                                 //if (Email.SendBcc(emailProps))
                                 //{
                                 //    MessageBox.Show("Email(s) sent!");
