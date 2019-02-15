@@ -161,19 +161,16 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Inform IA for WIP. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
-
+                        
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = det.Id;
             detActivity.ActivityDescription = new ActivityDescription(4);
@@ -239,17 +236,14 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Publish Actions to IA. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
-            }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
             }
 
             string[] fileNames = DraftAttachments.getSavedAttachments(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
@@ -615,17 +609,14 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Delegate Actions to Key Users. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
-            }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
             }
 
             //show selector (form)
@@ -707,17 +698,14 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Reply to Key Users. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
-            }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
             }
 
             //get owners_dt
@@ -807,17 +795,14 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Reply to Management Team. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
-            }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
             }
 
             FIDetailActivity detActivity = new FIDetailActivity();
@@ -885,17 +870,14 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Request Deadline Extension. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
-            }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
             }
 
             DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt, det.Id);
@@ -971,17 +953,14 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Extend Deadline. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
-            }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
             }
 
             DeadlineExtension frmDeadlineExtension = new DeadlineExtension(det.ActionDt, det.Id);
@@ -1122,17 +1101,14 @@ namespace IAFollowUp
                 return;
             }
 
+            if (rtbComments.Text.Trim() == "")
+            {
+                MessageBox.Show("You have not filled in comments!");
+            }
+
             if (MessageBox.Show("You are going to Decide on Management Team's Actions. Are you sure?", "Action", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
-            }
-
-            if (rtbComments.Text.Trim() == "")
-            {
-                if (MessageBox.Show("You will send no comments. Are you sure?", "Comments", MessageBoxButtons.YesNo) != DialogResult.Yes)
-                {
-                    return;
-                }
             }
 
             FICategory fiCat = completeAudit.FIHeaders[0].FICategory;
