@@ -1277,11 +1277,17 @@ namespace IAFollowUp
                             FIDetailActivity detFSActivity = new FIDetailActivity();
                             detFSActivity.DetailId = det.Id;
                             detFSActivity.ActivityDescription = new ActivityDescription(18);
+
+                            detFSActivity.FromUser = detActivity.FromUser;
+                            detFSActivity.ToUser = auditorOwners.Supervisor;
+
                             FIDetailActivity.Insert(detFSActivity);
                         }
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
                         {
+                            Users cae = Users.getCAE();
+
                             FIDetailActivity detFCActivity = new FIDetailActivity();
                             detFCActivity.DetailId = det.Id;
                             //detFCActivity.ActivityDescription = new ActivityDescription(19);
@@ -1297,9 +1303,12 @@ namespace IAFollowUp
                             {
                                 detFCActivity.ActivityDescription = new ActivityDescription(25);
                             }
-                            FIDetailActivity.Insert(detFCActivity);
 
-                            Users cae = Users.getCAE();
+                            detFCActivity.FromUser = detActivity.FromUser;
+                            detFCActivity.ToUser = cae;
+
+                            FIDetailActivity.Insert(detFCActivity);
+                                                        
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                             emailProps.Subject = detFCActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detFCActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
@@ -1327,11 +1336,17 @@ namespace IAFollowUp
                             FIDetailActivity detFSActivity = new FIDetailActivity();
                             detFSActivity.DetailId = det.Id;
                             detFSActivity.ActivityDescription = new ActivityDescription(18);
+
+                            detFSActivity.FromUser = detActivity.FromUser;
+                            detFSActivity.ToUser = auditorOwners.Supervisor;
+
                             FIDetailActivity.Insert(detFSActivity);
                         }
                         //c) send to C.A.E.
                         else if (voteCause != ChiefVoteCause.None)
                         {
+                            Users cae = Users.getCAE();
+
                             FIDetailActivity detFCActivity = new FIDetailActivity();
                             detFCActivity.DetailId = det.Id;
                             //detFCActivity.ActivityDescription = new ActivityDescription(19);
@@ -1347,9 +1362,12 @@ namespace IAFollowUp
                             {
                                 detFCActivity.ActivityDescription = new ActivityDescription(25);
                             }
-                            FIDetailActivity.Insert(detFCActivity);
 
-                            Users cae = Users.getCAE();
+                            detFCActivity.FromUser = detActivity.FromUser;
+                            detFCActivity.ToUser = cae;
+
+                            FIDetailActivity.Insert(detFCActivity);
+                                                        
                             emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                             emailProps.Subject = detFCActivity.ActivityDescription.EmailSubject;
                             emailProps.Body = detFCActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
@@ -1358,6 +1376,8 @@ namespace IAFollowUp
                     }
                     else if (auditorRoleId == 3)
                     {
+                        Users cae = Users.getCAE();
+
                         FIDetailActivity detFCActivity = new FIDetailActivity();
                         detFCActivity.DetailId = det.Id;
                         //detFCActivity.ActivityDescription = new ActivityDescription(19);
@@ -1373,11 +1393,14 @@ namespace IAFollowUp
                         {
                             detFCActivity.ActivityDescription = new ActivityDescription(25);
                         }
+
+                        detFCActivity.FromUser = detActivity.FromUser;
+                        detFCActivity.ToUser = cae;
+
                         FIDetailActivity.Insert(detFCActivity);
 
                         //a) send to C.A.E. always (i am not approver)
-                        //voteCause
-                        Users cae = Users.getCAE();
+                        //voteCause                        
                         emailProps.Recipients = new List<Recipient>() { new Recipient() { Email = cae.getEmail(), FullName = cae.FullName } };
                         emailProps.Subject = detFCActivity.ActivityDescription.EmailSubject;
                         emailProps.Body = detFCActivity.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
