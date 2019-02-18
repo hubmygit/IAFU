@@ -50,7 +50,6 @@
             // btnSendMail
             // 
             this.btnSendMail.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSendMail.Enabled = false;
             this.btnSendMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnSendMail.Image = global::IAFollowUp.Properties.Resources.Mail_32x;
             this.btnSendMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
