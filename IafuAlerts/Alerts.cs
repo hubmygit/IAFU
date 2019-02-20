@@ -49,7 +49,7 @@ namespace IafuAlerts
         private void ExpireInM() //MTMONTH
         {
             Output.WriteToFile("STARTING...");
-            Output.WriteToFile("*Expire In Month*");
+            Output.WriteToFile("* Expire In Month *");
 
             List<AlertObject> alertObjectList = Notifications.NotifExpireIn1M();
 
