@@ -73,7 +73,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("NotifExpireIn1M - The following error occurred: " + ex.Message, true);
 
                 //Log file...
             }
@@ -155,7 +156,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("NotifExpired - The following error occurred: " + ex.Message, true);
 
                 //Log file...
             }
@@ -249,7 +251,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("NotifExpireIn15D - The following error occurred: " + ex.Message, true);
 
                 //Log file...
             }
@@ -423,7 +426,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("NotifNoAction15D - The following error occurred: " + ex.Message, true);
 
                 //Log file...
             }

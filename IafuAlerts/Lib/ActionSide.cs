@@ -37,7 +37,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("ActionSide - The following error occurred: " + ex.Message, true);
             }
         }
     }

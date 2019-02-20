@@ -75,11 +75,13 @@ namespace IafuAlerts
 
                     if (Email.Send(emailProps))
                     {
-                        MessageBox.Show("Email(s) sent!");
+                        //MessageBox.Show("Email(s) sent!");
+                        Output.WriteToFile("Email(s) sent!");
                     }
                     else
                     {
-                        MessageBox.Show("Emails have not been sent!");
+                        //MessageBox.Show("Emails have not been sent!");
+                        Output.WriteToFile("Emails have not been sent!", true);
                     }
                 }
             }
@@ -128,11 +130,13 @@ namespace IafuAlerts
 
                     if (Email.Send(emailProps))
                     {
-                        MessageBox.Show("Email(s) sent!");
+                        //MessageBox.Show("Email(s) sent!");
+                        Output.WriteToFile("Email(s) sent!");
                     }
                     else
                     {
-                        MessageBox.Show("Emails have not been sent!");
+                        //MessageBox.Show("Emails have not been sent!");
+                        Output.WriteToFile("Emails have not been sent!", true);
                     }
                 }
 
@@ -183,11 +187,13 @@ namespace IafuAlerts
 
                 if (Email.Send(emailProps))
                 {
-                    MessageBox.Show("Email(s) sent!");
+                    //MessageBox.Show("Email(s) sent!");
+                    Output.WriteToFile("Email(s) sent!");
                 }
                 else
                 {
-                    MessageBox.Show("Emails have not been sent!");
+                    //MessageBox.Show("Emails have not been sent!");
+                    Output.WriteToFile("Emails have not been sent!", true);
                 }
             }
 
@@ -225,11 +231,13 @@ namespace IafuAlerts
 
                     if (Email.Send(emailProps))
                     {
-                        MessageBox.Show("Email(s) sent!");
+                        //MessageBox.Show("Email(s) sent!");
+                        Output.WriteToFile("Email(s) sent!");
                     }
                     else
                     {
-                        MessageBox.Show("Emails have not been sent!");
+                        //MessageBox.Show("Emails have not been sent!");
+                        Output.WriteToFile("Emails have not been sent!", true);
                     }
                 }
             }

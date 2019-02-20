@@ -131,7 +131,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("FIDetail - The following error occurred: " + ex.Message, true);
             }
         }
 
@@ -160,7 +161,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("FIDetail.getOwners - The following error occurred: " + ex.Message, true);
             }
 
             return ret;

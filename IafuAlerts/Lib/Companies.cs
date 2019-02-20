@@ -38,7 +38,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("Companies - The following error occurred: " + ex.Message, true);
             }
         }
        

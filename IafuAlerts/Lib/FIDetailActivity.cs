@@ -68,7 +68,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("FIDetailActivity.LastPublishDateFromMTtoIA - The following error occurred: " + ex.Message, true);
             }
 
             return ret;
@@ -102,7 +103,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("FIDetailActivity.getActionSide_forAuditees - The following error occurred: " + ex.Message, true);
             }
 
             return ret;

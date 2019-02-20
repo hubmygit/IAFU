@@ -25,7 +25,8 @@ namespace IafuAlerts
             catch (Exception ex)
             {
                 ret = false;
-                MessageBox.Show("ERROR:" + ex.Message);
+                //MessageBox.Show("ERROR:" + ex.Message);
+                Output.WriteToFile("Email.Send(1) - The following error occurred: " + ex.Message, true);
             }
 
             service.Credentials = new WebCredentials(emailParams.UserName, emailParams.Password, emailParams.Domain);
@@ -52,7 +53,8 @@ namespace IafuAlerts
             catch (Exception ex)
             {
                 ret = false;
-                MessageBox.Show("Exception occured: " + ex.Message + " \r\n {0}", ex.ToString());
+                //MessageBox.Show("Exception occured: " + ex.Message + " \r\n {0}", ex.ToString());
+                Output.WriteToFile("Email.Send(2) - The following error occurred: " + ex.Message, true);
             }
 
             return ret;

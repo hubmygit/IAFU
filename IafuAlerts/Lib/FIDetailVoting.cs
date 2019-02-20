@@ -45,7 +45,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("FIDetailVoting.HasAlreadyVoted - The following error occurred: " + ex.Message, true);
             }
 
             return ret;
@@ -77,7 +78,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("FIDetailVoting.VotingDate_ifHasAlreadyVoted - The following error occurred: " + ex.Message, true);
             }
 
             return ret;

@@ -41,7 +41,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("Owners_GM.GetOwnerGMUsersList - The following error occurred: " + ex.Message, true);
             }
 
             return ret;

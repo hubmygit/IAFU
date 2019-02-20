@@ -42,7 +42,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("Users - The following error occurred: " + ex.Message, true);
             }
         }
 
@@ -73,7 +74,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("Users.getEmail - The following error occurred: " + ex.Message, true);
             }
 
             return ret;
@@ -109,7 +111,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("Users.getCAE - The following error occurred: " + ex.Message, true);
             }
 
             return ret;

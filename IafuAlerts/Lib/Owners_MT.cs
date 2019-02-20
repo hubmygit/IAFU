@@ -48,7 +48,8 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: " + ex.Message);
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("Owners_MT.GetCurrentOwnerMT - The following error occurred: " + ex.Message, true);
             }
 
             return ret;
