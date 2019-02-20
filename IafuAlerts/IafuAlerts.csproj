@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Exchange.WebServices">
+      <HintPath>..\Files\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -66,14 +69,23 @@
     <Compile Include="Alerts.Designer.cs">
       <DependentUpon>Alerts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lib\ActionSide.cs" />
+    <Compile Include="Lib\AlertEmails.cs" />
     <Compile Include="Lib\AlertObject.cs" />
     <Compile Include="Lib\Companies.cs" />
     <Compile Include="Lib\CryptoFuncs.cs" />
     <Compile Include="Lib\Departments.cs" />
+    <Compile Include="Lib\Email.cs" />
+    <Compile Include="Lib\EmailParams.cs" />
     <Compile Include="Lib\EmailProperties.cs" />
+    <Compile Include="Lib\FIDetail.cs" />
+    <Compile Include="Lib\FIDetailActivity.cs" />
+    <Compile Include="Lib\FIDetailVoting.cs" />
     <Compile Include="Lib\MyBytes.cs" />
     <Compile Include="Lib\Notifications.cs" />
     <Compile Include="Lib\Output.cs" />
+    <Compile Include="Lib\Owners_GM.cs" />
+    <Compile Include="Lib\Owners_MT.cs" />
     <Compile Include="Lib\Placeholders.cs" />
     <Compile Include="Lib\Recipient.cs" />
     <Compile Include="Lib\SqlDBInfo.cs" />
