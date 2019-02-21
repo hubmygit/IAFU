@@ -60,6 +60,8 @@
             this.colDetailCurrentDept3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailCurrentOwner3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chbMine = new System.Windows.Forms.CheckBox();
+            this.chbNotFinalized = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
@@ -363,11 +365,37 @@
             this.colDetailIsFinalized.VisibleIndex = 21;
             this.colDetailIsFinalized.Width = 50;
             // 
+            // chbMine
+            // 
+            this.chbMine.AutoSize = true;
+            this.chbMine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.chbMine.Location = new System.Drawing.Point(489, 12);
+            this.chbMine.Name = "chbMine";
+            this.chbMine.Size = new System.Drawing.Size(129, 20);
+            this.chbMine.TabIndex = 1;
+            this.chbMine.Text = "Needs My Action";
+            this.chbMine.UseVisualStyleBackColor = true;
+            this.chbMine.CheckedChanged += new System.EventHandler(this.chbMine_CheckedChanged);
+            // 
+            // chbNotFinalized
+            // 
+            this.chbNotFinalized.AutoSize = true;
+            this.chbNotFinalized.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.chbNotFinalized.Location = new System.Drawing.Point(238, 12);
+            this.chbNotFinalized.Name = "chbNotFinalized";
+            this.chbNotFinalized.Size = new System.Drawing.Size(105, 20);
+            this.chbNotFinalized.TabIndex = 2;
+            this.chbNotFinalized.Text = "Not Finalized";
+            this.chbNotFinalized.UseVisualStyleBackColor = true;
+            this.chbNotFinalized.CheckedChanged += new System.EventHandler(this.chbNotFinalized_CheckedChanged);
+            // 
             // FIView_Auditees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 442);
+            this.Controls.Add(this.chbNotFinalized);
+            this.Controls.Add(this.chbMine);
             this.Controls.Add(this.gridControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 480);
@@ -380,6 +408,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -414,5 +443,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAuditAuditor1;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditAuditor2;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditSupervisor;
+        private System.Windows.Forms.CheckBox chbMine;
+        private System.Windows.Forms.CheckBox chbNotFinalized;
     }
 }

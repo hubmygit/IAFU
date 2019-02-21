@@ -136,6 +136,125 @@ namespace IAFollowUp
             }
         }
 
+        private void chbNotFinalized_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbNotFinalized.Checked)
+            {
+                BindingList<FI_DetailHeaderAudit> FilteredList = new BindingList<FI_DetailHeaderAudit>(fiDHABList.Where(i => i.DetailIsFinalized == false).ToList());
+                gridControl1.DataSource = FilteredList;
+            }
+            else
+            {
+                gridControl1.DataSource = fiDHABList;
+            }
+
+
+            //gridView1.RowStyle += (sender2, e2) =>
+            //{
+            //    if (Convert.ToBoolean(gridView1.GetRowCellValue(e2.RowHandle, gridView1.Columns["DetailIsFinalized"])))
+            //    {
+            //    }
+            //};
+        }
+
+        private void chbMine_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbMine.Checked)
+            {
+
+                //if(isfinalized = false)
+
+                //Action side
+
+
+                //if (UserInfo.userDetails.Role.IsAdmin)
+                //{
+                //    //do nothing
+                //}
+                //else if (UserInfo.userDetails.Role.IsAuditor)
+                //{
+                //    //ActionSide actionSide = FIDetailActivity.getActionSide_forAuditors(detail);
+                //    //auditor1, 2, supervisor, (cae)
+
+                //    //other auditor, (cae)
+                //}
+                //else if (UserInfo.userDetails.Role.IsAuditee)
+                //{
+                //    //mt
+
+                //    //dt
+
+                //    //gm
+                //}
+
+
+                //gridView1.RowStyle += (sender2, e2) =>
+                //{
+                //    e2.Appearance.BackColor = Color.LightBlue;
+                //    e2.HighPriority = true;
+                //};
+
+                //gridView1.RowStyle -= (sender2, e2) => { };
+
+                gridView1.RowStyle += (sender2, e2) =>
+                {
+                    //gv_RowStyle(sender2, e2, true);
+                    e2.Appearance.BackColor = Color.LightBlue;
+                    e2.HighPriority = true;
+
+                    
+                };
+
+                //gridControl1.Refresh(); //No
+                gridView1.Focus(); //Yes
+                //gridControl1.Focus(); //Yes
+                //gridControl1.Select(); //Yes
+            }
+            else
+            {
+                //gridView1.RowStyle += (sender2, e2) =>
+                //{
+                //    e2.Appearance.BackColor = Color.White;
+                //    e2.HighPriority = true;
+                //};
+
+                //gridView1.RowStyle -= (sender2, e2) => { };
+
+                gridView1.RowStyle += (sender2, e2) =>
+                {
+                    //gv_RowStyle(sender2, e2, false);
+                    e2.Appearance.BackColor = Color.White;
+                    e2.HighPriority = true;
+
+
+                };
+
+                //gridControl1.Refresh(); //No
+                gridView1.Focus(); //Yes
+                //gridControl1.Focus(); //Yes
+                //gridControl1.Select(); //Yes
+
+            }
+        }
+
+        private void gv_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e, bool NeedsMyAction)
+        {
+            if (NeedsMyAction)
+            {
+                e.Appearance.BackColor = Color.LightBlue;
+                e.HighPriority = true;
+
+                gridControl1.Select();
+            }
+            else
+            {
+                e.Appearance.BackColor = Color.White;
+                e.HighPriority = true;
+
+                gridControl1.Select();
+            }
+        }
+
     }
 
     

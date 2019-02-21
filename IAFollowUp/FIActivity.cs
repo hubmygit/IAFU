@@ -40,6 +40,13 @@ namespace IAFollowUp
                 tsmiMTreplyDT.Enabled = false;
                 tsmiDTreplyMT.Enabled = false;
                 tsmiMTextendIA.Enabled = false;
+
+                rtbComments.Enabled = false;
+                btnAttachment.Enabled = false;
+                btnSaveDraft.Enabled = false;
+                btnFontDialog.Enabled = false;
+                MIcopyComments.Enabled = false;
+                MIcopyAttachments.Enabled = false;
             }
             else if (givenAuditeeRole == 2)//2.MT
             {
