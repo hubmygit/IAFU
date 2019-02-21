@@ -17,6 +17,7 @@ namespace IAFollowUp
 
             detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
 
+            
             //UserInfo.userDetails.Id
 
             //a) Admin

@@ -206,6 +206,8 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
+                Cursor oldCursor = this.Cursor;
+                this.Cursor = Cursors.WaitCursor;
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
@@ -222,6 +224,7 @@ namespace IAFollowUp
                     MessageBox.Show("Emails have not been sent!");
                 }
                 //<-----
+                this.Cursor = oldCursor;
 
                 Close(); //or stay and refresh                
             }
@@ -293,6 +296,8 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
+                Cursor oldCursor = this.Cursor; 
+                this.Cursor = Cursors.WaitCursor;
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
@@ -309,30 +314,9 @@ namespace IAFollowUp
                     MessageBox.Show("Emails have not been sent!");
                 }
                 //<-----
+                this.Cursor = oldCursor;
 
                 Close(); //or stay and refresh   
-
-                //marqueeProgressBarControl1.Visible = true;
-                //marqueeProgressBarControl1.Properties.Stopped = false;
-                //BackgroundWorker bw = new BackgroundWorker();
-                //bw.WorkerReportsProgress = true;
-                //bw.ProgressChanged += bw_ProgressChanged;
-                //bw.RunWorkerAsync();
-                //bw.DoWork += (sender2, e2) =>
-                //{
-                //    bwSuccess = Email.SendBcc(emailProps);
-
-                //    if (bwSuccess == true)
-                //    {
-                //        bw.ReportProgress(100);
-                //    }
-                //    else
-                //    {
-                //        bw.ReportProgress(10);
-                //    }
-
-                //    bw.ReportProgress(100);
-                //};
 
             }
             else
@@ -692,6 +676,8 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
+                Cursor oldCursor = this.Cursor;
+                this.Cursor = Cursors.WaitCursor;
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
@@ -707,6 +693,7 @@ namespace IAFollowUp
                     MessageBox.Show("Emails have not been sent!");
                 }
                 //<-----
+                this.Cursor = oldCursor;
 
                 Close(); //or stay and refresh   
             }
@@ -788,6 +775,8 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
+                Cursor oldCursor = this.Cursor;
+                this.Cursor = Cursors.WaitCursor;
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
@@ -803,6 +792,7 @@ namespace IAFollowUp
                     MessageBox.Show("Emails have not been sent!");
                 }
                 //<-----
+                this.Cursor = oldCursor;
 
                 Close(); //or stay and refresh   
             }
@@ -864,6 +854,8 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
+                Cursor oldCursor = this.Cursor;
+                this.Cursor = Cursors.WaitCursor;
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
@@ -879,6 +871,7 @@ namespace IAFollowUp
                     MessageBox.Show("Emails have not been sent!");
                 }
                 //<-----
+                this.Cursor = oldCursor;
 
                 Close(); //or stay and refresh   
             }
@@ -945,6 +938,8 @@ namespace IAFollowUp
 
                 MessageBox.Show("The Action completed!");
 
+                Cursor oldCursor = this.Cursor;
+                this.Cursor = Cursors.WaitCursor;
                 //send email
                 //----->
                 EmailProperties emailProps = new EmailProperties();
@@ -961,6 +956,7 @@ namespace IAFollowUp
                     MessageBox.Show("Emails have not been sent!");
                 }
                 //<-----
+                this.Cursor = oldCursor;
 
                 Close(); //or stay and refresh   
             }
@@ -1408,6 +1404,8 @@ namespace IAFollowUp
                         //23, 24, 25                        
                     }
 
+                    Cursor oldCursor = this.Cursor;
+                    this.Cursor = Cursors.WaitCursor;
                     if (Email.SendBcc(emailProps))
                     {
                         MessageBox.Show("Email(s) sent!");
@@ -1416,6 +1414,7 @@ namespace IAFollowUp
                     {
                         MessageBox.Show("Emails have not been sent!");
                     }
+                    this.Cursor = oldCursor;
                 }
                 else // isApprover - actions (accept (close)/ return to MT)
                 {
@@ -1588,6 +1587,8 @@ namespace IAFollowUp
                                     }
                                 }
 
+                                Cursor oldCursor = this.Cursor;
+                                this.Cursor = Cursors.WaitCursor;
                                 //send email
                                 //----->
                                 EmailProperties emailProps = new EmailProperties();
@@ -1610,6 +1611,7 @@ namespace IAFollowUp
                                     MessageBox.Show("Emails have not been sent!");
                                 }
                                 //<-----
+                                this.Cursor = oldCursor;
 
                                 //create alerts
                             }
@@ -1638,6 +1640,8 @@ namespace IAFollowUp
                                     }
                                 }
 
+                                Cursor oldCursor = this.Cursor;
+                                this.Cursor = Cursors.WaitCursor;
                                 //send email
                                 //----->
                                 EmailProperties emailProps = new EmailProperties();
@@ -1653,6 +1657,7 @@ namespace IAFollowUp
                                     MessageBox.Show("Emails have not been sent!");
                                 }
                                 //<-----
+                                this.Cursor = oldCursor;
 
                                 //create alerts
                             }
@@ -1681,6 +1686,8 @@ namespace IAFollowUp
                                     }
                                 }
 
+                                Cursor oldCursor = this.Cursor;
+                                this.Cursor = Cursors.WaitCursor;
                                 //send email
                                 //----->
                                 EmailProperties emailProps = new EmailProperties();
@@ -1696,6 +1703,7 @@ namespace IAFollowUp
                                     MessageBox.Show("Emails have not been sent!");
                                 }
                                 //<-----
+                                this.Cursor = oldCursor;
 
                                 //create alerts
                             }
@@ -1862,25 +1870,6 @@ namespace IAFollowUp
                     }
                 }
             }
-        }
-
-        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            //int progrPerc = e.ProgressPercentage;
-
-            //marqueeProgressBarControl1.Properties.Stopped = true;
-            //marqueeProgressBarControl1.Visible = false;
-
-            //if (bwSuccess)
-            //{
-            //    MessageBox.Show("Email(s) sent!");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Emails have not been sent!");
-            //}
-
-            //Close();
         }
 
     }
