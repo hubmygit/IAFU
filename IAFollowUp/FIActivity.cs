@@ -136,6 +136,8 @@ namespace IAFollowUp
 
         UserAuthorization UserAuth = new UserAuthorization();
 
+        private bool bwSuccess = false;
+
         private void btnFontDialog_Click(object sender, EventArgs e)
         {
             FontDialog fontDialog1 = new FontDialog();
@@ -309,6 +311,29 @@ namespace IAFollowUp
                 //<-----
 
                 Close(); //or stay and refresh   
+
+                //marqueeProgressBarControl1.Visible = true;
+                //marqueeProgressBarControl1.Properties.Stopped = false;
+                //BackgroundWorker bw = new BackgroundWorker();
+                //bw.WorkerReportsProgress = true;
+                //bw.ProgressChanged += bw_ProgressChanged;
+                //bw.RunWorkerAsync();
+                //bw.DoWork += (sender2, e2) =>
+                //{
+                //    bwSuccess = Email.SendBcc(emailProps);
+
+                //    if (bwSuccess == true)
+                //    {
+                //        bw.ReportProgress(100);
+                //    }
+                //    else
+                //    {
+                //        bw.ReportProgress(10);
+                //    }
+
+                //    bw.ReportProgress(100);
+                //};
+
             }
             else
             {
@@ -1566,7 +1591,14 @@ namespace IAFollowUp
                                 //send email
                                 //----->
                                 EmailProperties emailProps = new EmailProperties();
-                                emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivityRet.ToUser.FullName, Email = detActivityRet.ToUser.getEmail() } };
+                                                               
+                                //emailProps.Recipients = new List<Recipient>() { new Recipient() { FullName = detActivityRet.ToUser.FullName, Email = detActivityRet.ToUser.getEmail() } };
+                                //send to auditor1, 2, Supervisor too
+                                List<Recipient> ReciList = new List<Recipient>();
+                                ReciList = auditorOwners.getRecipients(true);
+                                ReciList.Add(new Recipient() { FullName = detActivityRet.ToUser.FullName, Email = detActivityRet.ToUser.getEmail() });
+                                emailProps.Recipients = ReciList;
+
                                 emailProps.Subject = detActivityRet.ActivityDescription.EmailSubject;
                                 emailProps.Body = detActivityRet.ActivityDescription.EmailBody.Replace("@", FIDetail.getEmailMessageInfo(det.Id));
                                 if (Email.SendBcc(emailProps))
@@ -1830,6 +1862,25 @@ namespace IAFollowUp
                     }
                 }
             }
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //int progrPerc = e.ProgressPercentage;
+
+            //marqueeProgressBarControl1.Properties.Stopped = true;
+            //marqueeProgressBarControl1.Visible = false;
+
+            //if (bwSuccess)
+            //{
+            //    MessageBox.Show("Email(s) sent!");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Emails have not been sent!");
+            //}
+
+            //Close();
         }
 
     }

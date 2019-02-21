@@ -51,6 +51,96 @@ namespace IAFollowUp
                 return false;
         }
         */
+        public Audit()
+        {
+        }
+
+        public Audit(bool showDeleted, int givenId)
+        {
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
+                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "A.[ReportDt], " +
+                              "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
+                              "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
+                              //"(SELECT count(*) FROM [dbo].[Audit_Attachments] T WHERE a.id = T.AuditID and A.RevNo = T.RevNo) as AttCnt, " +
+                              "A.[AuditRatingId], isnull(A.[IsDeleted], 'FALSE') as IsDeleted, A.[AuditRef] " +
+                              "FROM [dbo].[Audit] A " +
+                              "WHERE A.[Id] = @givenId ";
+
+            if (!showDeleted)
+            {
+                SelectSt += "AND isnull(A.[IsDeleted], 'FALSE') = 'FALSE' ";
+            }
+
+            SelectSt += "ORDER BY A.Id "; //ToDo
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@givenId", givenId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    AuditRating AuditRating_rating;
+                    Users Auditor2_User, Supervisor_User;
+
+                    if (reader["Auditor2Id"] == System.DBNull.Value)
+                    {
+                        Auditor2_User = new Users();
+                    }
+                    else
+                    {
+                        Auditor2_User = new Users(Convert.ToInt32(reader["Auditor2Id"].ToString()));
+                    }
+                    if (reader["SupervisorId"] == System.DBNull.Value)
+                    {
+                        Supervisor_User = new Users();
+                    }
+                    else
+                    {
+                        Supervisor_User = new Users(Convert.ToInt32(reader["SupervisorId"].ToString()));
+                    }
+                    if (reader["AuditRatingId"] == System.DBNull.Value)
+                    {
+                        AuditRating_rating = new AuditRating();
+                    }
+                    else
+                    {
+                        AuditRating_rating = new AuditRating(Convert.ToInt32(reader["AuditRatingId"].ToString()));
+                    }
+
+                    AuditOwners auditOwners = new AuditOwners(new Users(Convert.ToInt32(reader["Auditor1Id"].ToString())), Auditor2_User, Supervisor_User);
+
+                    this.Id = Convert.ToInt32(reader["Id"].ToString());
+                    this.Year = Convert.ToInt32(reader["Year"].ToString());
+                    this.Company = new Companies(Convert.ToInt32(reader["CompanyId"].ToString()));
+                    this.AuditType = new AuditTypes(Convert.ToInt32(reader["AuditTypeId"].ToString()));
+                    this.Title = reader["Title"].ToString();
+                    this.ReportDt = Convert.ToDateTime(reader["ReportDt"].ToString());
+                    this.Auditor1 = new Users(Convert.ToInt32(reader["Auditor1Id"].ToString()));
+                    this.Auditor2 = Auditor2_User;
+                    this.Supervisor = Supervisor_User;
+                    this.IsCompleted = Convert.ToBoolean(reader["IsCompleted"].ToString());
+                    this.AuditNumber = reader["AuditNumber"].ToString();
+                    this.IASentNumber = reader["IASentNumber"].ToString();
+                    this.AuditRating = AuditRating_rating;
+                    this.AuditRef = reader["AuditRef"].ToString();
+                    this.IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString());
+                    this.FIHeaders = Audit.getFIHeaders(Convert.ToInt32(reader["Id"].ToString()), showDeleted, auditOwners);
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+        }
 
         public static BindingList<Audit> Select(bool showDeleted)
         {
@@ -288,14 +378,16 @@ namespace IAFollowUp
             return ret;
         }
 
-        public static bool Insert(Audit audit) //INSERT [dbo].[Audit]
+        public static int Insert(Audit audit) //INSERT [dbo].[Audit]
         {
-            bool ret = false;
+            int ret = -1;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[Audit] " +
                            "([Year], [CompanyID], [AuditTypeID], [Title], [ReportDt], [Auditor1ID], [Auditor2ID], [SupervisorID], [IsCompleted], [AuditNumber], " +
-                           "[IASentNumber],[InsUserID],[InsDt], [AuditRatingId], [AuditRef]) VALUES " +
+                           "[IASentNumber],[InsUserID],[InsDt], [AuditRatingId], [AuditRef]) " +
+                           "OUTPUT INSERTED.Id " +
+                           "VALUES " +
                            "(@Year, @CompanyID, @AuditTypeID, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), @ReportDt, @Auditor1ID, " +
                            "@Auditor2ID, @SupervisorID, @IsCompleted, @AuditNumber, @IASentNumber, @InsUserID, getDate(), @AuditRatingId, @AuditRef) ";
             try
@@ -348,12 +440,18 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@InsUserID", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
+                //int rowsAffected = cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
                 {
-                    ret = true;
+                    ret = Convert.ToInt32(reader["Id"].ToString());
                 }
+                reader.Close();
+
+                //if (rowsAffected > 0)
+                //{
+                //    ret = true;
+                //}
             }
             catch (Exception ex)
             {

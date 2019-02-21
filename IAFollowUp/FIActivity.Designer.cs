@@ -100,6 +100,7 @@
             this.gbRelInfo = new System.Windows.Forms.GroupBox();
             this.gbActions = new System.Windows.Forms.GroupBox();
             this.gbComments = new System.Windows.Forms.GroupBox();
+            this.marqueeProgressBarControl1 = new DevExpress.XtraEditors.MarqueeProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -110,6 +111,7 @@
             this.gbRelInfo.SuspendLayout();
             this.gbActions.SuspendLayout();
             this.gbComments.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -838,6 +840,7 @@
             // 
             this.gbComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbComments.Controls.Add(this.marqueeProgressBarControl1);
             this.gbComments.Controls.Add(this.rtbComments);
             this.gbComments.Controls.Add(this.btnSaveDraft);
             this.gbComments.Controls.Add(this.btnAttachment);
@@ -849,6 +852,19 @@
             this.gbComments.TabIndex = 0;
             this.gbComments.TabStop = false;
             this.gbComments.Text = "Comments for Action";
+            // 
+            // marqueeProgressBarControl1
+            // 
+            this.marqueeProgressBarControl1.EditValue = "0";
+            this.marqueeProgressBarControl1.Location = new System.Drawing.Point(502, 25);
+            this.marqueeProgressBarControl1.Name = "marqueeProgressBarControl1";
+            this.marqueeProgressBarControl1.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+            this.marqueeProgressBarControl1.Properties.LookAndFeel.SkinName = "Office 2016 Colorful";
+            this.marqueeProgressBarControl1.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.marqueeProgressBarControl1.Properties.Stopped = true;
+            this.marqueeProgressBarControl1.Size = new System.Drawing.Size(400, 18);
+            this.marqueeProgressBarControl1.TabIndex = 16;
+            this.marqueeProgressBarControl1.Visible = false;
             // 
             // FIActivity
             // 
@@ -879,6 +895,7 @@
             this.gbRelInfo.PerformLayout();
             this.gbActions.ResumeLayout(false);
             this.gbComments.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -956,5 +973,6 @@
         private System.Windows.Forms.GroupBox gbRelInfo;
         private System.Windows.Forms.GroupBox gbActions;
         private System.Windows.Forms.GroupBox gbComments;
+        private DevExpress.XtraEditors.MarqueeProgressBarControl marqueeProgressBarControl1;
     }
 }

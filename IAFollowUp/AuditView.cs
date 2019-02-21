@@ -357,6 +357,12 @@ namespace IAFollowUp
                 AuditInsert frmInsertNewAudit = new AuditInsert();
                 frmInsertNewAudit.ShowDialog();
 
+                if (frmInsertNewAudit.success)
+                {
+                    Audit justInsertedAudit = new Audit(true, frmInsertNewAudit.newAuditRecord.Id);
+                    FIView frmFIView = new FIView(justInsertedAudit);
+                    frmFIView.ShowDialog();
+                }
 
                 //refresh
                 //int index = gridView1.GetDataSourceRowIndex(gridView1.FocusedRowHandle);

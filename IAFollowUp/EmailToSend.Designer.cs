@@ -42,9 +42,11 @@
             this.txtBody = new System.Windows.Forms.TextBox();
             this.lblBody = new System.Windows.Forms.Label();
             this.lblRecipients = new System.Windows.Forms.Label();
+            this.marqueeProgressBarControl1 = new DevExpress.XtraEditors.MarqueeProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSendMail
@@ -53,7 +55,7 @@
             this.btnSendMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnSendMail.Image = global::IAFollowUp.Properties.Resources.Mail_32x;
             this.btnSendMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSendMail.Location = new System.Drawing.Point(332, 410);
+            this.btnSendMail.Location = new System.Drawing.Point(332, 490);
             this.btnSendMail.Name = "btnSendMail";
             this.btnSendMail.Size = new System.Drawing.Size(120, 40);
             this.btnSendMail.TabIndex = 2;
@@ -170,11 +172,25 @@
             this.lblRecipients.TabIndex = 8;
             this.lblRecipients.Text = "Bcc";
             // 
+            // marqueeProgressBarControl1
+            // 
+            this.marqueeProgressBarControl1.EditValue = "0";
+            this.marqueeProgressBarControl1.Location = new System.Drawing.Point(192, 466);
+            this.marqueeProgressBarControl1.Name = "marqueeProgressBarControl1";
+            this.marqueeProgressBarControl1.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+            this.marqueeProgressBarControl1.Properties.LookAndFeel.SkinName = "Office 2016 Colorful";
+            this.marqueeProgressBarControl1.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.marqueeProgressBarControl1.Properties.Stopped = true;
+            this.marqueeProgressBarControl1.Size = new System.Drawing.Size(400, 18);
+            this.marqueeProgressBarControl1.TabIndex = 9;
+            this.marqueeProgressBarControl1.Visible = false;
+            // 
             // EmailToSend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 462);
+            this.ClientSize = new System.Drawing.Size(784, 542);
+            this.Controls.Add(this.marqueeProgressBarControl1);
             this.Controls.Add(this.lblRecipients);
             this.Controls.Add(this.txtBody);
             this.Controls.Add(this.lblBody);
@@ -183,13 +199,14 @@
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.btnSendMail);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(800, 500);
+            this.MinimumSize = new System.Drawing.Size(800, 580);
             this.Name = "EmailToSend";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Send Emails";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +225,6 @@
         private System.Windows.Forms.BindingSource recipientBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colFullName;
         private DevExpress.XtraGrid.Columns.GridColumn colEmail;
+        private DevExpress.XtraEditors.MarqueeProgressBarControl marqueeProgressBarControl1;
     }
 }

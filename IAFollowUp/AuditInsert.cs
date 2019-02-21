@@ -177,8 +177,10 @@ namespace IAFollowUp
 
             if (isInsert) //insert
             {
-                if (Audit.Insert(newAuditRecord))
+                int AuditJustInsertedId = Audit.Insert(newAuditRecord);
+                if (AuditJustInsertedId > -1)
                 {
+                    newAuditRecord.Id = AuditJustInsertedId;
                     MessageBox.Show("New Audit inserted successfully!");
                     success = true;
                     Close();
