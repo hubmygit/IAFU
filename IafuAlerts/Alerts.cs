@@ -18,6 +18,8 @@ namespace IafuAlerts
 
         private void Alerts_Load(object sender, EventArgs e)
         {
+            NoAction15D();
+            /*
             string[] args = Environment.GetCommandLineArgs();
 
             if (args.Count(i => i.ToUpper().Trim(new char[] { ' ', '-', '/' }) == "MTMONTH") > 0)
@@ -44,6 +46,7 @@ namespace IafuAlerts
 
                 Application.Exit();
             }
+            */
         }
 
         private void ExpireInM() //MTMONTH
@@ -64,12 +67,13 @@ namespace IafuAlerts
                     int cnt = alObjList.Count;
                     string email = alObjList[0].User.getEmail();
 
-                    Output.WriteToFile("Details To MT User " + alObjList[0].User.Id.ToString() + " (" + email + "): " + cnt.ToString());
+                    Output.WriteToFile("Details To MT User " + alObjList[0].User.Id.ToString() + ": " + cnt.ToString());
 
                     AlertEmails alert = new AlertEmails(1);
 
                     EmailProperties emailProps = new EmailProperties();
                     emailProps.RecipientsTo = new List<Recipient> { new Recipient() { FullName = alObjList[0].User.FullName, Email = email } };
+                    emailProps.RecipientsCC = new List<Recipient>();
                     emailProps.Subject = alert.EmailSubject;
                     emailProps.Body = alert.EmailBody.Replace("@", cnt.ToString());
 
@@ -107,7 +111,7 @@ namespace IafuAlerts
                     int cnt = alObjList.Count;
                     string email = alObjList[0].User.getEmail();
 
-                    Output.WriteToFile("Details To MT User " + alObjList[0].User.Id.ToString() + " (" + email + "): " + cnt.ToString());
+                    Output.WriteToFile("Details To MT User " + alObjList[0].User.Id.ToString() + ": " + cnt.ToString());
 
                     AlertEmails alert = new AlertEmails(2);
 
@@ -157,13 +161,13 @@ namespace IafuAlerts
             List<Users> usrList = new List<Users>(); //alertObj.Auditor1
 
             foreach (AlertObject alertObj in alertObjectList)
-            {               
-                if (usrList.Exists(i => i.Id == alertObj.Auditor1.Id) == false)
+            {
+                if (alertObj.Auditor1.Id > 0 && usrList.Exists(i => i.Id == alertObj.Auditor1.Id) == false)
                 {
                     usrList.Add(alertObj.Auditor1);
                 }
 
-                if (usrList.Exists(i => i.Id == alertObj.Auditor2.Id) == false)
+                if (alertObj.Auditor2.Id > 0 && usrList.Exists(i => i.Id == alertObj.Auditor2.Id) == false)
                 {
                     usrList.Add(alertObj.Auditor2);
                 }
@@ -176,12 +180,13 @@ namespace IafuAlerts
                 int cnt = usrAlerts.Count;
                 string email = usr.getEmail();
 
-                Output.WriteToFile("Details to Auditor " + usr.Id.ToString() + " (" + email + "): " + cnt.ToString());
+                Output.WriteToFile("Details to Auditor " + usr.Id.ToString() + ": " + cnt.ToString());
 
                 AlertEmails alert = new AlertEmails(3);
 
                 EmailProperties emailProps = new EmailProperties();
                 emailProps.RecipientsTo = new List<Recipient> { new Recipient() { FullName = usr.FullName, Email = email } };
+                emailProps.RecipientsCC = new List<Recipient>();
                 emailProps.Subject = alert.EmailSubject;
                 emailProps.Body = alert.EmailBody.Replace("@", cnt.ToString());
 
@@ -220,12 +225,13 @@ namespace IafuAlerts
                 {
                     int cnt = alObjList.Count;
 
-                    Output.WriteToFile("Details To Auditor " + alObjList[0].User.Id.ToString() + " (" + alObjList[0].User.FullName + "): " + cnt.ToString());
+                    Output.WriteToFile("Details To Auditor " + alObjList[0].User.Id.ToString() + ": " + cnt.ToString());
 
                     AlertEmails alert = new AlertEmails(4);
 
                     EmailProperties emailProps = new EmailProperties();
                     emailProps.RecipientsTo = new List<Recipient> { new Recipient() { FullName = cae.FullName, Email = email } };
+                    emailProps.RecipientsCC = new List<Recipient>();
                     emailProps.Subject = alert.EmailSubject;
                     emailProps.Body = alert.EmailBody.Replace("@1", cnt.ToString()).Replace("@2", alObjList[0].User.FullName);
 

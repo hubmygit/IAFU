@@ -38,6 +38,7 @@
             this.colAuditId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionSide1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditCompany = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditYear = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditRef = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -60,8 +61,10 @@
             this.colDetailCurrentDept3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailCurrentOwner3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionSide = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chbMine = new System.Windows.Forms.CheckBox();
             this.chbNotFinalized = new System.Windows.Forms.CheckBox();
+            this.colHeaderCategory1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
@@ -107,6 +110,8 @@
             this.colAuditId,
             this.colHeaderId,
             this.colDetailId,
+            this.colActionSide1,
+            this.colHeaderCategory1,
             this.colAuditCompany,
             this.colAuditYear,
             this.colAuditRef,
@@ -128,7 +133,8 @@
             this.colDetailCurrentOwner2,
             this.colDetailCurrentDept3,
             this.colDetailCurrentOwner3,
-            this.colDetailIsFinalized});
+            this.colDetailIsFinalized,
+            this.colActionSide});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -149,6 +155,11 @@
             // 
             this.colDetailId.FieldName = "DetailId";
             this.colDetailId.Name = "colDetailId";
+            // 
+            // colActionSide1
+            // 
+            this.colActionSide1.FieldName = "ActionSide.Id";
+            this.colActionSide1.Name = "colActionSide1";
             // 
             // colAuditCompany
             // 
@@ -365,6 +376,14 @@
             this.colDetailIsFinalized.VisibleIndex = 21;
             this.colDetailIsFinalized.Width = 50;
             // 
+            // colActionSide
+            // 
+            this.colActionSide.Caption = "ActionSide";
+            this.colActionSide.FieldName = "ActionSide.Name";
+            this.colActionSide.Name = "colActionSide";
+            this.colActionSide.Visible = true;
+            this.colActionSide.VisibleIndex = 22;
+            // 
             // chbMine
             // 
             this.chbMine.AutoSize = true;
@@ -388,6 +407,11 @@
             this.chbNotFinalized.Text = "Not Finalized";
             this.chbNotFinalized.UseVisualStyleBackColor = true;
             this.chbNotFinalized.CheckedChanged += new System.EventHandler(this.chbNotFinalized_CheckedChanged);
+            // 
+            // colHeaderCategory1
+            // 
+            this.colHeaderCategory1.FieldName = "HeaderCategory.Id";
+            this.colHeaderCategory1.Name = "colHeaderCategory1";
             // 
             // FIView_Auditees
             // 
@@ -445,5 +469,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAuditSupervisor;
         private System.Windows.Forms.CheckBox chbMine;
         private System.Windows.Forms.CheckBox chbNotFinalized;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionSide;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionSide1;
+        private DevExpress.XtraGrid.Columns.GridColumn colHeaderCategory1;
     }
 }

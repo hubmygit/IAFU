@@ -34,6 +34,8 @@ namespace IAFollowUp
         public Owners_MT DetailCurrentOwner2 { get; set; }
         public Owners_MT DetailCurrentOwner3 { get; set; }
 
+        public ActionSide ActionSide { get; set; }
+
         public FI_DetailHeaderAudit()
         {
         }
@@ -73,6 +75,23 @@ namespace IAFollowUp
                         fiDHA.DetailCurrentOwner1 = thisDetail.CurrentOwner1;
                         fiDHA.DetailCurrentOwner2 = thisDetail.CurrentOwner2;
                         fiDHA.DetailCurrentOwner3 = thisDetail.CurrentOwner3;
+
+                        ActionSide actSide = FIDetailActivity.getActionSide_forAuditors(thisDetail);
+                        if (actSide.Id == 2) //auditees
+                        {
+                            fiDHA.ActionSide = actSide;
+                        }
+                        else if (actSide.Id == 1) 
+                        {
+                            if (thisDetail.IsFinalized)
+                            {
+                                fiDHA.ActionSide = new ActionSide(3); //none
+                            }
+                            else
+                            {
+                                fiDHA.ActionSide = actSide; //auditors
+                            }
+                        }
 
                         ret.Add(fiDHA);
                     }

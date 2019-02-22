@@ -47,9 +47,10 @@ namespace IafuAlerts
             DateTime? ret = null;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT InsDt " +
+            string SelectSt = "SELECT top (1) InsDt " +
                               "FROM [dbo].[FIDetail_Activity] " +
-                              "WHERE ActivityDescriptionId = 2 AND DetailId = @detailId ";
+                              "WHERE ActivityDescriptionId = 2 AND DetailId = @detailId " +
+                              "ORDER BY InsDt DESC";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try

@@ -159,101 +159,140 @@ namespace IAFollowUp
 
         private void chbMine_CheckedChanged(object sender, EventArgs e)
         {
+            Color initColor = gridView1.Appearance.Row.BackColor;
+            
             if (chbMine.Checked)
-            {
+            {                
+                if (UserInfo.userDetails.RolesId == 1) //admin
+                {
+                    //do nothing - no actions
+                    return;
+                }
 
-                //if(isfinalized = false)
+                if (UserInfo.userDetails.RolesId == 5) //GM
+                {
+                    //do nothing - no actions
+                    return;
+                }
 
-                //Action side
-
-
-                //if (UserInfo.userDetails.Role.IsAdmin)
-                //{
-                //    //do nothing
-                //}
-                //else if (UserInfo.userDetails.Role.IsAuditor)
-                //{
-                //    //ActionSide actionSide = FIDetailActivity.getActionSide_forAuditors(detail);
-                //    //auditor1, 2, supervisor, (cae)
-
-                //    //other auditor, (cae)
-                //}
-                //else if (UserInfo.userDetails.Role.IsAuditee)
-                //{
-                //    //mt
-
-                //    //dt
-
-                //    //gm
-                //}
-
-
-                //gridView1.RowStyle += (sender2, e2) =>
-                //{
-                //    e2.Appearance.BackColor = Color.LightBlue;
-                //    e2.HighPriority = true;
-                //};
-
-                //gridView1.RowStyle -= (sender2, e2) => { };
-
+                
                 gridView1.RowStyle += (sender2, e2) =>
                 {
-                    //gv_RowStyle(sender2, e2, true);
+                    int detId = Convert.ToInt32(gridView1.GetRowCellValue(e2.RowHandle, gridView1.Columns["DetailId"]).ToString());
+                    //FIDetail det = detailList.Where(i => i.Id == detId).First();
+                    FI_DetailHeaderAudit dha = fiDHABList.Where(i => i.DetailId == detId).First();
+
+                    //int actionSide = Convert.ToInt32(gridView1.GetRowCellValue(e2.RowHandle, gridView1.Columns["ActionSide.Id"]).ToString());
+                    int actionSide = dha.ActionSide.Id;
+
+
+                    if (UserInfo.userDetails.RolesId == 2 && actionSide == 1) //cae 
+                    {
+                        if (dha.AuditAuditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor1.Id) == false)
+                        {
+                            return;
+                        }
+
+                        if (dha.AuditAuditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor2.Id) == false)
+                        {
+                            return;
+                        }
+
+                        if (dha.AuditSupervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(detId, dha.AuditSupervisor.Id) == false)
+                        {
+                            return;
+                        }
+                        
+                        FICategory fiCat = dha.HeaderCategory; //completeAudit.FIHeaders[0].FICategory;
+                        List<FIDetailVoting> VotingList = FIDetailVoting.SelectCurrent(detId);
+                        ChiefVoteCause voteCause = FIDetailVoting.doesChiefNeedsToVote(fiCat, VotingList);
+
+                        if (voteCause == ChiefVoteCause.None)
+                        {
+                            return;
+                        }
+                    }
+                    else if (UserInfo.userDetails.RolesId == 3 && actionSide == 1) //auditors
+                    {
+                        if (dha.AuditSupervisor.Id == UserInfo.userDetails.Id) //supervisor
+                        {
+                            if (dha.AuditAuditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor1.Id) == false)
+                            {
+                                return;
+                            }
+
+                            if (dha.AuditAuditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor2.Id) == false)
+                            {
+                                return;
+                            }
+
+                            if (FIDetailVoting.HasAlreadyVoted(detId, dha.AuditSupervisor.Id) == true)
+                            {
+                                return;
+                            }
+                        }
+                        else if (dha.AuditAuditor1.Id == UserInfo.userDetails.Id) //auditor1
+                        {
+                            if (dha.AuditAuditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor2.Id) == false)
+                            {
+                                return;
+                            }
+
+                            if (FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor1.Id) == true)
+                            {
+                                return;
+                            }
+                        }
+                        else if (dha.AuditAuditor2.Id == UserInfo.userDetails.Id) //auditor2 
+                        {
+                            if (dha.AuditAuditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor1.Id) == false)
+                            {
+                                return;
+                            }
+
+                            if (FIDetailVoting.HasAlreadyVoted(detId, dha.AuditAuditor2.Id) == true)
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            //others - no action
+                            return;
+                        }
+                    }
+                    
+                    else if (UserInfo.userDetails.RolesId == 6 && actionSide == 2) //MT
+                    {
+                        //check placeholder 
+                    }
+                    else if (UserInfo.userDetails.RolesId == 7 && actionSide == 2) //DT
+                    {
+                        //same as MT
+                    }
+                    else //never... 
+                    {
+                        return;
+                    }
+                                                                                          
                     e2.Appearance.BackColor = Color.LightBlue;
                     e2.HighPriority = true;
-
-                    
                 };
-
-                //gridControl1.Refresh(); //No
-                gridView1.Focus(); //Yes
-                //gridControl1.Focus(); //Yes
-                //gridControl1.Select(); //Yes
+                
+                gridView1.Focus();
             }
             else
             {
-                //gridView1.RowStyle += (sender2, e2) =>
-                //{
-                //    e2.Appearance.BackColor = Color.White;
-                //    e2.HighPriority = true;
-                //};
-
-                //gridView1.RowStyle -= (sender2, e2) => { };
-
                 gridView1.RowStyle += (sender2, e2) =>
                 {
-                    //gv_RowStyle(sender2, e2, false);
-                    e2.Appearance.BackColor = Color.White;
+                    e2.Appearance.BackColor = initColor;
                     e2.HighPriority = true;
-
-
                 };
-
-                //gridControl1.Refresh(); //No
-                gridView1.Focus(); //Yes
-                //gridControl1.Focus(); //Yes
-                //gridControl1.Select(); //Yes
-
+                gridView1.Focus();
             }
         }
 
-        private void gv_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e, bool NeedsMyAction)
-        {
-            if (NeedsMyAction)
-            {
-                e.Appearance.BackColor = Color.LightBlue;
-                e.HighPriority = true;
-
-                gridControl1.Select();
-            }
-            else
-            {
-                e.Appearance.BackColor = Color.White;
-                e.HighPriority = true;
-
-                gridControl1.Select();
-            }
-        }
+        
 
     }
 

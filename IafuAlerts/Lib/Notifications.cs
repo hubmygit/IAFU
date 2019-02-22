@@ -408,7 +408,7 @@ namespace IafuAlerts
                         if (notObj.Supervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(notObj.DetailId, notObj.Supervisor.Id) == false)
                         {
                             //check 15 days period from last Auditor(1,2) voting
-                            if (((DateTime)MaxAuditorVotingDate).AddDays(15) < DateTime.Now)
+                            if (MaxAuditorVotingDate != null && ((DateTime)MaxAuditorVotingDate).AddDays(15) < DateTime.Now)
                             {
                                 //add to list
                                 notObj.SupervisorIdle = true;
