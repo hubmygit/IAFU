@@ -732,6 +732,8 @@ namespace IAFollowUp
 
             DelegateesSelect frmDTselector = new DelegateesSelect(OwnersDT);
 
+            Users activityTo = activityTo = OwnersDT[0]; //1st
+
             if (OwnersDT.Count <= 0)
             {
                 MessageBox.Show("The Detail has not been delegated! \r\nPlease delegate it to a Key User first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -746,15 +748,17 @@ namespace IAFollowUp
                 {
                     return;
                 }
-            }
-            
+
+                activityTo = new Users(frmDTselector.usrId);
+            }                     
+
             FIDetailActivity detActivity = new FIDetailActivity();
             detActivity.DetailId = det.Id;
             detActivity.ActivityDescription = new ActivityDescription(7);
             detActivity.CommentRtf = rtbComments.Rtf;
             detActivity.CommentText = rtbComments.Text;
             detActivity.FromUser = new Users(UserInfo.userDetails.Id);
-            detActivity.ToUser = new Users(frmDTselector.usrId);
+            detActivity.ToUser = activityTo;
             detActivity.Placeholders = PHolder;
 
             int newActivityId = FIDetailActivity.Insert(detActivity);
