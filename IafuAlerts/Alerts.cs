@@ -18,8 +18,7 @@ namespace IafuAlerts
 
         private void Alerts_Load(object sender, EventArgs e)
         {
-            NoAction15D();
-            /*
+            
             string[] args = Environment.GetCommandLineArgs();
 
             if (args.Count(i => i.ToUpper().Trim(new char[] { ' ', '-', '/' }) == "MTMONTH") > 0)
@@ -46,7 +45,7 @@ namespace IafuAlerts
 
                 Application.Exit();
             }
-            */
+            
         }
 
         private void ExpireInM() //MTMONTH
@@ -249,6 +248,37 @@ namespace IafuAlerts
             }
 
             Output.WriteToFile("COMPLETED...");
+        }
+
+        private void btnExpireInM_Click(object sender, EventArgs e)
+        {
+            ExpireInM();
+        }
+
+        private void btnExpired_Click(object sender, EventArgs e)
+        {
+            Expired();
+        }
+
+        private void btnExpireIn15D_Click(object sender, EventArgs e)
+        {
+            ExpireIn15D();
+        }
+
+        private void btnNoAction15D_Click(object sender, EventArgs e)
+        {
+            NoAction15D();
+        }
+
+        private void btnOpenLog_Click(object sender, EventArgs e)
+        {
+            var directory = new System.IO.DirectoryInfo(Application.StartupPath + "\\Logs");
+            
+            var myFile = directory.GetFiles("*.txt")
+                         .OrderByDescending(f => f.LastWriteTime)
+                         .First();
+
+            System.Diagnostics.Process.Start(myFile.FullName);
         }
     }
 }
