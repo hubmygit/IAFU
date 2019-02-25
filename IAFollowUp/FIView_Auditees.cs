@@ -250,13 +250,12 @@ namespace IAFollowUp
                                 return;
                             }
                         }
-                        else
+                        else //other auditors
                         {
                             //others - no action
                             return;
                         }
                     }
-
                     else if (UserInfo.userDetails.RolesId == 6 && actionSide == 2) //MT
                     {
                         bool anyOfPhs = false;
@@ -295,14 +294,40 @@ namespace IAFollowUp
                     }
                     else if (UserInfo.userDetails.RolesId == 7 && actionSide == 2) //DT
                     {
-                        //chech for multiple roles.......
+                        //no need to chech for multiple roles (e.g. mt and dt).......at the same detail.....
+                        bool anyOfPhs = false;
                         //check placeholders 
-                        //if (dha.DetailCurrentOwner1.User != null && Owners_DT.IsUserDelegatee(detId, dha.DetailCurrentOwner1.Placeholder.Id, UserInfo.userDetails.Id))
-                        //{
-                        //}
+                        if (dha.DetailCurrentOwner1.User != null && Owners_DT.IsUserDelegatee(detId, dha.DetailCurrentOwner1.Placeholder.Id, UserInfo.userDetails.Id))
+                        {
+                            ActionSide actS = FIDetailActivity.getActionSide_forAuditees(detId, dha.DetailCurrentOwner1.Placeholder.Id);
+                            if (actS.Id == 2)
+                            {
+                                anyOfPhs = true;
+                            }
+                        }
 
-                        //bool isDt = Owners_DT.IsUserDelegatee(detId, )
+                        if (dha.DetailCurrentOwner2.User != null && Owners_DT.IsUserDelegatee(detId, dha.DetailCurrentOwner2.Placeholder.Id, UserInfo.userDetails.Id))
+                        {
+                            ActionSide actS = FIDetailActivity.getActionSide_forAuditees(detId, dha.DetailCurrentOwner2.Placeholder.Id);
+                            if (actS.Id == 2)
+                            {
+                                anyOfPhs = true;
+                            }
+                        }
 
+                        if (dha.DetailCurrentOwner3.User != null && Owners_DT.IsUserDelegatee(detId, dha.DetailCurrentOwner3.Placeholder.Id, UserInfo.userDetails.Id))
+                        {
+                            ActionSide actS = FIDetailActivity.getActionSide_forAuditees(detId, dha.DetailCurrentOwner3.Placeholder.Id);
+                            if (actS.Id == 2)
+                            {
+                                anyOfPhs = true;
+                            }
+                        }
+
+                        if (anyOfPhs == false)
+                        {
+                            return;
+                        }
                     }
                     else //never... 
                     {

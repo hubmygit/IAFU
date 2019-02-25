@@ -39,6 +39,7 @@
             this.colHeaderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionSide1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHeaderCategory1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditCompany = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditYear = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditRef = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,7 +65,6 @@
             this.colActionSide = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chbMine = new System.Windows.Forms.CheckBox();
             this.chbNotFinalized = new System.Windows.Forms.CheckBox();
-            this.colHeaderCategory1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
@@ -160,6 +160,11 @@
             // 
             this.colActionSide1.FieldName = "ActionSide.Id";
             this.colActionSide1.Name = "colActionSide1";
+            // 
+            // colHeaderCategory1
+            // 
+            this.colHeaderCategory1.FieldName = "HeaderCategory.Id";
+            this.colHeaderCategory1.Name = "colHeaderCategory1";
             // 
             // colAuditCompany
             // 
@@ -388,11 +393,11 @@
             // 
             this.chbMine.AutoSize = true;
             this.chbMine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbMine.Location = new System.Drawing.Point(489, 12);
+            this.chbMine.Location = new System.Drawing.Point(123, 12);
             this.chbMine.Name = "chbMine";
-            this.chbMine.Size = new System.Drawing.Size(129, 20);
+            this.chbMine.Size = new System.Drawing.Size(140, 20);
             this.chbMine.TabIndex = 1;
-            this.chbMine.Text = "Needs My Action";
+            this.chbMine.Text = "My Pending Issues";
             this.chbMine.UseVisualStyleBackColor = true;
             this.chbMine.CheckedChanged += new System.EventHandler(this.chbMine_CheckedChanged);
             // 
@@ -400,18 +405,13 @@
             // 
             this.chbNotFinalized.AutoSize = true;
             this.chbNotFinalized.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbNotFinalized.Location = new System.Drawing.Point(238, 12);
+            this.chbNotFinalized.Location = new System.Drawing.Point(12, 12);
             this.chbNotFinalized.Name = "chbNotFinalized";
             this.chbNotFinalized.Size = new System.Drawing.Size(105, 20);
             this.chbNotFinalized.TabIndex = 2;
             this.chbNotFinalized.Text = "Not Finalized";
             this.chbNotFinalized.UseVisualStyleBackColor = true;
             this.chbNotFinalized.CheckedChanged += new System.EventHandler(this.chbNotFinalized_CheckedChanged);
-            // 
-            // colHeaderCategory1
-            // 
-            this.colHeaderCategory1.FieldName = "HeaderCategory.Id";
-            this.colHeaderCategory1.Name = "colHeaderCategory1";
             // 
             // FIView_Auditees
             // 
