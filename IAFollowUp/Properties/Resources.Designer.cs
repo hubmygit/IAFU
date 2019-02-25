@@ -143,6 +143,16 @@ namespace IAFollowUp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExportToExcel_32x {
+            get {
+                object obj = ResourceManager.GetObject("ExportToExcel_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Failing_16x {
             get {
                 object obj = ResourceManager.GetObject("Failing_16x", resourceCulture);

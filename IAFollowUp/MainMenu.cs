@@ -144,28 +144,28 @@ namespace IAFollowUp
         }
 
         //temporary to remove....
-        private void tmp1Notif_Click(object sender, EventArgs e)
-        {
-            NotifWillExpireThisMonth frmFirstNotif = new NotifWillExpireThisMonth();
-            frmFirstNotif.ShowDialog();
-        }
+        //private void tmp1Notif_Click(object sender, EventArgs e)
+        //{
+        //    NotifWillExpireThisMonth frmFirstNotif = new NotifWillExpireThisMonth();
+        //    frmFirstNotif.ShowDialog();
+        //}
 
-        private void tmp2Notif_Click(object sender, EventArgs e)
-        {
-            NotifExpired frmSecondNotif = new NotifExpired();
-            frmSecondNotif.ShowDialog();
-        }
+        //private void tmp2Notif_Click(object sender, EventArgs e)
+        //{
+        //    NotifExpired frmSecondNotif = new NotifExpired();
+        //    frmSecondNotif.ShowDialog();
+        //}
 
-        private void tmp3Notif_Click(object sender, EventArgs e)
-        {
-            NotifWillExpireIn15Days frmThirdNotif = new NotifWillExpireIn15Days();
-            frmThirdNotif.ShowDialog();
-        }
+        //private void tmp3Notif_Click(object sender, EventArgs e)
+        //{
+        //    NotifWillExpireIn15Days frmThirdNotif = new NotifWillExpireIn15Days();
+        //    frmThirdNotif.ShowDialog();
+        //}
 
-        private void tmp4Notif_Click(object sender, EventArgs e)
-        {
-            NotifInactive15Days frmFourthNotif = new NotifInactive15Days();
-            frmFourthNotif.ShowDialog();
-        }
+        //private void tmp4Notif_Click(object sender, EventArgs e)
+        //{
+        //    NotifInactive15Days frmFourthNotif = new NotifInactive15Days();
+        //    frmFourthNotif.ShowDialog();
+        //}
     }
 }

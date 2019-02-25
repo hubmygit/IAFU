@@ -430,5 +430,27 @@ namespace IAFollowUp
                 MessageBox.Show("Please select a Header first!");
             }
         }
+
+        private void btnHeaderExcelExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
+            DialogResult result = sfd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                gridControlHeaders.ExportToXlsx(sfd.FileName);
+            }
+        }
+
+        private void btnDetailExcelExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
+            DialogResult result = sfd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                gridControlDetails.ExportToXlsx(sfd.FileName);
+            }
+        }
     }
 }

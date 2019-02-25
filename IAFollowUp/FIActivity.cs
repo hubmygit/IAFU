@@ -1883,5 +1883,18 @@ namespace IAFollowUp
             }
         }
 
+        private void MIexportAllToExcel_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
+                DialogResult result = sfd.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    gridControl1.ExportToXlsx(sfd.FileName);
+                }
+            }
+        }
     }
 }

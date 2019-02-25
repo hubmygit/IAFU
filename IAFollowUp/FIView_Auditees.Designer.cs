@@ -65,6 +65,7 @@
             this.colActionSide = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chbMine = new System.Windows.Forms.CheckBox();
             this.chbNotFinalized = new System.Windows.Forms.CheckBox();
+            this.btnExcelExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
@@ -78,10 +79,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.ContextMenuStrip = this.cmsDHA;
             this.gridControl1.DataSource = this.fI_DetailHeaderAuditBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 38);
+            this.gridControl1.Location = new System.Drawing.Point(0, 63);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1184, 404);
+            this.gridControl1.Size = new System.Drawing.Size(1184, 379);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -393,7 +394,7 @@
             // 
             this.chbMine.AutoSize = true;
             this.chbMine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbMine.Location = new System.Drawing.Point(123, 12);
+            this.chbMine.Location = new System.Drawing.Point(123, 25);
             this.chbMine.Name = "chbMine";
             this.chbMine.Size = new System.Drawing.Size(140, 20);
             this.chbMine.TabIndex = 1;
@@ -405,7 +406,7 @@
             // 
             this.chbNotFinalized.AutoSize = true;
             this.chbNotFinalized.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbNotFinalized.Location = new System.Drawing.Point(12, 12);
+            this.chbNotFinalized.Location = new System.Drawing.Point(12, 25);
             this.chbNotFinalized.Name = "chbNotFinalized";
             this.chbNotFinalized.Size = new System.Drawing.Size(105, 20);
             this.chbNotFinalized.TabIndex = 2;
@@ -413,11 +414,26 @@
             this.chbNotFinalized.UseVisualStyleBackColor = true;
             this.chbNotFinalized.CheckedChanged += new System.EventHandler(this.chbNotFinalized_CheckedChanged);
             // 
+            // btnExcelExport
+            // 
+            this.btnExcelExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcelExport.Image = global::IAFollowUp.Properties.Resources.ExportToExcel_32x;
+            this.btnExcelExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcelExport.Location = new System.Drawing.Point(1052, 12);
+            this.btnExcelExport.Name = "btnExcelExport";
+            this.btnExcelExport.Size = new System.Drawing.Size(120, 45);
+            this.btnExcelExport.TabIndex = 4;
+            this.btnExcelExport.Text = "Export to Excel";
+            this.btnExcelExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcelExport.UseVisualStyleBackColor = true;
+            this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
+            // 
             // FIView_Auditees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 442);
+            this.Controls.Add(this.btnExcelExport);
             this.Controls.Add(this.chbNotFinalized);
             this.Controls.Add(this.chbMine);
             this.Controls.Add(this.gridControl1);
@@ -472,5 +488,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colActionSide;
         private DevExpress.XtraGrid.Columns.GridColumn colActionSide1;
         private DevExpress.XtraGrid.Columns.GridColumn colHeaderCategory1;
+        private System.Windows.Forms.Button btnExcelExport;
     }
 }

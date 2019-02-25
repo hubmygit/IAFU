@@ -100,6 +100,7 @@
             this.gbRelInfo = new System.Windows.Forms.GroupBox();
             this.gbActions = new System.Windows.Forms.GroupBox();
             this.gbComments = new System.Windows.Forms.GroupBox();
+            this.MIexportAllToExcel = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -134,28 +135,29 @@
             this.cmsActivity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MIattachments,
             this.MIcopyComments,
-            this.MIcopyAttachments});
+            this.MIcopyAttachments,
+            this.MIexportAllToExcel});
             this.cmsActivity.Name = "cmsHeader";
-            this.cmsActivity.Size = new System.Drawing.Size(174, 70);
+            this.cmsActivity.Size = new System.Drawing.Size(181, 114);
             // 
             // MIattachments
             // 
             this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(173, 22);
+            this.MIattachments.Size = new System.Drawing.Size(180, 22);
             this.MIattachments.Text = "Attachments";
             this.MIattachments.Click += new System.EventHandler(this.MIattachments_Click);
             // 
             // MIcopyComments
             // 
             this.MIcopyComments.Name = "MIcopyComments";
-            this.MIcopyComments.Size = new System.Drawing.Size(173, 22);
+            this.MIcopyComments.Size = new System.Drawing.Size(180, 22);
             this.MIcopyComments.Text = "Copy Comments";
             this.MIcopyComments.Click += new System.EventHandler(this.MIcopyComments_Click);
             // 
             // MIcopyAttachments
             // 
             this.MIcopyAttachments.Name = "MIcopyAttachments";
-            this.MIcopyAttachments.Size = new System.Drawing.Size(173, 22);
+            this.MIcopyAttachments.Size = new System.Drawing.Size(180, 22);
             this.MIcopyAttachments.Text = "Copy Attachments";
             this.MIcopyAttachments.Click += new System.EventHandler(this.MIcopyAttachments_Click);
             // 
@@ -850,6 +852,13 @@
             this.gbComments.TabStop = false;
             this.gbComments.Text = "Comments for Action";
             // 
+            // MIexportAllToExcel
+            // 
+            this.MIexportAllToExcel.Name = "MIexportAllToExcel";
+            this.MIexportAllToExcel.Size = new System.Drawing.Size(180, 22);
+            this.MIexportAllToExcel.Text = "Export All To Excel";
+            this.MIexportAllToExcel.Click += new System.EventHandler(this.MIexportAllToExcel_Click);
+            // 
             // FIActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -956,5 +965,6 @@
         private System.Windows.Forms.GroupBox gbRelInfo;
         private System.Windows.Forms.GroupBox gbActions;
         private System.Windows.Forms.GroupBox gbComments;
+        private System.Windows.Forms.ToolStripMenuItem MIexportAllToExcel;
     }
 }

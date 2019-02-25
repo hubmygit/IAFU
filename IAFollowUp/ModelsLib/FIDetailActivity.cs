@@ -258,13 +258,13 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [ActivityDescriptionId], [ActionDt], [CommentText], [CommentRtf], " + 
-                                       "[FromUserId], [ToUserId], [IsPublic], [PlaceholderId], [InsUserId], [InsDt]) " +
+                                       "[FromUserId], [ToUserId], [IsPublic], [PlaceholderId], [ApploginId], [InsUserId], [InsDt]) " +
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
                            "(@DetailId, @ActivityDescriptionId, @ActionDt, " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " + 
-                           "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @InsUserId, getDate())"; 
+                           "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @ApploginId, @InsUserId, getDate())"; 
 
             try
             {
@@ -324,6 +324,16 @@ namespace IAFollowUp
                 {
                      cmd.Parameters.AddWithValue("@PlaceholderId", DBNull.Value);
                 }
+
+                //List<int> automaticActions = new List<int>() { 3, 18, 20, 21, 22, 23, 24, 25 };
+                //if (automaticActions.Contains(fiDetailActivity.ActivityDescription.Id))
+                //{
+                //    cmd.Parameters.AddWithValue("@ApploginId", DBNull.Value);
+                //}
+                //else
+                //{
+                cmd.Parameters.AddWithValue("@ApploginId", UserInfo.appLoginId);
+                //}
 
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
 

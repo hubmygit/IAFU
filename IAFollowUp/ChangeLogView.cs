@@ -21,6 +21,15 @@ namespace IAFollowUp
 
         public BindingList<ChangeLog> changeLogBList = new BindingList<ChangeLog>();
 
-
+        private void btnExcelExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
+            DialogResult result = sfd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                gridControl1.ExportToXlsx(sfd.FileName);
+            }
+        }
     }
 }

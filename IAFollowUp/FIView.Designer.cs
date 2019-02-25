@@ -81,6 +81,8 @@
             this.colIsDeleted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblHeaders = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
+            this.btnHeaderExcelExport = new System.Windows.Forms.Button();
+            this.btnDetailExcelExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetails)).BeginInit();
             this.cmsDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailBindingSource)).BeginInit();
@@ -577,11 +579,41 @@
             this.lblDetails.TabIndex = 0;
             this.lblDetails.Text = "Details";
             // 
+            // btnHeaderExcelExport
+            // 
+            this.btnHeaderExcelExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHeaderExcelExport.Image = global::IAFollowUp.Properties.Resources.ExportToExcel_32x;
+            this.btnHeaderExcelExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHeaderExcelExport.Location = new System.Drawing.Point(852, 102);
+            this.btnHeaderExcelExport.Name = "btnHeaderExcelExport";
+            this.btnHeaderExcelExport.Size = new System.Drawing.Size(120, 30);
+            this.btnHeaderExcelExport.TabIndex = 5;
+            this.btnHeaderExcelExport.Text = "Export to Excel";
+            this.btnHeaderExcelExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHeaderExcelExport.UseVisualStyleBackColor = true;
+            this.btnHeaderExcelExport.Click += new System.EventHandler(this.btnHeaderExcelExport_Click);
+            // 
+            // btnDetailExcelExport
+            // 
+            this.btnDetailExcelExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDetailExcelExport.Image = global::IAFollowUp.Properties.Resources.ExportToExcel_32x;
+            this.btnDetailExcelExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDetailExcelExport.Location = new System.Drawing.Point(852, 354);
+            this.btnDetailExcelExport.Name = "btnDetailExcelExport";
+            this.btnDetailExcelExport.Size = new System.Drawing.Size(120, 30);
+            this.btnDetailExcelExport.TabIndex = 6;
+            this.btnDetailExcelExport.Text = "Export to Excel";
+            this.btnDetailExcelExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDetailExcelExport.UseVisualStyleBackColor = true;
+            this.btnDetailExcelExport.Click += new System.EventHandler(this.btnDetailExcelExport_Click);
+            // 
             // FIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 587);
+            this.Controls.Add(this.btnDetailExcelExport);
+            this.Controls.Add(this.btnHeaderExcelExport);
             this.Controls.Add(this.gridControlDetails);
             this.Controls.Add(this.lblDetails);
             this.Controls.Add(this.lblHeaders);
@@ -668,5 +700,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCurrentUser3;
         private DevExpress.XtraGrid.Columns.GridColumn colFISubId;
         private DevExpress.XtraGrid.Columns.GridColumn colFIId;
+        private System.Windows.Forms.Button btnHeaderExcelExport;
+        private System.Windows.Forms.Button btnDetailExcelExport;
     }
 }

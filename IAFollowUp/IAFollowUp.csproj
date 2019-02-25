@@ -487,6 +487,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="InternalAudit.ico" />
+    <None Include="Resources\ExportToExcel_32x.png" />
     <None Include="Resources\FontDialog_16x.png" />
     <None Include="Resources\Attach_16x.png" />
     <None Include="Resources\Save_16x.png" />
