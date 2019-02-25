@@ -273,12 +273,21 @@ namespace IafuAlerts
         private void btnOpenLog_Click(object sender, EventArgs e)
         {
             var directory = new System.IO.DirectoryInfo(Application.StartupPath + "\\Logs");
-            
-            var myFile = directory.GetFiles("*.txt")
-                         .OrderByDescending(f => f.LastWriteTime)
-                         .First();
 
-            System.Diagnostics.Process.Start(myFile.FullName);
+            if (directory.GetFiles("*.txt").Length > 0)
+            {
+                var myFile = directory.GetFiles("*.txt")
+                             .OrderByDescending(f => f.LastWriteTime)
+                             .First();
+
+                System.Diagnostics.Process.Start(myFile.FullName);
+            }
+            else
+            {
+                MessageBox.Show("There are no log files!");
+            }
+            
+
         }
     }
 }

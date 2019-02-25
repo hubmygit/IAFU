@@ -66,6 +66,10 @@
             this.chbMine = new System.Windows.Forms.CheckBox();
             this.chbNotFinalized = new System.Windows.Forms.CheckBox();
             this.btnExcelExport = new System.Windows.Forms.Button();
+            this.lblIssuesAll = new System.Windows.Forms.Label();
+            this.lblIssuesAllCnt = new System.Windows.Forms.Label();
+            this.lblIssuesOpenCnt = new System.Windows.Forms.Label();
+            this.lblIssuesMyCnt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
@@ -394,7 +398,7 @@
             // 
             this.chbMine.AutoSize = true;
             this.chbMine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbMine.Location = new System.Drawing.Point(123, 25);
+            this.chbMine.Location = new System.Drawing.Point(424, 25);
             this.chbMine.Name = "chbMine";
             this.chbMine.Size = new System.Drawing.Size(140, 20);
             this.chbMine.TabIndex = 1;
@@ -406,11 +410,11 @@
             // 
             this.chbNotFinalized.AutoSize = true;
             this.chbNotFinalized.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbNotFinalized.Location = new System.Drawing.Point(12, 25);
+            this.chbNotFinalized.Location = new System.Drawing.Point(197, 25);
             this.chbNotFinalized.Name = "chbNotFinalized";
-            this.chbNotFinalized.Size = new System.Drawing.Size(105, 20);
+            this.chbNotFinalized.Size = new System.Drawing.Size(102, 20);
             this.chbNotFinalized.TabIndex = 2;
-            this.chbNotFinalized.Text = "Not Finalized";
+            this.chbNotFinalized.Text = "Open Issues";
             this.chbNotFinalized.UseVisualStyleBackColor = true;
             this.chbNotFinalized.CheckedChanged += new System.EventHandler(this.chbNotFinalized_CheckedChanged);
             // 
@@ -428,11 +432,60 @@
             this.btnExcelExport.UseVisualStyleBackColor = true;
             this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
             // 
+            // lblIssuesAll
+            // 
+            this.lblIssuesAll.AutoSize = true;
+            this.lblIssuesAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblIssuesAll.Location = new System.Drawing.Point(12, 26);
+            this.lblIssuesAll.Name = "lblIssuesAll";
+            this.lblIssuesAll.Size = new System.Drawing.Size(65, 16);
+            this.lblIssuesAll.TabIndex = 5;
+            this.lblIssuesAll.Text = "All Issues";
+            // 
+            // lblIssuesAllCnt
+            // 
+            this.lblIssuesAllCnt.AutoSize = true;
+            this.lblIssuesAllCnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblIssuesAllCnt.ForeColor = System.Drawing.Color.Green;
+            this.lblIssuesAllCnt.Location = new System.Drawing.Point(83, 23);
+            this.lblIssuesAllCnt.Name = "lblIssuesAllCnt";
+            this.lblIssuesAllCnt.Size = new System.Drawing.Size(19, 20);
+            this.lblIssuesAllCnt.TabIndex = 6;
+            this.lblIssuesAllCnt.Text = "0";
+            // 
+            // lblIssuesOpenCnt
+            // 
+            this.lblIssuesOpenCnt.AutoSize = true;
+            this.lblIssuesOpenCnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblIssuesOpenCnt.ForeColor = System.Drawing.Color.Green;
+            this.lblIssuesOpenCnt.Location = new System.Drawing.Point(305, 23);
+            this.lblIssuesOpenCnt.Name = "lblIssuesOpenCnt";
+            this.lblIssuesOpenCnt.Size = new System.Drawing.Size(19, 20);
+            this.lblIssuesOpenCnt.TabIndex = 7;
+            this.lblIssuesOpenCnt.Text = "0";
+            this.lblIssuesOpenCnt.Visible = false;
+            // 
+            // lblIssuesMyCnt
+            // 
+            this.lblIssuesMyCnt.AutoSize = true;
+            this.lblIssuesMyCnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblIssuesMyCnt.ForeColor = System.Drawing.Color.Green;
+            this.lblIssuesMyCnt.Location = new System.Drawing.Point(570, 23);
+            this.lblIssuesMyCnt.Name = "lblIssuesMyCnt";
+            this.lblIssuesMyCnt.Size = new System.Drawing.Size(19, 20);
+            this.lblIssuesMyCnt.TabIndex = 8;
+            this.lblIssuesMyCnt.Text = "0";
+            this.lblIssuesMyCnt.Visible = false;
+            // 
             // FIView_Auditees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 442);
+            this.Controls.Add(this.lblIssuesMyCnt);
+            this.Controls.Add(this.lblIssuesOpenCnt);
+            this.Controls.Add(this.lblIssuesAllCnt);
+            this.Controls.Add(this.lblIssuesAll);
             this.Controls.Add(this.btnExcelExport);
             this.Controls.Add(this.chbNotFinalized);
             this.Controls.Add(this.chbMine);
@@ -489,5 +542,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colActionSide1;
         private DevExpress.XtraGrid.Columns.GridColumn colHeaderCategory1;
         private System.Windows.Forms.Button btnExcelExport;
+        private System.Windows.Forms.Label lblIssuesAll;
+        private System.Windows.Forms.Label lblIssuesAllCnt;
+        private System.Windows.Forms.Label lblIssuesOpenCnt;
+        private System.Windows.Forms.Label lblIssuesMyCnt;
     }
 }

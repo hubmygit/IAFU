@@ -37,6 +37,8 @@ namespace IAFollowUp
             fiDHABList = FI_DetailHeaderAudit.AuditListToDetailList(auditList);
             gridControl1.DataSource = fiDHABList;
 
+            lblIssuesAllCnt.Text = fiDHABList.Count.ToString();
+
 
             //gridView1.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
 
@@ -142,10 +144,15 @@ namespace IAFollowUp
             {
                 BindingList<FI_DetailHeaderAudit> FilteredList = new BindingList<FI_DetailHeaderAudit>(fiDHABList.Where(i => i.DetailIsFinalized == false).ToList());
                 gridControl1.DataSource = FilteredList;
+                                
+                lblIssuesOpenCnt.Text = FilteredList.Count.ToString();
+                lblIssuesOpenCnt.Visible = true;
             }
             else
             {
                 gridControl1.DataSource = fiDHABList;
+
+                lblIssuesOpenCnt.Visible = false;
             }
 
 
@@ -160,7 +167,8 @@ namespace IAFollowUp
         private void chbMine_CheckedChanged(object sender, EventArgs e)
         {
             Color initColor = gridView1.Appearance.Row.BackColor;
-            
+            int ColoredRowsCounter = 0;
+
             if (chbMine.Checked)
             {                
                 if (UserInfo.userDetails.RolesId == 1) //admin
@@ -336,9 +344,14 @@ namespace IAFollowUp
                                                                                           
                     e2.Appearance.BackColor = Color.LightBlue;
                     e2.HighPriority = true;
+
+                    ColoredRowsCounter++;
                 };
                 
                 gridView1.Focus();
+                
+                lblIssuesMyCnt.Text = ColoredRowsCounter.ToString();
+                lblIssuesMyCnt.Visible = true;
             }
             else
             {
@@ -348,6 +361,8 @@ namespace IAFollowUp
                     e2.HighPriority = true;
                 };
                 gridView1.Focus();
+
+                lblIssuesMyCnt.Visible = false;
             }
         }
 
