@@ -215,6 +215,50 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static bool checkAdminPasswordForMigration(string GivenPassword)
+        {
+            bool ret = false;
+            bool Equals = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT P.PassUpdDate, " +
+                              "case when HASHBYTES('SHA2_512',  @GivenPassword + @passPhrase) = P.Password then 'True' else 'False' end as Equality " +
+                              "FROM [dbo].[PasswordHistory] P left outer join " +
+                              "     [dbo].[Users] U on P.UsersId = U.Id " +
+                              "WHERE P.IsCurrent = 'true' and U.RolesId = 1 ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.Add("@GivenPassword", SqlDbType.VarChar);
+                cmd.Parameters["@GivenPassword"].Value = GivenPassword;
+                cmd.Parameters.Add("@passPhrase", SqlDbType.VarChar);
+                cmd.Parameters["@passPhrase"].Value = SqlDBInfo.passPhrase;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    passUpdDate = Convert.ToDateTime(reader["PassUpdDate"].ToString());
+                    Equals = Convert.ToBoolean(reader["Equality"].ToString());
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            if (Equals)
+            {
+                ret = true;
+            }
+
+            return ret;
+        }
+
         public static int getUserId(string GivenUserName)
         {
             int ret = 0;

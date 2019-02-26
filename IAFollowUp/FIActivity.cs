@@ -143,7 +143,7 @@ namespace IAFollowUp
 
         UserAuthorization UserAuth = new UserAuthorization();
 
-        private bool bwSuccess = false;
+        //private bool bwSuccess = false;
 
         private void btnFontDialog_Click(object sender, EventArgs e)
         {

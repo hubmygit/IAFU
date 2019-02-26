@@ -30,14 +30,14 @@ namespace IAFollowUp
         {
             RunOn_TxtUserName_Leave();
 
-            if (UserInfo.checkPassword(txtUserName.Text, txtPassword.Text))
+            if ((Migration.migrationMode && UserInfo.checkAdminPasswordForMigration(txtPassword.Text)) || UserInfo.checkPassword(txtUserName.Text, txtPassword.Text))
             {
                 UserInfo.roleDetails = UserInfo.get_roleDetails(UserInfo.userDetails.RolesId);
 
                 toolStripMess.Text = "";
 
                 //check expiration date
-                if (UserInfo.IsPasswordExpired())
+                if (Migration.migrationMode == false && UserInfo.IsPasswordExpired())
                 {
                     MessageBox.Show("Your Password has expired! Please change it.");
                     ChangePassword frmChangePass = new ChangePassword(UserInfo.userDetails);
@@ -47,7 +47,6 @@ namespace IAFollowUp
                     {
                         return;
                     }
-
                 }
 
                 LoggedIn = true;
@@ -57,7 +56,6 @@ namespace IAFollowUp
                 UserInfo.Insert_AppLogIn();
 
                 Close();
-
             }
             else
             {

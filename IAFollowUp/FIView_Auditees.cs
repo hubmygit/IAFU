@@ -167,7 +167,8 @@ namespace IAFollowUp
         private void chbMine_CheckedChanged(object sender, EventArgs e)
         {
             Color initColor = gridView1.Appearance.Row.BackColor;
-            int ColoredRowsCounter = 0;
+            //int ColoredRowsCounter = 0;
+            List<int> ColoredRows = new List<int>();
 
             if (chbMine.Checked)
             {                
@@ -345,13 +346,32 @@ namespace IAFollowUp
                     e2.Appearance.BackColor = Color.LightBlue;
                     e2.HighPriority = true;
 
-                    ColoredRowsCounter++;
+                    //ColoredRowsCounter++;
+                    if (ColoredRows.Contains(e2.RowHandle) == false)
+                    {
+                        ColoredRows.Add(e2.RowHandle);
+                    }
+
+                    lblIssuesMyCnt.Text = ColoredRows.Count.ToString();
+                    lblIssuesMyCnt.Visible = true;
+
                 };
                 
                 gridView1.Focus();
+
+
+                //for (int i = 0; i < gridView1.DataRowCount; i++)
+                //{
+                //    Color bbb = ((DevExpress.XtraGrid.Views.Grid.ViewInfo.GridViewInfo)gridView1.GetViewInfo()).GetGridRowInfo(i).Appearance.BackColor;
+                //    if (bbb == Color.LightBlue)
+                //    {
+                //        ColoredRowsCounter++;
+                //    }
+                //}
                 
-                lblIssuesMyCnt.Text = ColoredRowsCounter.ToString();
-                lblIssuesMyCnt.Visible = true;
+
+
+                
             }
             else
             {
@@ -359,10 +379,12 @@ namespace IAFollowUp
                 {
                     e2.Appearance.BackColor = initColor;
                     e2.HighPriority = true;
+
+                    lblIssuesMyCnt.Visible = false;
                 };
                 gridView1.Focus();
 
-                lblIssuesMyCnt.Visible = false;
+                
             }
         }
 

@@ -19,6 +19,16 @@ namespace IAFollowUp
             if (!AppVer.IsLatestVersion()) //check version
                 return;
 
+            Migration.migrationMode = true;
+            if (Migration.migrationMode == true)
+            {
+                OnlyForMigration frmMig = new OnlyForMigration();
+                if (frmMig.ShowDialog() == DialogResult.OK)
+                {
+                    Migration.email = frmMig.EmailAddr;
+                }
+            }
+
             Login frmLogin = new Login();
             frmLogin.ShowDialog();
 

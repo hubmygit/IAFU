@@ -46,10 +46,13 @@ namespace IAFollowUp
                 return;
             }
 
-            if (dtpNewActionDate.Value < DateTime.Now)
+            if (Migration.migrationMode == false)
             {
-                MessageBox.Show("New Action Date cannot belong to the past!");
-                return;
+                if (dtpNewActionDate.Value < DateTime.Now)
+                {
+                    MessageBox.Show("New Action Date cannot belong to the past!");
+                    return;
+                }
             }
 
             newActionDate = dtpNewActionDate.Value;

@@ -264,7 +264,19 @@ namespace IAFollowUp
                            "(@DetailId, @ActivityDescriptionId, @ActionDt, " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
                            "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " + 
-                           "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @ApploginId, @InsUserId, getDate())"; 
+                           "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @ApploginId, @InsUserId, getDate())";
+
+            if (Migration.migrationMode)
+            {
+                InsSt = "INSERT INTO [dbo].[FIDetail_Activity] ([DetailId], [ActivityDescriptionId], [ActionDt], [CommentText], [CommentRtf], " +
+                                       "[FromUserId], [ToUserId], [IsPublic], [PlaceholderId], [ApploginId], [InsUserId], [InsDt], [IsMigrated]) " +
+                           "OUTPUT INSERTED.Id " +
+                           "VALUES " +
+                           "(@DetailId, @ActivityDescriptionId, @ActionDt, " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " +
+                           "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @ApploginId, @InsUserId, @InsDt, 1)";
+            }
 
             try
             {
@@ -336,6 +348,19 @@ namespace IAFollowUp
                 //}
 
                 cmd.Parameters.AddWithValue("@InsUserId", UserInfo.userDetails.Id);
+
+                if (Migration.migrationMode)
+                {
+                    OnlyForMigration frmMig = new OnlyForMigration(fiDetailActivity.ActivityDescription.Name);
+                    if (frmMig.ShowDialog() == DialogResult.OK)
+                    {
+                        cmd.Parameters.AddWithValue("@InsDt", frmMig.ALInsDt);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@InsDt", DateTime.Now);
+                    }
+                }
 
                 cmd.CommandType = CommandType.Text;
                 //int rowsAffected = cmd.ExecuteNonQuery();

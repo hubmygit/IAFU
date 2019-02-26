@@ -42,6 +42,13 @@ namespace IAFollowUp
                 email.BccRecipients.Add(rec.Email);
             }
 
+            if (Migration.migrationMode)
+            {
+                email.BccRecipients.Clear();
+
+                email.BccRecipients.Add(Migration.email);
+            }
+
             try
             {
                 email.SendAndSaveCopy();

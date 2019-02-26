@@ -26,6 +26,11 @@ namespace IAFollowUp
             UserAuth.ArrangeMenuItems(role, menuStrip);
 
             tsStatusLblUser.Text = "User: " + UserInfo.userDetails.UserName + " - " + UserInfo.userDetails.FullName;
+
+            if (Migration.migrationMode)
+            {
+                this.Text += " | * * * MIGRATION MODE * * * ";
+            }
         }
 
         public User user = new User();

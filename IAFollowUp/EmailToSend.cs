@@ -28,7 +28,7 @@ namespace IAFollowUp
         }
 
         private EmailProperties thisEmailList = new EmailProperties();
-        private bool bwSuccess = false;
+        //private bool bwSuccess = false;
 
         private void btnSendMail_Click(object sender, EventArgs e)
         {
