@@ -25,8 +25,8 @@ namespace IAFollowUp
             List<User> ret = new List<User>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase, [UserName])) as UserName, CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase, [FullName])) as FullName," +
-                " CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase, [Email])) as Email, [RolesId], [InsDt], " +
+            string SelectSt = "SELECT [Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE(@passPhrase, [UserName])) as UserName, CONVERT(varchar(7800), DECRYPTBYPASSPHRASE(@passPhrase, [FullName])) as FullName," +
+                " CONVERT(varchar(7800), DECRYPTBYPASSPHRASE(@passPhrase, [Email])) as Email, [RolesId], [InsDt], " +
                 "CASE WHEN (select count(*) from [dbo].[PasswordHistory] WHERE UsersId = [dbo].[Users].[Id] AND IsCurrent = 1) > 0 THEN 'True' ELSE 'False' END as HasActivePassword " +
                               "FROM [dbo].[Users] " +
                               "ORDER BY FullName ";

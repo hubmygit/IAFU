@@ -20,7 +20,7 @@ namespace IafuAlerts
         public Users(int givenId)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT U.[Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
+            string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U  " +
                               "WHERE R.Id = U.RolesId AND U.Id = " + givenId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -52,7 +52,7 @@ namespace IafuAlerts
             string ret = "";
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [Email])) as Email " +
+            string SelectSt = "SELECT CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [Email])) as Email " +
                               "FROM [dbo].[Users] " +
                               "WHERE Id = @Id ";
 
@@ -86,7 +86,7 @@ namespace IafuAlerts
             Users ret = new Users();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT U.[Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
+            string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U " +
                               "WHERE R.Id = U.RolesId AND R.Id = 2 ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);

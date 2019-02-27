@@ -68,9 +68,9 @@ namespace IafuAlerts
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
                               "D.ActionDt, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
                               "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
                               "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
                               "FROM [dbo].[FIDetail] D " +

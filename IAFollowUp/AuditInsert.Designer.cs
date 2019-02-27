@@ -213,7 +213,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtTitle.Location = new System.Drawing.Point(137, 65);
-            this.txtTitle.MaxLength = 500;
             this.txtTitle.Multiline = true;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ScrollBars = System.Windows.Forms.ScrollBars.Both;

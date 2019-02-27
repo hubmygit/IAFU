@@ -70,10 +70,12 @@
             this.lblIssuesAllCnt = new System.Windows.Forms.Label();
             this.lblIssuesOpenCnt = new System.Windows.Forms.Label();
             this.lblIssuesMyCnt = new System.Windows.Forms.Label();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -86,6 +88,8 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 63);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemMemoEdit1});
             this.gridControl1.Size = new System.Drawing.Size(1184, 379);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -223,6 +227,7 @@
             // colAuditTitle
             // 
             this.colAuditTitle.Caption = "Audit Title";
+            this.colAuditTitle.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colAuditTitle.FieldName = "AuditTitle";
             this.colAuditTitle.Name = "colAuditTitle";
             this.colAuditTitle.Visible = true;
@@ -262,6 +267,7 @@
             // colHeaderTitle
             // 
             this.colHeaderTitle.Caption = "Header Title";
+            this.colHeaderTitle.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colHeaderTitle.FieldName = "HeaderTitle";
             this.colHeaderTitle.Name = "colHeaderTitle";
             this.colHeaderTitle.Visible = true;
@@ -281,6 +287,7 @@
             // colDetailDescription
             // 
             this.colDetailDescription.Caption = "Detail Description";
+            this.colDetailDescription.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colDetailDescription.FieldName = "DetailDescription";
             this.colDetailDescription.Name = "colDetailDescription";
             this.colDetailDescription.Visible = true;
@@ -300,6 +307,7 @@
             // colDetailActionReq
             // 
             this.colDetailActionReq.Caption = "Action Required";
+            this.colDetailActionReq.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colDetailActionReq.FieldName = "DetailActionReq";
             this.colDetailActionReq.Name = "colDetailActionReq";
             this.colDetailActionReq.Visible = true;
@@ -477,6 +485,10 @@
             this.lblIssuesMyCnt.Text = "0";
             this.lblIssuesMyCnt.Visible = false;
             // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
             // FIView_Auditees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,6 +512,7 @@
             this.cmsDHA.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,5 +559,6 @@
         private System.Windows.Forms.Label lblIssuesAllCnt;
         private System.Windows.Forms.Label lblIssuesOpenCnt;
         private System.Windows.Forms.Label lblIssuesMyCnt;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
     }
 }

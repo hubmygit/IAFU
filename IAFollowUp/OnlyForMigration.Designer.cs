@@ -39,13 +39,14 @@
             // 
             // dtpALInsDt
             // 
-            this.dtpALInsDt.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtpALInsDt.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.dtpALInsDt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.dtpALInsDt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpALInsDt.Location = new System.Drawing.Point(281, 107);
             this.dtpALInsDt.Name = "dtpALInsDt";
             this.dtpALInsDt.Size = new System.Drawing.Size(180, 22);
             this.dtpALInsDt.TabIndex = 0;
+            this.dtpALInsDt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpALInsDt_KeyDown);
             // 
             // lblALInsDt
             // 
@@ -84,7 +85,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(180, 20);
             this.txtEmail.TabIndex = 4;
-            this.txtEmail.Text = "OnlyForMigration@moh.gr";
+            this.txtEmail.Text = "papacodi@moh.gr";
             // 
             // lblEmail
             // 

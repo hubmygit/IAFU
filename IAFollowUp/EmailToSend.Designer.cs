@@ -120,7 +120,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtSubject.Location = new System.Drawing.Point(81, 12);
-            this.txtSubject.MaxLength = 500;
             this.txtSubject.Multiline = true;
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.ReadOnly = true;
@@ -144,7 +143,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtBody.Location = new System.Drawing.Point(81, 118);
-            this.txtBody.MaxLength = 500;
             this.txtBody.Multiline = true;
             this.txtBody.Name = "txtBody";
             this.txtBody.ReadOnly = true;

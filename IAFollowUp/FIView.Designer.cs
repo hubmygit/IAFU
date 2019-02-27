@@ -396,7 +396,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtAuditTitle.Location = new System.Drawing.Point(84, 34);
-            this.txtAuditTitle.MaxLength = 500;
             this.txtAuditTitle.Multiline = true;
             this.txtAuditTitle.Name = "txtAuditTitle";
             this.txtAuditTitle.ReadOnly = true;

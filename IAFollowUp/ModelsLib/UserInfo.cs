@@ -76,12 +76,12 @@ namespace IAFollowUp
             //string SelectSt = "SELECT [Id], [UserName], [RolesId], [FullName], [Email] FROM [dbo].[Users] WHERE UserName = '" + GivenUserName + "'";
 
             string SelectSt = "SELECT [Id], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [UserName])) as UserName, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [UserName])) as UserName, " +
                               "[RolesId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase ,  [FullName])) as FullName, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase ,  [Email])) as Email " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase ,  [FullName])) as FullName, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase ,  [Email])) as Email " +
                               "FROM [dbo].[Users] WHERE " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase ,  [UserName])) = '" + GivenUserName + "'";
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase ,  [UserName])) = '" + GivenUserName + "'";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
@@ -160,7 +160,7 @@ namespace IAFollowUp
                               "[dbo].[Users] U on P.UsersId = U.Id " +
                               "WHERE P.IsCurrent = 'true' and " +
                               //"U.UserName = '" + GivenUserName + "'";
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase,  U.UserName)) = '" + GivenUserName + "'";
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE(@passPhrase,  U.UserName)) = '" + GivenUserName + "'";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -266,7 +266,7 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT U.Id " +
                               "FROM [dbo].[Users] U " +
-                              "WHERE CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase,  U.UserName)) = '" + GivenUserName + "'";
+                              "WHERE CONVERT(varchar(7800), DECRYPTBYPASSPHRASE(@passPhrase,  U.UserName)) = '" + GivenUserName + "'";
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -373,9 +373,9 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "INSERT INTO [dbo].[AppLogIn] (AppUserId, WinUser, PcName, InsDate) " +
                            "OUTPUT INSERTED.Id " +
-                           "VALUES " + 
-                           "(@appUserId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @winUser)), " + 
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @pcName)), getdate()) ";
+                           "VALUES " +
+                           "(@appUserId, encryptByPassPhrase(@passPhrase, convert(varchar(7800), @winUser)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @pcName)), getdate()) ";
 
             try
             {

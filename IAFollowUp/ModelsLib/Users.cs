@@ -20,7 +20,7 @@ namespace IAFollowUp
         public Users(int givenId)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT U.[Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
+            string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U  " +
                               "WHERE R.Id = U.RolesId AND U.Id = " + givenId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -81,7 +81,7 @@ namespace IAFollowUp
             List<Users> ret = new List<Users>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT [Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [FullName])) as FullName " +
+            string SelectSt = "SELECT [Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [FullName])) as FullName " +
                               "FROM [dbo].[Users] ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
@@ -109,7 +109,7 @@ namespace IAFollowUp
             List<Users> ret = new List<Users>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT U.[Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
+            string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U " +
                               "WHERE R.Id = U.RolesId ";
 
@@ -161,7 +161,7 @@ namespace IAFollowUp
             string ret = "";
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [Email])) as Email " +
+            string SelectSt = "SELECT CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [Email])) as Email " +
                               "FROM [dbo].[Users] " +
                               "WHERE Id = @Id ";
                        
@@ -194,7 +194,7 @@ namespace IAFollowUp
             List<Users> ret = new List<Users>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT U.[Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
+            string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U " +
                               "WHERE R.Id = U.RolesId AND R.Id = 3 ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
@@ -230,7 +230,7 @@ namespace IAFollowUp
             Users ret = new Users();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT U.[Id], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
+            string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U " +
                               "WHERE R.Id = U.RolesId AND R.Id = 2 ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);

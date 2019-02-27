@@ -59,7 +59,7 @@ namespace IAFollowUp
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
                               "A.[ReportDt], " +
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
@@ -148,7 +148,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
                               "A.[ReportDt], " +
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
@@ -260,7 +260,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
                               "A.[ReportDt], " +
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
@@ -388,7 +388,7 @@ namespace IAFollowUp
                            "[IASentNumber],[InsUserID],[InsDt], [AuditRatingId], [AuditRef]) " +
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
-                           "(@Year, @CompanyID, @AuditTypeID, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title)), @ReportDt, @Auditor1ID, " +
+                           "(@Year, @CompanyID, @AuditTypeID, encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Title)), @ReportDt, @Auditor1ID, " +
                            "@Auditor2ID, @SupervisorID, @IsCompleted, @AuditNumber, @IASentNumber, @InsUserID, getDate(), @AuditRatingId, @AuditRef) ";
             try
             {
@@ -469,7 +469,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string InsSt = "UPDATE [dbo].[Audit] SET [Year] = @Year, [CompanyID] = @CompanyID, [AuditTypeID] = @AuditTypeID, " +
-                "[Title] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Title))," +
+                "[Title] = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Title))," +
                 "[ReportDt] = @ReportDt, " +
                 "[Auditor1ID] = @Auditor1ID, [Auditor2ID] = @Auditor2ID, [SupervisorID] = @SupervisorID, [IsCompleted] = @IsCompleted, [AuditNumber] = @AuditNumber, " +
                 "[IASentNumber] = @IASentNumber, [UpdUserID] = @UpdUserID, [UpdDt] = getDate(), [AuditRatingId] = @AuditRatingId, [AuditRef] = @AuditRef " +
@@ -621,9 +621,9 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
                               "D.ActionDt, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
                               "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
                               "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
                               "FROM [dbo].[FIDetail] D " +
@@ -721,7 +721,7 @@ namespace IAFollowUp
             List<FIHeader> ret = new List<FIHeader>();
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
+            string SelectSt = "SELECT H.[Id], H.[AuditId], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , H.[Title])) as Title, " +
                               "H.[FICategoryId], H.[FIId], isnull(H.[IsDeleted], 'FALSE') as IsDeleted " +
                               "FROM [dbo].[FIHeader] H " +
                               "WHERE H.[AuditId] = @AuditId ";
@@ -1088,7 +1088,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
                               "A.[ReportDt], " +
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +
@@ -1239,7 +1239,7 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT A.[Id], A.[Year], A.[CompanyId], A.[AuditTypeId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) as Title, " +
                               "A.[ReportDt], " +
                               "A.[Auditor1Id], A.[Auditor2Id], A.[SupervisorId], " +
                               "A.[IsCompleted], A.[AuditNumber], A.[IASentNumber], " +

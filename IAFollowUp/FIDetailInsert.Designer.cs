@@ -90,7 +90,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtDescription.Location = new System.Drawing.Point(139, 265);
-            this.txtDescription.MaxLength = 500;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -103,7 +102,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtActionReq.Location = new System.Drawing.Point(139, 419);
-            this.txtActionReq.MaxLength = 500;
             this.txtActionReq.Multiline = true;
             this.txtActionReq.Name = "txtActionReq";
             this.txtActionReq.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -194,7 +192,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtAuditTitle.Location = new System.Drawing.Point(97, 40);
-            this.txtAuditTitle.MaxLength = 500;
             this.txtAuditTitle.Multiline = true;
             this.txtAuditTitle.Name = "txtAuditTitle";
             this.txtAuditTitle.ReadOnly = true;
@@ -240,7 +237,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtHeaderTitle.Location = new System.Drawing.Point(97, 146);
-            this.txtHeaderTitle.MaxLength = 500;
             this.txtHeaderTitle.Multiline = true;
             this.txtHeaderTitle.Name = "txtHeaderTitle";
             this.txtHeaderTitle.ReadOnly = true;

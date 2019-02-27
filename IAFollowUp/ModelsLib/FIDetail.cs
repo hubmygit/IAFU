@@ -68,9 +68,9 @@ namespace IAFollowUp
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
                               "D.ActionDt, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
                               "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
                               "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
                               "FROM [dbo].[FIDetail] D " +
@@ -289,7 +289,7 @@ namespace IAFollowUp
             string InsSt = "INSERT INTO [dbo].[FIDetail] ([FIHeaderId], [Description], [ActionReq], [ActionDt], [ActionCode], [IsClosed], [FISubId], [InsUserId], [InsDt] ) " +
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
-                           "(@HeaderId, encryptByPassPhrase(@passPhrase, convert(varchar(500), @Description)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @ActionReq))," +
+                           "(@HeaderId, encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Description)), encryptByPassPhrase(@passPhrase, convert(varchar(7800), @ActionReq))," +
                            "@ActionDt, @ActionCode, @IsClosed, @FISubId, @InsUserId, getDate()) ";
             try
             {
@@ -430,8 +430,8 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[FIDetail] SET [FIHeaderId] = @HeaderId, [Description] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Description)), " +
-                          "[ActionReq] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @ActionReq)), [ActionDt] = @ActionDt, [ActionCode] = @ActionCode, " +
+            string InsSt = "UPDATE [dbo].[FIDetail] SET [FIHeaderId] = @HeaderId, [Description] = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Description)), " +
+                          "[ActionReq] = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @ActionReq)), [ActionDt] = @ActionDt, [ActionCode] = @ActionCode, " +
                           "[IsClosed] = @IsClosed, [FISubId] = @FISubId, [UpdUserId] = @UpdUserId, [UpdDt] = getDate() " +
                           "WHERE id = @id";
             try
@@ -738,9 +738,9 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
                               "D.ActionDt, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
                               "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
                               "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
                               "FROM [dbo].[FIDetail] D ";
@@ -1042,7 +1042,7 @@ namespace IAFollowUp
             string ret = "";
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) + ' (' + H.FIId + '/' + D.FISubId + '/' + D.ActionCode + ')' as EmailMessage " +
+            string SelectSt = "SELECT CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , A.[Title])) + ' (' + H.FIId + '/' + D.FISubId + '/' + D.ActionCode + ')' as EmailMessage " +
                               "FROM [dbo].[FIDetail] D left outer join " +
                               "     [dbo].[FIHeader] H on D.FIHeaderId = H.Id left outer join " +
                               "     [dbo].[Audit] A on H.AuditId = A.Id " +

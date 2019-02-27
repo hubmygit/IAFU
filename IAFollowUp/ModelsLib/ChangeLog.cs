@@ -37,9 +37,9 @@ namespace IAFollowUp
                            "VALUES " +
                            "(@Tbl_Id, @AppUsers_Id, @Dt, @ExecStatement, " +
                            //"@TableName, @FieldName, @FieldNameToShow, @OldValue, @NewValue, @Section) ";
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @TableName)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @FieldName)), " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @FieldNameToShow)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @OldValue)), " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @NewValue)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @Section))) ";
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @TableName)), encryptByPassPhrase(@passPhrase, convert(varchar(7800), @FieldName)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @FieldNameToShow)), encryptByPassPhrase(@passPhrase, convert(varchar(7800), @OldValue)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @NewValue)), encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Section))) ";
 
             try
             {
@@ -444,12 +444,12 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = //"SELECT L.[ExecStatement], L.[Dt], L.[Section], L.[TableName], L.[FieldNameToShow], L.[OldValue], L.[NewValue], L.[AppUsers_Id], " +
                               //"L.[FieldName], L.[Tbl_Id] " +
-                              "SELECT L.[ExecStatement], L.[Dt], CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[Section])) as Section, " + 
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[TableName])) as TableName, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldNameToShow])) as FieldNameToShow, " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[OldValue])) as OldValue, " + 
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[NewValue])) as NewValue, L.[AppUsers_Id], " +
-                              "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldName])) as FieldName, L.[Tbl_Id] " +
+                              "SELECT L.[ExecStatement], L.[Dt], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , L.[Section])) as Section, " + 
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , L.[TableName])) as TableName, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldNameToShow])) as FieldNameToShow, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , L.[OldValue])) as OldValue, " + 
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , L.[NewValue])) as NewValue, L.[AppUsers_Id], " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , L.[FieldName])) as FieldName, L.[Tbl_Id] " +
 
                               "FROM [dbo].[ChangeLog] L " +
                               "ORDER BY L.Id "; //ToDo

@@ -37,8 +37,8 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [DetailId], [ActivityDescriptionId], " +
-                "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [CommentRtf])) as CommentRtf, " +
-                "CONVERT(varchar(500), DECRYPTBYPASSPHRASE( @passPhrase , [CommentText])) as CommentText, " +
+                "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [CommentRtf])) as CommentRtf, " +
+                "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [CommentText])) as CommentText, " +
                 "[FromUserId], [ToUserId], [InsDt], [PlaceholderId], [ActionDt] " +
                               "FROM [dbo].[FIDetail_Activity] " +
                               "WHERE DetailId = @detId " +
@@ -262,8 +262,8 @@ namespace IAFollowUp
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
                            "(@DetailId, @ActivityDescriptionId, @ActionDt, " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " + 
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentText)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentRtf)), " + 
                            "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @ApploginId, @InsUserId, getDate())";
 
             if (Migration.migrationMode)
@@ -273,8 +273,8 @@ namespace IAFollowUp
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
                            "(@DetailId, @ActivityDescriptionId, @ActionDt, " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentText)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentRtf)), " +
                            "@FromUserId, @ToUserId, @IsPublic, @PlaceholderId, @ApploginId, @InsUserId, @InsDt, 1)";
             }
 
@@ -440,7 +440,7 @@ namespace IAFollowUp
             string ret = "";
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase, CommentRtf)) as CommentRtf " +
+            string SelectSt = "SELECT CONVERT(varchar(7800), DECRYPTBYPASSPHRASE(@passPhrase, CommentRtf)) as CommentRtf " +
                               "FROM [dbo].[Activity_CommentsDrafts] " +
                               "WHERE DetailId = @detailId AND isnull(PlaceholderId, 0) = @placeholderId AND UserId = @userId ";
 
@@ -477,7 +477,7 @@ namespace IAFollowUp
             string ret = "";
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string SelectSt = "SELECT CONVERT(varchar(500), DECRYPTBYPASSPHRASE(@passPhrase, CommentText)) as CommentText " +
+            string SelectSt = "SELECT CONVERT(varchar(7800), DECRYPTBYPASSPHRASE(@passPhrase, CommentText)) as CommentText " +
                               "FROM [dbo].[Activity_CommentsDrafts] " +
                               "WHERE DetailId = @detailId AND isnull(PlaceholderId, 0) = @placeholderId AND UserId = @userId ";
 
@@ -587,8 +587,8 @@ namespace IAFollowUp
             string InsSt = "INSERT INTO [dbo].[Activity_CommentsDrafts] " + 
                             "([DetailId], [PlaceholderId], [UserId], [CommentRtf], [CommentText], [InsDt]) VALUES " +
                            "(@DetailId, @PlaceholderId, @UserId, " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentRtf)), " +
-                           "encryptByPassPhrase(@passPhrase, convert(varchar(500), @CommentText)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentRtf)), " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentText)), " +
                            "getDate()) ";
 
             try

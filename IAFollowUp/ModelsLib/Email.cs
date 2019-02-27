@@ -28,8 +28,16 @@ namespace IAFollowUp
                 MessageBox.Show("ERROR:" + ex.Message);
             }
 
-            service.Credentials = new WebCredentials(emailParams.UserName, emailParams.Password, emailParams.Domain);
-            service.AutodiscoverUrl(emailParams.EmailAddress);
+            try
+            {
+                service.Credentials = new WebCredentials(emailParams.UserName, emailParams.Password, emailParams.Domain);
+                service.AutodiscoverUrl(emailParams.EmailAddress);
+            }
+            catch (Exception ex)
+            {
+                ret = false;
+                MessageBox.Show("ERROR:" + ex.Message);
+            }
 
             EmailMessage email = new EmailMessage(service);
             email.Importance = Importance.High;

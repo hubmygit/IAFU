@@ -12,14 +12,14 @@ namespace IAFollowUp
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             if (!AppVer.IsLatestVersion()) //check version
                 return;
 
-            Migration.migrationMode = true;
+            Migration.migrationMode = false;
             if (Migration.migrationMode == true)
             {
                 OnlyForMigration frmMig = new OnlyForMigration();

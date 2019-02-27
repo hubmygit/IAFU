@@ -134,8 +134,8 @@ namespace IAFollowUp
             string InsSt = "INSERT INTO [dbo].[Users] ([UserName],[FullName],[Email] ,[RolesId], [InsDt]) " +
                            "OUTPUT INSERTED.Id " +
                            "VALUES " +
-                           "(encryptByPassPhrase(@passPhrase, convert(varchar(500), @UserName)), encryptByPassPhrase(@passPhrase, convert(varchar(500), @FullName))," +
-                           " encryptByPassPhrase(@passPhrase, convert(varchar(500), @Email)), @RolesId, getdate() )";
+                           "(encryptByPassPhrase(@passPhrase, convert(varchar(7800), @UserName)), encryptByPassPhrase(@passPhrase, convert(varchar(7800), @FullName))," +
+                           " encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Email)), @RolesId, getdate() )";
             try
             {
                 sqlConn.Open();
@@ -211,8 +211,8 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "UPDATE [dbo].[Users] SET [UserName] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @UserName)), " +
-                "[FullName] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @FullName)), [Email] = encryptByPassPhrase(@passPhrase, convert(varchar(500), @Email)) , " +
+            string InsSt = "UPDATE [dbo].[Users] SET [UserName] = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @UserName)), " +
+                "[FullName] = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @FullName)), [Email] = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Email)) , " +
                 "[RolesId] = @RolesId " +
                 "WHERE id = @id ";
             try

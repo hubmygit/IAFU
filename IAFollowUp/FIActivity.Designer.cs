@@ -35,6 +35,7 @@
             this.MIattachments = new System.Windows.Forms.ToolStripMenuItem();
             this.MIcopyComments = new System.Windows.Forms.ToolStripMenuItem();
             this.MIcopyAttachments = new System.Windows.Forms.ToolStripMenuItem();
+            this.MIexportAllToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.fIDetailActivityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -100,7 +101,6 @@
             this.gbRelInfo = new System.Windows.Forms.GroupBox();
             this.gbActions = new System.Windows.Forms.GroupBox();
             this.gbComments = new System.Windows.Forms.GroupBox();
-            this.MIexportAllToExcel = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsActivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fIDetailActivityBindingSource)).BeginInit();
@@ -138,28 +138,35 @@
             this.MIcopyAttachments,
             this.MIexportAllToExcel});
             this.cmsActivity.Name = "cmsHeader";
-            this.cmsActivity.Size = new System.Drawing.Size(181, 114);
+            this.cmsActivity.Size = new System.Drawing.Size(174, 92);
             // 
             // MIattachments
             // 
             this.MIattachments.Name = "MIattachments";
-            this.MIattachments.Size = new System.Drawing.Size(180, 22);
+            this.MIattachments.Size = new System.Drawing.Size(173, 22);
             this.MIattachments.Text = "Attachments";
             this.MIattachments.Click += new System.EventHandler(this.MIattachments_Click);
             // 
             // MIcopyComments
             // 
             this.MIcopyComments.Name = "MIcopyComments";
-            this.MIcopyComments.Size = new System.Drawing.Size(180, 22);
+            this.MIcopyComments.Size = new System.Drawing.Size(173, 22);
             this.MIcopyComments.Text = "Copy Comments";
             this.MIcopyComments.Click += new System.EventHandler(this.MIcopyComments_Click);
             // 
             // MIcopyAttachments
             // 
             this.MIcopyAttachments.Name = "MIcopyAttachments";
-            this.MIcopyAttachments.Size = new System.Drawing.Size(180, 22);
+            this.MIcopyAttachments.Size = new System.Drawing.Size(173, 22);
             this.MIcopyAttachments.Text = "Copy Attachments";
             this.MIcopyAttachments.Click += new System.EventHandler(this.MIcopyAttachments_Click);
+            // 
+            // MIexportAllToExcel
+            // 
+            this.MIexportAllToExcel.Name = "MIexportAllToExcel";
+            this.MIexportAllToExcel.Size = new System.Drawing.Size(173, 22);
+            this.MIexportAllToExcel.Text = "Export All To Excel";
+            this.MIexportAllToExcel.Click += new System.EventHandler(this.MIexportAllToExcel_Click);
             // 
             // gridView1
             // 
@@ -698,7 +705,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuditTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtAuditTitle.Location = new System.Drawing.Point(116, 52);
-            this.txtAuditTitle.MaxLength = 500;
             this.txtAuditTitle.Multiline = true;
             this.txtAuditTitle.Name = "txtAuditTitle";
             this.txtAuditTitle.ReadOnly = true;
@@ -732,7 +738,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtHeaderTitle.Location = new System.Drawing.Point(116, 138);
-            this.txtHeaderTitle.MaxLength = 500;
             this.txtHeaderTitle.Multiline = true;
             this.txtHeaderTitle.Name = "txtHeaderTitle";
             this.txtHeaderTitle.ReadOnly = true;
@@ -756,7 +761,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtDescription.Location = new System.Drawing.Point(116, 224);
-            this.txtDescription.MaxLength = 500;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
@@ -770,7 +774,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtActionReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtActionReq.Location = new System.Drawing.Point(116, 282);
-            this.txtActionReq.MaxLength = 500;
             this.txtActionReq.Multiline = true;
             this.txtActionReq.Name = "txtActionReq";
             this.txtActionReq.ReadOnly = true;
@@ -851,13 +854,6 @@
             this.gbComments.TabIndex = 0;
             this.gbComments.TabStop = false;
             this.gbComments.Text = "Comments for Action";
-            // 
-            // MIexportAllToExcel
-            // 
-            this.MIexportAllToExcel.Name = "MIexportAllToExcel";
-            this.MIexportAllToExcel.Size = new System.Drawing.Size(180, 22);
-            this.MIexportAllToExcel.Text = "Export All To Excel";
-            this.MIexportAllToExcel.Click += new System.EventHandler(this.MIexportAllToExcel_Click);
             // 
             // FIActivity
             // 

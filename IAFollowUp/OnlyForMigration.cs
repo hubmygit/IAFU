@@ -35,5 +35,18 @@ namespace IAFollowUp
 
             Close();
         }
+
+        private void dtpALInsDt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
+            {
+                DateTime temp;
+                if (DateTime.TryParse(Clipboard.GetText(), out temp))
+                {
+                    dtpALInsDt.Value = temp; //DateTime.Parse(Clipboard.GetText());
+                    e.Handled = true;
+                }
+            }
+        }
     }
 }
