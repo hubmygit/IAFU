@@ -33,7 +33,9 @@ namespace IAFollowUp
         public Owners_MT DetailCurrentOwner1 { get; set; }
         public Owners_MT DetailCurrentOwner2 { get; set; }
         public Owners_MT DetailCurrentOwner3 { get; set; }
-
+        public Owners_MT DetailRealOwner1 { get; set; }
+        public Owners_MT DetailRealOwner2 { get; set; }
+        public Owners_MT DetailRealOwner3 { get; set; }
         public ActionSide ActionSide { get; set; }
 
         public FI_DetailHeaderAudit()
@@ -75,6 +77,9 @@ namespace IAFollowUp
                         fiDHA.DetailCurrentOwner1 = thisDetail.CurrentOwner1;
                         fiDHA.DetailCurrentOwner2 = thisDetail.CurrentOwner2;
                         fiDHA.DetailCurrentOwner3 = thisDetail.CurrentOwner3;
+                        fiDHA.DetailRealOwner1 = thisDetail.RealOwner1;
+                        fiDHA.DetailRealOwner2 = thisDetail.RealOwner2;
+                        fiDHA.DetailRealOwner3 = thisDetail.RealOwner3;
 
                         ActionSide actSide = FIDetailActivity.getActionSide_forAuditors(thisDetail);
                         if (actSide.Id == 2) //auditees

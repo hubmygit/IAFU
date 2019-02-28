@@ -164,14 +164,171 @@ namespace IAFollowUp
             //};
         }
 
+        private BindingList<FI_DetailHeaderAudit> myPendingIssues(BindingList<FI_DetailHeaderAudit> givenFiDHABList)
+        {
+            BindingList<FI_DetailHeaderAudit> ret = new BindingList<FI_DetailHeaderAudit>();
+
+            foreach (FI_DetailHeaderAudit dha in givenFiDHABList)
+            {
+                int actionSide = dha.ActionSide.Id;
+
+                if (UserInfo.userDetails.RolesId == 2 && actionSide == 1) //cae 
+                {
+                    if (dha.AuditAuditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor1.Id) == false)
+                    {
+                        continue;
+                    }
+
+                    if (dha.AuditAuditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor2.Id) == false)
+                    {
+                        continue;
+                    }
+
+                    if (dha.AuditSupervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditSupervisor.Id) == false)
+                    {
+                        continue;
+                    }
+
+                    FICategory fiCat = dha.HeaderCategory;
+                    List<FIDetailVoting> VotingList = FIDetailVoting.SelectCurrent(dha.DetailId);
+                    ChiefVoteCause voteCause = FIDetailVoting.doesChiefNeedsToVote(fiCat, VotingList);
+
+                    if (voteCause == ChiefVoteCause.None)
+                    {
+                        continue;
+                    }
+                }
+                else if (UserInfo.userDetails.RolesId == 3 && actionSide == 1) //auditors
+                {
+                    if (dha.AuditSupervisor.Id == UserInfo.userDetails.Id) //supervisor
+                    {
+                        if (dha.AuditAuditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor1.Id) == false)
+                        {
+                            continue;
+                        }
+
+                        if (dha.AuditAuditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor2.Id) == false)
+                        {
+                            continue;
+                        }
+
+                        if (FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditSupervisor.Id) == true)
+                        {
+                            continue;
+                        }
+                    }
+                    else if (dha.AuditAuditor1.Id == UserInfo.userDetails.Id) //auditor1
+                    {
+                        if (FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor1.Id) == true)
+                        {
+                            continue;
+                        }
+                    }
+                    else if (dha.AuditAuditor2.Id == UserInfo.userDetails.Id) //auditor2 
+                    {
+                        if (FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor2.Id) == true)
+                        {
+                            continue;
+                        }
+                    }
+                    else //other auditors
+                    {
+                        //others - no action
+                        continue;
+                    }
+                }
+                else if (UserInfo.userDetails.RolesId == 6 && actionSide == 2) //MT
+                {
+                    bool anyOfPhs = false;
+                    //check placeholders 
+                    if (dha.DetailCurrentOwner1.User != null && dha.DetailCurrentOwner1.User.Id == UserInfo.userDetails.Id)
+                    {
+                        ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner1.Placeholder.Id);
+                        if (actS.Id == 2)
+                        {
+                            anyOfPhs = true;
+                        }
+                    }
+
+                    if (dha.DetailCurrentOwner2.User != null && dha.DetailCurrentOwner2.User.Id == UserInfo.userDetails.Id)
+                    {
+                        ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner2.Placeholder.Id);
+                        if (actS.Id == 2)
+                        {
+                            anyOfPhs = true;
+                        }
+                    }
+
+                    if (dha.DetailCurrentOwner3.User != null && dha.DetailCurrentOwner3.User.Id == UserInfo.userDetails.Id)
+                    {
+                        ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner3.Placeholder.Id);
+                        if (actS.Id == 2)
+                        {
+                            anyOfPhs = true;
+                        }
+                    }
+
+                    if (anyOfPhs == false)
+                    {
+                        continue;
+                    }
+                }
+                else if (UserInfo.userDetails.RolesId == 7 && actionSide == 2) //DT
+                {
+                    //no need to chech for multiple roles (e.g. mt and dt).......at the same detail.....
+                    bool anyOfPhs = false;
+                    //check placeholders 
+                    if (dha.DetailCurrentOwner1.User != null && Owners_DT.IsUserDelegatee(dha.DetailId, dha.DetailCurrentOwner1.Placeholder.Id, UserInfo.userDetails.Id))
+                    {
+                        ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner1.Placeholder.Id);
+                        if (actS.Id == 2)
+                        {
+                            anyOfPhs = true;
+                        }
+                    }
+
+                    if (dha.DetailCurrentOwner2.User != null && Owners_DT.IsUserDelegatee(dha.DetailId, dha.DetailCurrentOwner2.Placeholder.Id, UserInfo.userDetails.Id))
+                    {
+                        ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner2.Placeholder.Id);
+                        if (actS.Id == 2)
+                        {
+                            anyOfPhs = true;
+                        }
+                    }
+
+                    if (dha.DetailCurrentOwner3.User != null && Owners_DT.IsUserDelegatee(dha.DetailId, dha.DetailCurrentOwner3.Placeholder.Id, UserInfo.userDetails.Id))
+                    {
+                        ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner3.Placeholder.Id);
+                        if (actS.Id == 2)
+                        {
+                            anyOfPhs = true;
+                        }
+                    }
+
+                    if (anyOfPhs == false)
+                    {
+                        continue;
+                    }
+                }
+                else //never... 
+                {
+                    continue;
+                }
+
+                ret.Add(dha);
+            }
+
+            return ret;
+        }
+
         private void chbMine_CheckedChanged(object sender, EventArgs e)
         {
             Color initColor = gridView1.Appearance.Row.BackColor;
             //int ColoredRowsCounter = 0;
-            List<int> ColoredRows = new List<int>();
+            //List<int> ColoredRows = new List<int>();
 
             if (chbMine.Checked)
-            {                
+            {
                 if (UserInfo.userDetails.RolesId == 1) //admin
                 {
                     //do nothing - no actions
@@ -184,7 +341,7 @@ namespace IAFollowUp
                     return;
                 }
 
-                
+                /*
                 gridView1.RowStyle += (sender2, e2) =>
                 {
                     if (e2.RowHandle < 0)
@@ -198,7 +355,6 @@ namespace IAFollowUp
 
                     //int actionSide = Convert.ToInt32(gridView1.GetRowCellValue(e2.RowHandle, gridView1.Columns["ActionSide.Id"]).ToString());
                     int actionSide = dha.ActionSide.Id;
-
 
                     if (UserInfo.userDetails.RolesId == 2 && actionSide == 1) //cae 
                     {
@@ -342,7 +498,7 @@ namespace IAFollowUp
                     {
                         return;
                     }
-                                                                                          
+
                     e2.Appearance.BackColor = Color.LightBlue;
                     e2.HighPriority = true;
 
@@ -356,9 +512,34 @@ namespace IAFollowUp
                     lblIssuesMyCnt.Visible = true;
 
                 };
-                
+                */
+
+                //----new function--
+                BindingList<FI_DetailHeaderAudit> FilteredList = myPendingIssues(fiDHABList);
+                lblIssuesMyCnt.Text = FilteredList.Count.ToString();
+                //lblIssuesMyCnt.Visible = true;
+
+                gridView1.RowStyle += (sender2, e2) =>
+                {
+                    if (e2.RowHandle < 0)
+                    {
+                        return;
+                    }
+
+                    int detId = Convert.ToInt32(gridView1.GetRowCellValue(e2.RowHandle, gridView1.Columns["DetailId"]).ToString());
+                    if (FilteredList.Count(i => i.DetailId == detId) > 0)
+                    {
+                        e2.Appearance.BackColor = Color.LightBlue;
+                        e2.HighPriority = true;
+
+                        lblIssuesMyCnt.Visible = true;
+                    }
+                };
+                //----new function--
+
                 gridView1.Focus();
 
+                //lblIssuesMyCnt.Visible = true;
 
                 //for (int i = 0; i < gridView1.DataRowCount; i++)
                 //{
@@ -368,10 +549,10 @@ namespace IAFollowUp
                 //        ColoredRowsCounter++;
                 //    }
                 //}
-                
 
 
-                
+
+
             }
             else
             {
