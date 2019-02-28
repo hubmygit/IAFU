@@ -663,7 +663,7 @@
             // 
             this.txtActionCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtActionCode.Location = new System.Drawing.Point(457, 196);
-            this.txtActionCode.MaxLength = 3;
+            this.txtActionCode.MaxLength = 50;
             this.txtActionCode.Name = "txtActionCode";
             this.txtActionCode.ReadOnly = true;
             this.txtActionCode.Size = new System.Drawing.Size(220, 22);
