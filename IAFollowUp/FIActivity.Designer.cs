@@ -192,13 +192,19 @@
             // 
             // colId
             // 
+            this.colId.Caption = "Id";
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
+            this.colId.Visible = true;
+            this.colId.VisibleIndex = 8;
             // 
             // colDetailId
             // 
+            this.colDetailId.Caption = "DetailId";
             this.colDetailId.FieldName = "DetailId";
             this.colDetailId.Name = "colDetailId";
+            this.colDetailId.Visible = true;
+            this.colDetailId.VisibleIndex = 9;
             // 
             // colActivity
             // 

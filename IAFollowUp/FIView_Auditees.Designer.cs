@@ -46,6 +46,7 @@
             this.colHeaderFIId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailFISubId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditTitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colAuditAuditor1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditAuditor2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditSupervisor = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,7 +71,6 @@
             this.lblIssuesAllCnt = new System.Windows.Forms.Label();
             this.lblIssuesOpenCnt = new System.Windows.Forms.Label();
             this.lblIssuesMyCnt = new System.Windows.Forms.Label();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
@@ -154,16 +154,22 @@
             // 
             this.colAuditId.FieldName = "AuditId";
             this.colAuditId.Name = "colAuditId";
+            this.colAuditId.Visible = true;
+            this.colAuditId.VisibleIndex = 23;
             // 
             // colHeaderId
             // 
             this.colHeaderId.FieldName = "HeaderId";
             this.colHeaderId.Name = "colHeaderId";
+            this.colHeaderId.Visible = true;
+            this.colHeaderId.VisibleIndex = 24;
             // 
             // colDetailId
             // 
             this.colDetailId.FieldName = "DetailId";
             this.colDetailId.Name = "colDetailId";
+            this.colDetailId.Visible = true;
+            this.colDetailId.VisibleIndex = 25;
             // 
             // colActionSide1
             // 
@@ -233,6 +239,10 @@
             this.colAuditTitle.Visible = true;
             this.colAuditTitle.VisibleIndex = 5;
             this.colAuditTitle.Width = 70;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // colAuditAuditor1
             // 
@@ -484,10 +494,6 @@
             this.lblIssuesMyCnt.TabIndex = 8;
             this.lblIssuesMyCnt.Text = "0";
             this.lblIssuesMyCnt.Visible = false;
-            // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // FIView_Auditees
             // 

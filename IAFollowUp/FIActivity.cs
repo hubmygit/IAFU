@@ -262,7 +262,7 @@ namespace IAFollowUp
             FIHeader header = FIHeader.Select(false, new List<FIDetail>() { det }).First();
             int MTtoIA_counter = FIDetailActivity.howManyPublishesFromMTtoIA(det.Id, this.PHolder.Id);
 
-            if (header.FICategory.NeedsAttachment && MTtoIA_counter < 1) //K.E. 1, 2 - NeedsAttachment && first publication
+            if (Migration.migrationMode == false && header.FICategory.NeedsAttachment && MTtoIA_counter < 1) //K.E. 1, 2 - NeedsAttachment && first publication
             {                
                 if (fileNames.Length < 1)
                 {
