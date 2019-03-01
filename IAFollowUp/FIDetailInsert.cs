@@ -93,7 +93,7 @@ namespace IAFollowUp
         public FIDetail newDetailRecord = new FIDetail();
         public FIDetail oldDetailRecord = new FIDetail();
 
-        public List<Users> ownersList = Users.GetUsersByRole(UserRole.IsAuditee);
+        //public List<Users> ownersList = Users.GetUsersByRole(UserRole.IsAuditee);
 
         public void Init(Audit audit, FIHeader header)
         {

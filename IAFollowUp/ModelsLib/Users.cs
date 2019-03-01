@@ -115,7 +115,7 @@ namespace IAFollowUp
 
             if (role != UserRole.None)
             {
-                SelectSt += " AND R." + role.ToString() + " = 1 ";
+                SelectSt += "AND R.IsAdmin = 0 AND R." + role.ToString() + " = 1 ";
             }
 
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
