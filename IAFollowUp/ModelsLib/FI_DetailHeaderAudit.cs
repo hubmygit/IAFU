@@ -36,7 +36,9 @@ namespace IAFollowUp
         public Owners_MT DetailRealOwner1 { get; set; }
         public Owners_MT DetailRealOwner2 { get; set; }
         public Owners_MT DetailRealOwner3 { get; set; }
+        //---------------------------------//
         public ActionSide ActionSide { get; set; }
+        public bool IsMyPending { get; set; }
 
         public FI_DetailHeaderAudit()
         {
@@ -98,12 +100,171 @@ namespace IAFollowUp
                             }
                         }
 
+                        //mypending
+                        fiDHA.IsMyPending = false;
+                        if (UserInfo.userDetails.RolesId != 1 && UserInfo.userDetails.RolesId != 5) //admin, GM
+                        {
+                            fiDHA.IsMyPending = IsMyPendingIssue(fiDHA);
+                        }
+                        
                         ret.Add(fiDHA);
                     }
                 }
             }
 
             return ret;
+        }
+
+        private static bool IsMyPendingIssue(FI_DetailHeaderAudit dha)
+        {
+            bool ret = true;
+
+            int actionSide = dha.ActionSide.Id;
+
+            if (UserInfo.userDetails.RolesId == 2 && actionSide == 1) //cae 
+            {
+                if (dha.AuditAuditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor1.Id) == false)
+                {
+                    return false;
+                }
+
+                if (dha.AuditAuditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor2.Id) == false)
+                {
+                    return false;
+                }
+
+                if (dha.AuditSupervisor.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditSupervisor.Id) == false)
+                {
+                    return false;
+                }
+
+                FICategory fiCat = dha.HeaderCategory;
+                List<FIDetailVoting> VotingList = FIDetailVoting.SelectCurrent(dha.DetailId);
+                ChiefVoteCause voteCause = FIDetailVoting.doesChiefNeedsToVote(fiCat, VotingList);
+
+                if (voteCause == ChiefVoteCause.None)
+                {
+                    return false;
+                }
+            }
+            else if (UserInfo.userDetails.RolesId == 3 && actionSide == 1) //auditors
+            {
+                if (dha.AuditSupervisor.Id == UserInfo.userDetails.Id) //supervisor
+                {
+                    if (dha.AuditAuditor1.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor1.Id) == false)
+                    {
+                        return false;
+                    }
+
+                    if (dha.AuditAuditor2.Id > 0 && FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor2.Id) == false)
+                    {
+                        return false;
+                    }
+
+                    if (FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditSupervisor.Id) == true)
+                    {
+                        return false;
+                    }
+                }
+                else if (dha.AuditAuditor1.Id == UserInfo.userDetails.Id) //auditor1
+                {
+                    if (FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor1.Id) == true)
+                    {
+                        return false;
+                    }
+                }
+                else if (dha.AuditAuditor2.Id == UserInfo.userDetails.Id) //auditor2 
+                {
+                    if (FIDetailVoting.HasAlreadyVoted(dha.DetailId, dha.AuditAuditor2.Id) == true)
+                    {
+                        return false;
+                    }
+                }
+                else //other auditors
+                {
+                    //others - no action
+                    return false;
+                }
+            }
+            else if (UserInfo.userDetails.RolesId == 6 && actionSide == 2) //MT
+            {
+                bool anyOfPhs = false;
+                //check placeholders 
+                if (dha.DetailCurrentOwner1.User != null && dha.DetailCurrentOwner1.User.Id == UserInfo.userDetails.Id)
+                {
+                    ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner1.Placeholder.Id);
+                    if (actS.Id == 2)
+                    {
+                        anyOfPhs = true;
+                    }
+                }
+
+                if (dha.DetailCurrentOwner2.User != null && dha.DetailCurrentOwner2.User.Id == UserInfo.userDetails.Id)
+                {
+                    ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner2.Placeholder.Id);
+                    if (actS.Id == 2)
+                    {
+                        anyOfPhs = true;
+                    }
+                }
+
+                if (dha.DetailCurrentOwner3.User != null && dha.DetailCurrentOwner3.User.Id == UserInfo.userDetails.Id)
+                {
+                    ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner3.Placeholder.Id);
+                    if (actS.Id == 2)
+                    {
+                        anyOfPhs = true;
+                    }
+                }
+
+                if (anyOfPhs == false)
+                {
+                    return false;
+                }
+            }
+            else if (UserInfo.userDetails.RolesId == 7 && actionSide == 2) //DT
+            {
+                //no need to chech for multiple roles (e.g. mt and dt).......at the same detail.....
+                bool anyOfPhs = false;
+                //check placeholders 
+                if (dha.DetailCurrentOwner1.User != null && Owners_DT.IsUserDelegatee(dha.DetailId, dha.DetailCurrentOwner1.Placeholder.Id, UserInfo.userDetails.Id))
+                {
+                    ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner1.Placeholder.Id);
+                    if (actS.Id == 2)
+                    {
+                        anyOfPhs = true;
+                    }
+                }
+
+                if (dha.DetailCurrentOwner2.User != null && Owners_DT.IsUserDelegatee(dha.DetailId, dha.DetailCurrentOwner2.Placeholder.Id, UserInfo.userDetails.Id))
+                {
+                    ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner2.Placeholder.Id);
+                    if (actS.Id == 2)
+                    {
+                        anyOfPhs = true;
+                    }
+                }
+
+                if (dha.DetailCurrentOwner3.User != null && Owners_DT.IsUserDelegatee(dha.DetailId, dha.DetailCurrentOwner3.Placeholder.Id, UserInfo.userDetails.Id))
+                {
+                    ActionSide actS = FIDetailActivity.getActionSide_forAuditees(dha.DetailId, dha.DetailCurrentOwner3.Placeholder.Id);
+                    if (actS.Id == 2)
+                    {
+                        anyOfPhs = true;
+                    }
+                }
+
+                if (anyOfPhs == false)
+                {
+                    return false;
+                }
+            }
+            else //never... 
+            {
+                return false;
+            }
+
+            return ret; //true
         }
     }
 }

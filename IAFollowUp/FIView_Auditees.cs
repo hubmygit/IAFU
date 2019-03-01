@@ -38,7 +38,8 @@ namespace IAFollowUp
             gridControl1.DataSource = fiDHABList;
 
             lblIssuesAllCnt.Text = fiDHABList.Count.ToString();
-
+            lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString();
+            lblIssuesMyCnt.Text = fiDHABList.Count(i => i.IsMyPending).ToString();
 
             //gridView1.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
 
@@ -600,22 +601,23 @@ namespace IAFollowUp
         }
         */
 
+        /*
         private void ApplyFilters()
         {
             BindingList<FI_DetailHeaderAudit> FilteredList = fiDHABList;
 
-            if (chbNotFinalized.Checked)
-            {
-                FilteredList = new BindingList<FI_DetailHeaderAudit>(FilteredList.Where(i => i.DetailIsFinalized == false).ToList());
-
-                lblIssuesOpenCnt.Text = FilteredList.Count.ToString();
-                lblIssuesOpenCnt.Visible = true;
-            }
-            else
-            {
-                FilteredList = fiDHABList;
-                lblIssuesOpenCnt.Visible = false;
-            }
+            //if (chbNotFinalized.Checked)
+            //{
+            //    FilteredList = new BindingList<FI_DetailHeaderAudit>(FilteredList.Where(i => i.DetailIsFinalized == false).ToList());
+            //
+            //    lblIssuesOpenCnt.Text = FilteredList.Count.ToString();
+            //    lblIssuesOpenCnt.Visible = true;
+            //}
+            //else
+            //{
+            //    FilteredList = fiDHABList;
+            //    lblIssuesOpenCnt.Visible = false;
+            //}
 
             if (chbMine.Checked)
             {
@@ -644,15 +646,26 @@ namespace IAFollowUp
 
             gridControl1.DataSource = FilteredList;
         }
+        */
 
-        private void chbNotFinalized_CheckedChanged(object sender, EventArgs e)
-        {
-            ApplyFilters();
-        }
+        //private void chbNotFinalized_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    //ApplyFilters();
+        //}
 
         private void chbMine_CheckedChanged(object sender, EventArgs e)
         {
-            ApplyFilters();
+            //ApplyFilters();
+
+            if (chbMine.Checked)
+            {
+                BindingList<FI_DetailHeaderAudit> FilteredList = new BindingList<FI_DetailHeaderAudit>(fiDHABList.Where(i => i.IsMyPending == true).ToList());
+                gridControl1.DataSource = FilteredList;
+            }
+            else
+            {
+                gridControl1.DataSource = fiDHABList;
+            }
         }
 
         private void btnExcelExport_Click(object sender, EventArgs e)

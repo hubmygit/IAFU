@@ -65,12 +65,12 @@
             this.colDetailIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionSide = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chbMine = new System.Windows.Forms.CheckBox();
-            this.chbNotFinalized = new System.Windows.Forms.CheckBox();
             this.btnExcelExport = new System.Windows.Forms.Button();
             this.lblIssuesAll = new System.Windows.Forms.Label();
             this.lblIssuesAllCnt = new System.Windows.Forms.Label();
             this.lblIssuesOpenCnt = new System.Windows.Forms.Label();
             this.lblIssuesMyCnt = new System.Windows.Forms.Label();
+            this.lblIssuesOpen = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.cmsDHA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
@@ -424,18 +424,6 @@
             this.chbMine.UseVisualStyleBackColor = true;
             this.chbMine.CheckedChanged += new System.EventHandler(this.chbMine_CheckedChanged);
             // 
-            // chbNotFinalized
-            // 
-            this.chbNotFinalized.AutoSize = true;
-            this.chbNotFinalized.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.chbNotFinalized.Location = new System.Drawing.Point(197, 25);
-            this.chbNotFinalized.Name = "chbNotFinalized";
-            this.chbNotFinalized.Size = new System.Drawing.Size(102, 20);
-            this.chbNotFinalized.TabIndex = 2;
-            this.chbNotFinalized.Text = "Open Issues";
-            this.chbNotFinalized.UseVisualStyleBackColor = true;
-            this.chbNotFinalized.CheckedChanged += new System.EventHandler(this.chbNotFinalized_CheckedChanged);
-            // 
             // btnExcelExport
             // 
             this.btnExcelExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -481,7 +469,6 @@
             this.lblIssuesOpenCnt.Size = new System.Drawing.Size(19, 20);
             this.lblIssuesOpenCnt.TabIndex = 7;
             this.lblIssuesOpenCnt.Text = "0";
-            this.lblIssuesOpenCnt.Visible = false;
             // 
             // lblIssuesMyCnt
             // 
@@ -493,19 +480,28 @@
             this.lblIssuesMyCnt.Size = new System.Drawing.Size(19, 20);
             this.lblIssuesMyCnt.TabIndex = 8;
             this.lblIssuesMyCnt.Text = "0";
-            this.lblIssuesMyCnt.Visible = false;
+            // 
+            // lblIssuesOpen
+            // 
+            this.lblIssuesOpen.AutoSize = true;
+            this.lblIssuesOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblIssuesOpen.Location = new System.Drawing.Point(216, 26);
+            this.lblIssuesOpen.Name = "lblIssuesOpen";
+            this.lblIssuesOpen.Size = new System.Drawing.Size(83, 16);
+            this.lblIssuesOpen.TabIndex = 9;
+            this.lblIssuesOpen.Text = "Open Issues";
             // 
             // FIView_Auditees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 442);
+            this.Controls.Add(this.lblIssuesOpen);
             this.Controls.Add(this.lblIssuesMyCnt);
             this.Controls.Add(this.lblIssuesOpenCnt);
             this.Controls.Add(this.lblIssuesAllCnt);
             this.Controls.Add(this.lblIssuesAll);
             this.Controls.Add(this.btnExcelExport);
-            this.Controls.Add(this.chbNotFinalized);
             this.Controls.Add(this.chbMine);
             this.Controls.Add(this.gridControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -556,7 +552,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAuditAuditor2;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditSupervisor;
         private System.Windows.Forms.CheckBox chbMine;
-        private System.Windows.Forms.CheckBox chbNotFinalized;
         private DevExpress.XtraGrid.Columns.GridColumn colActionSide;
         private DevExpress.XtraGrid.Columns.GridColumn colActionSide1;
         private DevExpress.XtraGrid.Columns.GridColumn colHeaderCategory1;
@@ -566,5 +561,6 @@
         private System.Windows.Forms.Label lblIssuesOpenCnt;
         private System.Windows.Forms.Label lblIssuesMyCnt;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        private System.Windows.Forms.Label lblIssuesOpen;
     }
 }
