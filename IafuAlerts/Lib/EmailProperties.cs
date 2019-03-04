@@ -9,6 +9,7 @@ namespace IafuAlerts
     {
         public List<Recipient> RecipientsTo { get; set; }
         public List<Recipient> RecipientsCC { get; set; }
+        public List<Recipient> RecipientsBcc { get; set; }
         public string Body { get; set; }
         public string Subject { get; set; }
         //public bool ToSend { get; set; }

@@ -86,7 +86,14 @@ namespace IAFollowUp
                         ActionSide actSide = FIDetailActivity.getActionSide_forAuditors(thisDetail);
                         if (actSide.Id == 2) //auditees
                         {
-                            fiDHA.ActionSide = actSide;
+                            if (thisDetail.IsFinalized)
+                            {
+                                fiDHA.ActionSide = new ActionSide(3); //none
+                            }
+                            else
+                            {
+                                fiDHA.ActionSide = actSide; //auditees
+                            }                            
                         }
                         else if (actSide.Id == 1) 
                         {

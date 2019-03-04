@@ -17,35 +17,35 @@ namespace IafuAlerts
         }
 
         private void Alerts_Load(object sender, EventArgs e)
-        {
-            
+        {            
             string[] args = Environment.GetCommandLineArgs();
 
             if (args.Count(i => i.ToUpper().Trim(new char[] { ' ', '-', '/' }) == "MTMONTH") > 0)
             {
                 ExpireInM();
-
                 Application.Exit();
             }
             else if (args.Count(i => i.ToUpper().Trim(new char[] { ' ', '-', '/' }) == "MTEXP") > 0)
             {
                 Expired();
-
                 Application.Exit();
             }
             else if (args.Count(i => i.ToUpper().Trim(new char[] { ' ', '-', '/' }) == "IAEXP15") > 0)
             {
                 ExpireIn15D();
-
                 Application.Exit();
             }
             else if (args.Count(i => i.ToUpper().Trim(new char[] { ' ', '-', '/' }) == "IANOACT") > 0)
             {
                 NoAction15D();
-
                 Application.Exit();
             }
-            
+            else if (args.Count(i => i.ToUpper().Trim(new char[] { ' ', '-', '/' }) == "FAILEDEMAIL") > 0)
+            {
+                FailedEmails();
+                Application.Exit();
+            }
+
         }
 
         private void ExpireInM() //MTMONTH
@@ -73,6 +73,7 @@ namespace IafuAlerts
                     EmailProperties emailProps = new EmailProperties();
                     emailProps.RecipientsTo = new List<Recipient> { new Recipient() { FullName = alObjList[0].User.FullName, Email = email } };
                     emailProps.RecipientsCC = new List<Recipient>();
+                    emailProps.RecipientsBcc = new List<Recipient>();
                     emailProps.Subject = alert.EmailSubject;
                     emailProps.Body = alert.EmailBody.Replace("@", cnt.ToString());
 
@@ -116,7 +117,7 @@ namespace IafuAlerts
 
                     EmailProperties emailProps = new EmailProperties();
                     emailProps.RecipientsTo = new List<Recipient> { new Recipient() { FullName = alObjList[0].User.FullName, Email = email } };
-
+                    emailProps.RecipientsBcc = new List<Recipient>();
                     List<Users> ccUsers = Owners_GM.GetOwnerGMUsersList(alObjList[0].Placeholder.Id);
                     ccUsers.Add(Users.getCAE());
 
@@ -186,6 +187,7 @@ namespace IafuAlerts
                 EmailProperties emailProps = new EmailProperties();
                 emailProps.RecipientsTo = new List<Recipient> { new Recipient() { FullName = usr.FullName, Email = email } };
                 emailProps.RecipientsCC = new List<Recipient>();
+                emailProps.RecipientsBcc = new List<Recipient>();
                 emailProps.Subject = alert.EmailSubject;
                 emailProps.Body = alert.EmailBody.Replace("@", cnt.ToString());
 
@@ -231,6 +233,7 @@ namespace IafuAlerts
                     EmailProperties emailProps = new EmailProperties();
                     emailProps.RecipientsTo = new List<Recipient> { new Recipient() { FullName = cae.FullName, Email = email } };
                     emailProps.RecipientsCC = new List<Recipient>();
+                    emailProps.RecipientsBcc = new List<Recipient>();
                     emailProps.Subject = alert.EmailSubject;
                     emailProps.Body = alert.EmailBody.Replace("@1", cnt.ToString()).Replace("@2", alObjList[0].User.FullName);
 
@@ -244,6 +247,53 @@ namespace IafuAlerts
                         //MessageBox.Show("Emails have not been sent!");
                         Output.WriteToFile("Emails have not been sent!", true);
                     }
+                }
+            }
+
+            Output.WriteToFile("COMPLETED...");
+        }
+
+        private void FailedEmails() //FAILEDEMAIL
+        {
+            Output.WriteToFile("STARTING...");
+            Output.WriteToFile("* Failed Emails *");
+
+            List<AlertEmails> lostEmails = Notifications.getFailedEmails(); 
+
+            Output.WriteToFile("Emails to send: " + lostEmails.Count.ToString());
+
+            foreach (AlertEmails thisEmail in lostEmails)
+            {
+                Output.WriteToFile("Id: " + thisEmail.Id);
+
+                EmailProperties emailProps = new EmailProperties();
+                emailProps.RecipientsTo = new List<Recipient>();
+                emailProps.RecipientsCC = new List<Recipient>();
+
+                List<string> recipientAddresses = thisEmail.Name.Split(';').ToList();
+                List<Recipient> addresses = new List<Recipient>();
+                foreach (string str in recipientAddresses)
+                {
+                    addresses.Add(new Recipient() { Email = str });
+                }
+
+                emailProps.RecipientsBcc = addresses;
+                emailProps.Subject = thisEmail.EmailSubject;
+                emailProps.Body = thisEmail.EmailBody;
+
+                if (Email.Send(emailProps))
+                {
+                    Output.WriteToFile("Email(s) sent!");
+
+                    Output.WriteToFile("Updating flags.");
+                    if (Notifications.updateFailedEmailsTable(thisEmail.Id) == false)
+                    {
+                        Output.WriteToFile("Error while updating flags.");
+                    }
+                }
+                else
+                {
+                    Output.WriteToFile("Emails have not been sent!", true);
                 }
             }
 
@@ -270,6 +320,11 @@ namespace IafuAlerts
             NoAction15D();
         }
 
+        private void btnFailedEmails_Click(object sender, EventArgs e)
+        {
+            FailedEmails();
+        }
+        
         private void btnOpenLog_Click(object sender, EventArgs e)
         {
             var directory = new System.IO.DirectoryInfo(Application.StartupPath + "\\Logs");
@@ -289,5 +344,7 @@ namespace IafuAlerts
             
 
         }
+
+        
     }
 }

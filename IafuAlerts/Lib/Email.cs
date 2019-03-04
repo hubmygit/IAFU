@@ -24,13 +24,25 @@ namespace IafuAlerts
             }
             catch (Exception ex)
             {
-                ret = false;
+                //ret = false;
                 //MessageBox.Show("ERROR:" + ex.Message);
-                Output.WriteToFile("Email.Send(1) - The following error occurred: " + ex.Message, true);
+                Output.WriteToFile("Email.Send(f1) - The following error occurred: " + ex.Message, true);
+                return false;
             }
 
-            service.Credentials = new WebCredentials(emailParams.UserName, emailParams.Password, emailParams.Domain);
-            service.AutodiscoverUrl(emailParams.EmailAddress);
+            try
+            {
+                service.Credentials = new WebCredentials(emailParams.UserName, emailParams.Password, emailParams.Domain);
+                service.AutodiscoverUrl(emailParams.EmailAddress);
+            }
+            catch (Exception ex)
+            {
+                //ret = false;
+                //MessageBox.Show("ERROR [Exchange Service]: " + ex.Message);
+                Output.WriteToFile("Email.Send(f2) - The following error occurred: " + ex.Message, true);
+
+                return false;
+            }
 
             EmailMessage email = new EmailMessage(service);
             email.Importance = Importance.High;
@@ -45,6 +57,10 @@ namespace IafuAlerts
             {
                 email.CcRecipients.Add(rec.Email);
             }
+            foreach (Recipient rec in emailProp.RecipientsBcc)
+            {
+                email.BccRecipients.Add(rec.Email);
+            }
 
             try
             {
@@ -54,7 +70,7 @@ namespace IafuAlerts
             {
                 ret = false;
                 //MessageBox.Show("Exception occured: " + ex.Message + " \r\n {0}", ex.ToString());
-                Output.WriteToFile("Email.Send(2) - The following error occurred: " + ex.Message, true);
+                Output.WriteToFile("Email.Send(f3) - The following error occurred: " + ex.Message, true);
             }
 
             return ret;

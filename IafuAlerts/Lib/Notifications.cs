@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -446,6 +447,82 @@ namespace IafuAlerts
 
             return ret;
         }
-        
+
+        public static List<AlertEmails> getFailedEmails()
+        {
+            List<AlertEmails> ret = new List<AlertEmails>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+
+            string SelectSt =
+            "SELECT Id, Addresses, Subject, Body " + //Addresses, Body
+            "FROM [dbo].[FailedEmails] " +
+            "WHERE IsActive = 1  " +
+            "ORDER BY Id ";
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                //cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    AlertEmails alertEmail = new AlertEmails();
+                    alertEmail.Id = Convert.ToInt32(reader["Id"].ToString());
+                    alertEmail.Name = reader["Addresses"].ToString();
+                    alertEmail.EmailSubject = reader["Subject"].ToString();
+                    alertEmail.EmailBody = reader["Body"].ToString();
+
+                    ret.Add(alertEmail);
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("getFailedEmails - The following error occurred: " + ex.Message, true);
+            }
+
+            return ret;
+        }
+
+        public static bool updateFailedEmailsTable(int id)
+        {
+            bool ret = false;
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "UPDATE [dbo].[FailedEmails] " + 
+                           "SET [IsActive] = 1, [SendDt] = getDate() " +
+                           "WHERE id = @id ";
+            try
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.CommandType = CommandType.Text;
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("The following error occurred: " + ex.Message);
+                Output.WriteToFile("UpdateFailedEmailsTable - The following error occurred: " + ex.Message, true);
+            }
+            sqlConn.Close();
+
+            return ret;
+        }
+
     }
 }

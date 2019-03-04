@@ -34,6 +34,7 @@
             this.btnExpireIn15D = new System.Windows.Forms.Button();
             this.btnNoAction15D = new System.Windows.Forms.Button();
             this.btnOpenLog = new System.Windows.Forms.Button();
+            this.btnFailedEmails = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnExpireInM
@@ -86,11 +87,22 @@
             this.btnOpenLog.UseVisualStyleBackColor = true;
             this.btnOpenLog.Click += new System.EventHandler(this.btnOpenLog_Click);
             // 
+            // btnFailedEmails
+            // 
+            this.btnFailedEmails.Location = new System.Drawing.Point(154, 78);
+            this.btnFailedEmails.Name = "btnFailedEmails";
+            this.btnFailedEmails.Size = new System.Drawing.Size(246, 50);
+            this.btnFailedEmails.TabIndex = 5;
+            this.btnFailedEmails.Text = "Send IAFU Application\'s Failed Emails";
+            this.btnFailedEmails.UseVisualStyleBackColor = true;
+            this.btnFailedEmails.Click += new System.EventHandler(this.btnFailedEmails_Click);
+            // 
             // Alerts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 232);
+            this.Controls.Add(this.btnFailedEmails);
             this.Controls.Add(this.btnOpenLog);
             this.Controls.Add(this.btnNoAction15D);
             this.Controls.Add(this.btnExpireIn15D);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.Button btnExpireIn15D;
         private System.Windows.Forms.Button btnNoAction15D;
         private System.Windows.Forms.Button btnOpenLog;
+        private System.Windows.Forms.Button btnFailedEmails;
     }
 }

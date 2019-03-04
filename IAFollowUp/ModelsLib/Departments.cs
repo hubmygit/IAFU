@@ -89,7 +89,7 @@ namespace IAFollowUp
             bool ret = false;
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[Audit] ([Name]) VALUES " +
+            string InsSt = "INSERT INTO [dbo].[Departments] ([Name]) VALUES " +
                            "(@Name) ";
             try
             {

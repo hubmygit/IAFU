@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -24,8 +26,11 @@ namespace IAFollowUp
             }
             catch (Exception ex)
             {
-                ret = false;
-                MessageBox.Show("ERROR:" + ex.Message);
+                //ret = false;
+                MessageBox.Show("Exchange Service error: " + ex.Message);
+
+                saveFailedEmails(emailProp);
+                return false;
             }
 
             try
@@ -35,8 +40,11 @@ namespace IAFollowUp
             }
             catch (Exception ex)
             {
-                ret = false;
-                MessageBox.Show("ERROR:" + ex.Message);
+                //ret = false;
+                MessageBox.Show("ERROR [Exchange Service]: " + ex.Message);
+
+                saveFailedEmails(emailProp);
+                return false;
             }
 
             EmailMessage email = new EmailMessage(service);
@@ -63,11 +71,42 @@ namespace IAFollowUp
             }
             catch (Exception ex)
             {
-                ret = false;
-                MessageBox.Show("Exception occured: " + ex.Message + " \r\n {0}", ex.ToString());
+                //ret = false;
+                MessageBox.Show("Exception occured [Exchange Service]: " + ex.Message + " \r\n {0}", ex.ToString());
+                saveFailedEmails(emailProp);
+                return false;
             }
 
             return ret;
+        }
+
+        public static void saveFailedEmails(EmailProperties failedEmailProperties)
+        {
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string InsSt = "INSERT INTO [dbo].[FailedEmails] ([Addresses],[Subject],[Body],[InsDt], [Isactive]) VALUES " + //Addresses, Body
+                           "(@Addresses, @Subject, @Body, getdate(), 1 ) ";
+            try
+            {
+                sqlConn.Open();
+                
+                SqlCommand cmd = new SqlCommand(InsSt, sqlConn);
+
+                string allEmailAddresses = String.Join(";", failedEmailProperties.Recipients.Select(i => i.Email).ToArray());
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                cmd.Parameters.AddWithValue("@Addresses", allEmailAddresses);
+                cmd.Parameters.AddWithValue("@Subject", failedEmailProperties.Subject);
+                cmd.Parameters.AddWithValue("@Body", failedEmailProperties.Body);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+            sqlConn.Close();
         }
 
     }
