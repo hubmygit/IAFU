@@ -127,6 +127,13 @@ namespace IAFollowUp
                 MessageBox.Show("Please choose an Auditor1 User!");
                 return;
             }
+            
+            //same auditor twice
+            if (cbAuditor1.Text.Trim() == cbAuditor2.Text.Trim() || cbAuditor1.Text.Trim() == cbSupervisor.Text.Trim() || cbAuditor2.Text.Trim() == cbSupervisor.Text.Trim())
+            {
+                MessageBox.Show("You cannot choose the same auditor twice!");
+                return;
+            }
 
             newAuditRecord = new Audit()
             {
