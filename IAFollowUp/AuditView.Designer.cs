@@ -168,6 +168,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.RowAutoHeight = true;
             // 
             // colId
@@ -183,7 +184,7 @@
             this.colAuditRef.Name = "colAuditRef";
             this.colAuditRef.Visible = true;
             this.colAuditRef.VisibleIndex = 0;
-            this.colAuditRef.Width = 74;
+            this.colAuditRef.Width = 120;
             // 
             // colYear
             // 
@@ -223,7 +224,7 @@
             this.colAuditType.Name = "colAuditType";
             this.colAuditType.Visible = true;
             this.colAuditType.VisibleIndex = 4;
-            this.colAuditType.Width = 70;
+            this.colAuditType.Width = 100;
             // 
             // colIASentNumber
             // 
@@ -233,7 +234,7 @@
             this.colIASentNumber.Name = "colIASentNumber";
             this.colIASentNumber.Visible = true;
             this.colIASentNumber.VisibleIndex = 5;
-            this.colIASentNumber.Width = 70;
+            this.colIASentNumber.Width = 90;
             // 
             // colTitle
             // 
@@ -243,7 +244,7 @@
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
             this.colTitle.VisibleIndex = 6;
-            this.colTitle.Width = 100;
+            this.colTitle.Width = 750;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -257,7 +258,7 @@
             this.colAuditRating.Name = "colAuditRating";
             this.colAuditRating.Visible = true;
             this.colAuditRating.VisibleIndex = 7;
-            this.colAuditRating.Width = 65;
+            this.colAuditRating.Width = 70;
             // 
             // colReportDt
             // 
@@ -267,37 +268,34 @@
             this.colReportDt.Name = "colReportDt";
             this.colReportDt.Visible = true;
             this.colReportDt.VisibleIndex = 8;
-            this.colReportDt.Width = 65;
+            this.colReportDt.Width = 70;
             // 
             // colAuditor1
             // 
             this.colAuditor1.Caption = "Auditor1";
             this.colAuditor1.FieldName = "Auditor1.FullName";
-            this.colAuditor1.MaxWidth = 100;
             this.colAuditor1.Name = "colAuditor1";
             this.colAuditor1.Visible = true;
             this.colAuditor1.VisibleIndex = 9;
-            this.colAuditor1.Width = 65;
+            this.colAuditor1.Width = 130;
             // 
             // colAuditor2
             // 
             this.colAuditor2.Caption = "Auditor2";
             this.colAuditor2.FieldName = "Auditor2.FullName";
-            this.colAuditor2.MaxWidth = 100;
             this.colAuditor2.Name = "colAuditor2";
             this.colAuditor2.Visible = true;
             this.colAuditor2.VisibleIndex = 10;
-            this.colAuditor2.Width = 65;
+            this.colAuditor2.Width = 130;
             // 
             // colSupervisor
             // 
             this.colSupervisor.Caption = "Supervisor";
             this.colSupervisor.FieldName = "Supervisor.FullName";
-            this.colSupervisor.MaxWidth = 100;
             this.colSupervisor.Name = "colSupervisor";
             this.colSupervisor.Visible = true;
             this.colSupervisor.VisibleIndex = 11;
-            this.colSupervisor.Width = 65;
+            this.colSupervisor.Width = 130;
             // 
             // colIsCompleted
             // 

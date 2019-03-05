@@ -188,6 +188,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.RowAutoHeight = true;
             // 
             // colId
@@ -213,6 +214,7 @@
             this.colActivity.Name = "colActivity";
             this.colActivity.Visible = true;
             this.colActivity.VisibleIndex = 0;
+            this.colActivity.Width = 220;
             // 
             // colCommentRtf
             // 
@@ -222,6 +224,7 @@
             this.colCommentRtf.Name = "colCommentRtf";
             this.colCommentRtf.Visible = true;
             this.colCommentRtf.VisibleIndex = 1;
+            this.colCommentRtf.Width = 640;
             // 
             // repositoryItemRichTextEdit1
             // 
@@ -240,6 +243,7 @@
             this.colFromUser.Name = "colFromUser";
             this.colFromUser.Visible = true;
             this.colFromUser.VisibleIndex = 2;
+            this.colFromUser.Width = 180;
             // 
             // colToUser
             // 
@@ -248,6 +252,7 @@
             this.colToUser.Name = "colToUser";
             this.colToUser.Visible = true;
             this.colToUser.VisibleIndex = 3;
+            this.colToUser.Width = 180;
             // 
             // colInsDt
             // 
@@ -258,6 +263,7 @@
             this.colInsDt.Name = "colInsDt";
             this.colInsDt.Visible = true;
             this.colInsDt.VisibleIndex = 4;
+            this.colInsDt.Width = 120;
             // 
             // colPlaceholdersId
             // 
@@ -272,6 +278,7 @@
             this.colPlaceholders.Name = "colPlaceholders";
             this.colPlaceholders.Visible = true;
             this.colPlaceholders.VisibleIndex = 5;
+            this.colPlaceholders.Width = 120;
             // 
             // colActivityDescription
             // 
@@ -286,6 +293,7 @@
             this.colActionDt.Name = "colActionDt";
             this.colActionDt.Visible = true;
             this.colActionDt.VisibleIndex = 6;
+            this.colActionDt.Width = 100;
             // 
             // colHasAttachments
             // 

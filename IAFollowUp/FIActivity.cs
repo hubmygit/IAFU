@@ -228,12 +228,13 @@ namespace IAFollowUp
                 }
                 else
                 {
-                    MessageBox.Show("Emails have not been sent!");
+                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                 }
                 //<-----
                 this.Cursor = oldCursor;
 
-                Close(); //or stay and refresh                
+                Close(); //or stay and refresh
+                DialogResult = DialogResult.OK;
             }
             else
             {
@@ -318,13 +319,13 @@ namespace IAFollowUp
                 }
                 else
                 {
-                    MessageBox.Show("Emails have not been sent!");
+                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                 }
                 //<-----
                 this.Cursor = oldCursor;
 
-                Close(); //or stay and refresh   
-
+                Close(); //or stay and refresh
+                DialogResult = DialogResult.OK;
             }
             else
             {
@@ -697,12 +698,13 @@ namespace IAFollowUp
                 }
                 else
                 {
-                    MessageBox.Show("Emails have not been sent!");
+                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                 }
                 //<-----
                 this.Cursor = oldCursor;
 
-                Close(); //or stay and refresh   
+                Close(); //or stay and refresh
+                DialogResult = DialogResult.OK;
             }
             else
             {
@@ -730,16 +732,16 @@ namespace IAFollowUp
             //get owners_dt
             List<Users> OwnersDT = Owners_DT.GetOwnerDTUsersList(this.det.Id, PHolder.Id);
 
-            DelegateesSelect frmDTselector = new DelegateesSelect(OwnersDT);
-
-            Users activityTo = activityTo = OwnersDT[0]; //1st
-
             if (OwnersDT.Count <= 0)
             {
                 MessageBox.Show("The Detail has not been delegated! \r\nPlease delegate it to a Key User first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            DelegateesSelect frmDTselector = new DelegateesSelect(OwnersDT);
+
+            Users activityTo = activityTo = OwnersDT[0]; //1st
+                       
             if (OwnersDT.Count > 1)
             {
                 //if more than one dt - select one key user from list 
@@ -800,12 +802,13 @@ namespace IAFollowUp
                 }
                 else
                 {
-                    MessageBox.Show("Emails have not been sent!");
+                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                 }
                 //<-----
                 this.Cursor = oldCursor;
 
-                Close(); //or stay and refresh   
+                Close(); //or stay and refresh
+                DialogResult = DialogResult.OK;
             }
             else
             {
@@ -879,12 +882,13 @@ namespace IAFollowUp
                 }
                 else
                 {
-                    MessageBox.Show("Emails have not been sent!");
+                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                 }
                 //<-----
                 this.Cursor = oldCursor;
 
-                Close(); //or stay and refresh   
+                Close(); //or stay and refresh
+                DialogResult = DialogResult.OK;
             }
             else
             {
@@ -964,12 +968,13 @@ namespace IAFollowUp
                 }
                 else
                 {
-                    MessageBox.Show("Emails have not been sent!");
+                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                 }
                 //<-----
                 this.Cursor = oldCursor;
 
-                Close(); //or stay and refresh   
+                Close(); //or stay and refresh
+                DialogResult = DialogResult.OK;
             }
             else
             {
@@ -1120,7 +1125,8 @@ namespace IAFollowUp
                 DraftAttachments.Delete_SampleFiles(det.Id, this.PHolder.Id, UserInfo.userDetails.Id);
 
                 MessageBox.Show("The Action completed!");
-                Close(); //or stay and refresh   
+                Close(); //or stay and refresh
+                DialogResult = DialogResult.OK;
             }
         }
 
@@ -1423,7 +1429,7 @@ namespace IAFollowUp
                     }
                     else
                     {
-                        MessageBox.Show("Emails have not been sent!");
+                        MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                     }
                     this.Cursor = oldCursor;
                 }
@@ -1566,7 +1572,8 @@ namespace IAFollowUp
                         if (success)
                         {
                             MessageBox.Show("The Action completed!");
-                            Close(); //or stay and refresh   
+                            Close(); //or stay and refresh
+                            DialogResult = DialogResult.OK;
                         }
                     }
                     if (strongestClassification.Decision.Id == 2) //return
@@ -1619,7 +1626,7 @@ namespace IAFollowUp
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Emails have not been sent!");
+                                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                                 }
                                 //<-----
                                 this.Cursor = oldCursor;
@@ -1665,7 +1672,7 @@ namespace IAFollowUp
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Emails have not been sent!");
+                                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                                 }
                                 //<-----
                                 this.Cursor = oldCursor;
@@ -1711,7 +1718,7 @@ namespace IAFollowUp
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Emails have not been sent!");
+                                    MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
                                 }
                                 //<-----
                                 this.Cursor = oldCursor;
@@ -1728,7 +1735,8 @@ namespace IAFollowUp
                         if (success)
                         {
                             MessageBox.Show("The Action completed!");
-                            Close(); //or stay and refresh   
+                            Close(); //or stay and refresh
+                            DialogResult = DialogResult.OK;
                         }
 
                     }
@@ -1743,6 +1751,7 @@ namespace IAFollowUp
             }
 
             Close();
+            DialogResult = DialogResult.OK; //???
         }
 
         private void MIcopy_Click(object sender, EventArgs e)

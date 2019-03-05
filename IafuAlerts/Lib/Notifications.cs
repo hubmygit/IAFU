@@ -455,7 +455,8 @@ namespace IafuAlerts
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
 
             string SelectSt =
-            "SELECT Id, Addresses, Subject, Body " + //Addresses, Body
+            "SELECT Id, CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [Addresses])) as Addresses, Subject, " +
+            "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , [Body])) as Body " + 
             "FROM [dbo].[FailedEmails] " +
             "WHERE IsActive = 1  " +
             "ORDER BY Id ";
@@ -465,7 +466,7 @@ namespace IafuAlerts
             {
                 sqlConn.Open();
 
-                //cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

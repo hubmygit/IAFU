@@ -199,6 +199,7 @@
             this.colInsDate});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             // 
             // colId
             // 
@@ -240,6 +241,7 @@
             this.colAuditorRoleName.Name = "colAuditorRoleName";
             this.colAuditorRoleName.Visible = true;
             this.colAuditorRoleName.VisibleIndex = 0;
+            this.colAuditorRoleName.Width = 110;
             // 
             // colUserFname
             // 
@@ -248,6 +250,7 @@
             this.colUserFname.Name = "colUserFname";
             this.colUserFname.Visible = true;
             this.colUserFname.VisibleIndex = 1;
+            this.colUserFname.Width = 150;
             // 
             // colClassificationName
             // 
@@ -256,6 +259,7 @@
             this.colClassificationName.Name = "colClassificationName";
             this.colClassificationName.Visible = true;
             this.colClassificationName.VisibleIndex = 2;
+            this.colClassificationName.Width = 90;
             // 
             // colClassificationDecisionName
             // 
@@ -271,6 +275,7 @@
             this.colInsDate.Name = "colInsDate";
             this.colInsDate.Visible = true;
             this.colInsDate.VisibleIndex = 4;
+            this.colInsDate.Width = 80;
             // 
             // Voting
             // 

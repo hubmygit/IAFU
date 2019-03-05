@@ -55,7 +55,7 @@ namespace IAFollowUp
             }
             else
             {
-                MessageBox.Show("Emails have not been sent!");
+                MessageBox.Show("Emails have not been sent! \r\nEmails will be sent as soon as the system becomes available again.");
             }
             this.Cursor = oldCursor;
             

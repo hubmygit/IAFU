@@ -148,6 +148,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.RowAutoHeight = true;
             // 
             // colAuditId
@@ -156,6 +157,7 @@
             this.colAuditId.Name = "colAuditId";
             this.colAuditId.Visible = true;
             this.colAuditId.VisibleIndex = 23;
+            this.colAuditId.Width = 80;
             // 
             // colHeaderId
             // 
@@ -208,7 +210,7 @@
             this.colAuditRef.Name = "colAuditRef";
             this.colAuditRef.Visible = true;
             this.colAuditRef.VisibleIndex = 2;
-            this.colAuditRef.Width = 54;
+            this.colAuditRef.Width = 100;
             // 
             // colHeaderFIId
             // 
@@ -238,7 +240,7 @@
             this.colAuditTitle.Name = "colAuditTitle";
             this.colAuditTitle.Visible = true;
             this.colAuditTitle.VisibleIndex = 5;
-            this.colAuditTitle.Width = 70;
+            this.colAuditTitle.Width = 140;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -252,7 +254,7 @@
             this.colAuditAuditor1.Name = "colAuditAuditor1";
             this.colAuditAuditor1.Visible = true;
             this.colAuditAuditor1.VisibleIndex = 6;
-            this.colAuditAuditor1.Width = 53;
+            this.colAuditAuditor1.Width = 90;
             // 
             // colAuditAuditor2
             // 
@@ -262,7 +264,7 @@
             this.colAuditAuditor2.Name = "colAuditAuditor2";
             this.colAuditAuditor2.Visible = true;
             this.colAuditAuditor2.VisibleIndex = 7;
-            this.colAuditAuditor2.Width = 53;
+            this.colAuditAuditor2.Width = 90;
             // 
             // colAuditSupervisor
             // 
@@ -272,7 +274,7 @@
             this.colAuditSupervisor.Name = "colAuditSupervisor";
             this.colAuditSupervisor.Visible = true;
             this.colAuditSupervisor.VisibleIndex = 8;
-            this.colAuditSupervisor.Width = 53;
+            this.colAuditSupervisor.Width = 90;
             // 
             // colHeaderTitle
             // 
@@ -282,7 +284,7 @@
             this.colHeaderTitle.Name = "colHeaderTitle";
             this.colHeaderTitle.Visible = true;
             this.colHeaderTitle.VisibleIndex = 9;
-            this.colHeaderTitle.Width = 70;
+            this.colHeaderTitle.Width = 140;
             // 
             // colHeaderCategory
             // 
@@ -292,7 +294,7 @@
             this.colHeaderCategory.Name = "colHeaderCategory";
             this.colHeaderCategory.Visible = true;
             this.colHeaderCategory.VisibleIndex = 10;
-            this.colHeaderCategory.Width = 51;
+            this.colHeaderCategory.Width = 65;
             // 
             // colDetailDescription
             // 
@@ -302,7 +304,7 @@
             this.colDetailDescription.Name = "colDetailDescription";
             this.colDetailDescription.Visible = true;
             this.colDetailDescription.VisibleIndex = 11;
-            this.colDetailDescription.Width = 70;
+            this.colDetailDescription.Width = 180;
             // 
             // colDetailActionDt
             // 
@@ -312,7 +314,7 @@
             this.colDetailActionDt.Name = "colDetailActionDt";
             this.colDetailActionDt.Visible = true;
             this.colDetailActionDt.VisibleIndex = 12;
-            this.colDetailActionDt.Width = 49;
+            this.colDetailActionDt.Width = 55;
             // 
             // colDetailActionReq
             // 
@@ -322,7 +324,7 @@
             this.colDetailActionReq.Name = "colDetailActionReq";
             this.colDetailActionReq.Visible = true;
             this.colDetailActionReq.VisibleIndex = 13;
-            this.colDetailActionReq.Width = 70;
+            this.colDetailActionReq.Width = 180;
             // 
             // colDetailActionCode
             // 
@@ -332,7 +334,7 @@
             this.colDetailActionCode.Name = "colDetailActionCode";
             this.colDetailActionCode.Visible = true;
             this.colDetailActionCode.VisibleIndex = 14;
-            this.colDetailActionCode.Width = 46;
+            this.colDetailActionCode.Width = 50;
             // 
             // colDetailCurrentDept1
             // 
@@ -342,7 +344,6 @@
             this.colDetailCurrentDept1.Name = "colDetailCurrentDept1";
             this.colDetailCurrentDept1.Visible = true;
             this.colDetailCurrentDept1.VisibleIndex = 15;
-            this.colDetailCurrentDept1.Width = 46;
             // 
             // colDetailCurrentOwner1
             // 
@@ -352,7 +353,6 @@
             this.colDetailCurrentOwner1.Name = "colDetailCurrentOwner1";
             this.colDetailCurrentOwner1.Visible = true;
             this.colDetailCurrentOwner1.VisibleIndex = 16;
-            this.colDetailCurrentOwner1.Width = 46;
             // 
             // colDetailCurrentDept2
             // 
@@ -362,7 +362,6 @@
             this.colDetailCurrentDept2.Name = "colDetailCurrentDept2";
             this.colDetailCurrentDept2.Visible = true;
             this.colDetailCurrentDept2.VisibleIndex = 17;
-            this.colDetailCurrentDept2.Width = 46;
             // 
             // colDetailCurrentOwner2
             // 
@@ -372,7 +371,6 @@
             this.colDetailCurrentOwner2.Name = "colDetailCurrentOwner2";
             this.colDetailCurrentOwner2.Visible = true;
             this.colDetailCurrentOwner2.VisibleIndex = 18;
-            this.colDetailCurrentOwner2.Width = 46;
             // 
             // colDetailCurrentDept3
             // 
@@ -382,7 +380,6 @@
             this.colDetailCurrentDept3.Name = "colDetailCurrentDept3";
             this.colDetailCurrentDept3.Visible = true;
             this.colDetailCurrentDept3.VisibleIndex = 19;
-            this.colDetailCurrentDept3.Width = 46;
             // 
             // colDetailCurrentOwner3
             // 
@@ -392,7 +389,6 @@
             this.colDetailCurrentOwner3.Name = "colDetailCurrentOwner3";
             this.colDetailCurrentOwner3.Visible = true;
             this.colDetailCurrentOwner3.VisibleIndex = 20;
-            this.colDetailCurrentOwner3.Width = 57;
             // 
             // colDetailIsFinalized
             // 
@@ -411,6 +407,7 @@
             this.colActionSide.Name = "colActionSide";
             this.colActionSide.Visible = true;
             this.colActionSide.VisibleIndex = 22;
+            this.colActionSide.Width = 70;
             // 
             // chbMine
             // 

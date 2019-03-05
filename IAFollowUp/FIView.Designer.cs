@@ -188,6 +188,7 @@
             this.gridViewDetails.Name = "gridViewDetails";
             this.gridViewDetails.OptionsBehavior.Editable = false;
             this.gridViewDetails.OptionsBehavior.ReadOnly = true;
+            this.gridViewDetails.OptionsView.ColumnAutoWidth = false;
             this.gridViewDetails.OptionsView.RowAutoHeight = true;
             // 
             // colDetailsId
@@ -220,7 +221,7 @@
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 1;
-            this.colDescription.Width = 100;
+            this.colDescription.Width = 420;
             // 
             // repositoryItemMemoEdit3
             // 
@@ -244,7 +245,7 @@
             this.colActionReq.Name = "colActionReq";
             this.colActionReq.Visible = true;
             this.colActionReq.VisibleIndex = 3;
-            this.colActionReq.Width = 100;
+            this.colActionReq.Width = 420;
             // 
             // repositoryItemMemoEdit2
             // 
@@ -258,7 +259,7 @@
             this.colActionCode.Name = "colActionCode";
             this.colActionCode.Visible = true;
             this.colActionCode.VisibleIndex = 4;
-            this.colActionCode.Width = 60;
+            this.colActionCode.Width = 70;
             // 
             // colIsClosed
             // 
@@ -307,7 +308,7 @@
             this.colCurrentDept1.Name = "colCurrentDept1";
             this.colCurrentDept1.Visible = true;
             this.colCurrentDept1.VisibleIndex = 9;
-            this.colCurrentDept1.Width = 52;
+            this.colCurrentDept1.Width = 100;
             // 
             // colCurrentUser1
             // 
@@ -316,7 +317,7 @@
             this.colCurrentUser1.Name = "colCurrentUser1";
             this.colCurrentUser1.Visible = true;
             this.colCurrentUser1.VisibleIndex = 10;
-            this.colCurrentUser1.Width = 52;
+            this.colCurrentUser1.Width = 100;
             // 
             // colCurrentDept2
             // 
@@ -325,7 +326,7 @@
             this.colCurrentDept2.Name = "colCurrentDept2";
             this.colCurrentDept2.Visible = true;
             this.colCurrentDept2.VisibleIndex = 11;
-            this.colCurrentDept2.Width = 52;
+            this.colCurrentDept2.Width = 100;
             // 
             // colCurrentUser2
             // 
@@ -334,7 +335,7 @@
             this.colCurrentUser2.Name = "colCurrentUser2";
             this.colCurrentUser2.Visible = true;
             this.colCurrentUser2.VisibleIndex = 12;
-            this.colCurrentUser2.Width = 52;
+            this.colCurrentUser2.Width = 100;
             // 
             // colCurrentDept3
             // 
@@ -343,7 +344,7 @@
             this.colCurrentDept3.Name = "colCurrentDept3";
             this.colCurrentDept3.Visible = true;
             this.colCurrentDept3.VisibleIndex = 13;
-            this.colCurrentDept3.Width = 52;
+            this.colCurrentDept3.Width = 100;
             // 
             // colCurrentUser3
             // 
@@ -352,7 +353,7 @@
             this.colCurrentUser3.Name = "colCurrentUser3";
             this.colCurrentUser3.Visible = true;
             this.colCurrentUser3.VisibleIndex = 14;
-            this.colCurrentUser3.Width = 106;
+            this.colCurrentUser3.Width = 100;
             // 
             // btnCreateNewHeader
             // 

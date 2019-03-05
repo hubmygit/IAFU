@@ -83,8 +83,9 @@ namespace IAFollowUp
         public static void saveFailedEmails(EmailProperties failedEmailProperties)
         {
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
-            string InsSt = "INSERT INTO [dbo].[FailedEmails] ([Addresses],[Subject],[Body],[InsDt], [Isactive]) VALUES " + //Addresses, Body
-                           "(@Addresses, @Subject, @Body, getdate(), 1 ) ";
+            string InsSt = "INSERT INTO [dbo].[FailedEmails] ([Addresses],[Subject],[Body],[InsDt],[InsUserId],[Isactive]) VALUES " + 
+                           "(encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Addresses)), @Subject, " +
+                           "encryptByPassPhrase(@passPhrase, convert(varchar(7800), @Body)), getdate(), @userId, 1 ) ";
             try
             {
                 sqlConn.Open();
@@ -98,6 +99,7 @@ namespace IAFollowUp
                 cmd.Parameters.AddWithValue("@Addresses", allEmailAddresses);
                 cmd.Parameters.AddWithValue("@Subject", failedEmailProperties.Subject);
                 cmd.Parameters.AddWithValue("@Body", failedEmailProperties.Body);
+                cmd.Parameters.AddWithValue("@userId", UserInfo.userDetails.Id);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();

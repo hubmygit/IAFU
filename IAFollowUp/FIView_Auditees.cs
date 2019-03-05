@@ -57,6 +57,8 @@ namespace IAFollowUp
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();
         public List<FIDetail> detailList = new List<FIDetail>();
 
+        //List<Audit> auditList = new List<Audit>();
+
         //private void button1_Click(object sender, EventArgs e)
         //{
         //    gridView1.Columns[4].Group();
@@ -135,6 +137,21 @@ namespace IAFollowUp
                 {
                     FIActivity frmActivity = new FIActivity(det, auditeePh, auditeeRole);
                     frmActivity.ShowDialog();
+                    if (frmActivity.DialogResult == DialogResult.OK && Migration.migrationMode == false)
+                    {
+                        //refresh
+                        detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
+                        List<FIHeader> headerList = FIHeader.Select(UserInfo.roleDetails.IsAdmin, detailList);
+                        List<Audit> auditList = Audit.Select(UserInfo.roleDetails.IsAdmin, headerList);
+                        fiDHABList = FI_DetailHeaderAudit.AuditListToDetailList(auditList);
+                        gridControl1.DataSource = fiDHABList;
+
+                        lblIssuesAllCnt.Text = fiDHABList.Count.ToString();
+                        lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString();
+                        lblIssuesMyCnt.Text = fiDHABList.Count(i => i.IsMyPending).ToString();
+
+                        chbMine_CheckedChanged(null, null);
+                    }                    
                 }
             }
         }
