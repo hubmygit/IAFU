@@ -129,6 +129,8 @@ namespace IAFollowUp
                 dtpDetail_ActionDate.Value = (DateTime)givenDetail.ActionDt;
             }
 
+            gridView1.Columns["Id"].Visible = UserInfo.roleDetails.IsAdmin;
+            gridView1.Columns["DetailId"].Visible = UserInfo.roleDetails.IsAdmin;
         }
 
         //public int detId;

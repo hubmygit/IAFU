@@ -52,6 +52,10 @@ namespace IAFollowUp
             //    gridView1.Columns["AuditAuditor2.FullName"].Visible = false;
             //    gridView1.Columns["AuditSupervisor.FullName"].Visible = false;
             //}
+
+            gridView1.Columns["AuditId"].Visible = UserInfo.roleDetails.IsAdmin;
+            gridView1.Columns["HeaderId"].Visible = UserInfo.roleDetails.IsAdmin;
+            gridView1.Columns["DetailId"].Visible = UserInfo.roleDetails.IsAdmin;
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();

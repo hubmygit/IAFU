@@ -86,6 +86,12 @@
     <Compile Include="ActivityAttachments.Designer.cs">
       <DependentUpon>ActivityAttachments.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppLogInInfos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppLogInInfos.Designer.cs">
+      <DependentUpon>AppLogInInfos.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuditAttachments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,7 @@
     </Compile>
     <Compile Include="ModelsLib\ActionSide.cs" />
     <Compile Include="ModelsLib\ActivityDescription.cs" />
+    <Compile Include="ModelsLib\AppLogIn.cs" />
     <Compile Include="ModelsLib\AuditeesRoles.cs" />
     <Compile Include="ModelsLib\AuditorsRoles.cs" />
     <Compile Include="ModelsLib\Classification.cs" />
@@ -342,6 +349,9 @@
     </Compile>
     <EmbeddedResource Include="ActivityAttachments.resx">
       <DependentUpon>ActivityAttachments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppLogInInfos.resx">
+      <DependentUpon>AppLogInInfos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuditAttachments.resx">
       <DependentUpon>AuditAttachments.cs</DependentUpon>

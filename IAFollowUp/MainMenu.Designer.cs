@@ -48,6 +48,7 @@
             this.manageAuditOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewLogInsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -145,7 +146,8 @@
             this.createUserToolStripMenuItem,
             this.viewChangeLogToolStripMenuItem,
             this.deptsToolStripMenuItem,
-            this.manageAuditOwnersToolStripMenuItem});
+            this.manageAuditOwnersToolStripMenuItem,
+            this.viewLogInsToolStripMenuItem});
             this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
             this.administratorToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.administratorToolStripMenuItem.Tag = "3";
@@ -216,6 +218,13 @@
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
+            // viewLogInsToolStripMenuItem
+            // 
+            this.viewLogInsToolStripMenuItem.Name = "viewLogInsToolStripMenuItem";
+            this.viewLogInsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.viewLogInsToolStripMenuItem.Text = "View LogIns";
+            this.viewLogInsToolStripMenuItem.Click += new System.EventHandler(this.viewLogInsToolStripMenuItem_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,5 +272,6 @@
         private System.Windows.Forms.ToolStripMenuItem deptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fiAuditorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageAuditOwnersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewLogInsToolStripMenuItem;
     }
 }

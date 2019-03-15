@@ -61,7 +61,6 @@ namespace IAFollowUp
             if (Migration.migrationMode)
             {
                 email.BccRecipients.Clear();
-
                 email.BccRecipients.Add(Migration.email);
             }
 

@@ -92,6 +92,13 @@ namespace IAFollowUp
             ChangeAuditAuditors frmChangeAuditors = new ChangeAuditAuditors();
             frmChangeAuditors.ShowDialog();
         }
+
+        private void viewLogInsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppLogInInfos frmAppLogIns = new AppLogInInfos();
+            frmAppLogIns.ShowDialog();
+        }
+
         //administrator<----------
 
         //auditors---------->
@@ -147,6 +154,8 @@ namespace IAFollowUp
         {
             UserInfo.UpdateExitDt();
         }
+
+        
 
         //temporary to remove....
         //private void tmp1Notif_Click(object sender, EventArgs e)
