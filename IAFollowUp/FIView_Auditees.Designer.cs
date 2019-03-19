@@ -304,7 +304,7 @@
             this.colDetailDescription.Name = "colDetailDescription";
             this.colDetailDescription.Visible = true;
             this.colDetailDescription.VisibleIndex = 11;
-            this.colDetailDescription.Width = 180;
+            this.colDetailDescription.Width = 300;
             // 
             // colDetailActionDt
             // 
@@ -324,7 +324,7 @@
             this.colDetailActionReq.Name = "colDetailActionReq";
             this.colDetailActionReq.Visible = true;
             this.colDetailActionReq.VisibleIndex = 13;
-            this.colDetailActionReq.Width = 180;
+            this.colDetailActionReq.Width = 300;
             // 
             // colDetailActionCode
             // 
