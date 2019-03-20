@@ -117,7 +117,7 @@
             // 
             // colAppUser
             // 
-            this.colAppUser.FieldName = "AppUser";
+            this.colAppUser.FieldName = "AppUser.FullName";
             this.colAppUser.Name = "colAppUser";
             this.colAppUser.Visible = true;
             this.colAppUser.VisibleIndex = 5;
