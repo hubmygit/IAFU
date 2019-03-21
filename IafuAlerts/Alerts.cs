@@ -345,6 +345,72 @@ namespace IafuAlerts
 
         }
 
-        
+        private void btnTestExpireInM_Click(object sender, EventArgs e)
+        {
+            //Output.WriteToFile("* Expire In Month *");
+            List<AlertObject> alertObjectList = Notifications.NotifExpireIn1M();
+            BindingList<CheckResults> ChResBList = new BindingList<CheckResults>();
+            if (alertObjectList.Count > 0)
+            {
+                List<List<AlertObject>> alertGroupedObjectList = alertObjectList.GroupBy(i => i.User.Id).Select(g => g.ToList()).ToList();
+                foreach (List<AlertObject> alObjList in alertGroupedObjectList)
+                {                    
+                    string FullName = alObjList[0].User.FullName;
+                    string Email = alObjList[0].User.getEmail();
+                    int Cnt = alObjList.Count;
+
+                    ChResBList.Add(new CheckResults() { fullName = FullName, email = Email, cnt = Cnt });
+                }
+            }
+
+            CheckResults01 frmCheckRes = new CheckResults01(ChResBList);
+            frmCheckRes.ShowDialog();
+        }
+
+        private void btnTestExpired_Click(object sender, EventArgs e)
+        {
+            //Output.WriteToFile("* Expired *");
+            List<AlertObject> alertObjectList = Notifications.NotifExpired();
+            BindingList<CheckResults> ChResBList = new BindingList<CheckResults>();
+            if (alertObjectList.Count > 0)
+            {
+                List<List<AlertObject>> alertGroupedObjectList = alertObjectList.GroupBy(i => i.User.Id).Select(g => g.ToList()).ToList();
+                foreach (List<AlertObject> alObjList in alertGroupedObjectList)
+                {
+                    string FullName = alObjList[0].User.FullName;
+                    string Email = alObjList[0].User.getEmail();
+                    int Cnt = alObjList.Count;
+
+                    CheckResults chRes = new CheckResults() { fullName = FullName, email = Email, cnt = Cnt };
+
+                    List<Users> ccUsers = Owners_GM.GetOwnerGMUsersList(alObjList[0].Placeholder.Id);
+                    ccUsers.Add(Users.getCAE());
+
+                    List<Recipient> ccRec = new List<Recipient>();
+                    foreach (Users usr in ccUsers)
+                    {
+                        ccRec.Add(new Recipient() { FullName = usr.FullName, Email = usr.getEmail() });
+                    }
+
+                    chRes.ccfullNames = string.Join(",", ccRec.Select(i => i.FullName));
+                    chRes.ccEmails = string.Join(",", ccRec.Select(i => i.Email));
+
+                    ChResBList.Add(chRes);
+                }
+            }
+
+            CheckResults01 frmCheckRes = new CheckResults01(ChResBList);
+            frmCheckRes.ShowDialog();
+        }
+
+    }
+
+    public class CheckResults
+    {
+        public string fullName { get; set; }
+        public string email { get; set; }
+        public int cnt { get; set; }
+        public string ccfullNames { get; set; }
+        public string ccEmails { get; set; }
     }
 }

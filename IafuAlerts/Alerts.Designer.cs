@@ -35,10 +35,13 @@
             this.btnNoAction15D = new System.Windows.Forms.Button();
             this.btnOpenLog = new System.Windows.Forms.Button();
             this.btnFailedEmails = new System.Windows.Forms.Button();
+            this.btnTestExpireInM = new System.Windows.Forms.Button();
+            this.btnTestExpired = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnExpireInM
             // 
+            this.btnExpireInM.Enabled = false;
             this.btnExpireInM.Location = new System.Drawing.Point(28, 22);
             this.btnExpireInM.Name = "btnExpireInM";
             this.btnExpireInM.Size = new System.Drawing.Size(120, 50);
@@ -49,6 +52,7 @@
             // 
             // btnExpired
             // 
+            this.btnExpired.Enabled = false;
             this.btnExpired.Location = new System.Drawing.Point(154, 22);
             this.btnExpired.Name = "btnExpired";
             this.btnExpired.Size = new System.Drawing.Size(120, 50);
@@ -59,6 +63,7 @@
             // 
             // btnExpireIn15D
             // 
+            this.btnExpireIn15D.Enabled = false;
             this.btnExpireIn15D.Location = new System.Drawing.Point(280, 22);
             this.btnExpireIn15D.Name = "btnExpireIn15D";
             this.btnExpireIn15D.Size = new System.Drawing.Size(120, 50);
@@ -69,6 +74,7 @@
             // 
             // btnNoAction15D
             // 
+            this.btnNoAction15D.Enabled = false;
             this.btnNoAction15D.Location = new System.Drawing.Point(406, 22);
             this.btnNoAction15D.Name = "btnNoAction15D";
             this.btnNoAction15D.Size = new System.Drawing.Size(120, 50);
@@ -79,7 +85,8 @@
             // 
             // btnOpenLog
             // 
-            this.btnOpenLog.Location = new System.Drawing.Point(217, 170);
+            this.btnOpenLog.Enabled = false;
+            this.btnOpenLog.Location = new System.Drawing.Point(217, 284);
             this.btnOpenLog.Name = "btnOpenLog";
             this.btnOpenLog.Size = new System.Drawing.Size(120, 50);
             this.btnOpenLog.TabIndex = 4;
@@ -89,6 +96,7 @@
             // 
             // btnFailedEmails
             // 
+            this.btnFailedEmails.Enabled = false;
             this.btnFailedEmails.Location = new System.Drawing.Point(154, 78);
             this.btnFailedEmails.Name = "btnFailedEmails";
             this.btnFailedEmails.Size = new System.Drawing.Size(246, 50);
@@ -97,11 +105,33 @@
             this.btnFailedEmails.UseVisualStyleBackColor = true;
             this.btnFailedEmails.Click += new System.EventHandler(this.btnFailedEmails_Click);
             // 
+            // btnTestExpireInM
+            // 
+            this.btnTestExpireInM.Location = new System.Drawing.Point(28, 176);
+            this.btnTestExpireInM.Name = "btnTestExpireInM";
+            this.btnTestExpireInM.Size = new System.Drawing.Size(120, 50);
+            this.btnTestExpireInM.TabIndex = 6;
+            this.btnTestExpireInM.Text = "Expire In Month";
+            this.btnTestExpireInM.UseVisualStyleBackColor = true;
+            this.btnTestExpireInM.Click += new System.EventHandler(this.btnTestExpireInM_Click);
+            // 
+            // btnTestExpired
+            // 
+            this.btnTestExpired.Location = new System.Drawing.Point(154, 176);
+            this.btnTestExpired.Name = "btnTestExpired";
+            this.btnTestExpired.Size = new System.Drawing.Size(120, 50);
+            this.btnTestExpired.TabIndex = 7;
+            this.btnTestExpired.Text = "Expired";
+            this.btnTestExpired.UseVisualStyleBackColor = true;
+            this.btnTestExpired.Click += new System.EventHandler(this.btnTestExpired_Click);
+            // 
             // Alerts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 232);
+            this.ClientSize = new System.Drawing.Size(554, 346);
+            this.Controls.Add(this.btnTestExpired);
+            this.Controls.Add(this.btnTestExpireInM);
             this.Controls.Add(this.btnFailedEmails);
             this.Controls.Add(this.btnOpenLog);
             this.Controls.Add(this.btnNoAction15D);
@@ -125,5 +155,7 @@
         private System.Windows.Forms.Button btnNoAction15D;
         private System.Windows.Forms.Button btnOpenLog;
         private System.Windows.Forms.Button btnFailedEmails;
+        private System.Windows.Forms.Button btnTestExpireInM;
+        private System.Windows.Forms.Button btnTestExpired;
     }
 }

@@ -1922,10 +1922,10 @@ namespace IAFollowUp
 
                 RichTextBox rtbTemp = new RichTextBox();
                 rtbTemp.Rtf = rtf;
-                MessageBox.Show("OldRtf: " + rtbTemp.Rtf);
+                //MessageBox.Show("OldRtf: " + rtbTemp.Rtf);
                 rtbTemp.Font = new Font(new FontFamily("Microsoft Sans Serif"), 12, FontStyle.Regular);
-                MessageBox.Show("NewRtf: " + rtbTemp.Rtf);
-                MessageBox.Show("Text: " + rtbTemp.Text);
+                //MessageBox.Show("NewRtf: " + rtbTemp.Rtf);
+                //MessageBox.Show("Text: " + rtbTemp.Text);
 
                 System.Data.SqlClient.SqlConnection sqlConn = new System.Data.SqlClient.SqlConnection(SqlDBInfo.connectionString);
                 string UpdSt = "UPDATE [dbo].[FIDetail_Activity] SET CommentRtf = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentRtf)) WHERE Id = @ActivityId ";
@@ -1958,9 +1958,7 @@ namespace IAFollowUp
                 }
                 sqlConn.Close();
 
-
-
-
+                MessageBox.Show("Done!");
             }
         }
     }

@@ -111,7 +111,7 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U " +
-                              "WHERE R.Id = U.RolesId ";
+                              "WHERE R.Id = U.RolesId AND U.IsAuditorActive = 1 ";
 
             if (role != UserRole.None)
             {
@@ -232,7 +232,7 @@ namespace IAFollowUp
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT U.[Id], CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , U.[FullName])) as FullName, R.Name as RoleName " +
                               "FROM [dbo].[Roles] R, [dbo].[Users] U " +
-                              "WHERE R.Id = U.RolesId AND R.Id = 2 ";
+                              "WHERE R.Id = U.RolesId AND R.Id = 2 AND U.IsAuditorActive = 1 ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
