@@ -30,6 +30,11 @@ namespace IAFollowUp
         {
             InitializeComponent();
 
+            if (UserInfo.roleDetails.IsAdmin)
+            {
+                MIadminChangeFont.Visible = true;
+            }
+
             UserAuth.ArrangeMenuItems(UserInfo.roleDetails, menuStrip1);
 
             if (givenAuditeeRole == 1)//1.GM
@@ -1905,6 +1910,57 @@ namespace IAFollowUp
                 {
                     gridControl1.ExportToXlsx(sfd.FileName);
                 }
+            }
+        }
+
+        private void MIadminChangeFont_Click(object sender, EventArgs e)
+        {
+            if (gridView1.SelectedRowsCount > 0 && gridView1.GetSelectedRows()[0] >= 0)
+            {
+                int activityId = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["Id"]).ToString());
+                string rtf = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], gridView1.Columns["CommentRtf"]).ToString();
+
+                RichTextBox rtbTemp = new RichTextBox();
+                rtbTemp.Rtf = rtf;
+                MessageBox.Show("OldRtf: " + rtbTemp.Rtf);
+                rtbTemp.Font = new Font(new FontFamily("Microsoft Sans Serif"), 12, FontStyle.Regular);
+                MessageBox.Show("NewRtf: " + rtbTemp.Rtf);
+                MessageBox.Show("Text: " + rtbTemp.Text);
+
+                System.Data.SqlClient.SqlConnection sqlConn = new System.Data.SqlClient.SqlConnection(SqlDBInfo.connectionString);
+                string UpdSt = "UPDATE [dbo].[FIDetail_Activity] SET CommentRtf = encryptByPassPhrase(@passPhrase, convert(varchar(7800), @CommentRtf)) WHERE Id = @ActivityId ";
+
+                try
+                {
+                    sqlConn.Open();
+                    System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(UpdSt, sqlConn);
+
+                    cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                    cmd.Parameters.AddWithValue("@ActivityId", activityId);
+                    
+                    if (rtbTemp.Text.Trim() == "")
+                    {
+                        cmd.Parameters.AddWithValue("@CommentRtf", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@CommentRtf", rtbTemp.Rtf);
+                    }
+                                        
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("The following error occurred: " + ex.Message);
+
+                }
+                sqlConn.Close();
+
+
+
+
             }
         }
     }
