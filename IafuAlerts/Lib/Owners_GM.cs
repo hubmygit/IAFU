@@ -26,7 +26,7 @@ namespace IafuAlerts
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [UserId] " +
                               "FROM [dbo].[Owners_GM] " +
-                              "WHERE IsCurrent = 'TRUE' and PlaceholderId = " + givenPlaceholderId.ToString();
+                              "WHERE IsCurrent = 'TRUE' and IsNotifRecipient = 'TRUE' and PlaceholderId = " + givenPlaceholderId.ToString();
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {
