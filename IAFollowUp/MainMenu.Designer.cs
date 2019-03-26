@@ -46,9 +46,10 @@
             this.viewChangeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageAuditOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewLogInsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewLogInsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notPublishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +91,8 @@
             this.auditorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.auditViewToolStripMenuItem,
             this.insertNewAuditToolStripMenuItem,
-            this.fiAuditorsToolStripMenuItem});
+            this.fiAuditorsToolStripMenuItem,
+            this.notPublishedToolStripMenuItem});
             this.auditorsToolStripMenuItem.Name = "auditorsToolStripMenuItem";
             this.auditorsToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.auditorsToolStripMenuItem.Tag = "1";
@@ -203,6 +205,13 @@
             this.manageAuditOwnersToolStripMenuItem.Text = "Manage Audit Owners";
             this.manageAuditOwnersToolStripMenuItem.Click += new System.EventHandler(this.manageAuditOwnersToolStripMenuItem_Click);
             // 
+            // viewLogInsToolStripMenuItem
+            // 
+            this.viewLogInsToolStripMenuItem.Name = "viewLogInsToolStripMenuItem";
+            this.viewLogInsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.viewLogInsToolStripMenuItem.Text = "View LogIns";
+            this.viewLogInsToolStripMenuItem.Click += new System.EventHandler(this.viewLogInsToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -218,12 +227,12 @@
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
-            // viewLogInsToolStripMenuItem
+            // notPublishedToolStripMenuItem
             // 
-            this.viewLogInsToolStripMenuItem.Name = "viewLogInsToolStripMenuItem";
-            this.viewLogInsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.viewLogInsToolStripMenuItem.Text = "View LogIns";
-            this.viewLogInsToolStripMenuItem.Click += new System.EventHandler(this.viewLogInsToolStripMenuItem_Click);
+            this.notPublishedToolStripMenuItem.Name = "notPublishedToolStripMenuItem";
+            this.notPublishedToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.notPublishedToolStripMenuItem.Text = "NotPublished";
+            this.notPublishedToolStripMenuItem.Click += new System.EventHandler(this.notPublishedToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -273,5 +282,6 @@
         private System.Windows.Forms.ToolStripMenuItem fiAuditorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageAuditOwnersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewLogInsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem notPublishedToolStripMenuItem;
     }
 }

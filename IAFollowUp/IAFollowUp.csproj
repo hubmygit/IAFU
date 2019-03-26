@@ -209,6 +209,12 @@
     <Compile Include="NotifWillExpireThisMonth.Designer.cs">
       <DependentUpon>NotifWillExpireThisMonth.cs</DependentUpon>
     </Compile>
+    <Compile Include="NotPublishedDHA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotPublishedDHA.Designer.cs">
+      <DependentUpon>NotPublishedDHA.cs</DependentUpon>
+    </Compile>
     <Compile Include="OnlyForMigration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -403,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotifWillExpireThisMonth.resx">
       <DependentUpon>NotifWillExpireThisMonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotPublishedDHA.resx">
+      <DependentUpon>NotPublishedDHA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OnlyForMigration.resx">
       <DependentUpon>OnlyForMigration.cs</DependentUpon>

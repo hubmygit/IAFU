@@ -305,9 +305,8 @@ namespace IafuAlerts
             {
                 sqlConn.Open();
 
-                DateTime actionDt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-                cmd.Parameters.AddWithValue("@actionDt", actionDt);
+                //DateTime actionDt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                //cmd.Parameters.AddWithValue("@actionDt", actionDt);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

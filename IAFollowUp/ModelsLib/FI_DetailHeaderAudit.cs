@@ -122,6 +122,53 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static BindingList<FI_DetailHeaderAudit> AuditListToDetailListNotPublished(List<Audit> auditList)
+        {
+            BindingList<FI_DetailHeaderAudit> ret = new BindingList<FI_DetailHeaderAudit>();
+
+            foreach (Audit thisAudit in auditList) //per audit
+            {
+                foreach (FIHeader thisHeader in thisAudit.FIHeaders) //per header
+                {
+                    foreach (FIDetail thisDetail in thisHeader.FIDetails) //per detail
+                    {
+                        FI_DetailHeaderAudit fiDHA = new FI_DetailHeaderAudit();
+                        fiDHA.AuditId = thisAudit.Id;
+                        fiDHA.AuditCompany = thisAudit.Company;
+                        fiDHA.AuditYear = thisAudit.Year;
+                        fiDHA.AuditTitle = thisAudit.Title;
+                        fiDHA.AuditRef = thisAudit.AuditRef;
+                        fiDHA.AuditAuditor1 = thisAudit.Auditor1;
+                        fiDHA.AuditAuditor2 = thisAudit.Auditor2;
+                        fiDHA.AuditSupervisor = thisAudit.Supervisor;
+
+                        fiDHA.HeaderId = thisHeader.Id;
+                        fiDHA.HeaderTitle = thisHeader.Title;
+                        fiDHA.HeaderCategory = thisHeader.FICategory;
+                        fiDHA.HeaderFIId = thisHeader.FIId;
+
+                        fiDHA.DetailId = thisDetail.Id;
+                        fiDHA.DetailDescription = thisDetail.Description;
+                        fiDHA.DetailActionDt = thisDetail.ActionDt;
+                        fiDHA.DetailActionReq = thisDetail.ActionReq;
+                        fiDHA.DetailActionCode = thisDetail.ActionCode;
+                        fiDHA.DetailIsFinalized = thisDetail.IsFinalized;
+                        fiDHA.DetailFISubId = thisDetail.FISubId;
+                        fiDHA.DetailCurrentOwner1 = thisDetail.CurrentOwner1;
+                        fiDHA.DetailCurrentOwner2 = thisDetail.CurrentOwner2;
+                        fiDHA.DetailCurrentOwner3 = thisDetail.CurrentOwner3;
+                        fiDHA.DetailRealOwner1 = thisDetail.RealOwner1;
+                        fiDHA.DetailRealOwner2 = thisDetail.RealOwner2;
+                        fiDHA.DetailRealOwner3 = thisDetail.RealOwner3;
+
+                        ret.Add(fiDHA);
+                    }
+                }
+            }
+
+            return ret;
+        }
+
         private static bool IsMyPendingIssue(FI_DetailHeaderAudit dha)
         {
             bool ret = true;

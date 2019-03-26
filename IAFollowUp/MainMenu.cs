@@ -155,7 +155,16 @@ namespace IAFollowUp
             UserInfo.UpdateExitDt();
         }
 
-        
+        private void notPublishedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserAction.IsLegal(Action.FI_ViewNotPublished))
+            {
+                NotPublishedDHA frmAuditorsNotPublished = new NotPublishedDHA();
+                frmAuditorsNotPublished.ShowDialog();
+            }
+        }
+
+
 
         //temporary to remove....
         //private void tmp1Notif_Click(object sender, EventArgs e)

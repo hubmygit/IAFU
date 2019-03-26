@@ -33,6 +33,7 @@ namespace IAFollowUp
 
         //auditees----->
         FI_View,
+        FI_ViewNotPublished,
         Activity_View,
         Activity_MTinformIA,
         Activity_MTreplyIA,
@@ -734,6 +735,13 @@ namespace IAFollowUp
 
                 //---------- FI / Activity ---------->
                 case Action.FI_View:
+                    {
+                        //checking what users see, into select function
+                        ret = true;
+                        break;
+                    }
+
+                case Action.FI_ViewNotPublished:
                     {
                         //checking what users see, into select function
                         ret = true;

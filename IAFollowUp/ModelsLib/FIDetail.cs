@@ -892,6 +892,108 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static List<FIDetail> SelectNotPublished(bool showDeleted)
+        {
+            List<FIDetail> ret = new List<FIDetail>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "D.ActionDt, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
+                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
+                              "FROM [dbo].[FIDetail] D " +
+                              "WHERE isnull(D.[IsPublished], 'FALSE') = 'FALSE' ";
+
+            if (!showDeleted)
+            {
+                SelectSt += "AND isnull(D.[IsDeleted], 'FALSE') = 'FALSE' ";
+            }
+
+            SelectSt += "ORDER BY D.Id "; //ToDo
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    FIDetail tmp = new FIDetail();
+                    DateTime? DetailActionDt;
+
+                    if (reader["ActionDt"] == System.DBNull.Value)
+                    {
+                        DetailActionDt = null;
+                    }
+                    else
+                    {
+                        DetailActionDt = Convert.ToDateTime(reader["ActionDt"].ToString());
+                    }
+
+                    tmp = new FIDetail()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        FIHeaderId = Convert.ToInt32(reader["FIHeaderId"].ToString()),
+                        Description = reader["Description"].ToString(),
+                        ActionDt = DetailActionDt,
+                        ActionReq = reader["ActionReq"].ToString(),
+                        ActionCode = reader["ActionCode"].ToString(),
+                        IsClosed = Convert.ToBoolean(reader["IsClosed"].ToString()),
+                        IsPublished = Convert.ToBoolean(reader["IsPublished"].ToString()),
+                        IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
+                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
+                        //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString())),
+                        FISubId = reader["FISubId"].ToString()
+                    };
+
+                    if (tmp.Placeholders.Count >= 1 && tmp.Placeholders[0] != null)
+                    {
+                        tmp.CurrentOwner1 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[0].Id);
+                    }
+                    if (tmp.Placeholders.Count >= 2 && tmp.Placeholders[1] != null)
+                    {
+                        tmp.CurrentOwner2 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[1].Id);
+                    }
+                    if (tmp.Placeholders.Count >= 3 && tmp.Placeholders[2] != null)
+                    {
+                        tmp.CurrentOwner3 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[2].Id);
+                    }
+
+                    AuditOwners audO = getAuditOwners(tmp.Id);
+
+                    //==============================================================
+                    //a) Admin - All
+                    if (UserInfo.roleDetails.IsAdmin)
+                    {
+                        ret.Add(tmp);
+                        continue;
+                    }
+
+                    //b) Auditor (Owner) - All
+                    if (audO.IsUser_AuditOwner())
+                    {
+                        ret.Add(tmp);
+                        continue;
+                    }
+                    //==============================================================
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
         public static int FinalizeClosed(List<FIDetail> detailList)
         {
             int ret = 0;
