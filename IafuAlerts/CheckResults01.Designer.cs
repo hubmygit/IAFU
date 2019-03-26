@@ -38,6 +38,7 @@
             this.colcnt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colccfullNames = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colccEmails = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colbody = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkResultsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -68,12 +69,14 @@
             this.colemail,
             this.colcnt,
             this.colccfullNames,
-            this.colccEmails});
+            this.colccEmails,
+            this.colbody});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
             // colfullName
             // 
+            this.colfullName.Caption = "Full Name";
             this.colfullName.FieldName = "fullName";
             this.colfullName.Name = "colfullName";
             this.colfullName.Visible = true;
@@ -81,6 +84,7 @@
             // 
             // colemail
             // 
+            this.colemail.Caption = "Email Address";
             this.colemail.FieldName = "email";
             this.colemail.Name = "colemail";
             this.colemail.Visible = true;
@@ -88,6 +92,7 @@
             // 
             // colcnt
             // 
+            this.colcnt.Caption = "Counter";
             this.colcnt.FieldName = "cnt";
             this.colcnt.Name = "colcnt";
             this.colcnt.Visible = true;
@@ -95,6 +100,7 @@
             // 
             // colccfullNames
             // 
+            this.colccfullNames.Caption = "Full Names";
             this.colccfullNames.FieldName = "ccfullNames";
             this.colccfullNames.Name = "colccfullNames";
             this.colccfullNames.Visible = true;
@@ -102,10 +108,19 @@
             // 
             // colccEmails
             // 
+            this.colccEmails.Caption = "Email Addresses";
             this.colccEmails.FieldName = "ccEmails";
             this.colccEmails.Name = "colccEmails";
             this.colccEmails.Visible = true;
             this.colccEmails.VisibleIndex = 4;
+            // 
+            // colbody
+            // 
+            this.colbody.Caption = "Email Body";
+            this.colbody.FieldName = "body";
+            this.colbody.Name = "colbody";
+            this.colbody.Visible = true;
+            this.colbody.VisibleIndex = 5;
             // 
             // CheckResults01
             // 
@@ -134,5 +149,6 @@
         private System.Windows.Forms.BindingSource checkResultsBindingSource1;
         private DevExpress.XtraGrid.Columns.GridColumn colccfullNames;
         private DevExpress.XtraGrid.Columns.GridColumn colccEmails;
+        private DevExpress.XtraGrid.Columns.GridColumn colbody;
     }
 }

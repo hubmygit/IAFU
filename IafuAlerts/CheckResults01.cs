@@ -18,9 +18,11 @@ namespace IafuAlerts
 
         public CheckResults01(BindingList<CheckResults> ChResBList)
         {
+            MessageBox.Show("x1");
             InitializeComponent();
-
+            MessageBox.Show("x2");
             gridControl1.DataSource = ChResBList;
+            MessageBox.Show("x3");
         }
     }
 }

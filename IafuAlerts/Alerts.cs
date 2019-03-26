@@ -403,6 +403,21 @@ namespace IafuAlerts
             frmCheckRes.ShowDialog();
         }
 
+        private void btnTestFailedEmails_Click(object sender, EventArgs e)
+        {
+            //Output.WriteToFile("* Failed Emails *");
+            List<AlertEmails> lostEmails = Notifications.getFailedEmails();
+            BindingList<CheckResults> ChResBList = new BindingList<CheckResults>();
+            foreach (AlertEmails thisEmail in lostEmails)
+            {
+                CheckResults chRes = new CheckResults() { ccEmails = thisEmail.Name, body = thisEmail.EmailBody, cnt = 1 };
+                ChResBList.Add(chRes);
+            }
+
+            CheckResults01 frmCheckRes = new CheckResults01(ChResBList);
+            frmCheckRes.ShowDialog();
+        }
+
     }
 
     public class CheckResults
@@ -412,5 +427,6 @@ namespace IafuAlerts
         public int cnt { get; set; }
         public string ccfullNames { get; set; }
         public string ccEmails { get; set; }
+        public string body { get; set; }
     }
 }

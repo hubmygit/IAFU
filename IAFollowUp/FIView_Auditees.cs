@@ -38,7 +38,7 @@ namespace IAFollowUp
             gridControl1.DataSource = fiDHABList;
 
             lblIssuesAllCnt.Text = fiDHABList.Count.ToString();
-            lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString();
+            lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString(); // && i.ActionSide.Id == 2 (auditees)
             lblIssuesMyCnt.Text = fiDHABList.Count(i => i.IsMyPending).ToString();
 
             //gridView1.Columns["IsDeleted"].Visible = UserInfo.roleDetails.IsAdmin;
@@ -151,7 +151,7 @@ namespace IAFollowUp
                         gridControl1.DataSource = fiDHABList;
 
                         lblIssuesAllCnt.Text = fiDHABList.Count.ToString();
-                        lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString();
+                        lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString(); // && i.ActionSide.Id == 2 (auditees)
                         lblIssuesMyCnt.Text = fiDHABList.Count(i => i.IsMyPending).ToString();
 
                         chbMine_CheckedChanged(null, null);

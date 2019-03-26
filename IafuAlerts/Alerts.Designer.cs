@@ -37,6 +37,7 @@
             this.btnFailedEmails = new System.Windows.Forms.Button();
             this.btnTestExpireInM = new System.Windows.Forms.Button();
             this.btnTestExpired = new System.Windows.Forms.Button();
+            this.btnTestFailedEmails = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnExpireInM
@@ -86,7 +87,7 @@
             // btnOpenLog
             // 
             this.btnOpenLog.Enabled = false;
-            this.btnOpenLog.Location = new System.Drawing.Point(217, 284);
+            this.btnOpenLog.Location = new System.Drawing.Point(217, 320);
             this.btnOpenLog.Name = "btnOpenLog";
             this.btnOpenLog.Size = new System.Drawing.Size(120, 50);
             this.btnOpenLog.TabIndex = 4;
@@ -125,11 +126,22 @@
             this.btnTestExpired.UseVisualStyleBackColor = true;
             this.btnTestExpired.Click += new System.EventHandler(this.btnTestExpired_Click);
             // 
+            // btnTestFailedEmails
+            // 
+            this.btnTestFailedEmails.Location = new System.Drawing.Point(154, 232);
+            this.btnTestFailedEmails.Name = "btnTestFailedEmails";
+            this.btnTestFailedEmails.Size = new System.Drawing.Size(246, 50);
+            this.btnTestFailedEmails.TabIndex = 8;
+            this.btnTestFailedEmails.Text = "Send IAFU Application\'s Failed Emails";
+            this.btnTestFailedEmails.UseVisualStyleBackColor = true;
+            this.btnTestFailedEmails.Click += new System.EventHandler(this.btnTestFailedEmails_Click);
+            // 
             // Alerts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 346);
+            this.ClientSize = new System.Drawing.Size(554, 382);
+            this.Controls.Add(this.btnTestFailedEmails);
             this.Controls.Add(this.btnTestExpired);
             this.Controls.Add(this.btnTestExpireInM);
             this.Controls.Add(this.btnFailedEmails);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.Button btnFailedEmails;
         private System.Windows.Forms.Button btnTestExpireInM;
         private System.Windows.Forms.Button btnTestExpired;
+        private System.Windows.Forms.Button btnTestFailedEmails;
     }
 }
