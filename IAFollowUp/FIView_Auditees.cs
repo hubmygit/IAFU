@@ -13,10 +13,17 @@ namespace IAFollowUp
     {
         public FIView_Auditees() //(bool showAuditors)
         {
+            System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
+
             InitializeComponent();
 
-            detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            MessageBox.Show("1.After Init: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            stopWatch.Start();
 
+            detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
 
             //UserInfo.userDetails.Id
 
@@ -34,8 +41,24 @@ namespace IAFollowUp
             List<FIHeader> headerList = FIHeader.Select(UserInfo.roleDetails.IsAdmin, detailList);
             List<Audit> auditList = Audit.Select(UserInfo.roleDetails.IsAdmin, headerList);
 
+            stopWatch.Stop();
+            ts = stopWatch.Elapsed;
+            MessageBox.Show("2.After Queries: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            stopWatch.Start();
+
             fiDHABList = FI_DetailHeaderAudit.AuditListToDetailList(auditList);
+
+            stopWatch.Stop();
+            ts = stopWatch.Elapsed;
+            MessageBox.Show("3.After ActionSide/MyPending Prepared: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            stopWatch.Start();
+
             gridControl1.DataSource = fiDHABList;
+
+            stopWatch.Stop();
+            ts = stopWatch.Elapsed;
+            MessageBox.Show("4.After DataSource Set: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            stopWatch.Start();
 
             lblIssuesAllCnt.Text = fiDHABList.Count.ToString();
             lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString(); // && i.ActionSide.Id == 2 (auditees)
@@ -56,6 +79,10 @@ namespace IAFollowUp
             gridView1.Columns["AuditId"].Visible = UserInfo.roleDetails.IsAdmin;
             gridView1.Columns["HeaderId"].Visible = UserInfo.roleDetails.IsAdmin;
             gridView1.Columns["DetailId"].Visible = UserInfo.roleDetails.IsAdmin;
+
+            stopWatch.Stop();
+            ts = stopWatch.Elapsed;
+            MessageBox.Show("5.After Counters Arranged (Before Show): " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();

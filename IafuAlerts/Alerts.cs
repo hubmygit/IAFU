@@ -417,7 +417,6 @@ namespace IafuAlerts
             CheckResults01 frmCheckRes = new CheckResults01(ChResBList);
             frmCheckRes.ShowDialog();
         }
-
     }
 
     public class CheckResults
