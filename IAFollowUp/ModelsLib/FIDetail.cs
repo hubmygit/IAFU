@@ -892,6 +892,172 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static List<FIDetail> Select(bool showDeleted, List<Owners_MT> ownersMT_All, List<Owners_GM> ownersGM_All, List<Owners_DT> ownersDT_All)
+        {
+            List<FIDetail> ret = new List<FIDetail>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT D.[Id], D.[FIHeaderId], " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[Description])) as Description, " +
+                              "D.ActionDt, " +
+                              "CONVERT(varchar(7800), DECRYPTBYPASSPHRASE( @passPhrase , D.[ActionReq])) as ActionReq,  " +
+                              "D.ActionCode, isnull(D.[IsClosed], 'FALSE') as IsClosed, isnull(D.[IsPublished], 'FALSE') as IsPublished, isnull(D.[IsFinalized], 'FALSE') as IsFinalized, " +
+                              "isnull(D.[IsDeleted], 'FALSE') as IsDeleted, D.[FISubId] " +
+                              "FROM [dbo].[FIDetail] D ";
+
+            if (!showDeleted)
+            {
+                SelectSt += "WHERE isnull(D.[IsDeleted], 'FALSE') = 'FALSE' ";
+            }
+
+            SelectSt += "ORDER BY D.Id "; //ToDo
+
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+
+                cmd.Parameters.AddWithValue("@passPhrase", SqlDBInfo.passPhrase);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    FIDetail tmp = new FIDetail();
+                    DateTime? DetailActionDt;
+
+                    if (reader["ActionDt"] == System.DBNull.Value)
+                    {
+                        DetailActionDt = null;
+                    }
+                    else
+                    {
+                        DetailActionDt = Convert.ToDateTime(reader["ActionDt"].ToString());
+                    }
+
+                    tmp = new FIDetail()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        FIHeaderId = Convert.ToInt32(reader["FIHeaderId"].ToString()),
+                        Description = reader["Description"].ToString(),
+                        ActionDt = DetailActionDt,
+                        ActionReq = reader["ActionReq"].ToString(),
+                        ActionCode = reader["ActionCode"].ToString(),
+                        IsClosed = Convert.ToBoolean(reader["IsClosed"].ToString()),
+                        IsPublished = Convert.ToBoolean(reader["IsPublished"].ToString()),
+                        IsFinalized = Convert.ToBoolean(reader["IsFinalized"].ToString()),
+                        IsDeleted = Convert.ToBoolean(reader["IsDeleted"].ToString()),
+                        //Owners = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString()))
+                        Placeholders = FIDetail.getOwners(Convert.ToInt32(reader["Id"].ToString())),
+                        FISubId = reader["FISubId"].ToString()
+                    };
+
+                    if (tmp.Placeholders.Count >= 1 && tmp.Placeholders[0] != null)
+                    {
+                        //tmp.CurrentOwner1 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[0].Id);
+                        tmp.CurrentOwner1 = ownersMT_All.Where(i => i.Placeholder.Id == tmp.Placeholders[0].Id).First();
+                    }
+                    if (tmp.Placeholders.Count >= 2 && tmp.Placeholders[1] != null)
+                    {
+                        //tmp.CurrentOwner2 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[1].Id);
+                        tmp.CurrentOwner2 = ownersMT_All.Where(i => i.Placeholder.Id == tmp.Placeholders[1].Id).First();
+                    }
+                    if (tmp.Placeholders.Count >= 3 && tmp.Placeholders[2] != null)
+                    {
+                        //tmp.CurrentOwner3 = Owners_MT.GetCurrentOwnerMT(tmp.Placeholders[2].Id);
+                        tmp.CurrentOwner3 = ownersMT_All.Where(i => i.Placeholder.Id == tmp.Placeholders[2].Id).First();
+                    }
+
+                    //==============================================================
+                    //-> Management Team Users
+                    List<Users> usersListMT = new List<Users>();
+                    foreach (Placeholders ph in tmp.Placeholders)
+                    {
+                        //usersListMT.Add(Owners_MT.GetCurrentOwnerMT(ph.Id).User);
+                        usersListMT.Add(ownersMT_All.Where(i => i.Placeholder.Id == ph.Id).First().User);
+                    }
+                    FIDetailOwners detailOwnersMT = new FIDetailOwners(usersListMT);
+                    //<- Management Team Users
+
+                    //-> General Managers
+                    List<Users> usersListGM = new List<Users>();
+                    foreach (Placeholders ph in tmp.Placeholders)
+                    {
+                        //usersListGM.AddRange(Owners_GM.GetOwnerGMUsersList(ph.Id));
+                        usersListGM.AddRange(ownersGM_All.Where(i => i.Placeholder.Id == ph.Id).Select(k => k.User));
+                    }
+                    FIDetailOwners detailOwnersGM = new FIDetailOwners(usersListGM);
+                    //<- General Managers
+
+                    //-> Delegatees
+                    List<Users> usersListDT = new List<Users>();
+                    foreach (Placeholders ph in tmp.Placeholders)
+                    {
+                        //usersListDT.AddRange(Owners_DT.GetOwnerDTUsersList(tmp.Id, ph.Id));
+                        usersListDT.AddRange(ownersDT_All.Where(i => i.DetailId == tmp.Id && i.Placeholder.Id == ph.Id).Select(k => k.User));
+                    }
+                    FIDetailOwners detailOwnersDT = new FIDetailOwners(usersListDT);
+                    //<- Delegatees
+
+                    //a) Admin - All
+                    if (UserInfo.roleDetails.IsAdmin)
+                    {
+                        ret.Add(tmp);
+                        continue;
+                    }
+
+                    //b) Auditor - Published
+                    if (UserInfo.roleDetails.IsAuditor)
+                    {
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                            continue;
+                        }
+                    }
+
+                    //c) MT (placeholder's current owner) - Published
+                    if (detailOwnersMT.IsUser_DetailOwner())
+                    {
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                            continue;
+                        }
+                    }
+
+                    //d) GM (placeholder's owner) - Published
+                    if (detailOwnersGM.IsUser_DetailOwner())
+                    {
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                            continue;
+                        }
+                    }
+
+                    //e) DT (placeholder's delegatees) - Published
+                    if (detailOwnersDT.IsUser_DetailOwner())
+                    {
+                        if (tmp.IsPublished)
+                        {
+                            ret.Add(tmp);
+                            continue;
+                        }
+                    }
+                    //==============================================================
+
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
         public static List<FIDetail> SelectNotPublished(bool showDeleted)
         {
             List<FIDetail> ret = new List<FIDetail>();

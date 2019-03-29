@@ -54,6 +54,41 @@ namespace IAFollowUp
             return ret;
         }
 
+        public static List<Owners_GM> GetSqlDetailOwnersList()
+        {
+            List<Owners_GM> ret = new List<Owners_GM>();
+
+            SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
+            string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
+                              "FROM [dbo].[Owners_GM] " +
+                              "WHERE IsCurrent = 'TRUE' ";
+            SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
+            try
+            {
+                sqlConn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret.Add(new Owners_GM()
+                    {
+                        Id = Convert.ToInt32(reader["Id"].ToString()),
+                        Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),
+                        User = new Users(Convert.ToInt32(reader["UserId"].ToString())),
+                        InsDt = Convert.ToDateTime(reader["InsDt"].ToString()),
+                        IsCurrent = Convert.ToBoolean(reader["IsCurrent"].ToString())
+                    });
+                }
+                reader.Close();
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occurred: " + ex.Message);
+            }
+
+            return ret;
+        }
+
         public static List<Users> GetOwnerGMUsersList(int givenPlaceholderId)
         {
             List<Users> ret = new List<Users>();

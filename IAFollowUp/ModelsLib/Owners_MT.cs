@@ -53,7 +53,8 @@ namespace IAFollowUp
 
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
             string SelectSt = "SELECT [Id], [PlaceholderId], [UserId], [InsDt], [IsCurrent] " +
-                              "FROM [dbo].[Owners_MT] ";
+                              "FROM [dbo].[Owners_MT] " +
+                              "WHERE IsCurrent = 'TRUE' ";
             SqlCommand cmd = new SqlCommand(SelectSt, sqlConn);
             try
             {

@@ -13,52 +13,61 @@ namespace IAFollowUp
     {
         public FIView_Auditees() //(bool showAuditors)
         {
+            //System.IO.StreamWriter sw = new System.IO.StreamWriter(Application.StartupPath + "\\Log_" + System.AppDomain.CurrentDomain.FriendlyName.Replace(".exe", "") + ".txt", true);
+            //sw.AutoFlush = true;
             System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();
 
             InitializeComponent();
 
+            //stopWatch.Stop();
+            //TimeSpan ts = stopWatch.Elapsed;
+            //MessageBox.Show("1.After Init: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            //sw.WriteLine(DateTime.Now.ToString("yyyyMMdd_HHmmss") + " 1. [" + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds) + "] After Init");
+            //stopWatch.Start();
+
+            //a) Admin     //   Όλα
+            //b) Auditor   //   Όλα τα published
+            //c) MT        //   Όλα τα published των placeholders του
+            //d) GM        //   Όλα τα published των placeholders του
+            //e) Delegatee //   Όλα τα published των placeholders του Detail του
+
+            //---speed improvements---
+            //List<Owners_MT> All_Owners_MT = Owners_MT.GetSqlDetailOwnersList(); //new
+            //List<Owners_GM> All_Owners_GM = Owners_GM.GetSqlDetailOwnersList(); //new
+            //List<Owners_DT> All_Owners_DT = Owners_DT.GetSqlDetailOwnersList(); //new
+            //detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin, All_Owners_MT, All_Owners_GM, All_Owners_DT); //new
+            detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin); //old
+            //---speed improvements---
+
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
-            MessageBox.Show("1.After Init: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
-            stopWatch.Start();
-
-            detailList = FIDetail.Select(UserInfo.roleDetails.IsAdmin);
-
-            //UserInfo.userDetails.Id
-
-            //a) Admin
-            //   Όλα
-            //b) Auditor
-            //   Όλα τα published
-            //c) MT
-            //   Όλα τα published των placeholders του
-            //d) GM
-            //   Όλα τα published των placeholders του
-            //e) Delegatee
-            //   Όλα τα published των placeholders του Detail του
+            MessageBox.Show(String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
 
             List<FIHeader> headerList = FIHeader.Select(UserInfo.roleDetails.IsAdmin, detailList);
             List<Audit> auditList = Audit.Select(UserInfo.roleDetails.IsAdmin, headerList);
 
-            stopWatch.Stop();
-            ts = stopWatch.Elapsed;
-            MessageBox.Show("2.After Queries: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
-            stopWatch.Start();
+            //stopWatch.Stop();
+            //ts = stopWatch.Elapsed;
+            //MessageBox.Show("2.After Queries: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            //sw.WriteLine(DateTime.Now.ToString("yyyyMMdd_HHmmss") + " 2. [" + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds) + "] After Queries");
+            //stopWatch.Start();
 
             fiDHABList = FI_DetailHeaderAudit.AuditListToDetailList(auditList);
 
-            stopWatch.Stop();
-            ts = stopWatch.Elapsed;
-            MessageBox.Show("3.After ActionSide/MyPending Prepared: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
-            stopWatch.Start();
+            //stopWatch.Stop();
+            //ts = stopWatch.Elapsed;
+            //MessageBox.Show("3.After ActionSide/MyPending Prepared: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            //sw.WriteLine(DateTime.Now.ToString("yyyyMMdd_HHmmss") + " 3. [" + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds) + "] After Counters Prepared");
+            //stopWatch.Start();
 
             gridControl1.DataSource = fiDHABList;
 
-            stopWatch.Stop();
-            ts = stopWatch.Elapsed;
-            MessageBox.Show("4.After DataSource Set: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
-            stopWatch.Start();
+            //stopWatch.Stop();
+            //ts = stopWatch.Elapsed;
+            //MessageBox.Show("4.After DataSource Set: " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            //sw.WriteLine(DateTime.Now.ToString("yyyyMMdd_HHmmss") + " 4. [" + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds) + "] After DataSource Set");
+            //stopWatch.Start();
 
             lblIssuesAllCnt.Text = fiDHABList.Count.ToString();
             lblIssuesOpenCnt.Text = fiDHABList.Count(i => i.DetailIsFinalized == false).ToString(); // && i.ActionSide.Id == 2 (auditees)
@@ -80,9 +89,11 @@ namespace IAFollowUp
             gridView1.Columns["HeaderId"].Visible = UserInfo.roleDetails.IsAdmin;
             gridView1.Columns["DetailId"].Visible = UserInfo.roleDetails.IsAdmin;
 
-            stopWatch.Stop();
-            ts = stopWatch.Elapsed;
-            MessageBox.Show("5.After Counters Arranged (Before Show): " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            //stopWatch.Stop();
+            //ts = stopWatch.Elapsed;
+            //MessageBox.Show("5.After Counters Arranged (Before Show): " + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds));
+            //sw.WriteLine(DateTime.Now.ToString("yyyyMMdd_HHmmss") + " 5. [" + String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds)  + "] After Counters Set (Before Show)");
+            //sw.Close();
         }
 
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();
