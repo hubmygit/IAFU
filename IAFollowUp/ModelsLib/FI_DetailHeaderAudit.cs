@@ -39,6 +39,9 @@ namespace IAFollowUp
         //---------------------------------//
         public ActionSide ActionSide { get; set; }
         public bool IsMyPending { get; set; }
+        public int DelegateesCounterDept1 { get; set; }
+        public int DelegateesCounterDept2 { get; set; }
+        public int DelegateesCounterDept3 { get; set; }
 
         public FI_DetailHeaderAudit()
         {
@@ -319,6 +322,21 @@ namespace IAFollowUp
             }
 
             return ret; //true
+        }
+
+        public static BindingList<FI_DetailHeaderAudit> fillDelegateesCounters(BindingList<FI_DetailHeaderAudit> dhaBList, List<Owners_DT> allDelegatees)
+        {
+            BindingList<FI_DetailHeaderAudit> ret = new BindingList<FI_DetailHeaderAudit>();
+
+            foreach (FI_DetailHeaderAudit thisDHA in dhaBList)
+            {
+                thisDHA.DelegateesCounterDept1 = allDelegatees.Count(i => i.DetailId == thisDHA.DetailId && i.Placeholder.Id == thisDHA.DetailCurrentOwner1.Placeholder.Id);
+                thisDHA.DelegateesCounterDept2 = allDelegatees.Count(i => i.DetailId == thisDHA.DetailId && i.Placeholder.Id == thisDHA.DetailCurrentOwner2.Placeholder.Id);
+                thisDHA.DelegateesCounterDept3 = allDelegatees.Count(i => i.DetailId == thisDHA.DetailId && i.Placeholder.Id == thisDHA.DetailCurrentOwner3.Placeholder.Id);
+            }
+            ret = dhaBList;
+
+            return ret;
         }
     }
 }

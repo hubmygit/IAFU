@@ -54,6 +54,7 @@ namespace IAFollowUp
             //stopWatch.Start();
 
             fiDHABList = FI_DetailHeaderAudit.AuditListToDetailList(auditList);
+            //fiDHABList = FI_DetailHeaderAudit.fillDelegateesCounters(fiDHABList, All_Owners_DT); //new
 
             //stopWatch.Stop();
             //ts = stopWatch.Elapsed;

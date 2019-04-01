@@ -1487,9 +1487,14 @@ namespace IAFollowUp
                             detActivityAcc.ActivityDescription = new ActivityDescription(22);
                         }
 
-                        //detActivityAcc.ActivityDescription = new ActivityDescription(12);
-                        detActivityAcc.CommentRtf = detActivity.CommentRtf; //copy from last action
-                        detActivityAcc.CommentText = detActivity.CommentText; //copy from last action
+                        DialogResult commDr = MessageBox.Show("Do you want your comments and attachments to be published to Managment Teams?", "Comments", MessageBoxButtons.YesNo);
+
+                        if (commDr == DialogResult.Yes)
+                        {
+                            //detActivityAcc.ActivityDescription = new ActivityDescription(12);
+                            detActivityAcc.CommentRtf = detActivity.CommentRtf; //copy from last action
+                            detActivityAcc.CommentText = detActivity.CommentText; //copy from last action
+                        }
 
                         bool success = true;
 
@@ -1502,16 +1507,18 @@ namespace IAFollowUp
 
                             if (newAccActivityId > -1)
                             {
-                                //insert attachments //copy from last action
-                                string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId); 
-                                if (fileNamesAcc.Length > 0)
+                                if (commDr == DialogResult.Yes)
                                 {
-                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
+                                    //insert attachments //copy from last action
+                                    string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId);
+                                    if (fileNamesAcc.Length > 0)
                                     {
-                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
+                                        {
+                                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
                                     }
                                 }
-
                                 //Don't send email for this action
                             }
                             else
@@ -1530,16 +1537,18 @@ namespace IAFollowUp
 
                             if (newAccActivityId > -1)
                             {
-                                //insert attachments //copy from last action
-                                string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId);
-                                if (fileNamesAcc.Length > 0)
+                                if (commDr == DialogResult.Yes)
                                 {
-                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
+                                    //insert attachments //copy from last action
+                                    string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId);
+                                    if (fileNamesAcc.Length > 0)
                                     {
-                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
+                                        {
+                                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
                                     }
                                 }
-
                                 //Don't send email for this action
                             }
                             else
@@ -1557,16 +1566,18 @@ namespace IAFollowUp
 
                             if (newAccActivityId > -1)
                             {
-                                //insert attachments //copy from last action
-                                string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId);
-                                if (fileNamesAcc.Length > 0)
+                                if (commDr == DialogResult.Yes)
                                 {
-                                    if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
+                                    //insert attachments //copy from last action
+                                    string[] fileNamesAcc = ActivityAttachments.getSavedAttachments(newActivityId);
+                                    if (fileNamesAcc.Length > 0)
                                     {
-                                        MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        if (ActivityAttachments.CopyActivityAttachedFiles(newActivityId, newAccActivityId) == false) //copy from last action
+                                        {
+                                            MessageBox.Show("Attached files have not been saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
                                     }
                                 }
-
                                 //Don't send email for this action
                             }
                             else
