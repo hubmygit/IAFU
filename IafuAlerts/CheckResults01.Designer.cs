@@ -39,6 +39,7 @@
             this.colccfullNames = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colccEmails = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colbody = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colnotify = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkResultsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -70,7 +71,8 @@
             this.colcnt,
             this.colccfullNames,
             this.colccEmails,
-            this.colbody});
+            this.colbody,
+            this.colnotify});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
@@ -122,6 +124,13 @@
             this.colbody.Visible = true;
             this.colbody.VisibleIndex = 5;
             // 
+            // colnotify
+            // 
+            this.colnotify.FieldName = "notify";
+            this.colnotify.Name = "colnotify";
+            this.colnotify.Visible = true;
+            this.colnotify.VisibleIndex = 6;
+            // 
             // CheckResults01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,5 +159,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colccfullNames;
         private DevExpress.XtraGrid.Columns.GridColumn colccEmails;
         private DevExpress.XtraGrid.Columns.GridColumn colbody;
+        private DevExpress.XtraGrid.Columns.GridColumn colnotify;
     }
 }

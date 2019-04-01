@@ -33,7 +33,7 @@ namespace IafuAlerts
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
 
             string SelectSt =
-            "SELECT D.Id as DetailId, D.ActionDt, P.PlaceholderId, U.Id as UserId " +
+            "SELECT D.Id as DetailId, D.ActionDt, P.PlaceholderId, U.Id as UserId, isnull(O.IsNotifRecipient, 'FALSE') as IsNotifRecipient " +
             //"       convert(varchar(500), decryptByPassPhrase(@passPhrase', U.FullName)) as FullName, " +
             //"       convert(varchar(500), decryptByPassPhrase(@passPhrase, U.Email)) as Email " +
             "FROM [dbo].[Audit] A left outer join " +
@@ -66,7 +66,8 @@ namespace IafuAlerts
                         DetailId = Convert.ToInt32(reader["DetailId"].ToString()),
                         ActionDt = Convert.ToDateTime(reader["ActionDt"].ToString()),
                         Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),
-                        User = new Users(Convert.ToInt32(reader["UserId"].ToString()))
+                        User = new Users(Convert.ToInt32(reader["UserId"].ToString())),
+                        Notify = Convert.ToBoolean(reader["IsNotifRecipient"].ToString())
                     });
                 }
                 reader.Close();
@@ -114,7 +115,7 @@ namespace IafuAlerts
             SqlConnection sqlConn = new SqlConnection(SqlDBInfo.connectionString);
 
             string SelectSt =
-            "SELECT D.Id as DetailId, D.ActionDt, P.PlaceholderId, U.Id as UserId " +
+            "SELECT D.Id as DetailId, D.ActionDt, P.PlaceholderId, U.Id as UserId, isnull(O.IsNotifRecipient, 'FALSE') as IsNotifRecipient " +
             //"       convert(varchar(500), decryptByPassPhrase(@passPhrase', U.FullName)) as FullName, " +
             //"       convert(varchar(500), decryptByPassPhrase(@passPhrase, U.Email)) as Email " +
             "FROM [dbo].[Audit] A left outer join " +
@@ -149,7 +150,8 @@ namespace IafuAlerts
                         DetailId = Convert.ToInt32(reader["DetailId"].ToString()),
                         ActionDt = Convert.ToDateTime(reader["ActionDt"].ToString()),
                         Placeholder = new Placeholders(Convert.ToInt32(reader["PlaceholderId"].ToString())),
-                        User = new Users(Convert.ToInt32(reader["UserId"].ToString()))
+                        User = new Users(Convert.ToInt32(reader["UserId"].ToString())),
+                        Notify = Convert.ToBoolean(reader["IsNotifRecipient"].ToString())
                     });
                 }
                 reader.Close();

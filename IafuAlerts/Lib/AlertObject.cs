@@ -17,6 +17,7 @@ namespace IafuAlerts
         public bool Auditor2Idle { get; set; }
         public Users Supervisor { get; set; }
         public bool SupervisorIdle { get; set; }
+        public bool Notify { get; set; }
 
         public AlertObject()
         {

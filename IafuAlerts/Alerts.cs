@@ -68,6 +68,12 @@ namespace IafuAlerts
 
                     Output.WriteToFile("Details To MT User " + alObjList[0].User.Id.ToString() + ": " + cnt.ToString());
 
+                    if (alObjList[0].Notify == false)
+                    {
+                        Output.WriteToFile("MT will NOT receive notifications!");
+                        continue;
+                    }
+
                     AlertEmails alert = new AlertEmails(1);
 
                     EmailProperties emailProps = new EmailProperties();
@@ -112,6 +118,12 @@ namespace IafuAlerts
                     string email = alObjList[0].User.getEmail();
 
                     Output.WriteToFile("Details To MT User " + alObjList[0].User.Id.ToString() + ": " + cnt.ToString());
+
+                    if (alObjList[0].Notify == false)
+                    {
+                        Output.WriteToFile("MT (and GM,CAE) will NOT receive notifications!");
+                        continue;
+                    }
 
                     AlertEmails alert = new AlertEmails(2);
 
@@ -358,8 +370,8 @@ namespace IafuAlerts
                     string FullName = alObjList[0].User.FullName;
                     string Email = alObjList[0].User.getEmail();
                     int Cnt = alObjList.Count;
-
-                    ChResBList.Add(new CheckResults() { fullName = FullName, email = Email, cnt = Cnt });
+                    bool Notify = alObjList[0].Notify;
+                    ChResBList.Add(new CheckResults() { fullName = FullName, email = Email, cnt = Cnt, notify = Notify });
                 }
             }
 
@@ -380,8 +392,9 @@ namespace IafuAlerts
                     string FullName = alObjList[0].User.FullName;
                     string Email = alObjList[0].User.getEmail();
                     int Cnt = alObjList.Count;
+                    bool Notify = alObjList[0].Notify;
 
-                    CheckResults chRes = new CheckResults() { fullName = FullName, email = Email, cnt = Cnt };
+                    CheckResults chRes = new CheckResults() { fullName = FullName, email = Email, cnt = Cnt, notify = Notify };
 
                     List<Users> ccUsers = Owners_GM.GetOwnerGMUsersList(alObjList[0].Placeholder.Id);
                     ccUsers.Add(Users.getCAE());
@@ -427,5 +440,6 @@ namespace IafuAlerts
         public string ccfullNames { get; set; }
         public string ccEmails { get; set; }
         public string body { get; set; }
+        public bool notify { get; set; }
     }
 }
