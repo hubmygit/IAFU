@@ -26,5 +26,15 @@ namespace IAFollowUp
         public BindingList<FI_DetailHeaderAudit> fiDHABList = new BindingList<FI_DetailHeaderAudit>();
         public List<FIDetail> detailList = new List<FIDetail>();
 
+        private void btnExcelExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
+            DialogResult result = sfd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                gridControl1.ExportToXlsx(sfd.FileName);
+            }
+        }
     }
 }

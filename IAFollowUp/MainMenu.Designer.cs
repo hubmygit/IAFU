@@ -36,6 +36,7 @@
             this.auditViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertNewAuditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fiAuditorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notPublishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +50,6 @@
             this.viewLogInsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notPublishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +120,13 @@
             this.fiAuditorsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.fiAuditorsToolStripMenuItem.Text = "Findings and Improvements";
             this.fiAuditorsToolStripMenuItem.Click += new System.EventHandler(this.fiAuditorsToolStripMenuItem_Click);
+            // 
+            // notPublishedToolStripMenuItem
+            // 
+            this.notPublishedToolStripMenuItem.Name = "notPublishedToolStripMenuItem";
+            this.notPublishedToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.notPublishedToolStripMenuItem.Text = "Timetable";
+            this.notPublishedToolStripMenuItem.Click += new System.EventHandler(this.notPublishedToolStripMenuItem_Click);
             // 
             // auditeesToolStripMenuItem
             // 
@@ -226,13 +233,6 @@
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
-            // 
-            // notPublishedToolStripMenuItem
-            // 
-            this.notPublishedToolStripMenuItem.Name = "notPublishedToolStripMenuItem";
-            this.notPublishedToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.notPublishedToolStripMenuItem.Text = "NotPublished";
-            this.notPublishedToolStripMenuItem.Click += new System.EventHandler(this.notPublishedToolStripMenuItem_Click);
             // 
             // MainMenu
             // 

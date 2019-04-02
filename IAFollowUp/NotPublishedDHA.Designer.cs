@@ -61,6 +61,7 @@
             this.colDetailCurrentDept3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailCurrentOwner3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDetailIsFinalized = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnExcelExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -77,12 +78,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.fI_DetailHeaderAuditBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 63);
+            this.gridControl1.Location = new System.Drawing.Point(0, 75);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(1184, 379);
+            this.gridControl1.Size = new System.Drawing.Size(1184, 367);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -373,16 +374,31 @@
             this.colDetailIsFinalized.VisibleIndex = 21;
             this.colDetailIsFinalized.Width = 50;
             // 
+            // btnExcelExport
+            // 
+            this.btnExcelExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcelExport.Image = global::IAFollowUp.Properties.Resources.ExportToExcel_32x;
+            this.btnExcelExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcelExport.Location = new System.Drawing.Point(1052, 15);
+            this.btnExcelExport.Name = "btnExcelExport";
+            this.btnExcelExport.Size = new System.Drawing.Size(120, 45);
+            this.btnExcelExport.TabIndex = 4;
+            this.btnExcelExport.Text = "Export to Excel";
+            this.btnExcelExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcelExport.UseVisualStyleBackColor = true;
+            this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
+            // 
             // NotPublishedDHA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 442);
+            this.Controls.Add(this.btnExcelExport);
             this.Controls.Add(this.gridControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NotPublishedDHA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "NotPublishedDHA";
+            this.Text = "Timetable";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.fI_DetailHeaderAuditBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -424,5 +440,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentDept3;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailCurrentOwner3;
         private DevExpress.XtraGrid.Columns.GridColumn colDetailIsFinalized;
+        private System.Windows.Forms.Button btnExcelExport;
     }
 }
